@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Focus</title><link href="http://heloman.github.io/" rel="alternate"></link><link href="http://heloman.github.io/feeds/all.atom.xml" rel="self"></link><id>http://heloman.github.io/</id><updated>2013-08-19T00:00:00+08:00</updated><entry><title>My first blog</title><link href="http://heloman.github.io/my-first-blog.html" rel="alternate"></link><updated>2013-08-19T00:00:00+08:00</updated><author><name>heLomaN</name></author><id>tag:heloman.github.io,2013-08-19:my-first-blog.html</id><summary type="html">&lt;h2&gt;Just for test! Have fun!&lt;/h2&gt;
-&lt;h3&gt;来看看中文输入怎么样&lt;/h3&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="n"&gt;what&lt;/span&gt; &lt;span class="n"&gt;about&lt;/span&gt; &lt;span class="n"&gt;this&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;this&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;code&lt;/span&gt;&lt;span class="o"&gt;?&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</summary></entry></feed>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Focus</title><link href="http://heloman.github.io/" rel="alternate"></link><link href="http://heloman.github.io/feeds/all.atom.xml" rel="self"></link><id>http://heloman.github.io/</id><updated>2013-08-19T00:00:00+08:00</updated><entry><title>My first git blog</title><link href="http://heloman.github.io/my-first-git-blog.html" rel="alternate"></link><updated>2013-08-19T00:00:00+08:00</updated><author><name>heLomaN</name></author><id>tag:heloman.github.io,2013-08-19:my-first-git-blog.html</id><summary type="html">&lt;h2&gt;How to build you blog on github&lt;/h2&gt;
+&lt;h1&gt;name.github.io&lt;/h1&gt;
+&lt;p&gt;Github offer everyone a site:name.github.io, where you can publish you blogs.&lt;/p&gt;
+&lt;h1&gt;Use git to publish&lt;/h1&gt;
+&lt;p&gt;A very good startup:&lt;a href="http://frantic1048.com/blog/bo-ke-dan-sheng-ji-ji-yu-githubpelicanchuang-jian-bo-ke-de-zheng-ge-guo-cheng.html"&gt;http://frantic1048.com/blog/bo-ke-dan-sheng-ji-ji-yu-githubpelicanchuang-jian-bo-ke-de-zheng-ge-guo-cheng.html&lt;/a&gt;&lt;/p&gt;
+&lt;h1&gt;Improve&lt;/h1&gt;
+&lt;p&gt;Lizherui's blog: &lt;a href="http://www.lizherui.com/pages/2013/08/17/build_blog.html"&gt;http://www.lizherui.com/pages/2013/08/17/build_blog.html&lt;/a&gt;&lt;/p&gt;</summary><category term="pelican publish blog"></category></entry></feed>
