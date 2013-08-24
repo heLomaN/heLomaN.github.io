@@ -23,4 +23,58 @@ But for rss, this works:&lt;/p&gt;
 &lt;h4&gt;How to use Markdown&lt;/h4&gt;
 &lt;p&gt;Wikipedia:&lt;a href="http://zh.wikipedia.org/wiki/Markdown"&gt;http://zh.wikipedia.org/wiki/Markdown&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;Hum,this is my pelican.conf.&lt;/h3&gt;
-&lt;p&gt;Feel free to share.&lt;/p&gt;</summary><category term="pelican"></category><category term="blog"></category></entry></feed>
+&lt;p&gt;Feel free to share.
+&lt;code&gt;&lt;/p&gt;
+&lt;h1&gt;!/usr/bin/env python&lt;/h1&gt;
+&lt;h1&gt;-&lt;em&gt;- coding: utf-8 -&lt;/em&gt;-&lt;/h1&gt;
+&lt;p&gt;from &lt;strong&gt;future&lt;/strong&gt; import unicode_literals&lt;/p&gt;
+&lt;p&gt;AUTHOR = u'heLomaN'
+SITENAME = u'Focus'
+SITEURL = 'http://heloman.github.io'
+RELATIVE_URLS = True&lt;/p&gt;
+&lt;p&gt;DELETE_OUTPUT_DIRECTORY = True&lt;/p&gt;
+&lt;p&gt;TIMEZONE = 'Asia/Shanghai'&lt;/p&gt;
+&lt;p&gt;DEFAULT_LANG = u'zh'
+DEFAULT_DATE_FORMAT = '%Y-%m-%d'&lt;/p&gt;
+&lt;h1&gt;Blogroll&lt;/h1&gt;
+&lt;p&gt;LINKS =  (('Pelican', 'http://getpelican.com/'),
+          ('Python.org', 'http://python.org/'),)&lt;/p&gt;
+&lt;h1&gt;Social widget&lt;/h1&gt;
+&lt;p&gt;SOCIAL = (('Weibo', 'http://weibo.com/focustc'),
+          ('Github', 'https://github.com/heloman'),
+          ('CSDN Blog', 'http://blog.csdn.net/caozhk'),
+          ('Rss', 'feeds/all.rss.xml'),)&lt;/p&gt;
+&lt;p&gt;DEFAULT_PAGINATION = 10&lt;/p&gt;
+&lt;h2&gt;主题 disqus帐号和google anylytics帐号&lt;/h2&gt;
+&lt;p&gt;THEME = 'tuxlite_tbs'
+DISQUS_SITENAME = 'focustc'
+GOOGLE_ANALYTICS = 'UA-43314222-1'&lt;/p&gt;
+&lt;h2&gt;URL test&lt;/h2&gt;
+&lt;p&gt;GITHUB_URL = 'https://github.com/heloman'
+ARCHIVES_URL = 'archives.html'
+ARTICLE_URL = 'pages/{date:%Y}/{date:%m}/{slug}.html'
+ARTICLE_SAVE_AS = 'pages/{date:%Y}/{date:%m}/{slug}.html'&lt;/p&gt;
+&lt;h2&gt;配置RSS robots.txt IMG文件夹&lt;/h2&gt;
+&lt;p&gt;FEED_RSS = 'feeds/all.rss.xml'
+CATEGORY_FEED_RSS = 'feeds/%s.rss.xml'
+FILES_TO_COPY = (
+    ("extra/robots.txt", "robots.txt"),
+    ('extra/favicon.ico', 'favicon.ico'),)
+STATIC_PATHS = [u"img"]&lt;/p&gt;
+&lt;h2&gt;配置sitemap 插件&lt;/h2&gt;
+&lt;p&gt;PLUGIN_PATH = u"pelican-plugins"
+PLUGINS = ["sitemap"]
+SITEMAP = {
+    "format": "xml",
+    "priorities": {
+        "articles": 0.7,
+        "indexes": 0.5,
+        "pages": 0.3,
+    },
+    "changefreqs": {
+        "articles": "monthly",
+        "indexes": "daily",
+        "pages": "monthly",
+    }
+}&lt;/p&gt;
+&lt;p&gt;&lt;/code&gt;&lt;/p&gt;</summary><category term="pelican"></category><category term="blog"></category></entry></feed>

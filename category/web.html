@@ -92,7 +92,61 @@ But for rss, this works:</p>
 <h4>How to use Markdown</h4>
 <p>Wikipedia:<a href="http://zh.wikipedia.org/wiki/Markdown">http://zh.wikipedia.org/wiki/Markdown</a></p>
 <h3>Hum,this is my pelican.conf.</h3>
-<p>Feel free to share.</p></div>
+<p>Feel free to share.
+<code></p>
+<h1>!/usr/bin/env python</h1>
+<h1>-<em>- coding: utf-8 -</em>-</h1>
+<p>from <strong>future</strong> import unicode_literals</p>
+<p>AUTHOR = u'heLomaN'
+SITENAME = u'Focus'
+SITEURL = 'http://heloman.github.io'
+RELATIVE_URLS = True</p>
+<p>DELETE_OUTPUT_DIRECTORY = True</p>
+<p>TIMEZONE = 'Asia/Shanghai'</p>
+<p>DEFAULT_LANG = u'zh'
+DEFAULT_DATE_FORMAT = '%Y-%m-%d'</p>
+<h1>Blogroll</h1>
+<p>LINKS =  (('Pelican', 'http://getpelican.com/'),
+          ('Python.org', 'http://python.org/'),)</p>
+<h1>Social widget</h1>
+<p>SOCIAL = (('Weibo', 'http://weibo.com/focustc'),
+          ('Github', 'https://github.com/heloman'),
+          ('CSDN Blog', 'http://blog.csdn.net/caozhk'),
+          ('Rss', 'feeds/all.rss.xml'),)</p>
+<p>DEFAULT_PAGINATION = 10</p>
+<h2>主题 disqus帐号和google anylytics帐号</h2>
+<p>THEME = 'tuxlite_tbs'
+DISQUS_SITENAME = 'focustc'
+GOOGLE_ANALYTICS = 'UA-43314222-1'</p>
+<h2>URL test</h2>
+<p>GITHUB_URL = 'https://github.com/heloman'
+ARCHIVES_URL = 'archives.html'
+ARTICLE_URL = 'pages/{date:%Y}/{date:%m}/{slug}.html'
+ARTICLE_SAVE_AS = 'pages/{date:%Y}/{date:%m}/{slug}.html'</p>
+<h2>配置RSS robots.txt IMG文件夹</h2>
+<p>FEED_RSS = 'feeds/all.rss.xml'
+CATEGORY_FEED_RSS = 'feeds/%s.rss.xml'
+FILES_TO_COPY = (
+    ("extra/robots.txt", "robots.txt"),
+    ('extra/favicon.ico', 'favicon.ico'),)
+STATIC_PATHS = [u"img"]</p>
+<h2>配置sitemap 插件</h2>
+<p>PLUGIN_PATH = u"pelican-plugins"
+PLUGINS = ["sitemap"]
+SITEMAP = {
+    "format": "xml",
+    "priorities": {
+        "articles": 0.7,
+        "indexes": 0.5,
+        "pages": 0.3,
+    },
+    "changefreqs": {
+        "articles": "monthly",
+        "indexes": "daily",
+        "pages": "monthly",
+    }
+}</p>
+<p></code></p></div>
         <hr />
     </div>
 		
