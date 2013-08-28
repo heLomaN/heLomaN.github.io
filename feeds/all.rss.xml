@@ -1,5 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Focus</title><link>http://heloman.github.io/</link><description></description><atom:link href="http://heloman.github.io/feeds/all.rss.xml" rel="self"></atom:link><lastBuildDate>Mon, 19 Aug 2013 00:00:00 +0800</lastBuildDate><item><title>My first git blog</title><link>http://heloman.github.io/pages/2013/08/my-first-git-blog.html</link><description>&lt;h2&gt;How to build you blog on github&lt;/h2&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Focus</title><link>http://heloman.github.io/</link><description></description><atom:link href="http://heloman.github.io/feeds/all.rss.xml" rel="self"></atom:link><lastBuildDate>Tue, 27 Aug 2013 00:00:00 +0800</lastBuildDate><item><title>Project Euler 001-006 解法总结</title><link>http://heloman.github.io/pages/2013/08/project-euler-001-006-jie-fa-zong-jie.html</link><description>&lt;h4&gt;Problem 1&lt;/h4&gt;
+&lt;p&gt;Find the sum of all the multiples of 3 or 5 below 1000.&lt;/p&gt;
+&lt;p&gt;题目要求找出所有1000以下的3或者5的倍数之和。&lt;br /&gt;
+最简便的方法是，计算出1000以下总共有多少个3、5、15的倍数，然后用等差数列求三种数分别之和，最后3、5的倍数和减去15的倍数和就得到了结果。&lt;br /&gt;
+NOte：这是因为15的倍数多算了一遍，所以要减去。  &lt;/p&gt;
+&lt;hr /&gt;
+&lt;h4&gt;Problem 2&lt;/h4&gt;
+&lt;p&gt;Find the sum of all the even-valued terms in the Fibonacci sequence which do not exceed four million.&lt;/p&gt;
+&lt;p&gt;题目要求找出斐波那契数列中偶数之和。&lt;br /&gt;
+我的方法是，斐波那契数列每三个连续的数中有一个为偶数，计算斐波那契数时用一个长度为3的数据完成缓存，每次循环完成三个数的更新，即计算三次斐波那契数，取偶数位相加即可。&lt;br /&gt;
+最简便的方法是，既然没三个连续数就有一个为偶数，那个可以推出连续的三个偶数斐波那契数之间的关系，这样就可以用长度为2的数据完成计算，而且计算量减少很多。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h4&gt;Problem 3&lt;/h4&gt;
+&lt;p&gt;Find the largest prime factor of a composite number&lt;/p&gt;
+&lt;p&gt;题目要求找出一个数的最大质因子。&lt;br /&gt;
+我的方法是，首先除以所有为2的质因子，然后从3到sqrt(n)依次找出质因子。排序得到最大的，应该用遍历法得到。过程中参考了CSDN的一篇剪枝的方法（回退法除以所有同一个质因子）。  &lt;/p&gt;
+&lt;hr /&gt;
+&lt;h4&gt;Problem 4&lt;/h4&gt;
+&lt;p&gt;Find the largest palindrome made from the product of two 3-digit numbers.&lt;/p&gt;
+&lt;p&gt;题目要求找出能分解为两个三位数相乘的最大回文数。&lt;br /&gt;
+我的方法是，判断是否为回文数把每一位都提取出来，看前后是否相等。然后按照因此从999到100遍历啊和b的乘积判断是否为回文数，避免重复。找到第一个回文数后，计算出还有可能的a、b是多少，然后再次遍历。最后对遍历的结果取最大值。&lt;br /&gt;
+最简便的方法是，在上述方法的基础上，经过分析知道这个回文数一定是11的倍数，因为11是质数，则a或b必须为质数。在遍历时，可以判断出a不是11的倍数时b的可能值范围变成原来的1/11，运算量大大减少。  &lt;/p&gt;
+&lt;hr /&gt;
+&lt;h4&gt;Problem 5&lt;/h4&gt;
+&lt;p&gt;What is the smallest number divisible by each of the numbers 1 to 20?&lt;/p&gt;
+&lt;p&gt;题目要求找出1~20的最小公倍数。&lt;br /&gt;
+我的方法是首先用费马方法实现最大公因子gcd的计算。然后从大到小依次计算前者最小公倍数与下一个数的最小公因子，然后得到所有数的最小公倍数。&lt;br /&gt;
+最简单的方法是，对这个公倍数进行分析，必然是小于k的一系列质数的乘积。如果知道质数表，那么对于每一个小于k的质数为底计算floor(log)，然后把所有这些质数的幂相乘就得到了最小公倍数。可以优化的一点是，对于大于sqrt(k)的质数，已经不可能为1次以上的幂了，直接设幂指数为1即可。  &lt;/p&gt;
+&lt;hr /&gt;
+&lt;h4&gt;Problem 6&lt;/h4&gt;
+&lt;p&gt;What is the di erence between the sum of the squares and the square of the sums?&lt;/p&gt;
+&lt;p&gt;题目要求算出和的平方与平方和的差。&lt;br /&gt;
+我的方法就是直接算，因为没有想到一种方法可以减少运算量。&lt;br /&gt;
+最简便的方式，是把求和用高斯的方法计算，即n*(n+1)/2，同样的，最好能得到平方和的计算公式。其实计算方法也很简单，假设为三次多项式，用前四个值（含0）来解出系数。也可以参考百度百科平方和的排列组合法。  &lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">heLomaN</dc:creator><pubDate>Tue, 27 Aug 2013 00:00:00 +0800</pubDate><guid>tag:heloman.github.io,2013-08-27:pages/2013/08/project-euler-001-006-jie-fa-zong-jie.html</guid><category>project euler</category></item><item><title>国外大学生谈经验：如何在Github参与开源（Open Source on Github: Your First Contribution）</title><link>http://heloman.github.io/pages/2013/08/guo-wai-da-xue-sheng-tan-jing-yan-ru-he-zai-githubcan-yu-kai-yuan-open-source-on-github-your-first-contribution.html</link><description>&lt;p&gt;原作者：spencerpmoran&lt;br /&gt;
+转载自&lt;a href="http://spencermoran.me/2013/08/13/open-source-on-github-your-first-contribution/"&gt;http://spencermoran.me/2013/08/13/open-source-on-github-your-first-contribution/&lt;/a&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;我是一个即将毕业的计算机大四学生，我经常听人谈论对github上的开源项目做出贡献是多么有意义的事情。许多职位要求里面都写明这种经历是一个很重要的基本条件或加分项，而且这种事情经常在各种seminar课程和活动中提到。做出贡献确实挺起来很酷，我也应该做啊。可唯一的问题是，我是一个大菜鸟。我的计算机课程学的很好，而且我做过几个被家人同学称赞的项目。可是，我确信我不可能对一个真正有用户的项目做出任何有意义的贡献，对吧？这种想法是正确的吗？&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;大错特错！即使你是一名新手，也可以以很多方式对github上面的项目做出实质的贡献。如果想要做一些真正有意义的影响用户的贡献，你大可不必读懂所有项目代码或者知道如何解决类似于bootstrap里的动态窗格问题。对于每个人都有合适的做出贡献的方法。&lt;/p&gt;
+&lt;p&gt;最近，我的第一个实质性的贡献在一个开源项目上完成了。尽管贡献很小，我获得了全新的成就感，因为你知道有人在用你参与完成的东西。你必须从非常小的项目开始并持续前进。下面是我对想要对github上开源项目做出贡献但感觉困难而不敢尝试的同学的建议：&lt;/p&gt;
+&lt;p&gt;你要做的第一步就是找到一个有pull request的仓库（项目）。有很多种方式可以找到。最简单直接的办法是读仓库的readme文件，里面经常明确的写明仓库所有者希望有人来完成pull request。如果readme文件没有提到这一点，你可以看看问题然后把代码下载下来。检查一下pull request的日期，看看哪些pull request已经关闭，你就能判断仓库所有者有多大的可能还在更新它。如果你能找到一个你真正喜欢并符合上述要求的项目，你就喜出望外吧。举个我自己的例子，我找到了一个用于创建新工程的rails模版项目，它的readme文件用黑体标出了欢迎pull request。太棒了！&lt;/p&gt;
+&lt;p&gt;现在，是时候fork并克隆仓库开工了。如果你还不知道具体怎么操作，下面是一个很好的入门教程。&lt;/p&gt;
+&lt;p&gt;按照readme里面说明，你要先确保你在你的电脑上可以正确的配置运行这个项目。如果你碰到了任何没有在readme里面提到的错误或问题，这将成为你的第一个贡献！你可要编辑readme文件把这个问题向其他开发者说清楚。最好的开始贡献的方式之一是使它们更方便运行。你可以整理readme，编辑文档里面的错误或把错误标出来。一头扎进别人的代码库立刻开始改写代码是有点太不礼貌了。不过你可以以温和的方式开始你的开源生涯。我愿意参与改进的代码库都是文档完整简洁的。&lt;/p&gt;
+&lt;p&gt;如果你仍然没有找到一种做贡献的方式，就通读这个项目的所有issues吧。Issue是关于增加功能或修改的建议，有时候已经有人给出了伪代码甚至已经有人开始码代码，只是时间紧无法完成而已。你也许能找到这种已经开始的、不需要大量改变的任务。&lt;/p&gt;
+&lt;p&gt;如果你感觉无法完成任何一处错误的纠正，仓库所有者也许已经在readme文件中写明了下一步要完成的部分，或者你自己有新的想法。我本身而言已经厌倦了到处浏览检查仓库，甚至是我自己的仓库也不愿意。DS_Store目录被使用Mac的人提交到了github上，这是毫无道理的。我可以把它加到rails模版项目的.gitignore文件里面，这样就保证没人会再干出这种事情。哈哈，我已经有贡献了！你看我只是做了很简单的事情而已。你要确认你遵循了项目已有的约定。查看readme和其他的pull request，找出别人的编程习惯，然后要保证你使用了大家约定的commit说明。我按照上述的教程提交了一个pull request，代码如下：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="n"&gt;DS_Store&lt;/span&gt; &lt;span class="n"&gt;gets&lt;/span&gt; &lt;span class="n"&gt;added&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;project&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;viewedin&lt;/span&gt; &lt;span class="n"&gt;OSX&lt;/span&gt; &lt;span class="n"&gt;Finder&lt;/span&gt;
+    &lt;span class="n"&gt;run&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;echo &amp;#39;.DS_Store&amp;#39; &amp;gt;&amp;gt; .gitignore&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;一个小时之后，我的pull request已经被合并到了这个几百人同时关注的项目中了。我感到了一种全新的工作的目标和动力。他们在用我参与完成的东西啊！&lt;/p&gt;
+&lt;p&gt;在我作为一个计算机专业本科生的生活里，始终缺乏一种实实在在的成就感，或者说，我希望证明我真的在做事情。我学过算法、数据结构、很多种编程语言，我无休止的编程。我清楚的知道我自己。但是不过我从来没有过一种我的成果影响了其他人的感觉。我总是一个人想，谁做了这件事情？这件事情影响了谁？今天晚上，我想知道我的工作对一些人很重要。&lt;/p&gt;
+&lt;p&gt;对github上的开源项目做贡献尽管可能显得不礼貌，而且有一个很陡峭的学习曲线，然而它确实是一种很有意义的获得成就感的途径。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">heLomaN</dc:creator><pubDate>Sun, 25 Aug 2013 00:00:00 +0800</pubDate><guid>tag:heloman.github.io,2013-08-25:pages/2013/08/guo-wai-da-xue-sheng-tan-jing-yan-ru-he-zai-githubcan-yu-kai-yuan-open-source-on-github-your-first-contribution.html</guid><category>github</category><category>open source</category><category>blog</category><category>translation</category></item><item><title>My first git blog</title><link>http://heloman.github.io/pages/2013/08/my-first-git-blog.html</link><description>&lt;h2&gt;How to build you blog on github&lt;/h2&gt;
 &lt;h4&gt;name.github.io&lt;/h4&gt;
 &lt;p&gt;Github offer everyone a site:name.github.io, where you can publish you blogs.&lt;/p&gt;
 &lt;h3&gt;Use git to publish&lt;/h3&gt;
@@ -20,61 +72,142 @@ But for rss, this works:&lt;/p&gt;
 
 
 &lt;p&gt;Still puzzled by how to add a weibo icon, and a favicon.&lt;/p&gt;
-&lt;h4&gt;How to use Markdown&lt;/h4&gt;
+&lt;h4&gt;How to add weibo icon and a favicon, modifed 2013-08-27&lt;/h4&gt;
+&lt;p&gt;Thanks to Lizherui.&lt;br /&gt;
+You just put favicon.png in the output folder using &lt;code&gt;FILES_TO_COPY&lt;/code&gt;.&lt;br /&gt;
+Edit &lt;code&gt;/usr/local/lib/python2.7/site-packages/pelican/themes/tuxlite_tbs/static/local.css&lt;/code&gt; by insert &lt;code&gt;.social a[href*='weibo.com']:before {content: url('./images/icons/weibo.png'); margin-right: 2px; vertical-align: -3px;}&lt;/code&gt;, and put weibo.png in the img folder.  &lt;/p&gt;
+&lt;h3&gt;How to use Markdown&lt;/h3&gt;
 &lt;p&gt;Wikipedia:&lt;a href="http://zh.wikipedia.org/wiki/Markdown"&gt;http://zh.wikipedia.org/wiki/Markdown&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;Hum,this is my pelican.conf.&lt;/h3&gt;
-&lt;p&gt;Feel free to share.
-&lt;code&gt;&lt;/p&gt;
-&lt;h1&gt;!/usr/bin/env python&lt;/h1&gt;
-&lt;h1&gt;-&lt;em&gt;- coding: utf-8 -&lt;/em&gt;-&lt;/h1&gt;
-&lt;p&gt;from &lt;strong&gt;future&lt;/strong&gt; import unicode_literals&lt;/p&gt;
-&lt;p&gt;AUTHOR = u'heLomaN'
-SITENAME = u'Focus'
-SITEURL = 'http://heloman.github.io'
-RELATIVE_URLS = True&lt;/p&gt;
-&lt;p&gt;DELETE_OUTPUT_DIRECTORY = True&lt;/p&gt;
-&lt;p&gt;TIMEZONE = 'Asia/Shanghai'&lt;/p&gt;
-&lt;p&gt;DEFAULT_LANG = u'zh'
-DEFAULT_DATE_FORMAT = '%Y-%m-%d'&lt;/p&gt;
-&lt;h1&gt;Blogroll&lt;/h1&gt;
-&lt;p&gt;LINKS =  (('Pelican', 'http://getpelican.com/'),
-          ('Python.org', 'http://python.org/'),)&lt;/p&gt;
-&lt;h1&gt;Social widget&lt;/h1&gt;
-&lt;p&gt;SOCIAL = (('Weibo', 'http://weibo.com/focustc'),
-          ('Github', 'https://github.com/heloman'),
-          ('CSDN Blog', 'http://blog.csdn.net/caozhk'),
-          ('Rss', 'feeds/all.rss.xml'),)&lt;/p&gt;
-&lt;p&gt;DEFAULT_PAGINATION = 10&lt;/p&gt;
-&lt;h2&gt;主题 disqus帐号和google anylytics帐号&lt;/h2&gt;
-&lt;p&gt;THEME = 'tuxlite_tbs'
-DISQUS_SITENAME = 'focustc'
-GOOGLE_ANALYTICS = 'UA-43314222-1'&lt;/p&gt;
-&lt;h2&gt;URL test&lt;/h2&gt;
-&lt;p&gt;GITHUB_URL = 'https://github.com/heloman'
-ARCHIVES_URL = 'archives.html'
-ARTICLE_URL = 'pages/{date:%Y}/{date:%m}/{slug}.html'
-ARTICLE_SAVE_AS = 'pages/{date:%Y}/{date:%m}/{slug}.html'&lt;/p&gt;
-&lt;h2&gt;配置RSS robots.txt IMG文件夹&lt;/h2&gt;
-&lt;p&gt;FEED_RSS = 'feeds/all.rss.xml'
-CATEGORY_FEED_RSS = 'feeds/%s.rss.xml'
-FILES_TO_COPY = (
-    ("extra/robots.txt", "robots.txt"),
-    ('extra/favicon.ico', 'favicon.ico'),)
-STATIC_PATHS = [u"img"]&lt;/p&gt;
-&lt;h2&gt;配置sitemap 插件&lt;/h2&gt;
-&lt;p&gt;PLUGIN_PATH = u"pelican-plugins"
-PLUGINS = ["sitemap"]
-SITEMAP = {
-    "format": "xml",
-    "priorities": {
-        "articles": 0.7,
-        "indexes": 0.5,
-        "pages": 0.3,
-    },
-    "changefreqs": {
-        "articles": "monthly",
-        "indexes": "daily",
-        "pages": "monthly",
-    }
-}&lt;/p&gt;
-&lt;p&gt;&lt;/code&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">heLomaN</dc:creator><pubDate>Mon, 19 Aug 2013 00:00:00 +0800</pubDate><guid>tag:heloman.github.io,2013-08-19:pages/2013/08/my-first-git-blog.html</guid><category>pelican</category><category>blog</category></item></channel></rss>
+&lt;p&gt;Feel free to share.&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#!/usr/bin/env python&lt;/span&gt;
+&lt;span class="c"&gt;# -*- coding: utf-8 -*- #&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;__future__&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;unicode_literals&lt;/span&gt;
+
+&lt;span class="n"&gt;AUTHOR&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;u&amp;#39;heLomaN&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;SITENAME&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;u&amp;#39;Focus&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;SITEURL&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;http://heloman.github.io&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;RELATIVE_URLS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;True&lt;/span&gt;
+
+
+
+&lt;span class="n"&gt;DELETE_OUTPUT_DIRECTORY&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;True&lt;/span&gt;
+
+&lt;span class="n"&gt;TIMEZONE&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;Asia/Shanghai&amp;#39;&lt;/span&gt;
+
+&lt;span class="n"&gt;DEFAULT_LANG&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;u&amp;#39;zh&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;DEFAULT_DATE_FORMAT&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;%Y-%m-&lt;/span&gt;&lt;span class="si"&gt;%d&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&lt;/span&gt;
+
+&lt;span class="c"&gt;# Blogroll&lt;/span&gt;
+&lt;span class="n"&gt;LINKS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;  &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Pelican&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;http://getpelican.com/&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+          &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Python.org&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;http://python.org/&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),)&lt;/span&gt;
+
+&lt;span class="c"&gt;# Social widget&lt;/span&gt;
+&lt;span class="n"&gt;SOCIAL&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Weibo&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;http://weibo.com/focustc&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+          &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Github&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;https://github.com/heloman&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+          &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;CSDN Blog&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;http://blog.csdn.net/caozhk&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+          &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Rss&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;feeds/all.rss.xml&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),)&lt;/span&gt;
+
+&lt;span class="n"&gt;DEFAULT_PAGINATION&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;
+
+&lt;span class="c"&gt;## 主题 disqus帐号和google anylytics帐号&lt;/span&gt;
+&lt;span class="n"&gt;THEME&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;tuxlite_tbs&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;DISQUS_SITENAME&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;focustc&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;GOOGLE_ANALYTICS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;UA-43314222-1&amp;#39;&lt;/span&gt;
+
+&lt;span class="c"&gt;##URL test&lt;/span&gt;
+&lt;span class="n"&gt;GITHUB_URL&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;https://github.com/heloman&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;ARCHIVES_URL&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;archives.html&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;ARTICLE_URL&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;pages/{date:%Y}/{date:%m}/{slug}.html&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;ARTICLE_SAVE_AS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;pages/{date:%Y}/{date:%m}/{slug}.html&amp;#39;&lt;/span&gt;
+
+&lt;span class="c"&gt;## 配置RSS robots.txt IMG文件夹&lt;/span&gt;
+&lt;span class="n"&gt;FEED_RSS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;feeds/all.rss.xml&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;CATEGORY_FEED_RSS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;feeds/&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt;.rss.xml&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;FILES_TO_COPY&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;extra/robots.txt&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;robots.txt&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;extra/favicon.ico&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;favicon.ico&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),)&lt;/span&gt;
+&lt;span class="n"&gt;STATIC_PATHS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;u&amp;quot;img&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+
+&lt;span class="c"&gt;## 配置sitemap 插件&lt;/span&gt;
+&lt;span class="n"&gt;PLUGIN_PATH&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;u&amp;quot;pelican-plugins&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;PLUGINS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;sitemap&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;SITEMAP&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;quot;format&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;xml&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;quot;priorities&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="s"&gt;&amp;quot;articles&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mf"&gt;0.7&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s"&gt;&amp;quot;indexes&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mf"&gt;0.5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s"&gt;&amp;quot;pages&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mf"&gt;0.3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="p"&gt;},&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;quot;changefreqs&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="s"&gt;&amp;quot;articles&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;monthly&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s"&gt;&amp;quot;indexes&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;daily&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s"&gt;&amp;quot;pages&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;monthly&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">heLomaN</dc:creator><pubDate>Mon, 19 Aug 2013 00:00:00 +0800</pubDate><guid>tag:heloman.github.io,2013-08-19:pages/2013/08/my-first-git-blog.html</guid><category>pelican</category><category>blog</category></item></channel></rss>

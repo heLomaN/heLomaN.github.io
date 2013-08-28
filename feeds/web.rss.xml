@@ -20,61 +20,142 @@ But for rss, this works:&lt;/p&gt;
 
 
 &lt;p&gt;Still puzzled by how to add a weibo icon, and a favicon.&lt;/p&gt;
-&lt;h4&gt;How to use Markdown&lt;/h4&gt;
+&lt;h4&gt;How to add weibo icon and a favicon, modifed 2013-08-27&lt;/h4&gt;
+&lt;p&gt;Thanks to Lizherui.&lt;br /&gt;
+You just put favicon.png in the output folder using &lt;code&gt;FILES_TO_COPY&lt;/code&gt;.&lt;br /&gt;
+Edit &lt;code&gt;/usr/local/lib/python2.7/site-packages/pelican/themes/tuxlite_tbs/static/local.css&lt;/code&gt; by insert &lt;code&gt;.social a[href*='weibo.com']:before {content: url('./images/icons/weibo.png'); margin-right: 2px; vertical-align: -3px;}&lt;/code&gt;, and put weibo.png in the img folder.  &lt;/p&gt;
+&lt;h3&gt;How to use Markdown&lt;/h3&gt;
 &lt;p&gt;Wikipedia:&lt;a href="http://zh.wikipedia.org/wiki/Markdown"&gt;http://zh.wikipedia.org/wiki/Markdown&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;Hum,this is my pelican.conf.&lt;/h3&gt;
-&lt;p&gt;Feel free to share.
-&lt;code&gt;&lt;/p&gt;
-&lt;h1&gt;!/usr/bin/env python&lt;/h1&gt;
-&lt;h1&gt;-&lt;em&gt;- coding: utf-8 -&lt;/em&gt;-&lt;/h1&gt;
-&lt;p&gt;from &lt;strong&gt;future&lt;/strong&gt; import unicode_literals&lt;/p&gt;
-&lt;p&gt;AUTHOR = u'heLomaN'
-SITENAME = u'Focus'
-SITEURL = 'http://heloman.github.io'
-RELATIVE_URLS = True&lt;/p&gt;
-&lt;p&gt;DELETE_OUTPUT_DIRECTORY = True&lt;/p&gt;
-&lt;p&gt;TIMEZONE = 'Asia/Shanghai'&lt;/p&gt;
-&lt;p&gt;DEFAULT_LANG = u'zh'
-DEFAULT_DATE_FORMAT = '%Y-%m-%d'&lt;/p&gt;
-&lt;h1&gt;Blogroll&lt;/h1&gt;
-&lt;p&gt;LINKS =  (('Pelican', 'http://getpelican.com/'),
-          ('Python.org', 'http://python.org/'),)&lt;/p&gt;
-&lt;h1&gt;Social widget&lt;/h1&gt;
-&lt;p&gt;SOCIAL = (('Weibo', 'http://weibo.com/focustc'),
-          ('Github', 'https://github.com/heloman'),
-          ('CSDN Blog', 'http://blog.csdn.net/caozhk'),
-          ('Rss', 'feeds/all.rss.xml'),)&lt;/p&gt;
-&lt;p&gt;DEFAULT_PAGINATION = 10&lt;/p&gt;
-&lt;h2&gt;主题 disqus帐号和google anylytics帐号&lt;/h2&gt;
-&lt;p&gt;THEME = 'tuxlite_tbs'
-DISQUS_SITENAME = 'focustc'
-GOOGLE_ANALYTICS = 'UA-43314222-1'&lt;/p&gt;
-&lt;h2&gt;URL test&lt;/h2&gt;
-&lt;p&gt;GITHUB_URL = 'https://github.com/heloman'
-ARCHIVES_URL = 'archives.html'
-ARTICLE_URL = 'pages/{date:%Y}/{date:%m}/{slug}.html'
-ARTICLE_SAVE_AS = 'pages/{date:%Y}/{date:%m}/{slug}.html'&lt;/p&gt;
-&lt;h2&gt;配置RSS robots.txt IMG文件夹&lt;/h2&gt;
-&lt;p&gt;FEED_RSS = 'feeds/all.rss.xml'
-CATEGORY_FEED_RSS = 'feeds/%s.rss.xml'
-FILES_TO_COPY = (
-    ("extra/robots.txt", "robots.txt"),
-    ('extra/favicon.ico', 'favicon.ico'),)
-STATIC_PATHS = [u"img"]&lt;/p&gt;
-&lt;h2&gt;配置sitemap 插件&lt;/h2&gt;
-&lt;p&gt;PLUGIN_PATH = u"pelican-plugins"
-PLUGINS = ["sitemap"]
-SITEMAP = {
-    "format": "xml",
-    "priorities": {
-        "articles": 0.7,
-        "indexes": 0.5,
-        "pages": 0.3,
-    },
-    "changefreqs": {
-        "articles": "monthly",
-        "indexes": "daily",
-        "pages": "monthly",
-    }
-}&lt;/p&gt;
-&lt;p&gt;&lt;/code&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">heLomaN</dc:creator><pubDate>Mon, 19 Aug 2013 00:00:00 +0800</pubDate><guid>tag:heloman.github.io,2013-08-19:pages/2013/08/my-first-git-blog.html</guid><category>pelican</category><category>blog</category></item></channel></rss>
+&lt;p&gt;Feel free to share.&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#!/usr/bin/env python&lt;/span&gt;
+&lt;span class="c"&gt;# -*- coding: utf-8 -*- #&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;__future__&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;unicode_literals&lt;/span&gt;
+
+&lt;span class="n"&gt;AUTHOR&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;u&amp;#39;heLomaN&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;SITENAME&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;u&amp;#39;Focus&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;SITEURL&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;http://heloman.github.io&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;RELATIVE_URLS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;True&lt;/span&gt;
+
+
+
+&lt;span class="n"&gt;DELETE_OUTPUT_DIRECTORY&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;True&lt;/span&gt;
+
+&lt;span class="n"&gt;TIMEZONE&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;Asia/Shanghai&amp;#39;&lt;/span&gt;
+
+&lt;span class="n"&gt;DEFAULT_LANG&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;u&amp;#39;zh&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;DEFAULT_DATE_FORMAT&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;%Y-%m-&lt;/span&gt;&lt;span class="si"&gt;%d&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&lt;/span&gt;
+
+&lt;span class="c"&gt;# Blogroll&lt;/span&gt;
+&lt;span class="n"&gt;LINKS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;  &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Pelican&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;http://getpelican.com/&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+          &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Python.org&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;http://python.org/&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),)&lt;/span&gt;
+
+&lt;span class="c"&gt;# Social widget&lt;/span&gt;
+&lt;span class="n"&gt;SOCIAL&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Weibo&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;http://weibo.com/focustc&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+          &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Github&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;https://github.com/heloman&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+          &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;CSDN Blog&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;http://blog.csdn.net/caozhk&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+          &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Rss&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;feeds/all.rss.xml&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),)&lt;/span&gt;
+
+&lt;span class="n"&gt;DEFAULT_PAGINATION&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;
+
+&lt;span class="c"&gt;## 主题 disqus帐号和google anylytics帐号&lt;/span&gt;
+&lt;span class="n"&gt;THEME&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;tuxlite_tbs&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;DISQUS_SITENAME&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;focustc&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;GOOGLE_ANALYTICS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;UA-43314222-1&amp;#39;&lt;/span&gt;
+
+&lt;span class="c"&gt;##URL test&lt;/span&gt;
+&lt;span class="n"&gt;GITHUB_URL&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;https://github.com/heloman&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;ARCHIVES_URL&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;archives.html&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;ARTICLE_URL&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;pages/{date:%Y}/{date:%m}/{slug}.html&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;ARTICLE_SAVE_AS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;pages/{date:%Y}/{date:%m}/{slug}.html&amp;#39;&lt;/span&gt;
+
+&lt;span class="c"&gt;## 配置RSS robots.txt IMG文件夹&lt;/span&gt;
+&lt;span class="n"&gt;FEED_RSS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;feeds/all.rss.xml&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;CATEGORY_FEED_RSS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;feeds/&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt;.rss.xml&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;FILES_TO_COPY&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;extra/robots.txt&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;robots.txt&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;extra/favicon.ico&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;favicon.ico&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),)&lt;/span&gt;
+&lt;span class="n"&gt;STATIC_PATHS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;u&amp;quot;img&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+
+&lt;span class="c"&gt;## 配置sitemap 插件&lt;/span&gt;
+&lt;span class="n"&gt;PLUGIN_PATH&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;u&amp;quot;pelican-plugins&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;PLUGINS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;sitemap&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;SITEMAP&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;quot;format&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;xml&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;quot;priorities&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="s"&gt;&amp;quot;articles&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mf"&gt;0.7&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s"&gt;&amp;quot;indexes&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mf"&gt;0.5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s"&gt;&amp;quot;pages&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mf"&gt;0.3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="p"&gt;},&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;quot;changefreqs&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="s"&gt;&amp;quot;articles&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;monthly&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s"&gt;&amp;quot;indexes&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;daily&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s"&gt;&amp;quot;pages&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;monthly&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">heLomaN</dc:creator><pubDate>Mon, 19 Aug 2013 00:00:00 +0800</pubDate><guid>tag:heloman.github.io,2013-08-19:pages/2013/08/my-first-git-blog.html</guid><category>pelican</category><category>blog</category></item></channel></rss>

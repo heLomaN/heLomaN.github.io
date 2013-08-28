@@ -89,64 +89,145 @@ But for rss, this works:</p>
 
 
 <p>Still puzzled by how to add a weibo icon, and a favicon.</p>
-<h4>How to use Markdown</h4>
+<h4>How to add weibo icon and a favicon, modifed 2013-08-27</h4>
+<p>Thanks to Lizherui.<br />
+You just put favicon.png in the output folder using <code>FILES_TO_COPY</code>.<br />
+Edit <code>/usr/local/lib/python2.7/site-packages/pelican/themes/tuxlite_tbs/static/local.css</code> by insert <code>.social a[href*='weibo.com']:before {content: url('./images/icons/weibo.png'); margin-right: 2px; vertical-align: -3px;}</code>, and put weibo.png in the img folder.  </p>
+<h3>How to use Markdown</h3>
 <p>Wikipedia:<a href="http://zh.wikipedia.org/wiki/Markdown">http://zh.wikipedia.org/wiki/Markdown</a></p>
 <h3>Hum,this is my pelican.conf.</h3>
-<p>Feel free to share.
-<code></p>
-<h1>!/usr/bin/env python</h1>
-<h1>-<em>- coding: utf-8 -</em>-</h1>
-<p>from <strong>future</strong> import unicode_literals</p>
-<p>AUTHOR = u'heLomaN'
-SITENAME = u'Focus'
-SITEURL = 'http://heloman.github.io'
-RELATIVE_URLS = True</p>
-<p>DELETE_OUTPUT_DIRECTORY = True</p>
-<p>TIMEZONE = 'Asia/Shanghai'</p>
-<p>DEFAULT_LANG = u'zh'
-DEFAULT_DATE_FORMAT = '%Y-%m-%d'</p>
-<h1>Blogroll</h1>
-<p>LINKS =  (('Pelican', 'http://getpelican.com/'),
-          ('Python.org', 'http://python.org/'),)</p>
-<h1>Social widget</h1>
-<p>SOCIAL = (('Weibo', 'http://weibo.com/focustc'),
-          ('Github', 'https://github.com/heloman'),
-          ('CSDN Blog', 'http://blog.csdn.net/caozhk'),
-          ('Rss', 'feeds/all.rss.xml'),)</p>
-<p>DEFAULT_PAGINATION = 10</p>
-<h2>主题 disqus帐号和google anylytics帐号</h2>
-<p>THEME = 'tuxlite_tbs'
-DISQUS_SITENAME = 'focustc'
-GOOGLE_ANALYTICS = 'UA-43314222-1'</p>
-<h2>URL test</h2>
-<p>GITHUB_URL = 'https://github.com/heloman'
-ARCHIVES_URL = 'archives.html'
-ARTICLE_URL = 'pages/{date:%Y}/{date:%m}/{slug}.html'
-ARTICLE_SAVE_AS = 'pages/{date:%Y}/{date:%m}/{slug}.html'</p>
-<h2>配置RSS robots.txt IMG文件夹</h2>
-<p>FEED_RSS = 'feeds/all.rss.xml'
-CATEGORY_FEED_RSS = 'feeds/%s.rss.xml'
-FILES_TO_COPY = (
-    ("extra/robots.txt", "robots.txt"),
-    ('extra/favicon.ico', 'favicon.ico'),)
-STATIC_PATHS = [u"img"]</p>
-<h2>配置sitemap 插件</h2>
-<p>PLUGIN_PATH = u"pelican-plugins"
-PLUGINS = ["sitemap"]
-SITEMAP = {
-    "format": "xml",
-    "priorities": {
-        "articles": 0.7,
-        "indexes": 0.5,
-        "pages": 0.3,
-    },
-    "changefreqs": {
-        "articles": "monthly",
-        "indexes": "daily",
-        "pages": "monthly",
-    }
-}</p>
-<p></code></p></div>
+<p>Feel free to share.</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65</pre></div></td><td class="code"><div class="highlight"><pre><span class="c">#!/usr/bin/env python</span>
+<span class="c"># -*- coding: utf-8 -*- #</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">unicode_literals</span>
+
+<span class="n">AUTHOR</span> <span class="o">=</span> <span class="s">u&#39;heLomaN&#39;</span>
+<span class="n">SITENAME</span> <span class="o">=</span> <span class="s">u&#39;Focus&#39;</span>
+<span class="n">SITEURL</span> <span class="o">=</span> <span class="s">&#39;http://heloman.github.io&#39;</span>
+<span class="n">RELATIVE_URLS</span> <span class="o">=</span> <span class="bp">True</span>
+
+
+
+<span class="n">DELETE_OUTPUT_DIRECTORY</span> <span class="o">=</span> <span class="bp">True</span>
+
+<span class="n">TIMEZONE</span> <span class="o">=</span> <span class="s">&#39;Asia/Shanghai&#39;</span>
+
+<span class="n">DEFAULT_LANG</span> <span class="o">=</span> <span class="s">u&#39;zh&#39;</span>
+<span class="n">DEFAULT_DATE_FORMAT</span> <span class="o">=</span> <span class="s">&#39;%Y-%m-</span><span class="si">%d</span><span class="s">&#39;</span>
+
+<span class="c"># Blogroll</span>
+<span class="n">LINKS</span> <span class="o">=</span>  <span class="p">((</span><span class="s">&#39;Pelican&#39;</span><span class="p">,</span> <span class="s">&#39;http://getpelican.com/&#39;</span><span class="p">),</span>
+          <span class="p">(</span><span class="s">&#39;Python.org&#39;</span><span class="p">,</span> <span class="s">&#39;http://python.org/&#39;</span><span class="p">),)</span>
+
+<span class="c"># Social widget</span>
+<span class="n">SOCIAL</span> <span class="o">=</span> <span class="p">((</span><span class="s">&#39;Weibo&#39;</span><span class="p">,</span> <span class="s">&#39;http://weibo.com/focustc&#39;</span><span class="p">),</span>
+          <span class="p">(</span><span class="s">&#39;Github&#39;</span><span class="p">,</span> <span class="s">&#39;https://github.com/heloman&#39;</span><span class="p">),</span>
+          <span class="p">(</span><span class="s">&#39;CSDN Blog&#39;</span><span class="p">,</span> <span class="s">&#39;http://blog.csdn.net/caozhk&#39;</span><span class="p">),</span>
+          <span class="p">(</span><span class="s">&#39;Rss&#39;</span><span class="p">,</span> <span class="s">&#39;feeds/all.rss.xml&#39;</span><span class="p">),)</span>
+
+<span class="n">DEFAULT_PAGINATION</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="c">## 主题 disqus帐号和google anylytics帐号</span>
+<span class="n">THEME</span> <span class="o">=</span> <span class="s">&#39;tuxlite_tbs&#39;</span>
+<span class="n">DISQUS_SITENAME</span> <span class="o">=</span> <span class="s">&#39;focustc&#39;</span>
+<span class="n">GOOGLE_ANALYTICS</span> <span class="o">=</span> <span class="s">&#39;UA-43314222-1&#39;</span>
+
+<span class="c">##URL test</span>
+<span class="n">GITHUB_URL</span> <span class="o">=</span> <span class="s">&#39;https://github.com/heloman&#39;</span>
+<span class="n">ARCHIVES_URL</span> <span class="o">=</span> <span class="s">&#39;archives.html&#39;</span>
+<span class="n">ARTICLE_URL</span> <span class="o">=</span> <span class="s">&#39;pages/{date:%Y}/{date:%m}/{slug}.html&#39;</span>
+<span class="n">ARTICLE_SAVE_AS</span> <span class="o">=</span> <span class="s">&#39;pages/{date:%Y}/{date:%m}/{slug}.html&#39;</span>
+
+<span class="c">## 配置RSS robots.txt IMG文件夹</span>
+<span class="n">FEED_RSS</span> <span class="o">=</span> <span class="s">&#39;feeds/all.rss.xml&#39;</span>
+<span class="n">CATEGORY_FEED_RSS</span> <span class="o">=</span> <span class="s">&#39;feeds/</span><span class="si">%s</span><span class="s">.rss.xml&#39;</span>
+<span class="n">FILES_TO_COPY</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="p">(</span><span class="s">&quot;extra/robots.txt&quot;</span><span class="p">,</span> <span class="s">&quot;robots.txt&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s">&#39;extra/favicon.ico&#39;</span><span class="p">,</span> <span class="s">&#39;favicon.ico&#39;</span><span class="p">),)</span>
+<span class="n">STATIC_PATHS</span> <span class="o">=</span> <span class="p">[</span><span class="s">u&quot;img&quot;</span><span class="p">]</span>
+
+<span class="c">## 配置sitemap 插件</span>
+<span class="n">PLUGIN_PATH</span> <span class="o">=</span> <span class="s">u&quot;pelican-plugins&quot;</span>
+<span class="n">PLUGINS</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;sitemap&quot;</span><span class="p">]</span>
+<span class="n">SITEMAP</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">&quot;format&quot;</span><span class="p">:</span> <span class="s">&quot;xml&quot;</span><span class="p">,</span>
+    <span class="s">&quot;priorities&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">&quot;articles&quot;</span><span class="p">:</span> <span class="mf">0.7</span><span class="p">,</span>
+        <span class="s">&quot;indexes&quot;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
+        <span class="s">&quot;pages&quot;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="s">&quot;changefreqs&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">&quot;articles&quot;</span><span class="p">:</span> <span class="s">&quot;monthly&quot;</span><span class="p">,</span>
+        <span class="s">&quot;indexes&quot;</span><span class="p">:</span> <span class="s">&quot;daily&quot;</span><span class="p">,</span>
+        <span class="s">&quot;pages&quot;</span><span class="p">:</span> <span class="s">&quot;monthly&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
         <hr />
     </div>
 		
@@ -186,6 +267,8 @@ SITEMAP = {
                 Categories
                 </li>
                 
+                                <li><a href="../category/coding.html">Coding</a></li>
+                                <li><a href="../category/competition.html">Competition</a></li>
                                 <li><a href="../category/web.html">Web</a></li>
                                    
             </ul>
@@ -214,7 +297,7 @@ SITEMAP = {
                                 <li><a href="http://weibo.com/focustc">Weibo</a></li>
                                 <li><a href="https://github.com/heloman">Github</a></li>
                                 <li><a href="http://blog.csdn.net/caozhk">CSDN Blog</a></li>
-                                <li><a href="feeds/all.rss.xml">Rss</a></li>
+                                <li><a href="http://heloman.github.io/feeds/all.rss.xml">Rss</a></li>
                             </ul>
             </div>
             </div>
