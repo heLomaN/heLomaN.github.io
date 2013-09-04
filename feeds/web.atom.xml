@@ -1,32 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>Focus</title><link href="http://heloman.github.io/" rel="alternate"></link><link href="http://heloman.github.io/feeds/web.atom.xml" rel="self"></link><id>http://heloman.github.io/</id><updated>2013-08-19T00:00:00+08:00</updated><entry><title>My first git blog</title><link href="http://heloman.github.io/pages/2013/08/my-first-git-blog.html" rel="alternate"></link><updated>2013-08-19T00:00:00+08:00</updated><author><name>heLomaN</name></author><id>tag:heloman.github.io,2013-08-19:pages/2013/08/my-first-git-blog.html</id><summary type="html">&lt;h2&gt;How to build you blog on github&lt;/h2&gt;
-&lt;h4&gt;name.github.io&lt;/h4&gt;
+&lt;h1&gt;name.github.io&lt;/h1&gt;
 &lt;p&gt;Github offer everyone a site:name.github.io, where you can publish you blogs.&lt;/p&gt;
-&lt;h3&gt;Use git to publish&lt;/h3&gt;
-&lt;p&gt;A very good startup:&lt;a href="http://frantic1048.com/blog/bo-ke-dan-sheng-ji-ji-yu-githubpelicanchuang-jian-bo-ke-de-zheng-ge-guo-cheng.html"&gt;frantic1048's startup&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;Improve:google anylytics,sitemap,disqus&lt;/h3&gt;
-&lt;p&gt;&lt;a href="http://www.lizherui.com/pages/2013/08/17/build_blog.htm"&gt;Lizherui's blog&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;How to use images and robots.txt&lt;/h3&gt;
-&lt;p&gt;Very nice:&lt;a href="http://www.linuxzen.com/shi-yong-pelicanda-zao-jing-tai-bo-ke.html"&gt;linuxzen's blog&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;About mine&lt;/h3&gt;
-&lt;p&gt;I edited the makefile, the order &lt;code&gt;make publish&lt;/code&gt; will use pelicanconf.py.
-Every time i run pelican, all in the output folder are copyed to git folder.
-I used a free domain name &lt;a href="http://caozhk.tk"&gt;http://caozhk.tk&lt;/a&gt;,everyone can imply one. Enjoy&lt;/p&gt;
-&lt;h4&gt;How to make a social link with imag&lt;/h4&gt;
-&lt;p&gt;Seems the plugin determine it by the url you typein ,not the sitename.
-But for rss, this works:&lt;/p&gt;
+&lt;h1&gt;Use git to publish&lt;/h1&gt;
+&lt;p&gt;A very good startup:&lt;a href="http://frantic1048.com/blog/bo-ke-dan-sheng-ji-ji-yu-githubpelicanchuang-jian-bo-ke-de-zheng-ge-guo-cheng.html"&gt;http://frantic1048.com/blog/bo-ke-dan-sheng-ji-ji-yu-githubpelicanchuang-jian-bo-ke-de-zheng-ge-guo-cheng.html&lt;/a&gt;&lt;/p&gt;
+&lt;h1&gt;Improve&lt;/h1&gt;
+&lt;p&gt;Lizherui's blog: &lt;a href="http://www.lizherui.com/pages/2013/08/17/build_blog.html"&gt;http://www.lizherui.com/pages/2013/08/17/build_blog.html&lt;/a&gt;&lt;/p&gt;
+&lt;h1&gt;How to use images and robots.txt&lt;/h1&gt;
+&lt;p&gt;Very nice:linuxzen's blog&lt;a href="http://www.linuxzen.com/shi-yong-pelicanda-zao-jing-tai-bo-ke.html"&gt;http://www.linuxzen.com/shi-yong-pelicanda-zao-jing-tai-bo-ke.html&lt;/a&gt;&lt;/p&gt;
+&lt;h1&gt;About mine&lt;/h1&gt;
+&lt;p&gt;I edited the makefile, the order make publish will use pelicanconf.py. Every time i run pelican, all in the output folder are copyed to git folder. I used a free domain name http://caozhk.tk,everyone can imply one. Enjoy&lt;/p&gt;
+&lt;h2&gt;How to make a social link with imag&lt;/h2&gt;
+&lt;p&gt;Seems the plugin determine it by the url you typein ,not the sitename. But for rss, this works:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;SOCIAL&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;Rss&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;feeds&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;all&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rss&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;xml&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Still puzzled by how to add a weibo icon, and a favicon.&lt;/p&gt;
-&lt;h4&gt;How to add weibo icon and a favicon, modifed 2013-08-27&lt;/h4&gt;
-&lt;p&gt;Thanks to Lizherui.&lt;br /&gt;
-You just put favicon.png in the output folder using &lt;code&gt;FILES_TO_COPY&lt;/code&gt;.&lt;br /&gt;
-Edit &lt;code&gt;/usr/local/lib/python2.7/site-packages/pelican/themes/tuxlite_tbs/static/local.css&lt;/code&gt; by insert &lt;code&gt;.social a[href*='weibo.com']:before {content: url('./images/icons/weibo.png'); margin-right: 2px; vertical-align: -3px;}&lt;/code&gt;, and put weibo.png in the img folder.  &lt;/p&gt;
-&lt;h3&gt;How to use Markdown&lt;/h3&gt;
+&lt;h2&gt;How to add weibo icon and a favicon, modifed 2013-08-27&lt;/h2&gt;
+&lt;p&gt;Thanks to Lizherui.
+You just put favicon.png in the output folder using FILES_TO_COPY.
+Edit &lt;code&gt;/usr/local/lib/python2.7/site-packages/pelican/themes/tuxlite_tbs/static/local.css&lt;/code&gt; by insert &lt;code&gt;.social a[href*='weibo.com']:before {content: url('./images/icons/weibo.png'); margin-right: 2px; vertical-align: -3px;}&lt;/code&gt;, and put weibo.png in the img folder.&lt;/p&gt;
+&lt;h2&gt;How to use Markdown&lt;/h2&gt;
 &lt;p&gt;Wikipedia:&lt;a href="http://zh.wikipedia.org/wiki/Markdown"&gt;http://zh.wikipedia.org/wiki/Markdown&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;Hum,this is my pelican.conf.&lt;/h3&gt;
+&lt;h2&gt;Hum,this is my pelican.conf.&lt;/h2&gt;
 &lt;p&gt;Feel free to share.&lt;/p&gt;
 &lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
  2
@@ -158,4 +155,4 @@ Edit &lt;code&gt;/usr/local/lib/python2.7/site-packages/pelican/themes/tuxlite_t
     &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</summary><category term="pelican"></category><category term="blog"></category></entry></feed>
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</summary><category term="pelican"></category><category term="publish"></category><category term="blog"></category></entry></feed>
