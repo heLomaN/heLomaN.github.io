@@ -5,28 +5,28 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://heloman.github.io/index.html</loc>
-<lastmod>2013-09-04T09:58:16-00:00</lastmod>
+<lastmod>2013-09-04T10:02:32-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://heloman.github.io/archives.html</loc>
-<lastmod>2013-09-04T09:58:16-00:00</lastmod>
+<lastmod>2013-09-04T10:02:32-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://heloman.github.io/tags.html</loc>
-<lastmod>2013-09-04T09:58:16-00:00</lastmod>
+<lastmod>2013-09-04T10:02:32-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://heloman.github.io/categories.html</loc>
-<lastmod>2013-09-04T09:58:16-00:00</lastmod>
+<lastmod>2013-09-04T10:02:32-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -43,6 +43,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2013-04-18T00:00:00-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.3</priority>
+</url>
+
+<url>
+<loc>http://heloman.github.io/pages/2013/09/ubuntuxi-tong-an-zhuang-matlab2012a.html</loc>
+<lastmod>2013-09-04T00:00:00-00:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.7</priority>
 </url>
 
 <url>
@@ -67,78 +74,99 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>http://heloman.github.io/category/app.html</loc>
+<lastmod>2013-09-04T10:02:32-00:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>http://heloman.github.io/category/coding.html</loc>
-<lastmod>2013-09-04T09:58:16-00:00</lastmod>
+<lastmod>2013-09-04T10:02:32-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://heloman.github.io/category/competition.html</loc>
-<lastmod>2013-09-04T09:58:16-00:00</lastmod>
+<lastmod>2013-09-04T10:02:32-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://heloman.github.io/category/web.html</loc>
-<lastmod>2013-09-04T09:58:16-00:00</lastmod>
+<lastmod>2013-09-04T10:02:32-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://heloman.github.io/tag/pelican.html</loc>
-<lastmod>2013-09-04T09:58:16-00:00</lastmod>
+<lastmod>2013-09-04T10:02:32-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://heloman.github.io/tag/github.html</loc>
-<lastmod>2013-09-04T09:58:16-00:00</lastmod>
+<lastmod>2013-09-04T10:02:32-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://heloman.github.io/tag/open-source.html</loc>
-<lastmod>2013-09-04T09:58:16-00:00</lastmod>
+<lastmod>2013-09-04T10:02:32-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://heloman.github.io/tag/publish.html</loc>
-<lastmod>2013-09-04T09:58:16-00:00</lastmod>
+<lastmod>2013-09-04T10:02:32-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://heloman.github.io/tag/blog.html</loc>
-<lastmod>2013-09-04T09:58:16-00:00</lastmod>
+<lastmod>2013-09-04T10:02:32-00:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://heloman.github.io/tag/matlab.html</loc>
+<lastmod>2013-09-04T10:02:32-00:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://heloman.github.io/tag/ubuntu.html</loc>
+<lastmod>2013-09-04T10:02:32-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://heloman.github.io/tag/project-euler.html</loc>
-<lastmod>2013-09-04T09:58:16-00:00</lastmod>
+<lastmod>2013-09-04T10:02:32-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://heloman.github.io/tag/translation.html</loc>
-<lastmod>2013-09-04T09:58:16-00:00</lastmod>
+<lastmod>2013-09-04T10:02:32-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://heloman.github.io/author/heloman.html</loc>
-<lastmod>2013-09-04T09:58:16-00:00</lastmod>
+<lastmod>2013-09-04T10:02:32-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>

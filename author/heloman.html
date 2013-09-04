@@ -142,6 +142,33 @@ NOte：这是因为15的倍数多算了一遍，所以要减去。  </p>
 我的方法是，斐波那契数列每三个连续的数中有一个为偶数，计算斐波那契数时用一个长度为3的数据完成缓存 ...</p> <a class="btn btn-info xsmall" href="../pages/2013/08/project-euler-001-006-jie-fa-zong-jie.html">read more</a></div>
     </div>	
 				
+    
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="../pages/2013/09/ubuntuxi-tong-an-zhuang-matlab2012a.html"><h2>Ubuntu系统安装Matlab2012a</h2></a>
+        <div class= "well small"> 2013-09-04
+
+by <a class="url fn" href="../author/heloman.html">heLomaN</a>
+ 
+
+
+ </div>
+        <div class="summary"><h3>下载安装</h3>
+<ol>
+<li>下载matlab的安装镜像，注意一定是unix版本到。 </li>
+<li>挂载iso文件： <code>sudo mount -o loop Mathworks.Matlab.R2012a.UNIX.iso /mnt/tmp</code></li>
+<li>到tmp目录下面执行 <code>sudo ./install</code>，安装并激活</li>
+</ol>
+<h3>启动程序</h3>
+<ol>
+<li>运行matlab的方式为：<code>sudo /usr/local/MATLAB/R2012a/bin/matlab</code></li>
+<li>运行的时候的警告信息，<code>/usr/local/MATLAB/R2012a/bin/util/oscheck.sh: /lib/libc.so.6: not found</code>。需要创建一个链接解决:<code>sudo ln -s /lib/i386-linux-gnu/libc ...</code></li></ol> <a class="btn btn-info xsmall" href="../pages/2013/09/ubuntuxi-tong-an-zhuang-matlab2012a.html">read more</a></div>
+    </div>	
+				
             <div class="pagination">
 <ul>
     <li class="prev disabled"><a href="#">&larr; Previous</a></li>
@@ -178,6 +205,7 @@ NOte：这是因为15的倍数多算了一遍，所以要减去。  </p>
                 Categories
                 </li>
                 
+                                <li><a href="../category/app.html">App</a></li>
                                 <li><a href="../category/coding.html">Coding</a></li>
                                 <li><a href="../category/competition.html">Competition</a></li>
                                 <li><a href="../category/web.html">Web</a></li>

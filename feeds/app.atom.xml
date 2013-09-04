@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Focus</title><link href="http://heloman.github.io/" rel="alternate"></link><link href="http://heloman.github.io/feeds/app.atom.xml" rel="self"></link><id>http://heloman.github.io/</id><updated>2013-09-04T00:00:00+08:00</updated><entry><title>Ubuntu系统安装Matlab2012a</title><link href="http://heloman.github.io/pages/2013/09/ubuntuxi-tong-an-zhuang-matlab2012a.html" rel="alternate"></link><updated>2013-09-04T00:00:00+08:00</updated><author><name>heLomaN</name></author><id>tag:heloman.github.io,2013-09-04:pages/2013/09/ubuntuxi-tong-an-zhuang-matlab2012a.html</id><summary type="html">&lt;h3&gt;下载安装&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;下载matlab的安装镜像，注意一定是unix版本到。 &lt;/li&gt;
+&lt;li&gt;挂载iso文件： &lt;code&gt;sudo mount -o loop Mathworks.Matlab.R2012a.UNIX.iso /mnt/tmp&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;到tmp目录下面执行 &lt;code&gt;sudo ./install&lt;/code&gt;，安装并激活&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;启动程序&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;运行matlab的方式为：&lt;code&gt;sudo /usr/local/MATLAB/R2012a/bin/matlab&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;运行的时候的警告信息，&lt;code&gt;/usr/local/MATLAB/R2012a/bin/util/oscheck.sh: /lib/libc.so.6: not found&lt;/code&gt;。需要创建一个链接解决:&lt;code&gt;sudo ln -s /lib/i386-linux-gnu/libc.so.6 /lib/libc.so.6&lt;/code&gt;64位系统需要改动。&lt;/li&gt;
+&lt;li&gt;在软件中心安装matlab-support，添加matlab的安装目录为/usr/local/MATLAB/R2012a，这样可以在面板里面直接运行程序。
+11.如果要创建快捷方式，可以在&lt;code&gt;启动运行程序&lt;/code&gt;中添加 &lt;code&gt;gksudo '/usr/local/MATLAB/R2012a/bin/matlab -desktop'&lt;/code&gt;，然后拖动到文件夹。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;设置启动目录&lt;/h3&gt;
+&lt;p&gt;可以使用命令：&lt;code&gt;sudo gedit /usr/local/MATLAB/R2012a/toolbox/local/matlabrc.m&lt;/code&gt;，最后加上:&lt;code&gt;cd ‘default path’ %default path&lt;/code&gt;换成你默认目录即可。&lt;/p&gt;
+&lt;h3&gt;解决中文乱码问题&lt;/h3&gt;
+&lt;p&gt;参考&lt;a href="http://wmyming01.blog.163.com/blog/static/12964879120121120102253573/"&gt;http://wmyming01.blog.163.com/blog/static/12964879120121120102253573/&lt;/a&gt;
+关于中文乱码的问题：如果系统已经安装中文字体，则打开Matlab后去File-&amp;gt;Preferences&amp;gt;Fonts里设置Desktop code font 和Desktop text font为支持中文的字体，如WenQuanYi Micro Hei Mono，立即生效。如果系统没中文字体就安装。此时Matlab界面仍是英文，添加自定义工具箱目录时遇到中文乱码问题，可以使用ln -s  源目录  目标目录  命令创建软链接，暂时解决。
+此时m文件中的中文注释可能乱码，暂时没找到解决方案，因为中文注释是在windows下用写的，编码有差别。以后注释尽量用英文，在中文编码上时间消耗太多了。&lt;/p&gt;
+&lt;h3&gt;解决运行时java错误&lt;/h3&gt;
+&lt;p&gt;改变.matlab目录所有者即可：&lt;code&gt;chown -R user:user ./.matlab&lt;/code&gt;&lt;/p&gt;</summary><category term="ubuntu"></category><category term="matlab"></category></entry></feed>

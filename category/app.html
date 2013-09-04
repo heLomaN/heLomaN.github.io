@@ -52,10 +52,58 @@
 
         <div class="span9">
                 
-<section id="content" class="body">    
-    <h2 class="content-title">About Me</h2>
-        <p>Hum, I want to be a Geek.</p>
-</section>
+
+        
+
+
+    <div class='article'>
+        <div class="content-title">
+            <a href="../pages/2013/09/ubuntuxi-tong-an-zhuang-matlab2012a.html"><h1>Ubuntu系统安装Matlab2012a</h1></a>
+            2013-09-04
+
+by <a class="url fn" href="../author/heloman.html">heLomaN</a>
+ 
+
+
+ 
+        </div>
+        
+        <div><h3>下载安装</h3>
+<ol>
+<li>下载matlab的安装镜像，注意一定是unix版本到。 </li>
+<li>挂载iso文件： <code>sudo mount -o loop Mathworks.Matlab.R2012a.UNIX.iso /mnt/tmp</code></li>
+<li>到tmp目录下面执行 <code>sudo ./install</code>，安装并激活</li>
+</ol>
+<h3>启动程序</h3>
+<ol>
+<li>运行matlab的方式为：<code>sudo /usr/local/MATLAB/R2012a/bin/matlab</code></li>
+<li>运行的时候的警告信息，<code>/usr/local/MATLAB/R2012a/bin/util/oscheck.sh: /lib/libc.so.6: not found</code>。需要创建一个链接解决:<code>sudo ln -s /lib/i386-linux-gnu/libc.so.6 /lib/libc.so.6</code>64位系统需要改动。</li>
+<li>在软件中心安装matlab-support，添加matlab的安装目录为/usr/local/MATLAB/R2012a，这样可以在面板里面直接运行程序。
+11.如果要创建快捷方式，可以在<code>启动运行程序</code>中添加 <code>gksudo '/usr/local/MATLAB/R2012a/bin/matlab -desktop'</code>，然后拖动到文件夹。</li>
+</ol>
+<h3>设置启动目录</h3>
+<p>可以使用命令：<code>sudo gedit /usr/local/MATLAB/R2012a/toolbox/local/matlabrc.m</code>，最后加上:<code>cd ‘default path’ %default path</code>换成你默认目录即可。</p>
+<h3>解决中文乱码问题</h3>
+<p>参考<a href="http://wmyming01.blog.163.com/blog/static/12964879120121120102253573/">http://wmyming01.blog.163.com/blog/static/12964879120121120102253573/</a>
+关于中文乱码的问题：如果系统已经安装中文字体，则打开Matlab后去File-&gt;Preferences&gt;Fonts里设置Desktop code font 和Desktop text font为支持中文的字体，如WenQuanYi Micro Hei Mono，立即生效。如果系统没中文字体就安装。此时Matlab界面仍是英文，添加自定义工具箱目录时遇到中文乱码问题，可以使用ln -s  源目录  目标目录  命令创建软链接，暂时解决。
+此时m文件中的中文注释可能乱码，暂时没找到解决方案，因为中文注释是在windows下用写的，编码有差别。以后注释尽量用英文，在中文编码上时间消耗太多了。</p>
+<h3>解决运行时java错误</h3>
+<p>改变.matlab目录所有者即可：<code>chown -R user:user ./.matlab</code></p></div>
+        <hr />
+    </div>
+		
+            <div class="pagination">
+<ul>
+    <li class="prev disabled"><a href="#">&larr; Previous</a></li>
+
+    <li class="active"><a href="../category/app.html">1</a></li>
+
+    <li class="next disabled"><a href="#">&rarr; Next</a></li>
+
+</ul>
+</div>    
+ 
+  
         </div>
         
         <div class="span3">
