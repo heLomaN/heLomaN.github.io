@@ -58,8 +58,8 @@
 
     <div class='article'>
         <div class="content-title">
-            <a href="../pages/2013/08/guo-wai-da-xue-sheng-tan-jing-yan-ru-he-zai-githubcan-yu-kai-yuan-open-source-on-github-your-first-contribution.html"><h1>国外大学生谈经验：如何在Github参与开源（Open Source on Github: Your First Contribution）</h1></a>
-            2013-08-25
+            <a href="../pages/2013/11/djangokai-fa-shi-pin-wang-zhan-xiang-mu-ji-lu.html"><h1>django开发视频网站项目记录</h1></a>
+            2013-11-08
 
 by <a class="url fn" href="../author/heloman.html">heLomaN</a>
  
@@ -68,29 +68,59 @@ by <a class="url fn" href="../author/heloman.html">heLomaN</a>
  
         </div>
         
-        <div><p>原作者：spencerpmoran<br />
+        <div><h3>20131108启动</h3>
+<p>下载了Owntube，尝试运行。官方文档给出的运行方式是virtualenv，一个虚拟的python环境。我索性直接在系统环境内安装了相关的软件。django版本真的比较低。<br />
+</p>
+<p>在settings.py中很多变量需要配置，根据官方给出的<a href="https://docs.djangoproject.com/en/1.3/howto/static-files/">文档</a>：<br />
+</p>
+<p>使用django.contrib.staticfiles应用，默认配置包含的 AppDirectoriesFinder 会搜索所有已经安装的应用的 <code>static/</code> 子目录。 <br />
+</p>
+<p>并且对于一些不适合放进相关app的文件， <code>STATICFILES_DIRS</code>是默认的搜索路径。不过这些只适用本地开发，并且要安装FileSystemFinder应用。<br />
+</p>
+<p>这些文件会以 <code>STATIC_URL</code> 提供。</p>
+<p>这个服务只在DEBUG为True时，即本地开发时有效。发布网站时，要使用 <code>./manage.py collectstatic</code> 命令来搜集所有STATICFILES_DIRS路径以及app下的静态文件到STATIC_ROOT文件夹下面。</p>
+<p><code>os.path.dirname(__file__)</code> 可以输出当前路径。<br />
+</p>
+<p>当前配置为：
+<pre>
+STATIC_ROOT = '/home/czk/djangoproject/OwnTube/colect_staitic/'
+STATIC_URL = '/static/'
+import os
+PROJECT_PATH = os.path.abspath(os.path.dirname(<strong>file</strong>))
+STATICFILES_DIRS = (
+    PROJECT_PATH + '/static',
+)
+<code></p>
+<h4>下一步开发计划：</h4>
+<p>完成一个最简单的视频播放模板，从html文件开始，然后再做模板。</p></div>
+        <hr />
+    </div>
+		
+    
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="../pages/2013/08/guo-wai-da-xue-sheng-tan-jing-yan-ru-he-zai-githubcan-yu-kai-yuan-open-source-on-github-your-first-contribution.html"><h2>国外大学生谈经验：如何在Github参与开源（Open Source on Github: Your First Contribution）</h2></a>
+        <div class= "well small"> 2013-08-25
+
+by <a class="url fn" href="../author/heloman.html">heLomaN</a>
+ 
+
+
+ </div>
+        <div class="summary"><p>原作者：spencerpmoran<br />
 转载自<a href="http://spencermoran.me/2013/08/13/open-source-on-github-your-first-contribution/">http://spencermoran.me/2013/08/13/open-source-on-github-your-first-contribution/</a></p>
 <hr />
 <p>我是一个即将毕业的计算机大四学生，我经常听人谈论对github上的开源项目做出贡献是多么有意义的事情。许多职位要求里面都写明这种经历是一个很重要的基本条件或加分项，而且这种事情经常在各种seminar课程和活动中提到。做出贡献确实挺起来很酷，我也应该做啊。可唯一的问题是，我是一个大菜鸟。我的计算机课程学的很好，而且我做过几个被家人同学称赞的项目。可是，我确信我不可能对一个真正有用户的项目做出任何有意义的贡献，对吧？这种想法是正确的吗？</p>
 <hr />
 <p>大错特错！即使你是一名新手，也可以以很多方式对github上面的项目做出实质的贡献。如果想要做一些真正有意义的影响用户的贡献，你大可不必读懂所有项目代码或者知道如何解决类似于bootstrap里的动态窗格问题。对于每个人都有合适的做出贡献的方法。</p>
 <p>最近，我的第一个实质性的贡献在一个开源项目上完成了。尽管贡献很小，我获得了全新的成就感，因为你知道有人在用你参与完成的东西。你必须从非常小的项目开始并持续前进。下面是我对想要对github上开源项目做出贡献但感觉困难而不敢尝试的同学的建议：</p>
-<p>你要做的第一步就是找到一个有pull request的仓库（项目）。有很多种方式可以找到。最简单直接的办法是读仓库的readme文件，里面经常明确的写明仓库所有者希望有人来完成pull request。如果readme文件没有提到这一点，你可以看看问题然后把代码下载下来。检查一下pull request的日期，看看哪些pull request已经关闭，你就能判断仓库所有者有多大的可能还在更新它。如果你能找到一个你真正喜欢并符合上述要求的项目，你就喜出望外吧。举个我自己的例子，我找到了一个用于创建新工程的rails模版项目，它的readme文件用黑体标出了欢迎pull request。太棒了！</p>
-<p>现在，是时候fork并克隆仓库开工了。如果你还不知道具体怎么操作，下面是一个很好的入门教程。</p>
-<p>按照readme里面说明，你要先确保你在你的电脑上可以正确的配置运行这个项目。如果你碰到了任何没有在readme里面提到的错误或问题，这将成为你的第一个贡献！你可要编辑readme文件把这个问题向其他开发者说清楚。最好的开始贡献的方式之一是使它们更方便运行。你可以整理readme，编辑文档里面的错误或把错误标出来。一头扎进别人的代码库立刻开始改写代码是有点太不礼貌了。不过你可以以温和的方式开始你的开源生涯。我愿意参与改进的代码库都是文档完整简洁的。</p>
-<p>如果你仍然没有找到一种做贡献的方式，就通读这个项目的所有issues吧。Issue是关于增加功能或修改的建议，有时候已经有人给出了伪代码甚至已经有人开始码代码，只是时间紧无法完成而已。你也许能找到这种已经开始的、不需要大量改变的任务。</p>
-<p>如果你感觉无法完成任何一处错误的纠正，仓库所有者也许已经在readme文件中写明了下一步要完成的部分，或者你自己有新的想法。我本身而言已经厌倦了到处浏览检查仓库，甚至是我自己的仓库也不愿意。DS_Store目录被使用Mac的人提交到了github上，这是毫无道理的。我可以把它加到rails模版项目的.gitignore文件里面，这样就保证没人会再干出这种事情。哈哈，我已经有贡献了！你看我只是做了很简单的事情而已。你要确认你遵循了项目已有的约定。查看readme和其他的pull request，找出别人的编程习惯，然后要保证你使用了大家约定的commit说明。我按照上述的教程提交了一个pull request，代码如下：</p>
-<div class="highlight"><pre>    <span class="err">#</span> <span class="n">DS_Store</span> <span class="n">gets</span> <span class="n">added</span> <span class="n">to</span> <span class="n">project</span> <span class="k">if</span> <span class="n">viewedin</span> <span class="n">OSX</span> <span class="n">Finder</span>
-    <span class="n">run</span><span class="s">&quot;echo &#39;.DS_Store&#39; &gt;&gt; .gitignore&quot;</span>
-</pre></div>
-
-
-<p>一个小时之后，我的pull request已经被合并到了这个几百人同时关注的项目中了。我感到了一种全新的工作的目标和动力。他们在用我参与完成的东西啊！</p>
-<p>在我作为一个计算机专业本科生的生活里，始终缺乏一种实实在在的成就感，或者说，我希望证明我真的在做事情。我学过算法、数据结构、很多种编程语言，我无休止的编程。我清楚的知道我自己。但是不过我从来没有过一种我的成果影响了其他人的感觉。我总是一个人想，谁做了这件事情？这件事情影响了谁？今天晚上，我想知道我的工作对一些人很重要。</p>
-<p>对github上的开源项目做贡献尽管可能显得不礼貌，而且有一个很陡峭的学习曲线，然而它确实是一种很有意义的获得成就感的途径。</p></div>
-        <hr />
-    </div>
-		
+<p>你要做的第一步就是找到一个有pull request的仓库（项目）。有很多种方式可以找到。最简单直接的办法是读仓库的readme文件，里面经常明确的写明仓库所有者希望有人来完成pull request。如果readme文件没有提到这一点，你可以看看问题然后把代码下载下来。检查一下pull request的日期，看看哪些pull request已经关闭 ...</p> <a class="btn btn-info xsmall" href="../pages/2013/08/guo-wai-da-xue-sheng-tan-jing-yan-ru-he-zai-githubcan-yu-kai-yuan-open-source-on-github-your-first-contribution.html">read more</a></div>
+    </div>	
+				
     
  
         
@@ -107,12 +137,13 @@ by <a class="url fn" href="../author/heloman.html">heLomaN</a>
 
  </div>
         <div class="summary"><h2>How to build you blog on github</h2>
-<h1>name.github.io</h1>
+<h4>name.github.io</h4>
 <p>Github offer everyone a site:name.github.io, where you can publish you blogs.</p>
-<h1>Use git to publish</h1>
-<p>A very good startup:<a href="http://frantic1048.com/blog/bo-ke-dan-sheng-ji-ji-yu-githubpelicanchuang-jian-bo-ke-de-zheng-ge-guo-cheng.html">http://frantic1048.com/blog/bo-ke-dan-sheng-ji-ji-yu-githubpelicanchuang-jian-bo-ke-de-zheng-ge-guo-cheng.html</a></p>
-<h1>Improve</h1>
-<p>Lizherui's blog: <a href="http://www.lizherui.com/pages/2013/08/17/build_blog.html">http://www.lizherui.com/pages/2013/08/17 ...</a></p> <a class="btn btn-info xsmall" href="../pages/2013/08/my-first-git-blog.html">read more</a></div>
+<h3>Use git to publish</h3>
+<p>A very good startup:<a href="http://frantic1048.com/blog/bo-ke-dan-sheng-ji-ji-yu-githubpelicanchuang-jian-bo-ke-de-zheng-ge-guo-cheng.html">frantic1048's startup</a></p>
+<h3>Improve:google anylytics,sitemap,disqus</h3>
+<p><a href="http://www.lizherui.com/pages/2013/08/17/build_blog.htm">Lizherui's blog</a></p>
+<h3>How to use images and robots.txt ...</h3> <a class="btn btn-info xsmall" href="../pages/2013/08/my-first-git-blog.html">read more</a></div>
     </div>	
 				
     
@@ -134,7 +165,8 @@ by <a class="url fn" href="../author/heloman.html">heLomaN</a>
 <p>Find the sum of all the multiples of 3 or 5 below 1000.</p>
 <p>题目要求找出所有1000以下的3或者5的倍数之和。<br />
 最简便的方法是，计算出1000以下总共有多少个3、5、15的倍数，然后用等差数列求三种数分别之和，最后3、5的倍数和减去15的倍数和就得到了结果。<br />
-NOte：这是因为15的倍数多算了一遍，所以要减去。  </p>
+NOte：这是因为15的倍数多算了一遍，所以要减去。<br />
+</p>
 <hr />
 <h4>Problem 2</h4>
 <p>Find the sum of all the even-valued terms in the Fibonacci sequence which do not exceed four million.</p>

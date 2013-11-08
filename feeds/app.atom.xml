@@ -1,5 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Focus</title><link href="http://heloman.github.io/" rel="alternate"></link><link href="http://heloman.github.io/feeds/app.atom.xml" rel="self"></link><id>http://heloman.github.io/</id><updated>2013-09-04T00:00:00+08:00</updated><entry><title>Ubuntu系统安装Matlab2012a</title><link href="http://heloman.github.io/pages/2013/09/ubuntuxi-tong-an-zhuang-matlab2012a.html" rel="alternate"></link><updated>2013-09-04T00:00:00+08:00</updated><author><name>heLomaN</name></author><id>tag:heloman.github.io,2013-09-04:pages/2013/09/ubuntuxi-tong-an-zhuang-matlab2012a.html</id><summary type="html">&lt;h3&gt;下载安装&lt;/h3&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Focus</title><link href="http://heloman.github.io/" rel="alternate"></link><link href="http://heloman.github.io/feeds/app.atom.xml" rel="self"></link><id>http://heloman.github.io/</id><updated>2013-11-08T00:00:00+08:00</updated><entry><title>django开发视频网站项目记录</title><link href="http://heloman.github.io/pages/2013/11/djangokai-fa-shi-pin-wang-zhan-xiang-mu-ji-lu.html" rel="alternate"></link><updated>2013-11-08T00:00:00+08:00</updated><author><name>heLomaN</name></author><id>tag:heloman.github.io,2013-11-08:pages/2013/11/djangokai-fa-shi-pin-wang-zhan-xiang-mu-ji-lu.html</id><summary type="html">&lt;h3&gt;20131108启动&lt;/h3&gt;
+&lt;p&gt;下载了Owntube，尝试运行。官方文档给出的运行方式是virtualenv，一个虚拟的python环境。我索性直接在系统环境内安装了相关的软件。django版本真的比较低。&lt;br /&gt;
+&lt;/p&gt;
+&lt;p&gt;在settings.py中很多变量需要配置，根据官方给出的&lt;a href="https://docs.djangoproject.com/en/1.3/howto/static-files/"&gt;文档&lt;/a&gt;：&lt;br /&gt;
+&lt;/p&gt;
+&lt;p&gt;使用django.contrib.staticfiles应用，默认配置包含的 AppDirectoriesFinder 会搜索所有已经安装的应用的 &lt;code&gt;static/&lt;/code&gt; 子目录。 &lt;br /&gt;
+&lt;/p&gt;
+&lt;p&gt;并且对于一些不适合放进相关app的文件， &lt;code&gt;STATICFILES_DIRS&lt;/code&gt;是默认的搜索路径。不过这些只适用本地开发，并且要安装FileSystemFinder应用。&lt;br /&gt;
+&lt;/p&gt;
+&lt;p&gt;这些文件会以 &lt;code&gt;STATIC_URL&lt;/code&gt; 提供。&lt;/p&gt;
+&lt;p&gt;这个服务只在DEBUG为True时，即本地开发时有效。发布网站时，要使用 &lt;code&gt;./manage.py collectstatic&lt;/code&gt; 命令来搜集所有STATICFILES_DIRS路径以及app下的静态文件到STATIC_ROOT文件夹下面。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;os.path.dirname(__file__)&lt;/code&gt; 可以输出当前路径。&lt;br /&gt;
+&lt;/p&gt;
+&lt;p&gt;当前配置为：
+&lt;pre&gt;
+STATIC_ROOT = '/home/czk/djangoproject/OwnTube/colect_staitic/'
+STATIC_URL = '/static/'
+import os
+PROJECT_PATH = os.path.abspath(os.path.dirname(&lt;strong&gt;file&lt;/strong&gt;))
+STATICFILES_DIRS = (
+    PROJECT_PATH + '/static',
+)
+&lt;code&gt;&lt;/p&gt;
+&lt;h4&gt;下一步开发计划：&lt;/h4&gt;
+&lt;p&gt;完成一个最简单的视频播放模板，从html文件开始，然后再做模板。&lt;/p&gt;</summary><category term="django"></category></entry><entry><title>Ubuntu系统安装Matlab2012a</title><link href="http://heloman.github.io/pages/2013/09/ubuntuxi-tong-an-zhuang-matlab2012a.html" rel="alternate"></link><updated>2013-09-04T00:00:00+08:00</updated><author><name>heLomaN</name></author><id>tag:heloman.github.io,2013-09-04:pages/2013/09/ubuntuxi-tong-an-zhuang-matlab2012a.html</id><summary type="html">&lt;h3&gt;下载安装&lt;/h3&gt;
 &lt;ol&gt;
 &lt;li&gt;下载matlab的安装镜像，注意一定是unix版本到。 &lt;/li&gt;
 &lt;li&gt;挂载iso文件： &lt;code&gt;sudo mount -o loop Mathworks.Matlab.R2012a.UNIX.iso /mnt/tmp&lt;/code&gt;&lt;/li&gt;

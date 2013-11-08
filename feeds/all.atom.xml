@@ -1,5 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Focus</title><link href="http://heloman.github.io/" rel="alternate"></link><link href="http://heloman.github.io/feeds/all.atom.xml" rel="self"></link><id>http://heloman.github.io/</id><updated>2013-09-04T00:00:00+08:00</updated><entry><title>Ubuntu系统安装Matlab2012a</title><link href="http://heloman.github.io/pages/2013/09/ubuntuxi-tong-an-zhuang-matlab2012a.html" rel="alternate"></link><updated>2013-09-04T00:00:00+08:00</updated><author><name>heLomaN</name></author><id>tag:heloman.github.io,2013-09-04:pages/2013/09/ubuntuxi-tong-an-zhuang-matlab2012a.html</id><summary type="html">&lt;h3&gt;下载安装&lt;/h3&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Focus</title><link href="http://heloman.github.io/" rel="alternate"></link><link href="http://heloman.github.io/feeds/all.atom.xml" rel="self"></link><id>http://heloman.github.io/</id><updated>2013-11-08T00:00:00+08:00</updated><entry><title>django开发视频网站项目记录</title><link href="http://heloman.github.io/pages/2013/11/djangokai-fa-shi-pin-wang-zhan-xiang-mu-ji-lu.html" rel="alternate"></link><updated>2013-11-08T00:00:00+08:00</updated><author><name>heLomaN</name></author><id>tag:heloman.github.io,2013-11-08:pages/2013/11/djangokai-fa-shi-pin-wang-zhan-xiang-mu-ji-lu.html</id><summary type="html">&lt;h3&gt;20131108启动&lt;/h3&gt;
+&lt;p&gt;下载了Owntube，尝试运行。官方文档给出的运行方式是virtualenv，一个虚拟的python环境。我索性直接在系统环境内安装了相关的软件。django版本真的比较低。&lt;br /&gt;
+&lt;/p&gt;
+&lt;p&gt;在settings.py中很多变量需要配置，根据官方给出的&lt;a href="https://docs.djangoproject.com/en/1.3/howto/static-files/"&gt;文档&lt;/a&gt;：&lt;br /&gt;
+&lt;/p&gt;
+&lt;p&gt;使用django.contrib.staticfiles应用，默认配置包含的 AppDirectoriesFinder 会搜索所有已经安装的应用的 &lt;code&gt;static/&lt;/code&gt; 子目录。 &lt;br /&gt;
+&lt;/p&gt;
+&lt;p&gt;并且对于一些不适合放进相关app的文件， &lt;code&gt;STATICFILES_DIRS&lt;/code&gt;是默认的搜索路径。不过这些只适用本地开发，并且要安装FileSystemFinder应用。&lt;br /&gt;
+&lt;/p&gt;
+&lt;p&gt;这些文件会以 &lt;code&gt;STATIC_URL&lt;/code&gt; 提供。&lt;/p&gt;
+&lt;p&gt;这个服务只在DEBUG为True时，即本地开发时有效。发布网站时，要使用 &lt;code&gt;./manage.py collectstatic&lt;/code&gt; 命令来搜集所有STATICFILES_DIRS路径以及app下的静态文件到STATIC_ROOT文件夹下面。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;os.path.dirname(__file__)&lt;/code&gt; 可以输出当前路径。&lt;br /&gt;
+&lt;/p&gt;
+&lt;p&gt;当前配置为：
+&lt;pre&gt;
+STATIC_ROOT = '/home/czk/djangoproject/OwnTube/colect_staitic/'
+STATIC_URL = '/static/'
+import os
+PROJECT_PATH = os.path.abspath(os.path.dirname(&lt;strong&gt;file&lt;/strong&gt;))
+STATICFILES_DIRS = (
+    PROJECT_PATH + '/static',
+)
+&lt;code&gt;&lt;/p&gt;
+&lt;h4&gt;下一步开发计划：&lt;/h4&gt;
+&lt;p&gt;完成一个最简单的视频播放模板，从html文件开始，然后再做模板。&lt;/p&gt;</summary><category term="django"></category></entry><entry><title>Ubuntu系统安装Matlab2012a</title><link href="http://heloman.github.io/pages/2013/09/ubuntuxi-tong-an-zhuang-matlab2012a.html" rel="alternate"></link><updated>2013-09-04T00:00:00+08:00</updated><author><name>heLomaN</name></author><id>tag:heloman.github.io,2013-09-04:pages/2013/09/ubuntuxi-tong-an-zhuang-matlab2012a.html</id><summary type="html">&lt;h3&gt;下载安装&lt;/h3&gt;
 &lt;ol&gt;
 &lt;li&gt;下载matlab的安装镜像，注意一定是unix版本到。 &lt;/li&gt;
 &lt;li&gt;挂载iso文件： &lt;code&gt;sudo mount -o loop Mathworks.Matlab.R2012a.UNIX.iso /mnt/tmp&lt;/code&gt;&lt;/li&gt;
@@ -23,7 +47,8 @@
 &lt;p&gt;Find the sum of all the multiples of 3 or 5 below 1000.&lt;/p&gt;
 &lt;p&gt;题目要求找出所有1000以下的3或者5的倍数之和。&lt;br /&gt;
 最简便的方法是，计算出1000以下总共有多少个3、5、15的倍数，然后用等差数列求三种数分别之和，最后3、5的倍数和减去15的倍数和就得到了结果。&lt;br /&gt;
-NOte：这是因为15的倍数多算了一遍，所以要减去。  &lt;/p&gt;
+NOte：这是因为15的倍数多算了一遍，所以要减去。&lt;br /&gt;
+&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h4&gt;Problem 2&lt;/h4&gt;
 &lt;p&gt;Find the sum of all the even-valued terms in the Fibonacci sequence which do not exceed four million.&lt;/p&gt;
@@ -34,25 +59,29 @@ NOte：这是因为15的倍数多算了一遍，所以要减去。  &lt;/p&gt;
 &lt;h4&gt;Problem 3&lt;/h4&gt;
 &lt;p&gt;Find the largest prime factor of a composite number&lt;/p&gt;
 &lt;p&gt;题目要求找出一个数的最大质因子。&lt;br /&gt;
-我的方法是，首先除以所有为2的质因子，然后从3到sqrt(n)依次找出质因子。排序得到最大的，应该用遍历法得到。过程中参考了CSDN的一篇剪枝的方法（回退法除以所有同一个质因子）。  &lt;/p&gt;
+我的方法是，首先除以所有为2的质因子，然后从3到sqrt(n)依次找出质因子。排序得到最大的，应该用遍历法得到。过程中参考了CSDN的一篇剪枝的方法（回退法除以所有同一个质因子）。&lt;br /&gt;
+&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h4&gt;Problem 4&lt;/h4&gt;
 &lt;p&gt;Find the largest palindrome made from the product of two 3-digit numbers.&lt;/p&gt;
 &lt;p&gt;题目要求找出能分解为两个三位数相乘的最大回文数。&lt;br /&gt;
 我的方法是，判断是否为回文数把每一位都提取出来，看前后是否相等。然后按照因此从999到100遍历啊和b的乘积判断是否为回文数，避免重复。找到第一个回文数后，计算出还有可能的a、b是多少，然后再次遍历。最后对遍历的结果取最大值。&lt;br /&gt;
-最简便的方法是，在上述方法的基础上，经过分析知道这个回文数一定是11的倍数，因为11是质数，则a或b必须为质数。在遍历时，可以判断出a不是11的倍数时b的可能值范围变成原来的1/11，运算量大大减少。  &lt;/p&gt;
+最简便的方法是，在上述方法的基础上，经过分析知道这个回文数一定是11的倍数，因为11是质数，则a或b必须为质数。在遍历时，可以判断出a不是11的倍数时b的可能值范围变成原来的1/11，运算量大大减少。&lt;br /&gt;
+&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h4&gt;Problem 5&lt;/h4&gt;
 &lt;p&gt;What is the smallest number divisible by each of the numbers 1 to 20?&lt;/p&gt;
 &lt;p&gt;题目要求找出1~20的最小公倍数。&lt;br /&gt;
 我的方法是首先用费马方法实现最大公因子gcd的计算。然后从大到小依次计算前者最小公倍数与下一个数的最小公因子，然后得到所有数的最小公倍数。&lt;br /&gt;
-最简单的方法是，对这个公倍数进行分析，必然是小于k的一系列质数的乘积。如果知道质数表，那么对于每一个小于k的质数为底计算floor(log)，然后把所有这些质数的幂相乘就得到了最小公倍数。可以优化的一点是，对于大于sqrt(k)的质数，已经不可能为1次以上的幂了，直接设幂指数为1即可。  &lt;/p&gt;
+最简单的方法是，对这个公倍数进行分析，必然是小于k的一系列质数的乘积。如果知道质数表，那么对于每一个小于k的质数为底计算floor(log)，然后把所有这些质数的幂相乘就得到了最小公倍数。可以优化的一点是，对于大于sqrt(k)的质数，已经不可能为1次以上的幂了，直接设幂指数为1即可。&lt;br /&gt;
+&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h4&gt;Problem 6&lt;/h4&gt;
 &lt;p&gt;What is the di erence between the sum of the squares and the square of the sums?&lt;/p&gt;
 &lt;p&gt;题目要求算出和的平方与平方和的差。&lt;br /&gt;
 我的方法就是直接算，因为没有想到一种方法可以减少运算量。&lt;br /&gt;
-最简便的方式，是把求和用高斯的方法计算，即n*(n+1)/2，同样的，最好能得到平方和的计算公式。其实计算方法也很简单，假设为三次多项式，用前四个值（含0）来解出系数。也可以参考百度百科平方和的排列组合法。  &lt;/p&gt;</summary><category term="project euler"></category></entry><entry><title>国外大学生谈经验：如何在Github参与开源（Open Source on Github: Your First Contribution）</title><link href="http://heloman.github.io/pages/2013/08/guo-wai-da-xue-sheng-tan-jing-yan-ru-he-zai-githubcan-yu-kai-yuan-open-source-on-github-your-first-contribution.html" rel="alternate"></link><updated>2013-08-25T00:00:00+08:00</updated><author><name>heLomaN</name></author><id>tag:heloman.github.io,2013-08-25:pages/2013/08/guo-wai-da-xue-sheng-tan-jing-yan-ru-he-zai-githubcan-yu-kai-yuan-open-source-on-github-your-first-contribution.html</id><summary type="html">&lt;p&gt;原作者：spencerpmoran&lt;br /&gt;
+最简便的方式，是把求和用高斯的方法计算，即n*(n+1)/2，同样的，最好能得到平方和的计算公式。其实计算方法也很简单，假设为三次多项式，用前四个值（含0）来解出系数。也可以参考百度百科平方和的排列组合法。&lt;br /&gt;
+&lt;/p&gt;</summary><category term="project euler"></category></entry><entry><title>国外大学生谈经验：如何在Github参与开源（Open Source on Github: Your First Contribution）</title><link href="http://heloman.github.io/pages/2013/08/guo-wai-da-xue-sheng-tan-jing-yan-ru-he-zai-githubcan-yu-kai-yuan-open-source-on-github-your-first-contribution.html" rel="alternate"></link><updated>2013-08-25T00:00:00+08:00</updated><author><name>heLomaN</name></author><id>tag:heloman.github.io,2013-08-25:pages/2013/08/guo-wai-da-xue-sheng-tan-jing-yan-ru-he-zai-githubcan-yu-kai-yuan-open-source-on-github-your-first-contribution.html</id><summary type="html">&lt;p&gt;原作者：spencerpmoran&lt;br /&gt;
 转载自&lt;a href="http://spencermoran.me/2013/08/13/open-source-on-github-your-first-contribution/"&gt;http://spencermoran.me/2013/08/13/open-source-on-github-your-first-contribution/&lt;/a&gt;&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p&gt;我是一个即将毕业的计算机大四学生，我经常听人谈论对github上的开源项目做出贡献是多么有意义的事情。许多职位要求里面都写明这种经历是一个很重要的基本条件或加分项，而且这种事情经常在各种seminar课程和活动中提到。做出贡献确实挺起来很酷，我也应该做啊。可唯一的问题是，我是一个大菜鸟。我的计算机课程学的很好，而且我做过几个被家人同学称赞的项目。可是，我确信我不可能对一个真正有用户的项目做出任何有意义的贡献，对吧？这种想法是正确的吗？&lt;/p&gt;
@@ -72,30 +101,34 @@ NOte：这是因为15的倍数多算了一遍，所以要减去。  &lt;/p&gt;
 &lt;p&gt;一个小时之后，我的pull request已经被合并到了这个几百人同时关注的项目中了。我感到了一种全新的工作的目标和动力。他们在用我参与完成的东西啊！&lt;/p&gt;
 &lt;p&gt;在我作为一个计算机专业本科生的生活里，始终缺乏一种实实在在的成就感，或者说，我希望证明我真的在做事情。我学过算法、数据结构、很多种编程语言，我无休止的编程。我清楚的知道我自己。但是不过我从来没有过一种我的成果影响了其他人的感觉。我总是一个人想，谁做了这件事情？这件事情影响了谁？今天晚上，我想知道我的工作对一些人很重要。&lt;/p&gt;
 &lt;p&gt;对github上的开源项目做贡献尽管可能显得不礼貌，而且有一个很陡峭的学习曲线，然而它确实是一种很有意义的获得成就感的途径。&lt;/p&gt;</summary><category term="github"></category><category term="open source"></category><category term="blog"></category><category term="translation"></category></entry><entry><title>My first git blog</title><link href="http://heloman.github.io/pages/2013/08/my-first-git-blog.html" rel="alternate"></link><updated>2013-08-19T00:00:00+08:00</updated><author><name>heLomaN</name></author><id>tag:heloman.github.io,2013-08-19:pages/2013/08/my-first-git-blog.html</id><summary type="html">&lt;h2&gt;How to build you blog on github&lt;/h2&gt;
-&lt;h1&gt;name.github.io&lt;/h1&gt;
+&lt;h4&gt;name.github.io&lt;/h4&gt;
 &lt;p&gt;Github offer everyone a site:name.github.io, where you can publish you blogs.&lt;/p&gt;
-&lt;h1&gt;Use git to publish&lt;/h1&gt;
-&lt;p&gt;A very good startup:&lt;a href="http://frantic1048.com/blog/bo-ke-dan-sheng-ji-ji-yu-githubpelicanchuang-jian-bo-ke-de-zheng-ge-guo-cheng.html"&gt;http://frantic1048.com/blog/bo-ke-dan-sheng-ji-ji-yu-githubpelicanchuang-jian-bo-ke-de-zheng-ge-guo-cheng.html&lt;/a&gt;&lt;/p&gt;
-&lt;h1&gt;Improve&lt;/h1&gt;
-&lt;p&gt;Lizherui's blog: &lt;a href="http://www.lizherui.com/pages/2013/08/17/build_blog.html"&gt;http://www.lizherui.com/pages/2013/08/17/build_blog.html&lt;/a&gt;&lt;/p&gt;
-&lt;h1&gt;How to use images and robots.txt&lt;/h1&gt;
-&lt;p&gt;Very nice:linuxzen's blog&lt;a href="http://www.linuxzen.com/shi-yong-pelicanda-zao-jing-tai-bo-ke.html"&gt;http://www.linuxzen.com/shi-yong-pelicanda-zao-jing-tai-bo-ke.html&lt;/a&gt;&lt;/p&gt;
-&lt;h1&gt;About mine&lt;/h1&gt;
-&lt;p&gt;I edited the makefile, the order make publish will use pelicanconf.py. Every time i run pelican, all in the output folder are copyed to git folder. I used a free domain name http://caozhk.tk,everyone can imply one. Enjoy&lt;/p&gt;
-&lt;h2&gt;How to make a social link with imag&lt;/h2&gt;
-&lt;p&gt;Seems the plugin determine it by the url you typein ,not the sitename. But for rss, this works:&lt;/p&gt;
+&lt;h3&gt;Use git to publish&lt;/h3&gt;
+&lt;p&gt;A very good startup:&lt;a href="http://frantic1048.com/blog/bo-ke-dan-sheng-ji-ji-yu-githubpelicanchuang-jian-bo-ke-de-zheng-ge-guo-cheng.html"&gt;frantic1048's startup&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Improve:google anylytics,sitemap,disqus&lt;/h3&gt;
+&lt;p&gt;&lt;a href="http://www.lizherui.com/pages/2013/08/17/build_blog.htm"&gt;Lizherui's blog&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;How to use images and robots.txt&lt;/h3&gt;
+&lt;p&gt;Very nice:&lt;a href="http://www.linuxzen.com/shi-yong-pelicanda-zao-jing-tai-bo-ke.html"&gt;linuxzen's blog&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;About mine&lt;/h3&gt;
+&lt;p&gt;I edited the makefile, the order &lt;code&gt;make publish&lt;/code&gt; will use pelicanconf.py.
+Every time i run pelican, all in the output folder are copyed to git folder.
+I used a free domain name &lt;a href="http://caozhk.tk"&gt;http://caozhk.tk&lt;/a&gt;,everyone can imply one. Enjoy&lt;/p&gt;
+&lt;h4&gt;How to make a social link with imag&lt;/h4&gt;
+&lt;p&gt;Seems the plugin determine it by the url you typein ,not the sitename.
+But for rss, this works:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;SOCIAL&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;Rss&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;feeds&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;all&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rss&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;xml&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Still puzzled by how to add a weibo icon, and a favicon.&lt;/p&gt;
-&lt;h2&gt;How to add weibo icon and a favicon, modifed 2013-08-27&lt;/h2&gt;
-&lt;p&gt;Thanks to Lizherui.
-You just put favicon.png in the output folder using FILES_TO_COPY.
-Edit &lt;code&gt;/usr/local/lib/python2.7/site-packages/pelican/themes/tuxlite_tbs/static/local.css&lt;/code&gt; by insert &lt;code&gt;.social a[href*='weibo.com']:before {content: url('./images/icons/weibo.png'); margin-right: 2px; vertical-align: -3px;}&lt;/code&gt;, and put weibo.png in the img folder.&lt;/p&gt;
-&lt;h2&gt;How to use Markdown&lt;/h2&gt;
+&lt;h4&gt;How to add weibo icon and a favicon, modifed 2013-08-27&lt;/h4&gt;
+&lt;p&gt;Thanks to Lizherui.&lt;br /&gt;
+You just put favicon.png in the output folder using &lt;code&gt;FILES_TO_COPY&lt;/code&gt;.&lt;br /&gt;
+Edit &lt;code&gt;/usr/local/lib/python2.7/site-packages/pelican/themes/tuxlite_tbs/static/local.css&lt;/code&gt; by insert &lt;code&gt;.social a[href*='weibo.com']:before {content: url('./images/icons/weibo.png'); margin-right: 2px; vertical-align: -3px;}&lt;/code&gt;, and put weibo.png in the img folder.&lt;br /&gt;
+&lt;/p&gt;
+&lt;h3&gt;How to use Markdown&lt;/h3&gt;
 &lt;p&gt;Wikipedia:&lt;a href="http://zh.wikipedia.org/wiki/Markdown"&gt;http://zh.wikipedia.org/wiki/Markdown&lt;/a&gt;&lt;/p&gt;
-&lt;h2&gt;Hum,this is my pelican.conf.&lt;/h2&gt;
+&lt;h3&gt;Hum,this is my pelican.conf.&lt;/h3&gt;
 &lt;p&gt;Feel free to share.&lt;/p&gt;
 &lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
  2
@@ -159,9 +192,7 @@ Edit &lt;code&gt;/usr/local/lib/python2.7/site-packages/pelican/themes/tuxlite_t
 60
 61
 62
-63
-64
-65&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#!/usr/bin/env python&lt;/span&gt;
+63&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#!/usr/bin/env python&lt;/span&gt;
 &lt;span class="c"&gt;# -*- coding: utf-8 -*- #&lt;/span&gt;
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;__future__&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;unicode_literals&lt;/span&gt;
 
@@ -169,8 +200,6 @@ Edit &lt;code&gt;/usr/local/lib/python2.7/site-packages/pelican/themes/tuxlite_t
 &lt;span class="n"&gt;SITENAME&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;u&amp;#39;Focus&amp;#39;&lt;/span&gt;
 &lt;span class="n"&gt;SITEURL&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;http://heloman.github.io&amp;#39;&lt;/span&gt;
 &lt;span class="n"&gt;RELATIVE_URLS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;True&lt;/span&gt;
-
-
 
 &lt;span class="n"&gt;DELETE_OUTPUT_DIRECTORY&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;True&lt;/span&gt;
 
@@ -227,4 +256,4 @@ Edit &lt;code&gt;/usr/local/lib/python2.7/site-packages/pelican/themes/tuxlite_t
     &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</summary><category term="pelican"></category><category term="publish"></category><category term="blog"></category></entry></feed>
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</summary><category term="pelican"></category><category term="blog"></category></entry></feed>

@@ -9,14 +9,14 @@
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
-    <script src="../theme/html5.js"></script>
+    <script src="../../../theme/html5.js"></script>
     <![endif]-->
 
     <!-- Le styles -->
-    <link href="../theme/bootstrap.min.css" rel="stylesheet">
-    <link href="../theme/bootstrap.min.responsive.css" rel="stylesheet">
-    <link href="../theme/local.css" rel="stylesheet">
-    <link href="../theme/pygments.css" rel="stylesheet">
+    <link href="../../../theme/bootstrap.min.css" rel="stylesheet">
+    <link href="../../../theme/bootstrap.min.responsive.css" rel="stylesheet">
+    <link href="../../../theme/local.css" rel="stylesheet">
+    <link href="../../../theme/pygments.css" rel="stylesheet">
 
 </head>
 
@@ -32,13 +32,13 @@
              <span class="icon-bar"></span>
          </a>
 
-        <a class="brand" href="..">Focus</a>
+        <a class="brand" href="../../..">Focus</a>
 
         <div class="nav-collapse">
         <ul class="nav">
                     
-                            <li><a href="../pages/about-me.html">About Me</a></li>
-                    <li><a href="../pages/resume.html">Resume</a></li>
+                            <li><a href="../../../pages/about-me.html">About Me</a></li>
+                    <li><a href="../../../pages/resume.html">Resume</a></li>
                         </ul>
         </div>
         
@@ -51,53 +51,59 @@
     <div class="row">
 
         <div class="span9">
-                
-<section id="content" class="body">    
-    <h2 class="content-title">Resume</h2>
-        <hr />
-<h3>Education</h3>
-<h4>University of Science and Technology of China</h4>
-<p>MS, Electrical Engineering and Information Science<br />
-2012-2015</p>
-<h4>University of Science and Technology of China</h4>
-<p>BS, School of Gifted Young<br />
-2008-2012</p>
-<hr />
-<h3>Experiences</h3>
-<h4>Graduate Student at USTC</h4>
-<p>University of Science and Technology of China (USTC),HeFei,China<br />
-September 2012 - July 2015 (3 years)<br />
-Electrical Engineering</p>
-<h4>College Student at USTC</h4>
-<p>University of Science and Technology of China (USTC),HeFei,China<br />
-September 2008 - July 2012 (4 years)<br />
-Electrical Engineering</p>
-<hr />
-<h3>Honors and Awards</h3>
-<p>New Students Award
-2007,Second Prize of National Olympiad in Psysics in Provinces</p>
-<hr />
-<h3>Projects</h3>
-<hr />
-<h3>Extracurricular Experiences</h3>
-<p>2009-2011 Network Administration of the School of Gifted Young<br />
-Jan,2012 China Construction Bank<br />
-Sep,2012-Jan,2012 <strong>Minister</strong> of Graduate Union of Infomatic Academy<br />
-Feb,2013-Dec,2013 <strong>Vice President</strong> of Video Union of USTC<br />
+            <div class='article'>
+        <div class="content-title">
+            <h1>django开发视频网站项目记录</h1>
+            2013-11-08
+
+by <a class="url fn" href="../../../author/heloman.html">heLomaN</a>
+ 
+
+
+        </div>
+	
+        <div><h3>20131108启动</h3>
+<p>下载了Owntube，尝试运行。官方文档给出的运行方式是virtualenv，一个虚拟的python环境。我索性直接在系统环境内安装了相关的软件。django版本真的比较低。<br />
 </p>
-<hr />
-<h3>Skills</h3>
-<h4>Technical Skills</h4>
-<p>Proficiency in <strong>C, C++, Matlab,Python</strong><br />
-Familiar with <strong>Java, Git,Pelican,HTML,CSS,JavaScript</strong><br />
-Solid basis of <strong>Wireless Communication</strong></p>
-<h4>Language Skills</h4>
-<p>Able to communicate in English; Proficient in reading and writing English technical articles<br />
-<strong>TOEFL</strong>:Not tested<br />
-Passed <strong>CET-4/6</strong><br />
-Fluent in <strong>Mandarin</strong><br />
+<p>在settings.py中很多变量需要配置，根据官方给出的<a href="https://docs.djangoproject.com/en/1.3/howto/static-files/">文档</a>：<br />
 </p>
-</section>
+<p>使用django.contrib.staticfiles应用，默认配置包含的 AppDirectoriesFinder 会搜索所有已经安装的应用的 <code>static/</code> 子目录。 <br />
+</p>
+<p>并且对于一些不适合放进相关app的文件， <code>STATICFILES_DIRS</code>是默认的搜索路径。不过这些只适用本地开发，并且要安装FileSystemFinder应用。<br />
+</p>
+<p>这些文件会以 <code>STATIC_URL</code> 提供。</p>
+<p>这个服务只在DEBUG为True时，即本地开发时有效。发布网站时，要使用 <code>./manage.py collectstatic</code> 命令来搜集所有STATICFILES_DIRS路径以及app下的静态文件到STATIC_ROOT文件夹下面。</p>
+<p><code>os.path.dirname(__file__)</code> 可以输出当前路径。<br />
+</p>
+<p>当前配置为：
+<pre>
+STATIC_ROOT = '/home/czk/djangoproject/OwnTube/colect_staitic/'
+STATIC_URL = '/static/'
+import os
+PROJECT_PATH = os.path.abspath(os.path.dirname(<strong>file</strong>))
+STATICFILES_DIRS = (
+    PROJECT_PATH + '/static',
+)
+<code></p>
+<h4>下一步开发计划：</h4>
+<p>完成一个最简单的视频播放模板，从html文件开始，然后再做模板。</p></div>
+	
+        <hr>
+    	   
+        <h2>Comments</h2>
+		<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'focustc'; 
+    var disqus_title = 'django开发视频网站项目记录';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
         </div>
         
         <div class="span3">
@@ -108,8 +114,8 @@ Fluent in <strong>Mandarin</strong><br />
                 Site
                 </li>
             
-                <li><a href="../archives.html">Archives</a>
-                <li><a href="../tags.html">Tags</a>
+                <li><a href="../../../archives.html">Archives</a>
+                <li><a href="../../../tags.html">Tags</a>
                 <li><a href="http://heloman.github.io/" rel="alternate">Atom feed</a></li>
                                 <li><a href="http://heloman.github.io/feeds/all.rss.xml" rel="alternate">RSS feed</a></li>
                             </ul>
@@ -122,10 +128,10 @@ Fluent in <strong>Mandarin</strong><br />
                 Categories
                 </li>
                 
-                                <li><a href="../category/app.html">App</a></li>
-                                <li><a href="../category/coding.html">Coding</a></li>
-                                <li><a href="../category/competition.html">Competition</a></li>
-                                <li><a href="../category/web.html">Web</a></li>
+                                <li><a href="../../../category/app.html">App</a></li>
+                                <li><a href="../../../category/coding.html">Coding</a></li>
+                                <li><a href="../../../category/competition.html">Competition</a></li>
+                                <li><a href="../../../category/web.html">Web</a></li>
                                    
             </ul>
             </div>
@@ -162,7 +168,7 @@ Fluent in <strong>Mandarin</strong><br />
     </div>     </div> 
 <footer>
 <br />
-<p><a href="..">Focus</a> &copy; heLomaN 2012</p>
+<p><a href="../../..">Focus</a> &copy; heLomaN 2012</p>
 </footer>
 
 </div> <!-- /container -->

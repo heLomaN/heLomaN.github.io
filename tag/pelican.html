@@ -69,30 +69,34 @@ by <a class="url fn" href="../author/heloman.html">heLomaN</a>
         </div>
         
         <div><h2>How to build you blog on github</h2>
-<h1>name.github.io</h1>
+<h4>name.github.io</h4>
 <p>Github offer everyone a site:name.github.io, where you can publish you blogs.</p>
-<h1>Use git to publish</h1>
-<p>A very good startup:<a href="http://frantic1048.com/blog/bo-ke-dan-sheng-ji-ji-yu-githubpelicanchuang-jian-bo-ke-de-zheng-ge-guo-cheng.html">http://frantic1048.com/blog/bo-ke-dan-sheng-ji-ji-yu-githubpelicanchuang-jian-bo-ke-de-zheng-ge-guo-cheng.html</a></p>
-<h1>Improve</h1>
-<p>Lizherui's blog: <a href="http://www.lizherui.com/pages/2013/08/17/build_blog.html">http://www.lizherui.com/pages/2013/08/17/build_blog.html</a></p>
-<h1>How to use images and robots.txt</h1>
-<p>Very nice:linuxzen's blog<a href="http://www.linuxzen.com/shi-yong-pelicanda-zao-jing-tai-bo-ke.html">http://www.linuxzen.com/shi-yong-pelicanda-zao-jing-tai-bo-ke.html</a></p>
-<h1>About mine</h1>
-<p>I edited the makefile, the order make publish will use pelicanconf.py. Every time i run pelican, all in the output folder are copyed to git folder. I used a free domain name http://caozhk.tk,everyone can imply one. Enjoy</p>
-<h2>How to make a social link with imag</h2>
-<p>Seems the plugin determine it by the url you typein ,not the sitename. But for rss, this works:</p>
+<h3>Use git to publish</h3>
+<p>A very good startup:<a href="http://frantic1048.com/blog/bo-ke-dan-sheng-ji-ji-yu-githubpelicanchuang-jian-bo-ke-de-zheng-ge-guo-cheng.html">frantic1048's startup</a></p>
+<h3>Improve:google anylytics,sitemap,disqus</h3>
+<p><a href="http://www.lizherui.com/pages/2013/08/17/build_blog.htm">Lizherui's blog</a></p>
+<h3>How to use images and robots.txt</h3>
+<p>Very nice:<a href="http://www.linuxzen.com/shi-yong-pelicanda-zao-jing-tai-bo-ke.html">linuxzen's blog</a></p>
+<h3>About mine</h3>
+<p>I edited the makefile, the order <code>make publish</code> will use pelicanconf.py.
+Every time i run pelican, all in the output folder are copyed to git folder.
+I used a free domain name <a href="http://caozhk.tk">http://caozhk.tk</a>,everyone can imply one. Enjoy</p>
+<h4>How to make a social link with imag</h4>
+<p>Seems the plugin determine it by the url you typein ,not the sitename.
+But for rss, this works:</p>
 <div class="highlight"><pre><span class="n">SOCIAL</span> <span class="o">=</span> <span class="p">((</span><span class="err">&#39;</span><span class="n">Rss</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">feeds</span><span class="o">/</span><span class="n">all</span><span class="p">.</span><span class="n">rss</span><span class="p">.</span><span class="n">xml</span><span class="err">&#39;</span><span class="p">),)</span>
 </pre></div>
 
 
 <p>Still puzzled by how to add a weibo icon, and a favicon.</p>
-<h2>How to add weibo icon and a favicon, modifed 2013-08-27</h2>
-<p>Thanks to Lizherui.
-You just put favicon.png in the output folder using FILES_TO_COPY.
-Edit <code>/usr/local/lib/python2.7/site-packages/pelican/themes/tuxlite_tbs/static/local.css</code> by insert <code>.social a[href*='weibo.com']:before {content: url('./images/icons/weibo.png'); margin-right: 2px; vertical-align: -3px;}</code>, and put weibo.png in the img folder.</p>
-<h2>How to use Markdown</h2>
+<h4>How to add weibo icon and a favicon, modifed 2013-08-27</h4>
+<p>Thanks to Lizherui.<br />
+You just put favicon.png in the output folder using <code>FILES_TO_COPY</code>.<br />
+Edit <code>/usr/local/lib/python2.7/site-packages/pelican/themes/tuxlite_tbs/static/local.css</code> by insert <code>.social a[href*='weibo.com']:before {content: url('./images/icons/weibo.png'); margin-right: 2px; vertical-align: -3px;}</code>, and put weibo.png in the img folder.<br />
+</p>
+<h3>How to use Markdown</h3>
 <p>Wikipedia:<a href="http://zh.wikipedia.org/wiki/Markdown">http://zh.wikipedia.org/wiki/Markdown</a></p>
-<h2>Hum,this is my pelican.conf.</h2>
+<h3>Hum,this is my pelican.conf.</h3>
 <p>Feel free to share.</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
@@ -156,9 +160,7 @@ Edit <code>/usr/local/lib/python2.7/site-packages/pelican/themes/tuxlite_tbs/sta
 60
 61
 62
-63
-64
-65</pre></div></td><td class="code"><div class="highlight"><pre><span class="c">#!/usr/bin/env python</span>
+63</pre></div></td><td class="code"><div class="highlight"><pre><span class="c">#!/usr/bin/env python</span>
 <span class="c"># -*- coding: utf-8 -*- #</span>
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">unicode_literals</span>
 
@@ -166,8 +168,6 @@ Edit <code>/usr/local/lib/python2.7/site-packages/pelican/themes/tuxlite_tbs/sta
 <span class="n">SITENAME</span> <span class="o">=</span> <span class="s">u&#39;Focus&#39;</span>
 <span class="n">SITEURL</span> <span class="o">=</span> <span class="s">&#39;http://heloman.github.io&#39;</span>
 <span class="n">RELATIVE_URLS</span> <span class="o">=</span> <span class="bp">True</span>
-
-
 
 <span class="n">DELETE_OUTPUT_DIRECTORY</span> <span class="o">=</span> <span class="bp">True</span>
 

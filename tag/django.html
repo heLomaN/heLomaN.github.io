@@ -58,8 +58,8 @@
 
     <div class='article'>
         <div class="content-title">
-            <a href="../pages/2013/08/project-euler-001-006-jie-fa-zong-jie.html"><h1>Project Euler 001-006 解法总结</h1></a>
-            2013-08-27
+            <a href="../pages/2013/11/djangokai-fa-shi-pin-wang-zhan-xiang-mu-ji-lu.html"><h1>django开发视频网站项目记录</h1></a>
+            2013-11-08
 
 by <a class="url fn" href="../author/heloman.html">heLomaN</a>
  
@@ -68,45 +68,31 @@ by <a class="url fn" href="../author/heloman.html">heLomaN</a>
  
         </div>
         
-        <div><h4>Problem 1</h4>
-<p>Find the sum of all the multiples of 3 or 5 below 1000.</p>
-<p>题目要求找出所有1000以下的3或者5的倍数之和。<br />
-最简便的方法是，计算出1000以下总共有多少个3、5、15的倍数，然后用等差数列求三种数分别之和，最后3、5的倍数和减去15的倍数和就得到了结果。<br />
-NOte：这是因为15的倍数多算了一遍，所以要减去。<br />
+        <div><h3>20131108启动</h3>
+<p>下载了Owntube，尝试运行。官方文档给出的运行方式是virtualenv，一个虚拟的python环境。我索性直接在系统环境内安装了相关的软件。django版本真的比较低。<br />
 </p>
-<hr />
-<h4>Problem 2</h4>
-<p>Find the sum of all the even-valued terms in the Fibonacci sequence which do not exceed four million.</p>
-<p>题目要求找出斐波那契数列中偶数之和。<br />
-我的方法是，斐波那契数列每三个连续的数中有一个为偶数，计算斐波那契数时用一个长度为3的数据完成缓存，每次循环完成三个数的更新，即计算三次斐波那契数，取偶数位相加即可。<br />
-最简便的方法是，既然没三个连续数就有一个为偶数，那个可以推出连续的三个偶数斐波那契数之间的关系，这样就可以用长度为2的数据完成计算，而且计算量减少很多。</p>
-<hr />
-<h4>Problem 3</h4>
-<p>Find the largest prime factor of a composite number</p>
-<p>题目要求找出一个数的最大质因子。<br />
-我的方法是，首先除以所有为2的质因子，然后从3到sqrt(n)依次找出质因子。排序得到最大的，应该用遍历法得到。过程中参考了CSDN的一篇剪枝的方法（回退法除以所有同一个质因子）。<br />
+<p>在settings.py中很多变量需要配置，根据官方给出的<a href="https://docs.djangoproject.com/en/1.3/howto/static-files/">文档</a>：<br />
 </p>
-<hr />
-<h4>Problem 4</h4>
-<p>Find the largest palindrome made from the product of two 3-digit numbers.</p>
-<p>题目要求找出能分解为两个三位数相乘的最大回文数。<br />
-我的方法是，判断是否为回文数把每一位都提取出来，看前后是否相等。然后按照因此从999到100遍历啊和b的乘积判断是否为回文数，避免重复。找到第一个回文数后，计算出还有可能的a、b是多少，然后再次遍历。最后对遍历的结果取最大值。<br />
-最简便的方法是，在上述方法的基础上，经过分析知道这个回文数一定是11的倍数，因为11是质数，则a或b必须为质数。在遍历时，可以判断出a不是11的倍数时b的可能值范围变成原来的1/11，运算量大大减少。<br />
+<p>使用django.contrib.staticfiles应用，默认配置包含的 AppDirectoriesFinder 会搜索所有已经安装的应用的 <code>static/</code> 子目录。 <br />
 </p>
-<hr />
-<h4>Problem 5</h4>
-<p>What is the smallest number divisible by each of the numbers 1 to 20?</p>
-<p>题目要求找出1~20的最小公倍数。<br />
-我的方法是首先用费马方法实现最大公因子gcd的计算。然后从大到小依次计算前者最小公倍数与下一个数的最小公因子，然后得到所有数的最小公倍数。<br />
-最简单的方法是，对这个公倍数进行分析，必然是小于k的一系列质数的乘积。如果知道质数表，那么对于每一个小于k的质数为底计算floor(log)，然后把所有这些质数的幂相乘就得到了最小公倍数。可以优化的一点是，对于大于sqrt(k)的质数，已经不可能为1次以上的幂了，直接设幂指数为1即可。<br />
+<p>并且对于一些不适合放进相关app的文件， <code>STATICFILES_DIRS</code>是默认的搜索路径。不过这些只适用本地开发，并且要安装FileSystemFinder应用。<br />
 </p>
-<hr />
-<h4>Problem 6</h4>
-<p>What is the di erence between the sum of the squares and the square of the sums?</p>
-<p>题目要求算出和的平方与平方和的差。<br />
-我的方法就是直接算，因为没有想到一种方法可以减少运算量。<br />
-最简便的方式，是把求和用高斯的方法计算，即n*(n+1)/2，同样的，最好能得到平方和的计算公式。其实计算方法也很简单，假设为三次多项式，用前四个值（含0）来解出系数。也可以参考百度百科平方和的排列组合法。<br />
-</p></div>
+<p>这些文件会以 <code>STATIC_URL</code> 提供。</p>
+<p>这个服务只在DEBUG为True时，即本地开发时有效。发布网站时，要使用 <code>./manage.py collectstatic</code> 命令来搜集所有STATICFILES_DIRS路径以及app下的静态文件到STATIC_ROOT文件夹下面。</p>
+<p><code>os.path.dirname(__file__)</code> 可以输出当前路径。<br />
+</p>
+<p>当前配置为：
+<pre>
+STATIC_ROOT = '/home/czk/djangoproject/OwnTube/colect_staitic/'
+STATIC_URL = '/static/'
+import os
+PROJECT_PATH = os.path.abspath(os.path.dirname(<strong>file</strong>))
+STATICFILES_DIRS = (
+    PROJECT_PATH + '/static',
+)
+<code></p>
+<h4>下一步开发计划：</h4>
+<p>完成一个最简单的视频播放模板，从html文件开始，然后再做模板。</p></div>
         <hr />
     </div>
 		
@@ -114,7 +100,7 @@ NOte：这是因为15的倍数多算了一遍，所以要减去。<br />
 <ul>
     <li class="prev disabled"><a href="#">&larr; Previous</a></li>
 
-    <li class="active"><a href="../tag/project-euler.html">1</a></li>
+    <li class="active"><a href="../tag/django.html">1</a></li>
 
     <li class="next disabled"><a href="#">&rarr; Next</a></li>
 

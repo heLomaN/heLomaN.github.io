@@ -58,8 +58,8 @@
 
     <div class='article'>
         <div class="content-title">
-            <a href="./pages/2013/09/ubuntuxi-tong-an-zhuang-matlab2012a.html"><h1>Ubuntu系统安装Matlab2012a</h1></a>
-            2013-09-04
+            <a href="./pages/2013/11/djangokai-fa-shi-pin-wang-zhan-xiang-mu-ji-lu.html"><h1>django开发视频网站项目记录</h1></a>
+            2013-11-08
 
 by <a class="url fn" href="./author/heloman.html">heLomaN</a>
  
@@ -68,7 +68,50 @@ by <a class="url fn" href="./author/heloman.html">heLomaN</a>
  
         </div>
         
-        <div><h3>下载安装</h3>
+        <div><h3>20131108启动</h3>
+<p>下载了Owntube，尝试运行。官方文档给出的运行方式是virtualenv，一个虚拟的python环境。我索性直接在系统环境内安装了相关的软件。django版本真的比较低。<br />
+</p>
+<p>在settings.py中很多变量需要配置，根据官方给出的<a href="https://docs.djangoproject.com/en/1.3/howto/static-files/">文档</a>：<br />
+</p>
+<p>使用django.contrib.staticfiles应用，默认配置包含的 AppDirectoriesFinder 会搜索所有已经安装的应用的 <code>static/</code> 子目录。 <br />
+</p>
+<p>并且对于一些不适合放进相关app的文件， <code>STATICFILES_DIRS</code>是默认的搜索路径。不过这些只适用本地开发，并且要安装FileSystemFinder应用。<br />
+</p>
+<p>这些文件会以 <code>STATIC_URL</code> 提供。</p>
+<p>这个服务只在DEBUG为True时，即本地开发时有效。发布网站时，要使用 <code>./manage.py collectstatic</code> 命令来搜集所有STATICFILES_DIRS路径以及app下的静态文件到STATIC_ROOT文件夹下面。</p>
+<p><code>os.path.dirname(__file__)</code> 可以输出当前路径。<br />
+</p>
+<p>当前配置为：
+<pre>
+STATIC_ROOT = '/home/czk/djangoproject/OwnTube/colect_staitic/'
+STATIC_URL = '/static/'
+import os
+PROJECT_PATH = os.path.abspath(os.path.dirname(<strong>file</strong>))
+STATICFILES_DIRS = (
+    PROJECT_PATH + '/static',
+)
+<code></p>
+<h4>下一步开发计划：</h4>
+<p>完成一个最简单的视频播放模板，从html文件开始，然后再做模板。</p></div>
+        <hr />
+    </div>
+		
+    
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="./pages/2013/09/ubuntuxi-tong-an-zhuang-matlab2012a.html"><h2>Ubuntu系统安装Matlab2012a</h2></a>
+        <div class= "well small"> 2013-09-04
+
+by <a class="url fn" href="./author/heloman.html">heLomaN</a>
+ 
+
+
+ </div>
+        <div class="summary"><h3>下载安装</h3>
 <ol>
 <li>下载matlab的安装镜像，注意一定是unix版本到。 </li>
 <li>挂载iso文件： <code>sudo mount -o loop Mathworks.Matlab.R2012a.UNIX.iso /mnt/tmp</code></li>
@@ -77,21 +120,9 @@ by <a class="url fn" href="./author/heloman.html">heLomaN</a>
 <h3>启动程序</h3>
 <ol>
 <li>运行matlab的方式为：<code>sudo /usr/local/MATLAB/R2012a/bin/matlab</code></li>
-<li>运行的时候的警告信息，<code>/usr/local/MATLAB/R2012a/bin/util/oscheck.sh: /lib/libc.so.6: not found</code>。需要创建一个链接解决:<code>sudo ln -s /lib/i386-linux-gnu/libc.so.6 /lib/libc.so.6</code>64位系统需要改动。</li>
-<li>在软件中心安装matlab-support，添加matlab的安装目录为/usr/local/MATLAB/R2012a，这样可以在面板里面直接运行程序。
-11.如果要创建快捷方式，可以在<code>启动运行程序</code>中添加 <code>gksudo '/usr/local/MATLAB/R2012a/bin/matlab -desktop'</code>，然后拖动到文件夹。</li>
-</ol>
-<h3>设置启动目录</h3>
-<p>可以使用命令：<code>sudo gedit /usr/local/MATLAB/R2012a/toolbox/local/matlabrc.m</code>，最后加上:<code>cd ‘default path’ %default path</code>换成你默认目录即可。</p>
-<h3>解决中文乱码问题</h3>
-<p>参考<a href="http://wmyming01.blog.163.com/blog/static/12964879120121120102253573/">http://wmyming01.blog.163.com/blog/static/12964879120121120102253573/</a>
-关于中文乱码的问题：如果系统已经安装中文字体，则打开Matlab后去File-&gt;Preferences&gt;Fonts里设置Desktop code font 和Desktop text font为支持中文的字体，如WenQuanYi Micro Hei Mono，立即生效。如果系统没中文字体就安装。此时Matlab界面仍是英文，添加自定义工具箱目录时遇到中文乱码问题，可以使用ln -s  源目录  目标目录  命令创建软链接，暂时解决。
-此时m文件中的中文注释可能乱码，暂时没找到解决方案，因为中文注释是在windows下用写的，编码有差别。以后注释尽量用英文，在中文编码上时间消耗太多了。</p>
-<h3>解决运行时java错误</h3>
-<p>改变.matlab目录所有者即可：<code>chown -R user:user ./.matlab</code></p></div>
-        <hr />
-    </div>
-		
+<li>运行的时候的警告信息，<code>/usr/local/MATLAB/R2012a/bin/util/oscheck.sh: /lib/libc.so.6: not found</code>。需要创建一个链接解决:<code>sudo ln -s /lib/i386-linux-gnu/libc ...</code></li></ol> <a class="btn btn-info xsmall" href="./pages/2013/09/ubuntuxi-tong-an-zhuang-matlab2012a.html">read more</a></div>
+    </div>	
+				
     
  
         
@@ -111,7 +142,8 @@ by <a class="url fn" href="./author/heloman.html">heLomaN</a>
 <p>Find the sum of all the multiples of 3 or 5 below 1000.</p>
 <p>题目要求找出所有1000以下的3或者5的倍数之和。<br />
 最简便的方法是，计算出1000以下总共有多少个3、5、15的倍数，然后用等差数列求三种数分别之和，最后3、5的倍数和减去15的倍数和就得到了结果。<br />
-NOte：这是因为15的倍数多算了一遍，所以要减去。  </p>
+NOte：这是因为15的倍数多算了一遍，所以要减去。<br />
+</p>
 <hr />
 <h4>Problem 2</h4>
 <p>Find the sum of all the even-valued terms in the Fibonacci sequence which do not exceed four million.</p>
@@ -160,12 +192,13 @@ by <a class="url fn" href="./author/heloman.html">heLomaN</a>
 
  </div>
         <div class="summary"><h2>How to build you blog on github</h2>
-<h1>name.github.io</h1>
+<h4>name.github.io</h4>
 <p>Github offer everyone a site:name.github.io, where you can publish you blogs.</p>
-<h1>Use git to publish</h1>
-<p>A very good startup:<a href="http://frantic1048.com/blog/bo-ke-dan-sheng-ji-ji-yu-githubpelicanchuang-jian-bo-ke-de-zheng-ge-guo-cheng.html">http://frantic1048.com/blog/bo-ke-dan-sheng-ji-ji-yu-githubpelicanchuang-jian-bo-ke-de-zheng-ge-guo-cheng.html</a></p>
-<h1>Improve</h1>
-<p>Lizherui's blog: <a href="http://www.lizherui.com/pages/2013/08/17/build_blog.html">http://www.lizherui.com/pages/2013/08/17 ...</a></p> <a class="btn btn-info xsmall" href="./pages/2013/08/my-first-git-blog.html">read more</a></div>
+<h3>Use git to publish</h3>
+<p>A very good startup:<a href="http://frantic1048.com/blog/bo-ke-dan-sheng-ji-ji-yu-githubpelicanchuang-jian-bo-ke-de-zheng-ge-guo-cheng.html">frantic1048's startup</a></p>
+<h3>Improve:google anylytics,sitemap,disqus</h3>
+<p><a href="http://www.lizherui.com/pages/2013/08/17/build_blog.htm">Lizherui's blog</a></p>
+<h3>How to use images and robots.txt ...</h3> <a class="btn btn-info xsmall" href="./pages/2013/08/my-first-git-blog.html">read more</a></div>
     </div>	
 				
             <div class="pagination">
