@@ -75,18 +75,59 @@ by <a class="url fn" href="../../../author/heloman.html">heLomaN</a>
 <p>这个服务只在DEBUG为True时，即本地开发时有效。发布网站时，要使用 <code>./manage.py collectstatic</code> 命令来搜集所有STATICFILES_DIRS路径以及app下的静态文件到STATIC_ROOT文件夹下面。</p>
 <p><code>os.path.dirname(__file__)</code> 可以输出当前路径。<br />
 </p>
-<p>当前配置为：
-<pre>
-STATIC_ROOT = '/home/czk/djangoproject/OwnTube/colect_staitic/'
-STATIC_URL = '/static/'
-import os
-PROJECT_PATH = os.path.abspath(os.path.dirname(<strong>file</strong>))
-STATICFILES_DIRS = (
-    PROJECT_PATH + '/static',
-)
-<code></p>
+<p>当前配置为：<br />
+    STATIC_ROOT = '/home/czk/djangoproject/OwnTube/colect_staitic/'
+    STATIC_URL = '/static/'
+    import os
+    PROJECT_PATH = os.path.abspath(os.path.dirname(<strong>file</strong>))
+    STATICFILES_DIRS = (
+        PROJECT_PATH + '/static',
+    )</p>
 <h4>下一步开发计划：</h4>
-<p>完成一个最简单的视频播放模板，从html文件开始，然后再做模板。</p></div>
+<p>完成一个最简单的视频播放模板，从html文件开始，然后再做模板。</p>
+<hr />
+<h3>20131109 初步搞定</h3>
+<p>之前的<a href="http://www.projekktor.com/">projekktor</a>并没有用上。<br />
+现在的方案是： <br />
+    文件上传根目录
+    MEDIA_ROOT = '/home/czk/djangoproject/uvideo/media/'
+    static目录下为css等文件，并包括上传的视频，这样就能够用目录+file_path的方式获得视频链接
+    STATICFILES_DIRS = (
+        '/home/czk/djangoproject/uvideo/static/',
+        '/home/czk/djangoproject/uvideo/media/',
+    )</p>
+<p>完成了在管理界面整套试卷的视频上传，以及播放。</p>
+<h4>下一步计划</h4>
+<p>部署到学校服务器上面，加入flash播放器。<br />
+</p>
+<h4>部署到Apache+wsgi服务器上面要做的改变</h4>
+<p>安装好apache2和libapache2-mod-wsgi之后<br />
+首先settings.py里面，DATABASES的NAME要改成绝对路径<br />
+修改/etc/apache2/httpd.conf<br />
+    LoadModule wsgi_module modules/mod_wsgi.so
+    WSGIScriptAlias / "/home/czk/djangoproject/uvideo/django.wsgi"
+    Alias /static /home/czk/djangoproject/uvideo/colect_static/
+    <Directory "/home/czk/djangoproject/uvideo/">
+        Order Deny,Allow
+        Allow from all
+    </Directory></p>
+<p>目录下建立django.wsgi，写入内容：
+    #!/usr/bin/env python
+    import os
+    import sys
+    sys.path.append('/home/czk/djangoproject/uvideo')
+    os.environ['DJANGO_SETTINGS_MODULE'] = 'uvideo.settings'
+    import django.core.handlers.wsgi
+    application = django.core.handlers.wsgi.WSGIHandler()</p>
+<p>deploy过程中碰到python-lib目录权限的问题，更改了所有相应文件的权限才解决。<br />
+碰到admin应用无法读取数据库文件的问题，把整个项目文件权限更改为777得到解决。<br />
+这次是把所有的文件搜集到了colect_static下面，应该把STATIC_ROOT设置为和MEDIA_ROOT相同。<br />
+本来在local开发模式下面，视频是无法快进的，但没想到deploy之后就可以了。<br />
+目前视频的播放还是存在问题的，opera无法播放，可能还是需要加入一个flash播放器。<br />
+</p>
+<p>在admin界面下上传文件会显示ascii编码错误，这个需要更改 /etc/apache2/envvars 中的 LANG 设置。具体情况见<a href="http://www.hiaward.com:10004/wiki/dev/ApacheConfigure/">博客1</a>和<a href="http://hi.baidu.com/justin_jia/item/cda58f5f866ef2464eff20a3">博客2</a>.<br />
+不过，这个问题另一个解决办法可能是更改上传的文件名为英文，见<a href="http://blog.csdn.net/jianhong1990/article/details/7382873">博文</a>。<br />
+</p></div>
 	
         <hr>
     	   
