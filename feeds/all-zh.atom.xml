@@ -48,18 +48,13 @@
 &lt;/ul&gt;
 &lt;h2&gt;Word counting&lt;/h2&gt;
 &lt;p&gt;Word counting指的是给出一系列文档，统计所有单词的词频。Word counting就是Map-Reduce的Hello word!。&lt;br /&gt;
+&lt;img alt="" src="img/20140422map_reduce_word_count.png" /&gt;
+- 输入数据：（k1,v1），k1是文档id，v1是文档内容，即图中的(d1,"w1w2w4")，d1代表文档id，w1代表一个单词&lt;br /&gt;
+- Map函数：从文档中每读入一个单词，就产生一个临时key/value对，即图中左边一列灰色宽箭头&lt;br /&gt;
+- 临时元素：（k2,v2），k2是单词，v2是单词出现次数，即图中的第二列(w1,2)&lt;br /&gt;
+- Reduce函数：接收所有具有同一个k2的临时key/value对，对v2求和得到v3，即图中右边一列灰色宽箭头
+- 输出结果：（k2,v3），v3是所有文档中单词k2的词频数&lt;br /&gt;
 &lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;输入数据：（k1,v1），k1是文档id，v1是文档内容，即图中的(d1,"w1w2w4")，d1代表文档id，w1代表一个单词&lt;br /&gt;
-&lt;/li&gt;
-&lt;li&gt;Map函数：从文档中每读入一个单词，就产生一个临时key/value对，即图中左边一列灰色宽箭头&lt;br /&gt;
-&lt;/li&gt;
-&lt;li&gt;临时元素：（k2,v2），k2是单词，v2是单词出现次数，即图中的第二列(w1,2)&lt;br /&gt;
-&lt;/li&gt;
-&lt;li&gt;Reduce函数：接收所有具有同一个k2的临时key/value对，对v2求和得到v3，即图中右边一列灰色宽箭头&lt;/li&gt;
-&lt;li&gt;输出结果：（k2,v3），v3是所有文档中单词k2的词频数&lt;br /&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
 &lt;p&gt;&lt;center&gt;转载请注明作者：Focustc，博客地址为&lt;a href="http://blog.csdn.net/caozhk"&gt;http://blog.csdn.net/caozhk&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;</summary><category term="big data"></category></entry><entry><title>django开发视频网站项目记录</title><link href="http://heloman.github.io/pages/2013/11/djangokai-fa-shi-pin-wang-zhan-xiang-mu-ji-lu.html" rel="alternate"></link><updated>2013-11-08T00:00:00+08:00</updated><author><name>heLomaN</name></author><id>tag:heloman.github.io,2013-11-08:pages/2013/11/djangokai-fa-shi-pin-wang-zhan-xiang-mu-ji-lu.html</id><summary type="html">&lt;h3&gt;20131108启动&lt;/h3&gt;
 &lt;p&gt;下载了Owntube，尝试运行。官方文档给出的运行方式是virtualenv，一个虚拟的python环境。我索性直接在系统环境内安装了相关的软件。django版本真的比较低。&lt;br /&gt;
 &lt;/p&gt;
