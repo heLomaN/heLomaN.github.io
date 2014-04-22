@@ -9,14 +9,14 @@
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
-    <script src="../theme/html5.js"></script>
+    <script src="../../../theme/html5.js"></script>
     <![endif]-->
 
     <!-- Le styles -->
-    <link href="../theme/bootstrap.min.css" rel="stylesheet">
-    <link href="../theme/bootstrap.min.responsive.css" rel="stylesheet">
-    <link href="../theme/local.css" rel="stylesheet">
-    <link href="../theme/pygments.css" rel="stylesheet">
+    <link href="../../../theme/bootstrap.min.css" rel="stylesheet">
+    <link href="../../../theme/bootstrap.min.responsive.css" rel="stylesheet">
+    <link href="../../../theme/local.css" rel="stylesheet">
+    <link href="../../../theme/pygments.css" rel="stylesheet">
 
 </head>
 
@@ -32,13 +32,13 @@
              <span class="icon-bar"></span>
          </a>
 
-        <a class="brand" href="..">Focus</a>
+        <a class="brand" href="../../..">Focus</a>
 
         <div class="nav-collapse">
         <ul class="nav">
                     
-                            <li><a href="../pages/about-me.html">About Me</a></li>
-                    <li><a href="../pages/resume.html">Resume</a></li>
+                            <li><a href="../../../pages/about-me.html">About Me</a></li>
+                    <li><a href="../../../pages/resume.html">Resume</a></li>
                         </ul>
         </div>
         
@@ -51,23 +51,17 @@
     <div class="row">
 
         <div class="span9">
-                
-
-        
-
-
-    <div class='article'>
+            <div class='article'>
         <div class="content-title">
-            <a href="../pages/2014/04/map-reduceyuan-li.html"><h1>Map-Reduce原理</h1></a>
+            <h1>Map-Reduce原理</h1>
             2014-04-22
 
-by <a class="url fn" href="../author/heloman.html">heLomaN</a>
+by <a class="url fn" href="../../../author/heloman.html">heLomaN</a>
  
 
 
- 
         </div>
-        
+	
         <div><h1>Map-Reduce</h1>
 <p>Map-Reduce是由Google在2004年提出的大数据并行编程架构，分为Map（映射）和Reduce（化简）两个步骤，因此得名。它隐藏并行化、容错、数据分布、负载均衡等细节，可以搭建在普通PC上，程序员可以很方便完成大数据并行编程。</p>
 <h2>并行运算的效率</h2>
@@ -130,82 +124,23 @@ by <a class="url fn" href="../author/heloman.html">heLomaN</a>
 </li>
 </ul>
 <p><center>转载请注明作者：Focustc，博客地址为<a href="http://blog.csdn.net/caozhk">http://blog.csdn.net/caozhk</a></center></p></div>
-        <hr />
+	
+        <hr>
+    	   
+        <h2>Comments</h2>
+		<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'focustc'; 
+    var disqus_title = 'Map-Reduce原理';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     </div>
-		
-    
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="../pages/2013/11/djangokai-fa-shi-pin-wang-zhan-xiang-mu-ji-lu.html"><h2>django开发视频网站项目记录</h2></a>
-        <div class= "well small"> 2013-11-08
-
-by <a class="url fn" href="../author/heloman.html">heLomaN</a>
- 
-
-
- </div>
-        <div class="summary"><h3>20131108启动</h3>
-<p>下载了Owntube，尝试运行。官方文档给出的运行方式是virtualenv，一个虚拟的python环境。我索性直接在系统环境内安装了相关的软件。django版本真的比较低。<br />
-</p>
-<p>在settings.py中很多变量需要配置，根据官方给出的<a href="https://docs.djangoproject.com/en/1.3/howto/static-files/">文档</a>：<br />
-</p>
-<p>使用django.contrib.staticfiles应用，默认配置包含的 AppDirectoriesFinder 会搜索所有已经安装的应用的 <code>static/</code> 子目录。 <br />
-</p>
-<p>并且对于一些不适合放进相关app的文件， <code>STATICFILES_DIRS</code>是默认的搜索路径。不过这些只适用本地开发，并且要安装FileSystemFinder应用。<br />
-</p>
-<p>这些文件会以 <code>STATIC_URL</code> 提供。</p>
-<p>这个服务只在DEBUG为True时，即本地开发时有效。发布网站时，要使用 <code>./manage.py collectstatic</code> 命令来搜集所有STATICFILES_DIRS路径以及app下的静态文件到STATIC_ROOT文件夹下面。</p>
-<p><code>os.path.dirname(__file__)</code> 可以输出当前路径。<br />
-</p>
-<p>当前配置为：<br />
-    STATIC_ROOT = '/home/czk/djangoproject/OwnTube/colect_staitic/'
-    STATIC_URL = '/static/'
-    import ...</p> <a class="btn btn-info xsmall" href="../pages/2013/11/djangokai-fa-shi-pin-wang-zhan-xiang-mu-ji-lu.html">read more</a></div>
-    </div>	
-				
-    
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="../pages/2013/09/ubuntuxi-tong-an-zhuang-matlab2012a.html"><h2>Ubuntu系统安装Matlab2012a</h2></a>
-        <div class= "well small"> 2013-09-04
-
-by <a class="url fn" href="../author/heloman.html">heLomaN</a>
- 
-
-
- </div>
-        <div class="summary"><h3>下载安装</h3>
-<ol>
-<li>下载matlab的安装镜像，注意一定是unix版本到。 </li>
-<li>挂载iso文件： <code>sudo mount -o loop Mathworks.Matlab.R2012a.UNIX.iso /mnt/tmp</code></li>
-<li>到tmp目录下面执行 <code>sudo ./install</code>，安装并激活</li>
-</ol>
-<h3>启动程序</h3>
-<ol>
-<li>运行matlab的方式为：<code>sudo /usr/local/MATLAB/R2012a/bin/matlab</code></li>
-<li>运行的时候的警告信息，<code>/usr/local/MATLAB/R2012a/bin/util/oscheck.sh: /lib/libc.so.6: not found</code>。需要创建一个链接解决:<code>sudo ln -s /lib/i386-linux-gnu/libc ...</code></li></ol> <a class="btn btn-info xsmall" href="../pages/2013/09/ubuntuxi-tong-an-zhuang-matlab2012a.html">read more</a></div>
-    </div>	
-				
-            <div class="pagination">
-<ul>
-    <li class="prev disabled"><a href="#">&larr; Previous</a></li>
-
-    <li class="active"><a href="../category/app.html">1</a></li>
-
-    <li class="next disabled"><a href="#">&rarr; Next</a></li>
-
-</ul>
-</div>    
- 
-  
         </div>
         
         <div class="span3">
@@ -216,8 +151,8 @@ by <a class="url fn" href="../author/heloman.html">heLomaN</a>
                 Site
                 </li>
             
-                <li><a href="../archives.html">Archives</a>
-                <li><a href="../tags.html">Tags</a>
+                <li><a href="../../../archives.html">Archives</a>
+                <li><a href="../../../tags.html">Tags</a>
                 <li><a href="http://heloman.github.io/" rel="alternate">Atom feed</a></li>
                                 <li><a href="http://heloman.github.io/feeds/all.rss.xml" rel="alternate">RSS feed</a></li>
                             </ul>
@@ -230,10 +165,10 @@ by <a class="url fn" href="../author/heloman.html">heLomaN</a>
                 Categories
                 </li>
                 
-                                <li><a href="../category/app.html">App</a></li>
-                                <li><a href="../category/coding.html">Coding</a></li>
-                                <li><a href="../category/competition.html">Competition</a></li>
-                                <li><a href="../category/web.html">Web</a></li>
+                                <li><a href="../../../category/app.html">App</a></li>
+                                <li><a href="../../../category/coding.html">Coding</a></li>
+                                <li><a href="../../../category/competition.html">Competition</a></li>
+                                <li><a href="../../../category/web.html">Web</a></li>
                                    
             </ul>
             </div>
@@ -270,7 +205,7 @@ by <a class="url fn" href="../author/heloman.html">heLomaN</a>
     </div>     </div> 
 <footer>
 <br />
-<p><a href="..">Focus</a> &copy; heLomaN 2012</p>
+<p><a href="../../..">Focus</a> &copy; heLomaN 2012</p>
 </footer>
 
 </div> <!-- /container -->

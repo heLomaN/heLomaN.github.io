@@ -169,6 +169,38 @@ by <a class="url fn" href="../author/heloman.html">heLomaN</a>
  
 
     <div class='article'>
+        <a href="../pages/2014/04/map-reduceyuan-li.html"><h2>Map-Reduce原理</h2></a>
+        <div class= "well small"> 2014-04-22
+
+by <a class="url fn" href="../author/heloman.html">heLomaN</a>
+ 
+
+
+ </div>
+        <div class="summary"><h1>Map-Reduce</h1>
+<p>Map-Reduce是由Google在2004年提出的大数据并行编程架构，分为Map（映射）和Reduce（化简）两个步骤，因此得名。它隐藏并行化、容错、数据分布、负载均衡等细节，可以搭建在普通PC上，程序员可以很方便完成大数据并行编程。</p>
+<h2>并行运算的效率</h2>
+<ul>
+<li>假如使用1个处理器花费T1时长可以完成任务，而使用了p个处理器需要Tp时长。那么加速比为：S(Speeup) = T1/Tp，效率为：E = S/p = T1 / (p Tp) <br />
+</li>
+<li>一般效率都小于1，而且p越大效率越低，但是在数据集增大时，效率会相应的有所提高。<br />
+</li>
+</ul>
+<h2>传统的并行处理架构</h2>
+<h3>数据并行架构：共享内存-分割任务</h3>
+<ul>
+<li>内存（数据）是共享的，把任务分为p个部分，分别由p个处理器完成。为防止冲突，每个处理器都要在开始工作时对使用的数据段加锁，以阻塞其他任务使用这一数据段。任务完成之后，才会解锁。<br />
+</li>
+<li>很显然，如果p个处理器同时对不同的数据段进行处理，效率是很高的。但如果有冲突 ...</li></ul> <a class="btn btn-info xsmall" href="../pages/2014/04/map-reduceyuan-li.html">read more</a></div>
+    </div>	
+				
+    
+ 
+        
+
+ 
+
+    <div class='article'>
         <a href="../pages/2013/08/my-first-git-blog.html"><h2>My first git blog</h2></a>
         <div class= "well small"> 2013-08-19
 

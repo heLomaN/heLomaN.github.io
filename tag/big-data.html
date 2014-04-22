@@ -133,72 +133,11 @@ by <a class="url fn" href="../author/heloman.html">heLomaN</a>
         <hr />
     </div>
 		
-    
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="../pages/2013/11/djangokai-fa-shi-pin-wang-zhan-xiang-mu-ji-lu.html"><h2>django开发视频网站项目记录</h2></a>
-        <div class= "well small"> 2013-11-08
-
-by <a class="url fn" href="../author/heloman.html">heLomaN</a>
- 
-
-
- </div>
-        <div class="summary"><h3>20131108启动</h3>
-<p>下载了Owntube，尝试运行。官方文档给出的运行方式是virtualenv，一个虚拟的python环境。我索性直接在系统环境内安装了相关的软件。django版本真的比较低。<br />
-</p>
-<p>在settings.py中很多变量需要配置，根据官方给出的<a href="https://docs.djangoproject.com/en/1.3/howto/static-files/">文档</a>：<br />
-</p>
-<p>使用django.contrib.staticfiles应用，默认配置包含的 AppDirectoriesFinder 会搜索所有已经安装的应用的 <code>static/</code> 子目录。 <br />
-</p>
-<p>并且对于一些不适合放进相关app的文件， <code>STATICFILES_DIRS</code>是默认的搜索路径。不过这些只适用本地开发，并且要安装FileSystemFinder应用。<br />
-</p>
-<p>这些文件会以 <code>STATIC_URL</code> 提供。</p>
-<p>这个服务只在DEBUG为True时，即本地开发时有效。发布网站时，要使用 <code>./manage.py collectstatic</code> 命令来搜集所有STATICFILES_DIRS路径以及app下的静态文件到STATIC_ROOT文件夹下面。</p>
-<p><code>os.path.dirname(__file__)</code> 可以输出当前路径。<br />
-</p>
-<p>当前配置为：<br />
-    STATIC_ROOT = '/home/czk/djangoproject/OwnTube/colect_staitic/'
-    STATIC_URL = '/static/'
-    import ...</p> <a class="btn btn-info xsmall" href="../pages/2013/11/djangokai-fa-shi-pin-wang-zhan-xiang-mu-ji-lu.html">read more</a></div>
-    </div>	
-				
-    
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="../pages/2013/09/ubuntuxi-tong-an-zhuang-matlab2012a.html"><h2>Ubuntu系统安装Matlab2012a</h2></a>
-        <div class= "well small"> 2013-09-04
-
-by <a class="url fn" href="../author/heloman.html">heLomaN</a>
- 
-
-
- </div>
-        <div class="summary"><h3>下载安装</h3>
-<ol>
-<li>下载matlab的安装镜像，注意一定是unix版本到。 </li>
-<li>挂载iso文件： <code>sudo mount -o loop Mathworks.Matlab.R2012a.UNIX.iso /mnt/tmp</code></li>
-<li>到tmp目录下面执行 <code>sudo ./install</code>，安装并激活</li>
-</ol>
-<h3>启动程序</h3>
-<ol>
-<li>运行matlab的方式为：<code>sudo /usr/local/MATLAB/R2012a/bin/matlab</code></li>
-<li>运行的时候的警告信息，<code>/usr/local/MATLAB/R2012a/bin/util/oscheck.sh: /lib/libc.so.6: not found</code>。需要创建一个链接解决:<code>sudo ln -s /lib/i386-linux-gnu/libc ...</code></li></ol> <a class="btn btn-info xsmall" href="../pages/2013/09/ubuntuxi-tong-an-zhuang-matlab2012a.html">read more</a></div>
-    </div>	
-				
             <div class="pagination">
 <ul>
     <li class="prev disabled"><a href="#">&larr; Previous</a></li>
 
-    <li class="active"><a href="../category/app.html">1</a></li>
+    <li class="active"><a href="../tag/big-data.html">1</a></li>
 
     <li class="next disabled"><a href="#">&rarr; Next</a></li>
 
