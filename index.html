@@ -58,8 +58,8 @@
 
     <div class='article'>
         <div class="content-title">
-            <a href="./pages/2014/05/c11xin-te-xing.html"><h1>C++11新特性</h1></a>
-            2014-05-18
+            <a href="./pages/2014/05/ruby-on-railskai-fa-webying-yong-de-ji-ben-gai-nian.html"><h1>Ruby on Rails开发Web应用的基本概念</h1></a>
+            2014-05-20
 
 by <a class="url fn" href="./author/heloman.html">heLomaN</a>
  
@@ -68,9 +68,80 @@ by <a class="url fn" href="./author/heloman.html">heLomaN</a>
  
         </div>
         
-        <div><h1>C++11新特性</h1>
+        <div><h2>Web应用架构</h2>
+<h3>C/S架构</h3>
+<p>Web应用从最初就采用C/S架构。Server负责监听客户端请求，提供资源，Client向server发起请求并渲染页面。两者通过TCP/IP协议栈之上的HTTP协议通信。</p>
+<h3>多层架构</h3>
+<p>在Web 2.0时代，随着交互性的要求，这个架构变得更为复杂。Server需要提供更复杂的服务，Client也要完成更多的交互任务，涌现出很多新的提供更快更好服务的技术。相应的，C/S架构需要以一种更复杂的方式来组织，即多层架构。
+多层架构中的每一层负责提供一个特定的功能，与其他层通过良好的接口进行交互，易于升级维护。原始的C/S架构可以视作Server、Client两层。</p>
+<h4>3层架构</h4>
+<p>典型的3层架构为表示层，逻辑层，数据层
+- 表示层由浏览器负责渲染
+- 逻辑层由服务器端操纵数据，并发往表示层
+- 数据层负责存储数据。</p>
+<h4>6层架构</h4>
+<p>如果进一步分割，就得到6层架构，如下图<br />
+<img alt="" src="img/20140520architechure.JPG" /><br />
+- 表示层分为Client层和表示逻辑层
+  - Client层负责渲染展示页面
+  - 表示逻辑层为Server根据脚本生成网页
+- 逻辑层分为商业逻辑层和数据访问层
+  - 事务逻辑层表征事务逻辑和流程
+  - 数据访问层负责存取数据，发往事务逻辑层 
+- 服务端通常有网络层负责网络</p>
+<h2>Ruby on Rails</h2>
+<p>Ruby on Rails是一个基于Ruby开发的构建Web应用的开源框架或者开源库，Twitter、Hulu、Github、Iteye等公司都采用了rails
+框架。</p>
+<h3>组件</h3>
+<p>Ruby on Rails包含一系列组件
+- Rake：类似于make，可以用来修改、迁移数据库
+- WEBrick:一个Rails内置的HTTP服务器，可以使用rails server命令启动，速度较慢，适合完成开发阶段的测试
+- SQLite：最简单的数据库，同样只适合开发阶段的测试
+- Rack Middleware：中间件，用于服务器软件和应用之间的交互</p>
+<h3>缺点</h3>
+<ul>
+<li>不适合海量服务，Twitter已经由ROR转向Scala</li>
+<li>它是一个框架，隐藏了太多细节</li>
+</ul>
+<h3>MVC架构</h3>
+<p>Model表示数据，View使用数据渲染页面，而Controller是媒介。View和Model的严格分离保留了重用性。<br />
+<img alt="" src="img/20140520mvc-diagram.jpg" /> 
+使用Rails创建应用时会自动按照MVC架构生成相关代码，包括：
+- 表示Model的一个类，数据库中会建立相应的表
+- 一个Controller，相应的URL解析和数据库中的操作会一一对应好
+- View包括一系列html文件用来渲染页面</p>
+<h3>Active Record</h3>
+<p>Active Record机制使object-relational mapping (ORM)变得可行。在Ruby中以ActiveRecord模块的形式出现。ORM映射机制为：
+- class - table
+- object - record（表的一行）
+- attribute - record value（表的一列）</p>
+<p>ActiveRecord模块提供以下功能：
+- 与数据库建立连接
+- 表的创建
+- ORM映射
+- 使用object完成CRUD操作(Create、Read、Update、Delete)</p>
+<p><center>转载请注明作者：Focustc，博客地址为<a href="http://blog.csdn.net/caozhk">http://blog.csdn.net/caozhk</a>，原文链接为点击打开</center></p></div>
+        <hr />
+    </div>
+		
+    
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="./pages/2014/05/c11xin-te-xing.html"><h2>C++11新特性</h2></a>
+        <div class= "well small"> 2014-05-18
+
+by <a class="url fn" href="./author/heloman.html">heLomaN</a>
+ 
+
+
+ </div>
+        <div class="summary"><h1>C++11新特性</h1>
 <p>C++11已经推出三年了（2011），编译器GCC4.7、Clang3.1在2012年已经逐渐完善，VS2013也已经支持相关特性，GCC4.8.1支持全部特性。不过新特性似乎在工业界并未得到太多应用，可能出于兼容性和稳定性的考虑吧。
-推出的新特性还是相当的丰富，看下面这张图就知道了。我仅仅在这里提一下相对比较容易应用的部分，包括语法上的一些扩展以及改进，lambda表达式以及正则式等比较复杂，暂且不提。
+推出的新特性还是相当的丰富，看下面这张图就知道了。我仅仅在这里提一下相对比较容易应用的部分，包括语法上的一些扩展以及改进，lambda表达式以及正则式等比较复杂，暂且不提。<br />
 <img alt="" src="img/20140518c++11.png" /> </p>
 <h2>统一初始化</h2>
 <p>以往的C++可以使用很多种方法完成初始化，而且传统的构造函数类似于函数声明，不是非常直观。而新标准把数组的初始化方法推广为统一的初始化方法:</p>
@@ -83,85 +154,9 @@ by <a class="url fn" href="./author/heloman.html">heLomaN</a>
 
 <p>这种方法不会造成narrowing，编程风格更为统一。</p>
 <h2>类型推导</h2>
-<p>引入auto和decltype关键字。auto可以根据表达式或函数返回值在编译阶段得到正确的类型。而decltype可以在编译时确定一个表达式的类型。</p>
-<div class="highlight"><pre><span class="nx">vector</span><span class="o">&lt;</span><span class="nx">int</span><span class="o">&gt;</span> <span class="nx">v</span><span class="p">;</span>
-<span class="c1">//vector&lt;int&gt;::const_iterator i = v.begin();</span>
-<span class="nx">auto</span> <span class="n">i</span> <span class="o">=</span> <span class="nx">v.begin</span><span class="p">()</span>
-
-<span class="nx">decltype</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span> <span class="n">t</span> <span class="o">=</span> <span class="nx">i</span><span class="p">;</span>
-</pre></div>
-
-
-<p>可以看到可以减少代码工作量。
-另外，用于模版编程可以很好的用于模版编程：</p>
-<div class="highlight"><pre><span class="n">template</span><span class="o">&lt;</span><span class="n">class</span> <span class="n">T1</span><span class="p">,</span> <span class="n">class</span> <span class="n">T2</span><span class="o">&gt;</span>
-<span class="k">auto</span> <span class="n">f</span><span class="p">(</span><span class="n">T1</span> <span class="n">a</span><span class="p">,</span> <span class="n">T2</span> <span class="n">b</span><span class="p">){</span>
-    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-
-
-<h2>基于范围的for循环</h2>
-<p>结合auto使用，可以很方便的对数组或各种容器完成遍历：</p>
-<div class="highlight"><pre><span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="o">&amp;</span> <span class="n">i</span><span class="o">:</span><span class="n">array</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">i</span><span class="o">*=</span><span class="mi">2</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-
-
-<h2>成员变量默认初始化</h2>
-<p>在定义类的时候完成成员变量的默认初始化，如：</p>
-<div class="highlight"><pre><span class="n">class</span> <span class="n">A</span><span class="p">{</span>
-    <span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-
-
-<h2>智能指针shared_ptr</h2>
-<p>可以自动完成指针的托管，离开作用域时自动delete。使用方法如下：</p>
-<div class="highlight"><pre><span class="vi">#include</span><span class="o">&lt;</span><span class="nx">memory</span><span class="o">&gt;</span>
-
-<span class="nx">int</span> <span class="o">*</span><span class="nx">p1</span><span class="p">;</span>
-<span class="nx">shared_ptr</span><span class="o">&lt;</span><span class="nx">int</span><span class="o">&gt;</span> <span class="nx">ptr</span><span class="p">(</span><span class="nx">p1</span><span class="p">);</span>
-</pre></div>
-
-
-<p>注意：对同一个指针只能用来初始化至多一个shared_ptr，否则在离开作用域时会造成delete指针多次报错。</p>
-<h2>nullptr</h2>
-<p>nullptr表示空指针，其“==”是经过重载的，主要是为了消除“NULL”的歧义性。两个不同类型的指针不能判断是否相等，即使他们都是nullptr。</p>
-<div class="highlight"><pre><span class="kt">int</span> <span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
-<span class="kt">float</span> <span class="o">*</span> <span class="n">np</span> <span class="o">=</span> <span class="n">nullptr</span><span class="p">;</span>
-<span class="n">np</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">;</span><span class="c1">//true;</span>
-<span class="n">np</span> <span class="o">==</span> <span class="n">p</span><span class="p">;</span><span class="c1">//false </span>
-</pre></div>
-
-
-<h2>右值引用</h2>
-<p>右值引用可以有效的减少深拷贝的次数。右值一般指无法取地址的表达式，实质为在表达式结束后就不存在的临时对象，使用右值引用时要注意这一点，因为这个右值可能被更改。
-比如：a++是右值，而++a为左值。
-某需要深拷贝的类型右值赋值给一个变量或作为函数返回值时通常会调用复制构造函数，RVO（返回值优化）在避免复制构造上面并不够好。
-但我们可以给此类型定义move构造函数和move赋值函数，这样显示的使用move函数把一个变量转变为右值后，就可以调用move构造/赋值函数减少开销。</p>
-<div class="highlight"><pre><span class="kt">int</span> <span class="o">&amp;&amp;</span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span><span class="c1">//定义了一个右值引用</span>
-
-<span class="n">class</span> <span class="n">A</span><span class="p">{</span>
-<span class="nl">public:</span>
-    <span class="n">A</span><span class="p">(</span><span class="n">A</span> <span class="o">&amp;&amp;</span> <span class="n">a</span><span class="p">);</span><span class="c1">//move构造函数</span>
-    <span class="n">A</span> <span class="o">&amp;</span> <span class="n">operator</span><span class="o">=</span> <span class="p">(</span><span class="n">A</span> <span class="o">&amp;&amp;</span> <span class="n">a</span><span class="p">);</span><span class="c1">//move赋值函数</span>
-<span class="p">}</span><span class="err">；</span>
-
-<span class="n">A</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">;</span>
-<span class="n">a</span> <span class="o">=</span> <span class="n">move</span><span class="p">(</span><span class="n">b</span><span class="p">);</span><span class="c1">//调用move赋值函数</span>
-
-<span class="n">A</span> <span class="nf">c</span><span class="p">(</span><span class="n">move</span><span class="p">(</span><span class="n">b</span><span class="p">));</span><span class="c1">//调用move构造函数 </span>
-<span class="c1">//但是b已经作为右值被使用了，可能已经被改变，错误的用法！</span>
-</pre></div>
-
-
-<p><center>转载请注明作者：Focustc，博客地址为<a href="http://blog.csdn.net/caozhk">http://blog.csdn.net/caozhk</a>，原文链接为点击打开</center></p></div>
-        <hr />
-    </div>
-		
+<p>引入auto和decltype关键字。auto可以根据表达式或函数返回值在编译阶段得到正确的类型。而decltype可以在编译时确定一个表达式的类型 ...</p> <a class="btn btn-info xsmall" href="./pages/2014/05/c11xin-te-xing.html">read more</a></div>
+    </div>	
+				
     
  
         

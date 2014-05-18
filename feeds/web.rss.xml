@@ -1,5 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Focus</title><link>http://heloman.github.io/</link><description></description><atom:link href="http://heloman.github.io/feeds/web.rss.xml" rel="self"></atom:link><lastBuildDate>Mon, 19 Aug 2013 00:00:00 +0800</lastBuildDate><item><title>My first git blog</title><link>http://heloman.github.io/pages/2013/08/my-first-git-blog.html</link><description>&lt;h2&gt;How to build you blog on github&lt;/h2&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Focus</title><link>http://heloman.github.io/</link><description></description><atom:link href="http://heloman.github.io/feeds/web.rss.xml" rel="self"></atom:link><lastBuildDate>Tue, 20 May 2014 00:00:00 +0800</lastBuildDate><item><title>Ruby on Rails开发Web应用的基本概念</title><link>http://heloman.github.io/pages/2014/05/ruby-on-railskai-fa-webying-yong-de-ji-ben-gai-nian.html</link><description>&lt;h2&gt;Web应用架构&lt;/h2&gt;
+&lt;h3&gt;C/S架构&lt;/h3&gt;
+&lt;p&gt;Web应用从最初就采用C/S架构。Server负责监听客户端请求，提供资源，Client向server发起请求并渲染页面。两者通过TCP/IP协议栈之上的HTTP协议通信。&lt;/p&gt;
+&lt;h3&gt;多层架构&lt;/h3&gt;
+&lt;p&gt;在Web 2.0时代，随着交互性的要求，这个架构变得更为复杂。Server需要提供更复杂的服务，Client也要完成更多的交互任务，涌现出很多新的提供更快更好服务的技术。相应的，C/S架构需要以一种更复杂的方式来组织，即多层架构。
+多层架构中的每一层负责提供一个特定的功能，与其他层通过良好的接口进行交互，易于升级维护。原始的C/S架构可以视作Server、Client两层。&lt;/p&gt;
+&lt;h4&gt;3层架构&lt;/h4&gt;
+&lt;p&gt;典型的3层架构为表示层，逻辑层，数据层
+- 表示层由浏览器负责渲染
+- 逻辑层由服务器端操纵数据，并发往表示层
+- 数据层负责存储数据。&lt;/p&gt;
+&lt;h4&gt;6层架构&lt;/h4&gt;
+&lt;p&gt;如果进一步分割，就得到6层架构，如下图&lt;br /&gt;
+&lt;img alt="" src="img/20140520architechure.JPG" /&gt;&lt;br /&gt;
+- 表示层分为Client层和表示逻辑层
+  - Client层负责渲染展示页面
+  - 表示逻辑层为Server根据脚本生成网页
+- 逻辑层分为商业逻辑层和数据访问层
+  - 事务逻辑层表征事务逻辑和流程
+  - 数据访问层负责存取数据，发往事务逻辑层 
+- 服务端通常有网络层负责网络&lt;/p&gt;
+&lt;h2&gt;Ruby on Rails&lt;/h2&gt;
+&lt;p&gt;Ruby on Rails是一个基于Ruby开发的构建Web应用的开源框架或者开源库，Twitter、Hulu、Github、Iteye等公司都采用了rails
+框架。&lt;/p&gt;
+&lt;h3&gt;组件&lt;/h3&gt;
+&lt;p&gt;Ruby on Rails包含一系列组件
+- Rake：类似于make，可以用来修改、迁移数据库
+- WEBrick:一个Rails内置的HTTP服务器，可以使用rails server命令启动，速度较慢，适合完成开发阶段的测试
+- SQLite：最简单的数据库，同样只适合开发阶段的测试
+- Rack Middleware：中间件，用于服务器软件和应用之间的交互&lt;/p&gt;
+&lt;h3&gt;缺点&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;不适合海量服务，Twitter已经由ROR转向Scala&lt;/li&gt;
+&lt;li&gt;它是一个框架，隐藏了太多细节&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;MVC架构&lt;/h3&gt;
+&lt;p&gt;Model表示数据，View使用数据渲染页面，而Controller是媒介。View和Model的严格分离保留了重用性。&lt;br /&gt;
+&lt;img alt="" src="img/20140520mvc-diagram.jpg" /&gt; 
+使用Rails创建应用时会自动按照MVC架构生成相关代码，包括：
+- 表示Model的一个类，数据库中会建立相应的表
+- 一个Controller，相应的URL解析和数据库中的操作会一一对应好
+- View包括一系列html文件用来渲染页面&lt;/p&gt;
+&lt;h3&gt;Active Record&lt;/h3&gt;
+&lt;p&gt;Active Record机制使object-relational mapping (ORM)变得可行。在Ruby中以ActiveRecord模块的形式出现。ORM映射机制为：
+- class - table
+- object - record（表的一行）
+- attribute - record value（表的一列）&lt;/p&gt;
+&lt;p&gt;ActiveRecord模块提供以下功能：
+- 与数据库建立连接
+- 表的创建
+- ORM映射
+- 使用object完成CRUD操作(Create、Read、Update、Delete)&lt;/p&gt;
+&lt;p&gt;&lt;center&gt;转载请注明作者：Focustc，博客地址为&lt;a href="http://blog.csdn.net/caozhk"&gt;http://blog.csdn.net/caozhk&lt;/a&gt;，原文链接为点击打开&lt;/center&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">heLomaN</dc:creator><pubDate>Tue, 20 May 2014 00:00:00 +0800</pubDate><guid>tag:heloman.github.io,2014-05-20:pages/2014/05/ruby-on-railskai-fa-webying-yong-de-ji-ben-gai-nian.html</guid><category>Ruby</category><category>Rails</category><category>HTTP</category><category>C/S</category></item><item><title>My first git blog</title><link>http://heloman.github.io/pages/2013/08/my-first-git-blog.html</link><description>&lt;h2&gt;How to build you blog on github&lt;/h2&gt;
 &lt;h4&gt;name.github.io&lt;/h4&gt;
 &lt;p&gt;Github offer everyone a site:name.github.io, where you can publish you blogs.&lt;/p&gt;
 &lt;h3&gt;Use git to publish&lt;/h3&gt;
