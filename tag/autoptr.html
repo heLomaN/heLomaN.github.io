@@ -9,14 +9,14 @@
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
-    <script src="./theme/html5.js"></script>
+    <script src="../theme/html5.js"></script>
     <![endif]-->
 
     <!-- Le styles -->
-    <link href="./theme/bootstrap.min.css" rel="stylesheet">
-    <link href="./theme/bootstrap.min.responsive.css" rel="stylesheet">
-    <link href="./theme/local.css" rel="stylesheet">
-    <link href="./theme/pygments.css" rel="stylesheet">
+    <link href="../theme/bootstrap.min.css" rel="stylesheet">
+    <link href="../theme/bootstrap.min.responsive.css" rel="stylesheet">
+    <link href="../theme/local.css" rel="stylesheet">
+    <link href="../theme/pygments.css" rel="stylesheet">
 
 </head>
 
@@ -32,13 +32,13 @@
              <span class="icon-bar"></span>
          </a>
 
-        <a class="brand" href=".">Focus</a>
+        <a class="brand" href="..">Focus</a>
 
         <div class="nav-collapse">
         <ul class="nav">
                     
-                            <li><a href="./pages/about-me.html">About Me</a></li>
-                    <li><a href="./pages/resume.html">Resume</a></li>
+                            <li><a href="../pages/about-me.html">About Me</a></li>
+                    <li><a href="../pages/resume.html">Resume</a></li>
                         </ul>
         </div>
         
@@ -58,10 +58,10 @@
 
     <div class='article'>
         <div class="content-title">
-            <a href="./pages/2014/05/c11xin-te-xing.html"><h1>C++11新特性</h1></a>
+            <a href="../pages/2014/05/c11xin-te-xing.html"><h1>C++11新特性</h1></a>
             2014-05-18
 
-by <a class="url fn" href="./author/heloman.html">heLomaN</a>
+by <a class="url fn" href="../author/heloman.html">heLomaN</a>
  
 
 
@@ -162,211 +162,11 @@ by <a class="url fn" href="./author/heloman.html">heLomaN</a>
         <hr />
     </div>
 		
-    
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="./pages/2014/04/zhu-ding-li-de-zheng-ming-ji-ying-yong-ju-li.html"><h2>主定理的证明及应用举例</h2></a>
-        <div class= "well small"> 2014-04-29
-
-by <a class="url fn" href="./author/heloman.html">heLomaN</a>
- 
-
-
- </div>
-        <div class="summary"><h2>主定理</h2>
-<p>主定理最早出现在《算法导论》中，提供了分治方法带来的递归表达式的渐近复杂度分析。<br />
-规模为n的问题通过分治，得到a个规模为n/b的问题，每次递归带来的额外计算为c(n^d)<br />
-<strong>T(n) &lt;= aT(n/b)+c(n^d)</strong><br />
-那么就可以得到问题的复杂度为：<br />
-</p>
-<ul>
-<li><strong>T(n) = O(n^d log(n)), if a = b^d</strong><br />
-</li>
-<li><strong>T(n) = O(n^d ), if a &lt; b^d</strong><br />
-</li>
-<li><strong>T(n) = O(n^logb(a))), if a &gt; b^d ...</strong></li></ul> <a class="btn btn-info xsmall" href="./pages/2014/04/zhu-ding-li-de-zheng-ming-ji-ying-yong-ju-li.html">read more</a></div>
-    </div>	
-				
-    
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="./pages/2014/04/map-reduceyuan-li.html"><h2>Map-Reduce原理</h2></a>
-        <div class= "well small"> 2014-04-22
-
-by <a class="url fn" href="./author/heloman.html">heLomaN</a>
- 
-
-
- </div>
-        <div class="summary"><h1>Map-Reduce</h1>
-<p>Map-Reduce是由Google在2004年提出的大数据并行编程架构，分为Map（映射）和Reduce（化简）两个步骤，因此得名。它隐藏并行化、容错、数据分布、负载均衡等细节，可以搭建在普通PC上，程序员可以很方便完成大数据并行编程。</p>
-<h2>并行运算的效率</h2>
-<ul>
-<li>假如使用1个处理器花费T1时长可以完成任务，而使用了p个处理器需要Tp时长。那么加速比为：S(Speeup) = T1/Tp，效率为：E = S/p = T1 / (p Tp) <br />
-</li>
-<li>一般效率都小于1，而且p越大效率越低，但是在数据集增大时，效率会相应的有所提高。<br />
-</li>
-</ul>
-<h2>传统的并行处理架构</h2>
-<h3>数据并行架构：共享内存-分割任务</h3>
-<ul>
-<li>内存（数据）是共享的，把任务分为p个部分，分别由p个处理器完成。为防止冲突，每个处理器都要在开始工作时对使用的数据段加锁，以阻塞其他任务使用这一数据段。任务完成之后，才会解锁。<br />
-</li>
-<li>很显然，如果p个处理器同时对不同的数据段进行处理，效率是很高的。但如果有冲突 ...</li></ul> <a class="btn btn-info xsmall" href="./pages/2014/04/map-reduceyuan-li.html">read more</a></div>
-    </div>	
-				
-    
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="./pages/2013/11/djangokai-fa-shi-pin-wang-zhan-xiang-mu-ji-lu.html"><h2>django开发视频网站项目记录</h2></a>
-        <div class= "well small"> 2013-11-08
-
-by <a class="url fn" href="./author/heloman.html">heLomaN</a>
- 
-
-
- </div>
-        <div class="summary"><h3>20131108启动</h3>
-<p>下载了Owntube，尝试运行。官方文档给出的运行方式是virtualenv，一个虚拟的python环境。我索性直接在系统环境内安装了相关的软件。django版本真的比较低。<br />
-</p>
-<p>在settings.py中很多变量需要配置，根据官方给出的<a href="https://docs.djangoproject.com/en/1.3/howto/static-files/">文档</a>：<br />
-</p>
-<p>使用django.contrib.staticfiles应用，默认配置包含的 AppDirectoriesFinder 会搜索所有已经安装的应用的 <code>static/</code> 子目录。 <br />
-</p>
-<p>并且对于一些不适合放进相关app的文件， <code>STATICFILES_DIRS</code>是默认的搜索路径。不过这些只适用本地开发，并且要安装FileSystemFinder应用。<br />
-</p>
-<p>这些文件会以 <code>STATIC_URL</code> 提供。</p>
-<p>这个服务只在DEBUG为True时，即本地开发时有效。发布网站时，要使用 <code>./manage.py collectstatic</code> 命令来搜集所有STATICFILES_DIRS路径以及app下的静态文件到STATIC_ROOT文件夹下面。</p>
-<p><code>os.path.dirname(__file__)</code> 可以输出当前路径。<br />
-</p>
-<p>当前配置为：<br />
-    STATIC_ROOT = '/home/czk/djangoproject/OwnTube/colect_staitic/'
-    STATIC_URL = '/static/'
-    import ...</p> <a class="btn btn-info xsmall" href="./pages/2013/11/djangokai-fa-shi-pin-wang-zhan-xiang-mu-ji-lu.html">read more</a></div>
-    </div>	
-				
-    
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="./pages/2013/09/ubuntuxi-tong-an-zhuang-matlab2012a.html"><h2>Ubuntu系统安装Matlab2012a</h2></a>
-        <div class= "well small"> 2013-09-04
-
-by <a class="url fn" href="./author/heloman.html">heLomaN</a>
- 
-
-
- </div>
-        <div class="summary"><h3>下载安装</h3>
-<ol>
-<li>下载matlab的安装镜像，注意一定是unix版本到。 </li>
-<li>挂载iso文件： <code>sudo mount -o loop Mathworks.Matlab.R2012a.UNIX.iso /mnt/tmp</code></li>
-<li>到tmp目录下面执行 <code>sudo ./install</code>，安装并激活</li>
-</ol>
-<h3>启动程序</h3>
-<ol>
-<li>运行matlab的方式为：<code>sudo /usr/local/MATLAB/R2012a/bin/matlab</code></li>
-<li>运行的时候的警告信息，<code>/usr/local/MATLAB/R2012a/bin/util/oscheck.sh: /lib/libc.so.6: not found</code>。需要创建一个链接解决:<code>sudo ln -s /lib/i386-linux-gnu/libc ...</code></li></ol> <a class="btn btn-info xsmall" href="./pages/2013/09/ubuntuxi-tong-an-zhuang-matlab2012a.html">read more</a></div>
-    </div>	
-				
-    
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="./pages/2013/08/project-euler-001-006-jie-fa-zong-jie.html"><h2>Project Euler 001-006 解法总结</h2></a>
-        <div class= "well small"> 2013-08-27
-
-by <a class="url fn" href="./author/heloman.html">heLomaN</a>
- 
-
-
- </div>
-        <div class="summary"><h4>Problem 1</h4>
-<p>Find the sum of all the multiples of 3 or 5 below 1000.</p>
-<p>题目要求找出所有1000以下的3或者5的倍数之和。<br />
-最简便的方法是，计算出1000以下总共有多少个3、5、15的倍数，然后用等差数列求三种数分别之和，最后3、5的倍数和减去15的倍数和就得到了结果。<br />
-NOte：这是因为15的倍数多算了一遍，所以要减去。<br />
-</p>
-<hr />
-<h4>Problem 2</h4>
-<p>Find the sum of all the even-valued terms in the Fibonacci sequence which do not exceed four million.</p>
-<p>题目要求找出斐波那契数列中偶数之和。<br />
-我的方法是，斐波那契数列每三个连续的数中有一个为偶数，计算斐波那契数时用一个长度为3的数据完成缓存 ...</p> <a class="btn btn-info xsmall" href="./pages/2013/08/project-euler-001-006-jie-fa-zong-jie.html">read more</a></div>
-    </div>	
-				
-    
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="./pages/2013/08/guo-wai-da-xue-sheng-tan-jing-yan-ru-he-zai-githubcan-yu-kai-yuan-open-source-on-github-your-first-contribution.html"><h2>国外大学生谈经验：如何在Github参与开源（Open Source on Github: Your First Contribution）</h2></a>
-        <div class= "well small"> 2013-08-25
-
-by <a class="url fn" href="./author/heloman.html">heLomaN</a>
- 
-
-
- </div>
-        <div class="summary"><p>原作者：spencerpmoran<br />
-转载自<a href="http://spencermoran.me/2013/08/13/open-source-on-github-your-first-contribution/">http://spencermoran.me/2013/08/13/open-source-on-github-your-first-contribution/</a></p>
-<hr />
-<p>我是一个即将毕业的计算机大四学生，我经常听人谈论对github上的开源项目做出贡献是多么有意义的事情。许多职位要求里面都写明这种经历是一个很重要的基本条件或加分项，而且这种事情经常在各种seminar课程和活动中提到。做出贡献确实挺起来很酷，我也应该做啊。可唯一的问题是，我是一个大菜鸟。我的计算机课程学的很好，而且我做过几个被家人同学称赞的项目。可是，我确信我不可能对一个真正有用户的项目做出任何有意义的贡献，对吧？这种想法是正确的吗？</p>
-<hr />
-<p>大错特错！即使你是一名新手，也可以以很多方式对github上面的项目做出实质的贡献。如果想要做一些真正有意义的影响用户的贡献，你大可不必读懂所有项目代码或者知道如何解决类似于bootstrap里的动态窗格问题。对于每个人都有合适的做出贡献的方法。</p>
-<p>最近，我的第一个实质性的贡献在一个开源项目上完成了。尽管贡献很小，我获得了全新的成就感，因为你知道有人在用你参与完成的东西。你必须从非常小的项目开始并持续前进。下面是我对想要对github上开源项目做出贡献但感觉困难而不敢尝试的同学的建议：</p>
-<p>你要做的第一步就是找到一个有pull request的仓库（项目）。有很多种方式可以找到。最简单直接的办法是读仓库的readme文件，里面经常明确的写明仓库所有者希望有人来完成pull request。如果readme文件没有提到这一点，你可以看看问题然后把代码下载下来。检查一下pull request的日期，看看哪些pull request已经关闭 ...</p> <a class="btn btn-info xsmall" href="./pages/2013/08/guo-wai-da-xue-sheng-tan-jing-yan-ru-he-zai-githubcan-yu-kai-yuan-open-source-on-github-your-first-contribution.html">read more</a></div>
-    </div>	
-				
-    
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="./pages/2013/08/my-first-git-blog.html"><h2>My first git blog</h2></a>
-        <div class= "well small"> 2013-08-19
-
-by <a class="url fn" href="./author/heloman.html">heLomaN</a>
- 
-
-
- </div>
-        <div class="summary"><h2>How to build you blog on github</h2>
-<h4>name.github.io</h4>
-<p>Github offer everyone a site:name.github.io, where you can publish you blogs.</p>
-<h3>Use git to publish</h3>
-<p>A very good startup:<a href="http://frantic1048.com/blog/bo-ke-dan-sheng-ji-ji-yu-githubpelicanchuang-jian-bo-ke-de-zheng-ge-guo-cheng.html">frantic1048's startup</a></p>
-<h3>Improve:google anylytics,sitemap,disqus</h3>
-<p><a href="http://www.lizherui.com/pages/2013/08/17/build_blog.htm">Lizherui's blog</a></p>
-<h3>How to use images and robots.txt ...</h3> <a class="btn btn-info xsmall" href="./pages/2013/08/my-first-git-blog.html">read more</a></div>
-    </div>	
-				
             <div class="pagination">
 <ul>
     <li class="prev disabled"><a href="#">&larr; Previous</a></li>
 
-    <li class="active"><a href="./index.html">1</a></li>
+    <li class="active"><a href="../tag/autoptr.html">1</a></li>
 
     <li class="next disabled"><a href="#">&rarr; Next</a></li>
 
@@ -384,8 +184,8 @@ by <a class="url fn" href="./author/heloman.html">heLomaN</a>
                 Site
                 </li>
             
-                <li><a href="./archives.html">Archives</a>
-                <li><a href="./tags.html">Tags</a>
+                <li><a href="../archives.html">Archives</a>
+                <li><a href="../tags.html">Tags</a>
                 <li><a href="http://heloman.github.io/" rel="alternate">Atom feed</a></li>
                                 <li><a href="http://heloman.github.io/feeds/all.rss.xml" rel="alternate">RSS feed</a></li>
                             </ul>
@@ -398,12 +198,12 @@ by <a class="url fn" href="./author/heloman.html">heLomaN</a>
                 Categories
                 </li>
                 
-                                <li><a href="./category/algorithm.html">Algorithm</a></li>
-                                <li><a href="./category/app.html">App</a></li>
-                                <li><a href="./category/c.html">C++</a></li>
-                                <li><a href="./category/coding.html">Coding</a></li>
-                                <li><a href="./category/competition.html">Competition</a></li>
-                                <li><a href="./category/web.html">Web</a></li>
+                                <li><a href="../category/algorithm.html">Algorithm</a></li>
+                                <li><a href="../category/app.html">App</a></li>
+                                <li><a href="../category/c.html">C++</a></li>
+                                <li><a href="../category/coding.html">Coding</a></li>
+                                <li><a href="../category/competition.html">Competition</a></li>
+                                <li><a href="../category/web.html">Web</a></li>
                                    
             </ul>
             </div>
@@ -440,7 +240,7 @@ by <a class="url fn" href="./author/heloman.html">heLomaN</a>
     </div>     </div> 
 <footer>
 <br />
-<p><a href=".">Focus</a> &copy; heLomaN 2012</p>
+<p><a href="..">Focus</a> &copy; heLomaN 2012</p>
 </footer>
 
 </div> <!-- /container -->

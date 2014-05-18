@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Focus</title><link>http://heloman.github.io/</link><description></description><atom:link href="http://heloman.github.io/feeds/c.rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 18 May 2014 00:00:00 +0800</lastBuildDate><item><title>C++11新特性</title><link>http://heloman.github.io/pages/2014/05/c11xin-te-xing.html</link><description>&lt;h1&gt;C++11新特性&lt;/h1&gt;
+&lt;p&gt;C++11已经推出三年了（2011），编译器GCC4.7、Clang3.1在2012年已经逐渐完善，VS2013也已经支持相关特性，GCC4.8.1支持全部特性。不过新特性似乎在工业界并未得到太多应用，可能出于兼容性和稳定性的考虑吧。
+推出的新特性还是相当的丰富，看下面这张图就知道了。我仅仅在这里提一下相对比较容易应用的部分，包括语法上的一些扩展以及改进，lambda表达式以及正则式等比较复杂，暂且不提。
+&lt;img alt="" src="img/20140518c++11.png" /&gt; &lt;/p&gt;
+&lt;h2&gt;统一初始化&lt;/h2&gt;
+&lt;p&gt;以往的C++可以使用很多种方法完成初始化，而且传统的构造函数类似于函数声明，不是非常直观。而新标准把数组的初始化方法推广为统一的初始化方法:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;span class="kt"&gt;float&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mf"&gt;2.0&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;span class="n"&gt;ClassA&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="sc"&gt;&amp;#39;c&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;foo&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt; 
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mf"&gt;2.0&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;&lt;span class="c1"&gt;//error&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;这种方法不会造成narrowing，编程风格更为统一。&lt;/p&gt;
+&lt;h2&gt;类型推导&lt;/h2&gt;
+&lt;p&gt;引入auto和decltype关键字。auto可以根据表达式或函数返回值在编译阶段得到正确的类型。而decltype可以在编译时确定一个表达式的类型。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;vector&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;int&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="nx"&gt;v&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="c1"&gt;//vector&amp;lt;int&amp;gt;::const_iterator i = v.begin();&lt;/span&gt;
+&lt;span class="nx"&gt;auto&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;v.begin&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+&lt;span class="nx"&gt;decltype&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;t&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;可以看到可以减少代码工作量。
+另外，用于模版编程可以很好的用于模版编程：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;template&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="n"&gt;T1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="n"&gt;T2&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="k"&gt;auto&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;T1&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;T2&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;基于范围的for循环&lt;/h2&gt;
+&lt;p&gt;结合auto使用，可以很方便的对数组或各种容器完成遍历：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;auto&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;*=&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;成员变量默认初始化&lt;/h2&gt;
+&lt;p&gt;在定义类的时候完成成员变量的默认初始化，如：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;智能指针shared_ptr&lt;/h2&gt;
+&lt;p&gt;可以自动完成指针的托管，离开作用域时自动delete。使用方法如下：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="vi"&gt;#include&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;memory&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+
+&lt;span class="nx"&gt;int&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="nx"&gt;p1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="nx"&gt;shared_ptr&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;int&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="nx"&gt;ptr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;p1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;注意：对同一个指针只能用来初始化至多一个shared_ptr，否则在离开作用域时会造成delete指针多次报错。&lt;/p&gt;
+&lt;h2&gt;nullptr&lt;/h2&gt;
+&lt;p&gt;nullptr表示空指针，其“==”是经过重载的，主要是为了消除“NULL”的歧义性。两个不同类型的指针不能判断是否相等，即使他们都是nullptr。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;NULL&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="kt"&gt;float&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;nullptr&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;np&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="nb"&gt;NULL&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="c1"&gt;//true;&lt;/span&gt;
+&lt;span class="n"&gt;np&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="c1"&gt;//false &lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;右值引用&lt;/h2&gt;
+&lt;p&gt;右值引用可以有效的减少深拷贝的次数。右值一般指无法取地址的表达式，实质为在表达式结束后就不存在的临时对象，使用右值引用时要注意这一点，因为这个右值可能被更改。
+比如：a++是右值，而++a为左值。
+某需要深拷贝的类型右值赋值给一个变量或作为函数返回值时通常会调用复制构造函数，RVO（返回值优化）在避免复制构造上面并不够好。
+但我们可以给此类型定义move构造函数和move赋值函数，这样显示的使用move函数把一个变量转变为右值后，就可以调用move构造/赋值函数减少开销。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="c1"&gt;//定义了一个右值引用&lt;/span&gt;
+
+&lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="nl"&gt;public:&lt;/span&gt;
+    &lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;A&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="c1"&gt;//move构造函数&lt;/span&gt;
+    &lt;span class="n"&gt;A&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;operator&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;A&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="c1"&gt;//move赋值函数&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="err"&gt;；&lt;/span&gt;
+
+&lt;span class="n"&gt;A&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;move&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="c1"&gt;//调用move赋值函数&lt;/span&gt;
+
+&lt;span class="n"&gt;A&lt;/span&gt; &lt;span class="nf"&gt;c&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;move&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;&lt;span class="c1"&gt;//调用move构造函数 &lt;/span&gt;
+&lt;span class="c1"&gt;//但是b已经作为右值被使用了，可能已经被改变，错误的用法！&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;center&gt;转载请注明作者：Focustc，博客地址为&lt;a href="http://blog.csdn.net/caozhk"&gt;http://blog.csdn.net/caozhk&lt;/a&gt;，原文链接为点击打开&lt;/center&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">heLomaN</dc:creator><pubDate>Sun, 18 May 2014 00:00:00 +0800</pubDate><guid>tag:heloman.github.io,2014-05-18:pages/2014/05/c11xin-te-xing.html</guid><category>C++11</category><category>autoptr</category></item></channel></rss>
