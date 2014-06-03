@@ -58,8 +58,8 @@
 
     <div class='article'>
         <div class="content-title">
-            <a href="./pages/2014/05/ruby-on-railskai-fa-webying-yong-de-ji-ben-gai-nian.html"><h1>Ruby on Rails开发Web应用的基本概念</h1></a>
-            2014-05-20
+            <a href="./pages/2014/06/memcachedgai-shu.html"><h1>Memcached概述</h1></a>
+            2014-06-03
 
 by <a class="url fn" href="./author/heloman.html">heLomaN</a>
  
@@ -68,7 +68,61 @@ by <a class="url fn" href="./author/heloman.html">heLomaN</a>
  
         </div>
         
-        <div><h2>Web应用架构</h2>
+        <div><h1>Memcached</h1>
+<p>Memcached是一套分布式的内存对象缓存系统，使用C语言编写，作为数据库的前端cache，缓存数据库查询结果可以减轻数据库负载。
+类似一张巨大的hash表，缓存的对象以key-value对的形式存在。</p>
+<h2>工作流程</h2>
+<ol>
+<li>检查客户端请求的数据是否在Memcached中存在，若存在直接返回结果</li>
+<li>若不存在，查询数据库，返回结果并把结果缓存</li>
+<li>每次修改数据库时要同时更新Memcached数据</li>
+<li>内存空间用完之后使用LRU算法替换缓存</li>
+</ol>
+<h2>特点</h2>
+<ol>
+<li>基于文本行的协议，可以直接通过telnet管理</li>
+<li>基于libevent，异步io，高性能。libevent是个程序库，它将Linux的epoll、BSD类操作系统的kqueue等事件处理功能 封装成统一的接口。</li>
+<li>对被缓存的数据没有备份，重启后对数据库产生较大的压力</li>
+<li>memcached不互相通信的分布式，分布式由客户端完成</li>
+</ol>
+<h2>工作原理</h2>
+<p>服务守护进程运行后，客户端连接到服务进程进行操作。目前支持python,c,php等多种客户端。服务进程基于事件的单进程单线程实现。<br />
+</p>
+<ul>
+<li>内存管理<br />
+内存使用slab分配器分配，这种方案可以减少内存碎片和内存分配释放次数，加快处理速度。服务进程把分配的内存分割成各种固定尺寸的块，根据待缓存数据的大小选择一个最合适大小的块存入。分配的内存不会释放，而是重复利用。
+数据大小和块的大小不匹配时会造成内存利用率低下。默认情况下不同大小的块的尺寸以2的增长因子扩大，可以使用'-f'选项调整增长因子。<br />
+</li>
+<li>分布式
+分布式由客户端实现，客户端根据key来选择不同的memcached服务器。
+一般使用hash值mod服务器台数来选择。这样当服务器台数发生变化时会造成大量key对应的服务器改变，短时间内数据库服务器负载非常大。一致性hash可以解决这个问题。<ul>
+<li>一致性hash使用普通的hash将每个key映射到圆环上的一个点，而每个服务器节点也映射到圆环上的一个点。根据key对应的圆环上的点顺时针行进找到的第一个节点即为应保存的位置。</li>
+<li>对服务器节点hash时很难做到服务器节点在圆环上的均匀分布，可以采用虚拟节点的思想，为每个服务器在圆环上分配100~200个点，做到更均匀的hash。</li>
+<li>当移除或增加一个服务器节点时，只有此节点对应的key的缓存受到影响。
+　
+　</li>
+</ul>
+</li>
+</ul></div>
+        <hr />
+    </div>
+		
+    
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="./pages/2014/05/ruby-on-railskai-fa-webying-yong-de-ji-ben-gai-nian.html"><h2>Ruby on Rails开发Web应用的基本概念</h2></a>
+        <div class= "well small"> 2014-05-20
+
+by <a class="url fn" href="./author/heloman.html">heLomaN</a>
+ 
+
+
+ </div>
+        <div class="summary"><h2>Web应用架构</h2>
 <h3>C/S架构</h3>
 <p>Web应用从最初就采用C/S架构。Server负责监听客户端请求，提供资源，Client向server发起请求并渲染页面。两者通过TCP/IP协议栈之上的HTTP协议通信。</p>
 <h3>多层架构</h3>
@@ -89,41 +143,9 @@ by <a class="url fn" href="./author/heloman.html">heLomaN</a>
   - 事务逻辑层表征事务逻辑和流程
   - 数据访问层负责存取数据，发往事务逻辑层 
 - 服务端通常有网络层负责网络</p>
-<h2>Ruby on Rails</h2>
-<p>Ruby on Rails是一个基于Ruby开发的构建Web应用的开源框架或者开源库，Twitter、Hulu、Github、Iteye等公司都采用了rails
-框架。</p>
-<h3>组件</h3>
-<p>Ruby on Rails包含一系列组件
-- Rake：类似于make，可以用来修改、迁移数据库
-- WEBrick:一个Rails内置的HTTP服务器，可以使用rails server命令启动，速度较慢，适合完成开发阶段的测试
-- SQLite：最简单的数据库，同样只适合开发阶段的测试
-- Rack Middleware：中间件，用于服务器软件和应用之间的交互</p>
-<h3>缺点</h3>
-<ul>
-<li>不适合海量服务，Twitter已经由ROR转向Scala</li>
-<li>它是一个框架，隐藏了太多细节</li>
-</ul>
-<h3>MVC架构</h3>
-<p>Model表示数据，View使用数据渲染页面，而Controller是媒介。View和Model的严格分离保留了重用性。<br />
-<img alt="" src="img/20140520mvc-diagram.jpg" /> 
-使用Rails创建应用时会自动按照MVC架构生成相关代码，包括：
-- 表示Model的一个类，数据库中会建立相应的表
-- 一个Controller，相应的URL解析和数据库中的操作会一一对应好
-- View包括一系列html文件用来渲染页面</p>
-<h3>Active Record</h3>
-<p>Active Record机制使object-relational mapping (ORM)变得可行。在Ruby中以ActiveRecord模块的形式出现。ORM映射机制为：
-- class - table
-- object - record（表的一行）
-- attribute - record value（表的一列）</p>
-<p>ActiveRecord模块提供以下功能：
-- 与数据库建立连接
-- 表的创建
-- ORM映射
-- 使用object完成CRUD操作(Create、Read、Update、Delete)</p>
-<p><center>转载请注明作者：Focustc，博客地址为<a href="http://blog.csdn.net/caozhk">http://blog.csdn.net/caozhk</a>，原文链接为点击打开</center></p></div>
-        <hr />
-    </div>
-		
+<h2>Ruby ...</h2> <a class="btn btn-info xsmall" href="./pages/2014/05/ruby-on-railskai-fa-webying-yong-de-ji-ben-gai-nian.html">read more</a></div>
+    </div>	
+				
     
  
         
@@ -399,6 +421,7 @@ by <a class="url fn" href="./author/heloman.html">heLomaN</a>
                                 <li><a href="./category/coding.html">Coding</a></li>
                                 <li><a href="./category/competition.html">Competition</a></li>
                                 <li><a href="./category/web.html">Web</a></li>
+                                <li><a href="./category/linux.html">linux</a></li>
                                    
             </ul>
             </div>

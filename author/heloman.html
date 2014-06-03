@@ -260,6 +260,49 @@ by <a class="url fn" href="../author/heloman.html">heLomaN</a>
  
 
     <div class='article'>
+        <a href="../pages/2014/06/memcachedgai-shu.html"><h2>Memcached概述</h2></a>
+        <div class= "well small"> 2014-06-03
+
+by <a class="url fn" href="../author/heloman.html">heLomaN</a>
+ 
+
+
+ </div>
+        <div class="summary"><h1>Memcached</h1>
+<p>Memcached是一套分布式的内存对象缓存系统，使用C语言编写，作为数据库的前端cache，缓存数据库查询结果可以减轻数据库负载。
+类似一张巨大的hash表，缓存的对象以key-value对的形式存在。</p>
+<h2>工作流程</h2>
+<ol>
+<li>检查客户端请求的数据是否在Memcached中存在，若存在直接返回结果</li>
+<li>若不存在，查询数据库，返回结果并把结果缓存</li>
+<li>每次修改数据库时要同时更新Memcached数据</li>
+<li>内存空间用完之后使用LRU算法替换缓存</li>
+</ol>
+<h2>特点</h2>
+<ol>
+<li>基于文本行的协议，可以直接通过telnet管理</li>
+<li>基于libevent，异步io，高性能。libevent是个程序库，它将Linux的epoll、BSD类操作系统的kqueue等事件处理功能 封装成统一的接口。</li>
+<li>对被缓存的数据没有备份，重启后对数据库产生较大的压力</li>
+<li>memcached不互相通信的分布式，分布式由客户端完成</li>
+</ol>
+<h2>工作原理</h2>
+<p>服务守护进程运行后，客户端连接到服务进程进行操作。目前支持python,c,php等多种客户端。服务进程基于事件的单进程单线程实现。<br />
+</p>
+<ul>
+<li>内存管理<br />
+内存使用slab分配器分配，这种方案可以减少内存碎片和内存分配释放次数，加快处理速度。服务进程把分配的内存分割成各种固定尺寸的块，根据待缓存数据的大小选择一个最合适大小的块存入。分配的内存不会释放，而是重复利用。
+数据大小和块的大小不匹配时会造成内存利用率低下。默认情况下不同大小的块的尺寸以2的增长因子扩大，可以使用'-f'选项调整增长因子。<br />
+</li>
+<li>分布式 ...</li></ul> <a class="btn btn-info xsmall" href="../pages/2014/06/memcachedgai-shu.html">read more</a></div>
+    </div>	
+				
+    
+ 
+        
+
+ 
+
+    <div class='article'>
         <a href="../pages/2013/08/my-first-git-blog.html"><h2>My first git blog</h2></a>
         <div class= "well small"> 2013-08-19
 
@@ -443,6 +486,7 @@ by <a class="url fn" href="../author/heloman.html">heLomaN</a>
                                 <li><a href="../category/coding.html">Coding</a></li>
                                 <li><a href="../category/competition.html">Competition</a></li>
                                 <li><a href="../category/web.html">Web</a></li>
+                                <li><a href="../category/linux.html">linux</a></li>
                                    
             </ul>
             </div>
