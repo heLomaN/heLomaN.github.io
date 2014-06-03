@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Focus</title>
+    <meta name="description" content="">
+    <meta name="author" content="heLomaN">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="../theme/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="../theme/bootstrap.min.css" rel="stylesheet">
+    <link href="../theme/bootstrap.min.responsive.css" rel="stylesheet">
+    <link href="../theme/local.css" rel="stylesheet">
+    <link href="../theme/pygments.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="navbar">
+    <div class="navbar-inner">
+    <div class="container">
+
+         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+         </a>
+
+        <a class="brand" href="..">Focus</a>
+
+        <div class="nav-collapse">
+        <ul class="nav">
+                    
+                            <li><a href="../pages/about-me.html">About Me</a></li>
+                    <li><a href="../pages/resume.html">Resume</a></li>
+                        </ul>
+        </div>
+        
+    </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="content">
+    <div class="row">
+
+        <div class="span9">
+                
+
+        
+
+
+    <div class='article'>
+        <div class="content-title">
+            <a href="../pages/2014/06/memcachedgai-shu.html"><h1>Memcached概述</h1></a>
+            2014-06-03
+
+by <a class="url fn" href="../author/heloman.html">heLomaN</a>
+ 
+
+
+ 
+        </div>
+        
+        <div><h1>Memcached</h1>
+<p>Memcached是一套分布式的内存对象缓存系统，使用C语言编写，作为数据库的前端cache，缓存数据库查询结果可以减轻数据库负载。
+类似一张巨大的hash表，缓存的对象以key-value对的形式存在。</p>
+<h2>工作流程</h2>
+<ol>
+<li>检查客户端请求的数据是否在Memcached中存在，若存在直接返回结果</li>
+<li>若不存在，查询数据库，返回结果并把结果缓存</li>
+<li>每次修改数据库时要同时更新Memcached数据</li>
+<li>内存空间用完之后使用LRU算法替换缓存</li>
+</ol>
+<h2>特点</h2>
+<ol>
+<li>基于文本行的协议，可以直接通过telnet管理</li>
+<li>基于libevent，异步io，高性能。libevent是个程序库，它将Linux的epoll、BSD类操作系统的kqueue等事件处理功能 封装成统一的接口。</li>
+<li>对被缓存的数据没有备份，重启后对数据库产生较大的压力</li>
+<li>memcached不互相通信的分布式，分布式由客户端完成</li>
+</ol>
+<h2>工作原理</h2>
+<p>服务守护进程运行后，客户端连接到服务进程进行操作。目前支持python,c,php等多种客户端。服务进程基于事件的单进程单线程实现。<br />
+</p>
+<ul>
+<li>内存管理<br />
+内存使用slab分配器分配，这种方案可以减少内存碎片和内存分配释放次数，加快处理速度。服务进程把分配的内存分割成各种固定尺寸的块，根据待缓存数据的大小选择一个最合适大小的块存入。分配的内存不会释放，而是重复利用。
+数据大小和块的大小不匹配时会造成内存利用率低下。默认情况下不同大小的块的尺寸以2的增长因子扩大，可以使用'-f'选项调整增长因子。<br />
+</li>
+<li>分布式
+分布式由客户端实现，客户端根据key来选择不同的memcached服务器。
+一般使用hash值mod服务器台数来选择。这样当服务器台数发生变化时会造成大量key对应的服务器改变，短时间内数据库服务器负载非常大。一致性hash可以解决这个问题。<ul>
+<li>一致性hash使用普通的hash将每个key映射到圆环上的一个点，而每个服务器节点也映射到圆环上的一个点。根据key对应的圆环上的点顺时针行进找到的第一个节点即为应保存的位置。</li>
+<li>对服务器节点hash时很难做到服务器节点在圆环上的均匀分布，可以采用虚拟节点的思想，为每个服务器在圆环上分配100~200个点，做到更均匀的hash。</li>
+<li>当移除或增加一个服务器节点时，只有此节点对应的key的缓存受到影响。
+　
+　</li>
+</ul>
+</li>
+</ul></div>
+        <hr />
+    </div>
+		
+            <div class="pagination">
+<ul>
+    <li class="prev disabled"><a href="#">&larr; Previous</a></li>
+
+    <li class="active"><a href="../tag/memcached.html">1</a></li>
+
+    <li class="next disabled"><a href="#">&rarr; Next</a></li>
+
+</ul>
+</div>    
+ 
+  
+        </div>
+        
+        <div class="span3">
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Site
+                </li>
+            
+                <li><a href="../archives.html">Archives</a>
+                <li><a href="../tags.html">Tags</a>
+                <li><a href="http://heloman.github.io/" rel="alternate">Atom feed</a></li>
+                                <li><a href="http://heloman.github.io/feeds/all.rss.xml" rel="alternate">RSS feed</a></li>
+                            </ul>
+            </div>
+
+
+                        <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Categories
+                </li>
+                
+                                <li><a href="../category/algorithm.html">Algorithm</a></li>
+                                <li><a href="../category/app.html">App</a></li>
+                                <li><a href="../category/c.html">C++</a></li>
+                                <li><a href="../category/coding.html">Coding</a></li>
+                                <li><a href="../category/competition.html">Competition</a></li>
+                                <li><a href="../category/web.html">Web</a></li>
+                                <li><a href="../category/linux.html">linux</a></li>
+                                   
+            </ul>
+            </div>
+            
+
+                        <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Links
+                </li>
+            
+                            <li><a href="http://getpelican.com/">Pelican</a></li>
+                            <li><a href="http://python.org/">Python.org</a></li>
+                        </ul>
+            </div>
+            
+
+                        <div class="social">
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Social
+                </li>
+           
+                                <li><a href="http://weibo.com/focustc">Weibo</a></li>
+                                <li><a href="https://github.com/heloman">Github</a></li>
+                                <li><a href="http://blog.csdn.net/caozhk">CSDN Blog</a></li>
+                                <li><a href="http://heloman.github.io/feeds/all.rss.xml">Rss</a></li>
+                            </ul>
+            </div>
+            </div>
+            
+        </div>  
+    </div>     </div> 
+<footer>
+<br />
+<p><a href="..">Focus</a> &copy; heLomaN 2012</p>
+</footer>
+
+</div> <!-- /container -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-collapse.js"></script>
+<script>var _gaq=[['_setAccount','UA-43314222-1'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))</script>
+<a href="https://github.com/heloman"><img style="position: absolute; top: 40px; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" /></a>
+ 
+</body>
+</html>

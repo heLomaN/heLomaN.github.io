@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Focus</title><link>http://heloman.github.io/</link><description></description><atom:link href="http://heloman.github.io/feeds/linux.rss.xml" rel="self"></atom:link><lastBuildDate>Tue, 03 Jun 2014 00:00:00 +0800</lastBuildDate><item><title>Memcached概述</title><link>http://heloman.github.io/pages/2014/06/memcachedgai-shu.html</link><description>&lt;h1&gt;Memcached&lt;/h1&gt;
+&lt;p&gt;Memcached是一套分布式的内存对象缓存系统，使用C语言编写，作为数据库的前端cache，缓存数据库查询结果可以减轻数据库负载。
+类似一张巨大的hash表，缓存的对象以key-value对的形式存在。&lt;/p&gt;
+&lt;h2&gt;工作流程&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;检查客户端请求的数据是否在Memcached中存在，若存在直接返回结果&lt;/li&gt;
+&lt;li&gt;若不存在，查询数据库，返回结果并把结果缓存&lt;/li&gt;
+&lt;li&gt;每次修改数据库时要同时更新Memcached数据&lt;/li&gt;
+&lt;li&gt;内存空间用完之后使用LRU算法替换缓存&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;特点&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;基于文本行的协议，可以直接通过telnet管理&lt;/li&gt;
+&lt;li&gt;基于libevent，异步io，高性能。libevent是个程序库，它将Linux的epoll、BSD类操作系统的kqueue等事件处理功能 封装成统一的接口。&lt;/li&gt;
+&lt;li&gt;对被缓存的数据没有备份，重启后对数据库产生较大的压力&lt;/li&gt;
+&lt;li&gt;memcached不互相通信的分布式，分布式由客户端完成&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;工作原理&lt;/h2&gt;
+&lt;p&gt;服务守护进程运行后，客户端连接到服务进程进行操作。目前支持python,c,php等多种客户端。服务进程基于事件的单进程单线程实现。&lt;br /&gt;
+&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;内存管理&lt;br /&gt;
+内存使用slab分配器分配，这种方案可以减少内存碎片和内存分配释放次数，加快处理速度。服务进程把分配的内存分割成各种固定尺寸的块，根据待缓存数据的大小选择一个最合适大小的块存入。分配的内存不会释放，而是重复利用。
+数据大小和块的大小不匹配时会造成内存利用率低下。默认情况下不同大小的块的尺寸以2的增长因子扩大，可以使用'-f'选项调整增长因子。&lt;br /&gt;
+&lt;/li&gt;
+&lt;li&gt;分布式
+分布式由客户端实现，客户端根据key来选择不同的memcached服务器。
+一般使用hash值mod服务器台数来选择。这样当服务器台数发生变化时会造成大量key对应的服务器改变，短时间内数据库服务器负载非常大。一致性hash可以解决这个问题。&lt;ul&gt;
+&lt;li&gt;一致性hash使用普通的hash将每个key映射到圆环上的一个点，而每个服务器节点也映射到圆环上的一个点。根据key对应的圆环上的点顺时针行进找到的第一个节点即为应保存的位置。&lt;/li&gt;
+&lt;li&gt;对服务器节点hash时很难做到服务器节点在圆环上的均匀分布，可以采用虚拟节点的思想，为每个服务器在圆环上分配100~200个点，做到更均匀的hash。&lt;/li&gt;
+&lt;li&gt;当移除或增加一个服务器节点时，只有此节点对应的key的缓存受到影响。
+　
+　&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">heLomaN</dc:creator><pubDate>Tue, 03 Jun 2014 00:00:00 +0800</pubDate><guid>tag:heloman.github.io,2014-06-03:pages/2014/06/memcachedgai-shu.html</guid><category>memcached</category><category>server</category><category>数据库</category></item></channel></rss>
