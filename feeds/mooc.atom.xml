@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Focus</title><link href="http://heloman.github.io/" rel="alternate"></link><link href="http://heloman.github.io/feeds/mooc.atom.xml" rel="self"></link><id>http://heloman.github.io/</id><updated>2014-07-16T00:00:00+08:00</updated><entry><title>《软硬件接口》课程大纲</title><link href="http://heloman.github.io/pages/2014/07/ruan-ying-jian-jie-kou-ke-cheng-da-gang.html" rel="alternate"></link><updated>2014-07-16T00:00:00+08:00</updated><author><name>heLomaN</name></author><id>tag:heloman.github.io,2014-07-16:pages/2014/07/ruan-ying-jian-jie-kou-ke-cheng-da-gang.html</id><summary type="html">&lt;h1&gt;《软硬件接口》课程大纲&lt;/h1&gt;
+&lt;p&gt;Coursera课程 &lt;a href="https://class.coursera.org/hwswinterface-002"&gt;The Hardware/Software Interface&lt;/a&gt;是华盛顿大学提供的一门课程，其中汇编语言、进程结构、Java实现等章节内容我认为对于学编程的同学来说非常有用。教学环境是Fedora，顺带介绍了一些常用工具的使用。&lt;/p&gt;
+&lt;h2&gt;课程大纲&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;这门课程将会让学生知道当软件运行时到底发生了什么，并说明这个问题可以通过硬件架构层、汇编层、C语言层和Java层等数层抽象解答。- &lt;/li&gt;
+&lt;li&gt;这门课程的核心是关于C、汇编、以及底层数据表示的，但同时与更高层（Java语言实现机理）、更底层（处理器通用架构）、操作系统（无关操作系统的实现）相关。&lt;/li&gt;
+&lt;li&gt;对于那些想要专注于高层抽象的计算机专业学生来说，这门课可能是他们学习到的关于C语言及以更下层的唯一课程。不过，他们大多能够同时学到一些系统编程、硬件设计与实现、操作系统、编译器等知识。&lt;/li&gt;
+&lt;li&gt;对于对硬件、嵌入式系统、计算机工程、计算机架构等感兴趣的学生来说，这门课程是一门入门课程，后续课程会在特定领域更加深入，并且会关注更下层的硬件实现、电路设计等。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;课程主题&lt;/h3&gt;
+&lt;p&gt;本课程主要有三个主题。&lt;br /&gt;
+1. 表示：不同的数据类型，如整数和结构体数组，在内存中如何存在？指令如何编码？如何生成内存地址并用于创建复杂的数据结构？&lt;br /&gt;
+2. 翻译：高层的语言，如C和Java如何转换成硬件处理器的基本指令？&lt;br /&gt;
+3. 控制流：计算机如何阻止计算的顺序，如何跟踪大型程序当前的运行轨迹，多个进程如何并行执行？&lt;br /&gt;
+&lt;/p&gt;
+&lt;h3&gt;课程目标&lt;/h3&gt;
+&lt;p&gt;课程结束后，学生应该能够&lt;br /&gt;
+1. 理解高层次的程序转换成可以被处理器执行的指令流的过程&lt;br /&gt;
+2. 知道指针是什么，以及如何使用指针操纵复杂的数据结构  &lt;br /&gt;
+3. 能够使用X86汇编语言写简短的程序，并理解汇编语言和高层次语言如何映射&lt;br /&gt;
+4. 理解分级存储器的基本组织和参数，理解它对于系统性能的重要性&lt;br /&gt;
+5. 能够解释清楚操作系统的功能&lt;br /&gt;
+6. 知道Java和C的本质区别&lt;br /&gt;
+7. 理解并行机制以及它在系统级的重要性&lt;br /&gt;
+8. 成为更高效的程序员，更有效的debug，对系统性能更敏感&lt;br /&gt;
+&lt;/p&gt;
+&lt;h3&gt;课程专题&lt;/h3&gt;
+&lt;p&gt;大约每周一个专题，包括&lt;br /&gt;
+- 数字的表示&lt;br /&gt;
+- 汇编语言&lt;br /&gt;
+- C语言基础&lt;br /&gt;
+- 内存管理&lt;br /&gt;
+- 操作系统的进程模型&lt;br /&gt;
+- 高层次机器架构&lt;br /&gt;
+- 分级存储器&lt;br /&gt;
+- 高层次语言的实现&lt;br /&gt;
+&lt;/p&gt;</summary><category term="notes"></category></entry></feed>
