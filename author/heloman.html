@@ -262,6 +262,41 @@ by <a class="url fn" href="../author/heloman.html">heLomaN</a>
  
 
     <div class='article'>
+        <a href="../pages/2014/07/jian-zhi-offer-jie-ti-bi-ji.html"><h2>《剑指offer》解题笔记</h2></a>
+        <div class= "well small"> 2014-07-22
+
+by <a class="url fn" href="../author/heloman.html">heLomaN</a>
+ 
+
+
+ </div>
+        <div class="summary"><h1>《剑指offer》解题笔记</h1>
+<p>《剑指offer》共50题，这两周使用C++花时间做了一遍，谨在此把一些很巧妙的方法、写代码遇到的难点、易犯错的细节等做一个简单的标注，但不会太过详细，具体算法还是请参考书本。 <br />
+做的比较急，代码还有很多不完善的地方，如有错误，欢迎改正，地址为：<a href="https://github.com/heLomaN/sword_of_offer.git">github:sword_of_offer</a>。可以使用<code>git clone https://github.com/heLomaN/sword_of_offer.git</code>命令获取代码。<br />
+其中，少数无法验证正确与否的题目没有写代码，部分二叉树的题目写了代码，但由于生成二叉树太过麻烦没有验证。<br />
+</p>
+<h2>解题笔记</h2>
+<h3>Q3</h3>
+<p>声明并初始化二维数组的语句如何写？<br />
+cin如何判断输入结束？</p>
+<h3>Q4</h3>
+<p>字符数组的末尾位置计算差了1，忘了加上\0，要小心</p>
+<h3>Q5</h3>
+<p>递归的方法更简洁</p>
+<h3>Q6</h3>
+<p>stl的find算法<br />
+vector传值性能差，应该用引用<br />
+截取一段时要根据左右子树的长度来截，再次find是错误的</p>
+<h3>Q7 ...</h3> <a class="btn btn-info xsmall" href="../pages/2014/07/jian-zhi-offer-jie-ti-bi-ji.html">read more</a></div>
+    </div>	
+				
+    
+ 
+        
+
+ 
+
+    <div class='article'>
         <a href="../pages/2014/04/map-reduceyuan-li.html"><h2>Map-Reduce原理</h2></a>
         <div class= "well small"> 2014-04-22
 
@@ -410,45 +445,6 @@ by <a class="url fn" href="../author/heloman.html">heLomaN</a>
 <h3>课程主题</h3>
 <p>本课程主要有三个主题。<br />
 1. 表示：不同的数据类型，如整数和结构体数组，在内存中如何存在 ...</p> <a class="btn btn-info xsmall" href="../pages/2014/07/ruan-ying-jian-jie-kou-ke-cheng-da-gang.html">read more</a></div>
-    </div>	
-				
-    
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="../pages/2014/05/ruby-on-railskai-fa-webying-yong-de-ji-ben-gai-nian.html"><h2>Ruby on Rails开发Web应用的基本概念</h2></a>
-        <div class= "well small"> 2014-05-20
-
-by <a class="url fn" href="../author/heloman.html">heLomaN</a>
- 
-
-
- </div>
-        <div class="summary"><h2>Web应用架构</h2>
-<h3>C/S架构</h3>
-<p>Web应用从最初就采用C/S架构。Server负责监听客户端请求，提供资源，Client向server发起请求并渲染页面。两者通过TCP/IP协议栈之上的HTTP协议通信。</p>
-<h3>多层架构</h3>
-<p>在Web 2.0时代，随着交互性的要求，这个架构变得更为复杂。Server需要提供更复杂的服务，Client也要完成更多的交互任务，涌现出很多新的提供更快更好服务的技术。相应的，C/S架构需要以一种更复杂的方式来组织，即多层架构。
-多层架构中的每一层负责提供一个特定的功能，与其他层通过良好的接口进行交互，易于升级维护。原始的C/S架构可以视作Server、Client两层。</p>
-<h4>3层架构</h4>
-<p>典型的3层架构为表示层，逻辑层，数据层
-- 表示层由浏览器负责渲染
-- 逻辑层由服务器端操纵数据，并发往表示层
-- 数据层负责存储数据。</p>
-<h4>6层架构</h4>
-<p>如果进一步分割，就得到6层架构，如下图<br />
-<img alt="" src="img/20140520architechure.JPG" /><br />
-- 表示层分为Client层和表示逻辑层
-  - Client层负责渲染展示页面
-  - 表示逻辑层为Server根据脚本生成网页
-- 逻辑层分为商业逻辑层和数据访问层
-  - 事务逻辑层表征事务逻辑和流程
-  - 数据访问层负责存取数据，发往事务逻辑层 
-- 服务端通常有网络层负责网络</p>
-<h2>Ruby ...</h2> <a class="btn btn-info xsmall" href="../pages/2014/05/ruby-on-railskai-fa-webying-yong-de-ji-ben-gai-nian.html">read more</a></div>
     </div>	
 				
             <div class="pagination">

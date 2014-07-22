@@ -58,6 +58,45 @@
  
 
     <div class='article'>
+        <a href="../pages/2014/05/ruby-on-railskai-fa-webying-yong-de-ji-ben-gai-nian.html"><h2>Ruby on Rails开发Web应用的基本概念</h2></a>
+        <div class= "well small"> 2014-05-20
+
+by <a class="url fn" href="../author/heloman.html">heLomaN</a>
+ 
+
+
+ </div>
+        <div class="summary"><h2>Web应用架构</h2>
+<h3>C/S架构</h3>
+<p>Web应用从最初就采用C/S架构。Server负责监听客户端请求，提供资源，Client向server发起请求并渲染页面。两者通过TCP/IP协议栈之上的HTTP协议通信。</p>
+<h3>多层架构</h3>
+<p>在Web 2.0时代，随着交互性的要求，这个架构变得更为复杂。Server需要提供更复杂的服务，Client也要完成更多的交互任务，涌现出很多新的提供更快更好服务的技术。相应的，C/S架构需要以一种更复杂的方式来组织，即多层架构。
+多层架构中的每一层负责提供一个特定的功能，与其他层通过良好的接口进行交互，易于升级维护。原始的C/S架构可以视作Server、Client两层。</p>
+<h4>3层架构</h4>
+<p>典型的3层架构为表示层，逻辑层，数据层
+- 表示层由浏览器负责渲染
+- 逻辑层由服务器端操纵数据，并发往表示层
+- 数据层负责存储数据。</p>
+<h4>6层架构</h4>
+<p>如果进一步分割，就得到6层架构，如下图<br />
+<img alt="" src="img/20140520architechure.JPG" /><br />
+- 表示层分为Client层和表示逻辑层
+  - Client层负责渲染展示页面
+  - 表示逻辑层为Server根据脚本生成网页
+- 逻辑层分为商业逻辑层和数据访问层
+  - 事务逻辑层表征事务逻辑和流程
+  - 数据访问层负责存取数据，发往事务逻辑层 
+- 服务端通常有网络层负责网络</p>
+<h2>Ruby ...</h2> <a class="btn btn-info xsmall" href="../pages/2014/05/ruby-on-railskai-fa-webying-yong-de-ji-ben-gai-nian.html">read more</a></div>
+    </div>	
+				
+    
+ 
+        
+
+ 
+
+    <div class='article'>
         <a href="../pages/2013/09/ubuntuxi-tong-an-zhuang-matlab2012a.html"><h2>Ubuntu系统安装Matlab2012a</h2></a>
         <div class= "well small"> 2013-09-04
 

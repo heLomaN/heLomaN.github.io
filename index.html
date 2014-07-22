@@ -58,8 +58,8 @@
 
     <div class='article'>
         <div class="content-title">
-            <a href="./pages/2014/07/ruan-ying-jian-jie-kou-ke-cheng-da-gang.html"><h1>《软硬件接口》课程大纲</h1></a>
-            2014-07-16
+            <a href="./pages/2014/07/jian-zhi-offer-jie-ti-bi-ji.html"><h1>《剑指offer》解题笔记</h1></a>
+            2014-07-22
 
 by <a class="url fn" href="./author/heloman.html">heLomaN</a>
  
@@ -68,7 +68,128 @@ by <a class="url fn" href="./author/heloman.html">heLomaN</a>
  
         </div>
         
-        <div><h1>《软硬件接口》课程大纲</h1>
+        <div><h1>《剑指offer》解题笔记</h1>
+<p>《剑指offer》共50题，这两周使用C++花时间做了一遍，谨在此把一些很巧妙的方法、写代码遇到的难点、易犯错的细节等做一个简单的标注，但不会太过详细，具体算法还是请参考书本。 <br />
+做的比较急，代码还有很多不完善的地方，如有错误，欢迎改正，地址为：<a href="https://github.com/heLomaN/sword_of_offer.git">github:sword_of_offer</a>。可以使用<code>git clone https://github.com/heLomaN/sword_of_offer.git</code>命令获取代码。<br />
+其中，少数无法验证正确与否的题目没有写代码，部分二叉树的题目写了代码，但由于生成二叉树太过麻烦没有验证。<br />
+</p>
+<h2>解题笔记</h2>
+<h3>Q3</h3>
+<p>声明并初始化二维数组的语句如何写？<br />
+cin如何判断输入结束？</p>
+<h3>Q4</h3>
+<p>字符数组的末尾位置计算差了1，忘了加上\0，要小心</p>
+<h3>Q5</h3>
+<p>递归的方法更简洁</p>
+<h3>Q6</h3>
+<p>stl的find算法<br />
+vector传值性能差，应该用引用<br />
+截取一段时要根据左右子树的长度来截，再次find是错误的</p>
+<h3>Q7</h3>
+<p>stack的pop返回值是void，而top方法才返回顶部值</p>
+<h3>Q8</h3>
+<p>这个二分相当的难。尤其是非递归的写法<br />
+边界值处理要仔细想<br />
+不能忽略如1 0 1的特殊情况<br />
+</p>
+<h3>Q9</h3>
+<p>应该用long long类型</p>
+<h3>Q10</h3>
+<p>求数的二进制表示种1的个数应记住：减1再&amp;自身总会消去一个1</p>
+<h3>Q11</h3>
+<p>除以2用&gt;&gt;，模2用&amp;，效率更高<br />
+应该加上错误检测</p>
+<h3>Q12</h3>
+<p>遇到数字有关的题，首先考虑是不是大数问题</p>
+<h3>Q13</h3>
+<p>把下一个节点的值拷贝到当前节点即可，之后删除下一个节点</p>
+<h3>Q14</h3>
+<p>9du oj要求奇数或偶数的顺序不变，现在的代码没有符合这个要求</p>
+<h3>Q15</h3>
+<p><code>node *p,q</code>只把p声明为指针，小心<br />
+参考<a href="https://github.com/julycoding/The-Art-Of-Programming-By-July">https://github.com/julycoding/The-Art-Of-Programming-By-July</a>，<code>*</code>应该靠近类型名</p>
+<h3>Q16</h3>
+<p>画图以帮助理解</p>
+<h3>Q18</h3>
+<p>!p判断指针为空是可以的<br />
+代码未测试</p>
+<h3>Q22</h3>
+<p>方法很难想起来，要仔细分析其中规律</p>
+<h3>Q25</h3>
+<p>代码未测试</p>
+<h3>Q26</h3>
+<p>方法很难想起来 第三步分离链表操作不够简洁</p>
+<h3>Q27</h3>
+<p>使用了一个辅助vector，书上的方法不能仔细的写出来</p>
+<h3>Q28</h3>
+<p>这种解法无法处理多个字符重复的情况，会造成重复<br />
+递归的时候修改全局数组，但递归调用后要把全局数组修改回来，和之前递归调用前后出入栈的方法有异曲同工之妙<br />
+8皇后问题也可以用这个方法解决</p>
+<h3>Q29</h3>
+<p>求数组中任意第K大的数字有成熟的O(n)的算法</p>
+<h3>Q30</h3>
+<p>C++中throw new excetion("error")是不正确的，不能用字符串初始化excetion<br />
+set和multiset是基于红黑树实现的<br />
+</p>
+<h3>Q31</h3>
+<p>第一种解法和DP解法原理是一样的<br />
+</p>
+<h3>Q32</h3>
+<p>1到n个9之间出现1的次数是n*10^(n-1)<br />
+代码未测试<br />
+</p>
+<h3>Q33</h3>
+<p>itoa不是标准库函数，只是linux下的库函数，可以用printf代替<br />
+string可以直接+、&gt;、&lt;运算<br />
+</p>
+<h3>Q34</h3>
+<p>关键是如何保证已经找到的丑数数组是有序的</p>
+<h3>Q35</h3>
+<p>memset函数是在cstring头文件中</p>
+<h3>Q35</h3>
+<p>关键是merge两个数组时的细节处理<br />
+归并排序相当于O(n)的空间换来了时间复杂度提升到O(nlogn)<br />
+</p>
+<h3>Q37</h3>
+<p>代码未测试</p>
+<h3>Q38</h3>
+<p>关键是改变二分查找的循环判断条件</p>
+<h3>Q39</h3>
+<p>题目2的算法不易想起<br />
+代码未测试</p>
+<h3>Q40</h3>
+<p>方法很巧妙<br />
+C++中auto&amp; e : v遍历容器注意v指向元素的引用才可以改变容器中的值<br />
+</p>
+<h3>Q41</h3>
+<p>书中未给出算法证明，亟待解决</p>
+<h3>Q43</h3>
+<p>方法巧妙，解法很难想起来</p>
+<h3>Q45</h3>
+<p>方法巧妙，解法很难想起来</p>
+<h3>Q50</h3>
+<p>如果有指向父节点的指针，那么找到这两个点到根节点的链表，求第一个公共节点<br />
+如果没有，那么dfs遍历得到这两个点的链表，求第一个公共节点<br />
+</p></div>
+        <hr />
+    </div>
+		
+    
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="./pages/2014/07/ruan-ying-jian-jie-kou-ke-cheng-da-gang.html"><h2>《软硬件接口》课程大纲</h2></a>
+        <div class= "well small"> 2014-07-16
+
+by <a class="url fn" href="./author/heloman.html">heLomaN</a>
+ 
+
+
+ </div>
+        <div class="summary"><h1>《软硬件接口》课程大纲</h1>
 <p>Coursera课程 <a href="https://class.coursera.org/hwswinterface-002">The Hardware/Software Interface</a>是华盛顿大学提供的一门课程，其中汇编语言、进程结构、Java实现等章节内容我认为对于学编程的同学来说非常有用。教学环境是Fedora，顺带介绍了一些常用工具的使用。</p>
 <h2>课程大纲</h2>
 <ul>
@@ -79,35 +200,9 @@ by <a class="url fn" href="./author/heloman.html">heLomaN</a>
 </ul>
 <h3>课程主题</h3>
 <p>本课程主要有三个主题。<br />
-1. 表示：不同的数据类型，如整数和结构体数组，在内存中如何存在？指令如何编码？如何生成内存地址并用于创建复杂的数据结构？<br />
-2. 翻译：高层的语言，如C和Java如何转换成硬件处理器的基本指令？<br />
-3. 控制流：计算机如何阻止计算的顺序，如何跟踪大型程序当前的运行轨迹，多个进程如何并行执行？<br />
-</p>
-<h3>课程目标</h3>
-<p>课程结束后，学生应该能够<br />
-1. 理解高层次的程序转换成可以被处理器执行的指令流的过程<br />
-2. 知道指针是什么，以及如何使用指针操纵复杂的数据结构  <br />
-3. 能够使用X86汇编语言写简短的程序，并理解汇编语言和高层次语言如何映射<br />
-4. 理解分级存储器的基本组织和参数，理解它对于系统性能的重要性<br />
-5. 能够解释清楚操作系统的功能<br />
-6. 知道Java和C的本质区别<br />
-7. 理解并行机制以及它在系统级的重要性<br />
-8. 成为更高效的程序员，更有效的debug，对系统性能更敏感<br />
-</p>
-<h3>课程专题</h3>
-<p>大约每周一个专题，包括<br />
-- 数字的表示<br />
-- 汇编语言<br />
-- C语言基础<br />
-- 内存管理<br />
-- 操作系统的进程模型<br />
-- 高层次机器架构<br />
-- 分级存储器<br />
-- 高层次语言的实现<br />
-</p></div>
-        <hr />
-    </div>
-		
+1. 表示：不同的数据类型，如整数和结构体数组，在内存中如何存在 ...</p> <a class="btn btn-info xsmall" href="./pages/2014/07/ruan-ying-jian-jie-kou-ke-cheng-da-gang.html">read more</a></div>
+    </div>	
+				
     
  
         
@@ -383,33 +478,6 @@ by <a class="url fn" href="./author/heloman.html">heLomaN</a>
     STATIC_ROOT = '/home/czk/djangoproject/OwnTube/colect_staitic/'
     STATIC_URL = '/static/'
     import ...</p> <a class="btn btn-info xsmall" href="./pages/2013/11/djangokai-fa-shi-pin-wang-zhan-xiang-mu-ji-lu.html">read more</a></div>
-    </div>	
-				
-    
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="./pages/2013/09/ubuntuxi-tong-an-zhuang-matlab2012a.html"><h2>Ubuntu系统安装Matlab2012a</h2></a>
-        <div class= "well small"> 2013-09-04
-
-by <a class="url fn" href="./author/heloman.html">heLomaN</a>
- 
-
-
- </div>
-        <div class="summary"><h3>下载安装</h3>
-<ol>
-<li>下载matlab的安装镜像，注意一定是unix版本到。 </li>
-<li>挂载iso文件： <code>sudo mount -o loop Mathworks.Matlab.R2012a.UNIX.iso /mnt/tmp</code></li>
-<li>到tmp目录下面执行 <code>sudo ./install</code>，安装并激活</li>
-</ol>
-<h3>启动程序</h3>
-<ol>
-<li>运行matlab的方式为：<code>sudo /usr/local/MATLAB/R2012a/bin/matlab</code></li>
-<li>运行的时候的警告信息，<code>/usr/local/MATLAB/R2012a/bin/util/oscheck.sh: /lib/libc.so.6: not found</code>。需要创建一个链接解决:<code>sudo ln -s /lib/i386-linux-gnu/libc ...</code></li></ol> <a class="btn btn-info xsmall" href="./pages/2013/09/ubuntuxi-tong-an-zhuang-matlab2012a.html">read more</a></div>
     </div>	
 				
             <div class="pagination">
