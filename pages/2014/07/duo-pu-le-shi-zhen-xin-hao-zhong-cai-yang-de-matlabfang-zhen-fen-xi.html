@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Focus</title>
+    <meta name="description" content="">
+    <meta name="author" content="heLomaN">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="../../../theme/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="../../../theme/bootstrap.min.css" rel="stylesheet">
+    <link href="../../../theme/bootstrap.min.responsive.css" rel="stylesheet">
+    <link href="../../../theme/local.css" rel="stylesheet">
+    <link href="../../../theme/pygments.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="navbar">
+    <div class="navbar-inner">
+    <div class="container">
+
+         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+         </a>
+
+        <a class="brand" href="../../..">Focus</a>
+
+        <div class="nav-collapse">
+        <ul class="nav">
+                    
+                            <li><a href="../../../pages/about-me.html">About Me</a></li>
+                    <li><a href="../../../pages/resume.html">Resume</a></li>
+                        </ul>
+        </div>
+        
+    </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="content">
+    <div class="row">
+
+        <div class="span9">
+            <div class='article'>
+        <div class="content-title">
+            <h1>多普勒失真信号重采样的Matlab仿真分析</h1>
+            2014-07-24
+
+by <a class="url fn" href="../../../author/heloman.html">heLomaN</a>
+ 
+
+
+        </div>
+	
+        <div><h1>多普勒失真信号重采样的Matlab仿真分析</h1>
+<h2>应用场景</h2>
+<ul>
+<li>水声通信指的是使用声信号在水中传输数据。相对而言，电磁信号在水中吸收严重衰减过快，光信号受水中悬浮颗粒的影响，也无法完成远距离传输。这两种信号的传播距离约为数百米，而声信号在水中传播距离达到数十千米，成为水下通信的首选方式。</li>
+<li>水声通信的一个重大挑战就是运动带来的多普勒。多普勒造成信号的频率漂移，影响系统性能，因此非常有必要消除多普勒带来的影响。而多普勒在时域的表现为信号的长度压缩和扩展，即'y(t) = x((1+a) * t)'，其中<code>a</code>为多普勒因子。而如果估计出多普勒因子，之后采用重采样技术就可以恢复得到原始信号<code>x(t) = y( t/(a+a) )</code>。</li>
+<li>重采样的意义就是插值，从一个信号插值得到多普勒影响前后的信号。而<code>1+a</code>一般为小数，虽然采用多相滤波可以达到很好的插值效果，但复杂度太高。相比之下，线性插值、样条插值等方式运算量小，在做数字系统的时候更加合适</li>
+</ul>
+<h2>Matlab一维插值</h2>
+<ul>
+<li>MATLAB中的插值函数为<code>interp1()</code>,其调用格式为 <code>yi=interp1(x,y,xi, 'method')</code>。其中x,y为观测数据点,xi为插值(自变量)向量,yi为xi的插值结果(函数值)。</li>
+<li><code>'method'</code>表示采用的插值方法。取值'nearest'为最邻近插值，'linear'是线性插值，'spline'是三次样条插值，'cubic'为分段三次Hermite插值。默认情况为线性插值，三次样条效果最平滑，三次效果多项式介于两者之间。</li>
+<li>线性插值：通过所在位置相邻两点的值来插值。已知f(a)和f(c)，b在a,c中间，求f(b)的公式为：<code>f(b) = f(a) + (b-a)/(c-a) *[f(c) - f(a)]</code>。</li>
+<li>分段三次Hermite插值：分段让邻近两点的导数相同，曲线更平滑。</li>
+<li>样条插值：样条插值通常比多项式插值好用。用低阶的样条插值能产生和高阶的多项式插值类似的效果，并且可以避免龙格现象。</li>
+</ul>
+<h2>线性插值的误差</h2>
+<ul>
+<li>插值不免会造成信号失真，定义原始信号功率与噪声功率的比值为信干比，计算公式为：<code>SDR = 10 * log10( power(x(t)) / power(x(t) - x'(t) )</code>。<code>x'(t)</code>为插值后得到的信号。</li>
+<li>而对于线性插值，SDR与信号采样频率<code>fs</code>和信号频率<code>f</code>的比值有近似如下关系：<code>SDR(dB) = 40 * log10( fs/f /2 )</code>。</li>
+</ul>
+<h2>仿真对比</h2>
+<p>代码如下。<br />
+- 首先设置多普勒因子<code>dop</code>，插值方法，采样率与信号频率的比例ns。最小值取2，对应奈奎斯特频率。<br />
+- 之后对于每个ns值，生成相应的初始信号<code>a</code>，之后插值以对信号添加多普勒。因<code>spline</code>方法造成的误差最小，选择作为添加多普勒的方法。<br />
+- 采用不同的插值方法去除多普勒。因为插值造成信号长度变化，每次都只略去尾部6000个数据点。<br />
+- 之后画图，每个ns对应一张图，并注明实测SDR以及线性插值的理论SDR值以作对比。<br />
+</p>
+<div class="highlight"><pre><span class="n">dop</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">;</span>
+<span class="n">intermethod</span> <span class="o">=</span> <span class="err">&#39;</span><span class="n">nearest</span><span class="err">&#39;</span><span class="p">;</span><span class="o">%</span> <span class="n">nearest</span> <span class="n">linear</span> <span class="n">cubic</span> <span class="n">spline</span> 
+
+<span class="o">%</span><span class="n">n</span><span class="o">:</span> <span class="n">fs</span> <span class="o">/</span> <span class="n">fc</span>
+<span class="n">ns</span> <span class="o">=</span> <span class="mi">2</span><span class="o">:</span><span class="mi">7</span><span class="p">;</span>
+<span class="n">figure</span><span class="p">;</span>
+
+<span class="k">for</span> <span class="n">n</span> <span class="o">=</span> <span class="n">ns</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">rand</span><span class="p">()</span><span class="o">:</span><span class="mi">1</span><span class="o">:</span><span class="mi">50000</span><span class="p">)</span><span class="o">/</span><span class="n">n</span><span class="p">);</span>
+
+    <span class="n">b</span><span class="o">=</span><span class="n">interp1</span><span class="p">([</span><span class="mi">0</span><span class="o">:</span><span class="n">length</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">a</span><span class="p">,[</span><span class="mi">1</span><span class="o">-</span><span class="mi">1</span><span class="o">:</span><span class="n">length</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">-</span><span class="mi">6000</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">dop</span><span class="p">),</span><span class="err">&#39;</span><span class="n">spline</span><span class="err">&#39;</span><span class="p">);</span>
+
+    <span class="n">c</span><span class="o">=</span><span class="n">interp1</span><span class="p">([</span><span class="mi">1</span><span class="o">-</span><span class="mi">1</span><span class="o">:</span><span class="n">length</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">b</span><span class="p">,[</span><span class="mi">1</span><span class="o">-</span><span class="mi">1</span><span class="o">:</span><span class="n">length</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="o">-</span><span class="mi">6000</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">dop</span><span class="p">),</span><span class="n">intermethod</span><span class="p">);</span>
+
+    <span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="n">ceil</span><span class="p">(</span><span class="n">length</span><span class="p">(</span><span class="n">ns</span><span class="p">)</span><span class="o">/</span><span class="mi">3</span><span class="p">),</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+    <span class="n">plot</span><span class="p">(</span><span class="n">a</span><span class="p">(</span><span class="mi">29901</span><span class="o">:</span><span class="mi">30000</span><span class="p">));</span>
+    <span class="n">hold</span> <span class="n">on</span><span class="p">;</span>
+    <span class="n">plot</span><span class="p">(</span><span class="n">c</span><span class="p">(</span><span class="mi">29901</span><span class="o">:</span><span class="mi">30000</span><span class="p">),</span><span class="sc">&#39;r&#39;</span><span class="p">);</span>
+
+    <span class="n">error</span> <span class="o">=</span> <span class="n">sum</span><span class="p">(</span><span class="n">abs</span><span class="p">(</span><span class="n">a</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="mi">30000</span><span class="p">)</span><span class="o">-</span><span class="n">c</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="mi">30000</span><span class="p">))</span> <span class="p">.</span><span class="o">^</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="n">sum</span><span class="p">(</span><span class="n">abs</span><span class="p">(</span><span class="n">a</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="mi">30000</span><span class="p">))</span> <span class="p">.</span><span class="o">^</span><span class="mi">2</span><span class="p">);</span>
+    <span class="n">title</span><span class="p">([</span><span class="err">&#39;</span><span class="n">fs</span><span class="o">/</span><span class="n">fc</span> <span class="o">=</span> <span class="err">&#39;</span><span class="p">,</span><span class="n">num2str</span><span class="p">(</span><span class="n">n</span><span class="p">),</span><span class="err">&#39;</span> <span class="n">SDR</span> <span class="o">=</span> <span class="err">&#39;</span><span class="p">,</span><span class="n">num2str</span><span class="p">(</span><span class="mi">10</span><span class="o">*</span><span class="n">log10</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">error</span><span class="p">)),</span> <span class="err">&#39;</span><span class="n">dB</span> <span class="n">VS</span><span class="err">&#39;</span><span class="p">,</span> <span class="n">num2str</span><span class="p">(</span><span class="mi">40</span><span class="o">*</span><span class="n">log10</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">)),</span><span class="err">&#39;</span> <span class="n">dB</span><span class="err">&#39;</span><span class="p">])</span>
+
+<span class="n">end</span>
+</pre></div>
+
+
+<h2>仿真结果分析</h2>
+<ul>
+<li>临近点插值仿真结果：性能极差，无法使用。<br />
+<img alt="" src="img/![](img/20140429主定理.png" />  )<br />
+</li>
+<li>线性插值仿真结果：可见与理论值符合的较好。<br />
+<img alt="" src="img/20140724多普勒失真linear.jpg" /><br />
+</li>
+<li>分段三次Hermite插值插值仿真结果：大约提高5dB，但带来的是大量的计算。<br />
+<img alt="" src="img/20140724多普勒失真cubic.jpg" /><br />
+</li>
+<li>三次样条插值仿真结果：性能非常好，但最复杂。因为添加多普勒时也采用了样条插值，仿真结果加上3dB才应该是理论结果。<br />
+<img alt="" src="img/20140724多普勒失真spline.jpg" /><br />
+</li>
+</ul>
+<h2>结论</h2>
+<p>如果采用重采样来去除多普勒带来的影响，并且采用较为实用的线性插值法，若要达到约19dB的通信信噪比要求，需要提高采样率至少为6倍信号频率。<br />
+</p></div>
+	
+        <hr>
+    	   
+        <h2>Comments</h2>
+		<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'focustc'; 
+    var disqus_title = '多普勒失真信号重采样的Matlab仿真分析';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+        </div>
+        
+        <div class="span3">
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Site
+                </li>
+            
+                <li><a href="../../../archives.html">Archives</a>
+                <li><a href="../../../tags.html">Tags</a>
+                <li><a href="http://heloman.github.io/" rel="alternate">Atom feed</a></li>
+                                <li><a href="http://heloman.github.io/feeds/all.rss.xml" rel="alternate">RSS feed</a></li>
+                            </ul>
+            </div>
+
+
+                        <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Categories
+                </li>
+                
+                                <li><a href="../../../category/algorithm.html">Algorithm</a></li>
+                                <li><a href="../../../category/app.html">App</a></li>
+                                <li><a href="../../../category/c.html">C</a></li>
+                                <li><a href="../../../category/c.html">C++</a></li>
+                                <li><a href="../../../category/coding.html">Coding</a></li>
+                                <li><a href="../../../category/competition.html">Competition</a></li>
+                                <li><a href="../../../category/mooc.html">MOOC</a></li>
+                                <li><a href="../../../category/web.html">Web</a></li>
+                                <li><a href="../../../category/wireless-communication.html">Wireless Communication</a></li>
+                                <li><a href="../../../category/linux.html">linux</a></li>
+                                   
+            </ul>
+            </div>
+            
+
+                        <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Links
+                </li>
+            
+                            <li><a href="http://getpelican.com/">Pelican</a></li>
+                            <li><a href="http://python.org/">Python.org</a></li>
+                        </ul>
+            </div>
+            
+
+                        <div class="social">
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Social
+                </li>
+           
+                                <li><a href="http://weibo.com/focustc">Weibo</a></li>
+                                <li><a href="https://github.com/heloman">Github</a></li>
+                                <li><a href="http://blog.csdn.net/caozhk">CSDN Blog</a></li>
+                                <li><a href="http://heloman.github.io/feeds/all.rss.xml">Rss</a></li>
+                            </ul>
+            </div>
+            </div>
+            
+        </div>  
+    </div>     </div> 
+<footer>
+<br />
+<p><a href="../../..">Focus</a> &copy; heLomaN 2012</p>
+</footer>
+
+</div> <!-- /container -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-collapse.js"></script>
+<script>var _gaq=[['_setAccount','UA-43314222-1'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))</script>
+<a href="https://github.com/heloman"><img style="position: absolute; top: 40px; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" /></a>
+ 
+</body>
+</html>

@@ -237,6 +237,33 @@ by <a class="url fn" href="../author/heloman.html">heLomaN</a>
  
 
     <div class='article'>
+        <a href="../pages/2014/07/duo-pu-le-shi-zhen-xin-hao-zhong-cai-yang-de-matlabfang-zhen-fen-xi.html"><h2>多普勒失真信号重采样的Matlab仿真分析</h2></a>
+        <div class= "well small"> 2014-07-24
+
+by <a class="url fn" href="../author/heloman.html">heLomaN</a>
+ 
+
+
+ </div>
+        <div class="summary"><h1>多普勒失真信号重采样的Matlab仿真分析</h1>
+<h2>应用场景</h2>
+<ul>
+<li>水声通信指的是使用声信号在水中传输数据。相对而言，电磁信号在水中吸收严重衰减过快，光信号受水中悬浮颗粒的影响，也无法完成远距离传输。这两种信号的传播距离约为数百米，而声信号在水中传播距离达到数十千米，成为水下通信的首选方式。</li>
+<li>水声通信的一个重大挑战就是运动带来的多普勒。多普勒造成信号的频率漂移，影响系统性能，因此非常有必要消除多普勒带来的影响。而多普勒在时域的表现为信号的长度压缩和扩展，即'y(t) = x((1+a) * t)'，其中<code>a</code>为多普勒因子。而如果估计出多普勒因子，之后采用重采样技术就可以恢复得到原始信号<code>x(t) = y( t/(a+a) )</code>。</li>
+<li>重采样的意义就是插值，从一个信号插值得到多普勒影响前后的信号。而<code>1+a</code>一般为小数，虽然采用多相滤波可以达到很好的插值效果，但复杂度太高。相比之下，线性插值、样条插值等方式运算量小，在做数字系统的时候更加合适</li>
+</ul>
+<h2>Matlab一维插值</h2>
+<ul>
+<li>MATLAB中的插值函数为<code>interp1()</code>,其调用格式为 <code>yi ...</code></li></ul> <a class="btn btn-info xsmall" href="../pages/2014/07/duo-pu-le-shi-zhen-xin-hao-zhong-cai-yang-de-matlabfang-zhen-fen-xi.html">read more</a></div>
+    </div>	
+				
+    
+ 
+        
+
+ 
+
+    <div class='article'>
         <a href="../pages/2013/08/guo-wai-da-xue-sheng-tan-jing-yan-ru-he-zai-githubcan-yu-kai-yuan-open-source-on-github-your-first-contribution.html"><h2>国外大学生谈经验：如何在Github参与开源（Open Source on Github: Your First Contribution）</h2></a>
         <div class= "well small"> 2013-08-25
 
@@ -418,35 +445,6 @@ NOte：这是因为15的倍数多算了一遍，所以要减去。<br />
 我的方法是，斐波那契数列每三个连续的数中有一个为偶数，计算斐波那契数时用一个长度为3的数据完成缓存 ...</p> <a class="btn btn-info xsmall" href="../pages/2013/08/project-euler-001-006-jie-fa-zong-jie.html">read more</a></div>
     </div>	
 				
-    
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="../pages/2014/07/ruan-ying-jian-jie-kou-ke-cheng-da-gang.html"><h2>《软硬件接口》课程大纲</h2></a>
-        <div class= "well small"> 2014-07-16
-
-by <a class="url fn" href="../author/heloman.html">heLomaN</a>
- 
-
-
- </div>
-        <div class="summary"><h1>《软硬件接口》课程大纲</h1>
-<p>Coursera课程 <a href="https://class.coursera.org/hwswinterface-002">The Hardware/Software Interface</a>是华盛顿大学提供的一门课程，其中汇编语言、进程结构、Java实现等章节内容我认为对于学编程的同学来说非常有用。教学环境是Fedora，顺带介绍了一些常用工具的使用。</p>
-<h2>课程大纲</h2>
-<ul>
-<li>这门课程将会让学生知道当软件运行时到底发生了什么，并说明这个问题可以通过硬件架构层、汇编层、C语言层和Java层等数层抽象解答。- </li>
-<li>这门课程的核心是关于C、汇编、以及底层数据表示的，但同时与更高层（Java语言实现机理）、更底层（处理器通用架构）、操作系统（无关操作系统的实现）相关。</li>
-<li>对于那些想要专注于高层抽象的计算机专业学生来说，这门课可能是他们学习到的关于C语言及以更下层的唯一课程。不过，他们大多能够同时学到一些系统编程、硬件设计与实现、操作系统、编译器等知识。</li>
-<li>对于对硬件、嵌入式系统、计算机工程、计算机架构等感兴趣的学生来说，这门课程是一门入门课程，后续课程会在特定领域更加深入，并且会关注更下层的硬件实现、电路设计等。</li>
-</ul>
-<h3>课程主题</h3>
-<p>本课程主要有三个主题。<br />
-1. 表示：不同的数据类型，如整数和结构体数组，在内存中如何存在 ...</p> <a class="btn btn-info xsmall" href="../pages/2014/07/ruan-ying-jian-jie-kou-ke-cheng-da-gang.html">read more</a></div>
-    </div>	
-				
             <div class="pagination">
 <ul>
     <li class="prev disabled"><a href="#">&larr; Previous</a></li>
@@ -492,6 +490,7 @@ by <a class="url fn" href="../author/heloman.html">heLomaN</a>
                                 <li><a href="../category/competition.html">Competition</a></li>
                                 <li><a href="../category/mooc.html">MOOC</a></li>
                                 <li><a href="../category/web.html">Web</a></li>
+                                <li><a href="../category/wireless-communication.html">Wireless Communication</a></li>
                                 <li><a href="../category/linux.html">linux</a></li>
                                    
             </ul>

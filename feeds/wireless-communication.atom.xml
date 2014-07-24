@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Focus</title><link href="http://heloman.github.io/" rel="alternate"></link><link href="http://heloman.github.io/feeds/wireless-communication.atom.xml" rel="self"></link><id>http://heloman.github.io/</id><updated>2014-07-24T00:00:00+08:00</updated><entry><title>多普勒失真信号重采样的Matlab仿真分析</title><link href="http://heloman.github.io/pages/2014/07/duo-pu-le-shi-zhen-xin-hao-zhong-cai-yang-de-matlabfang-zhen-fen-xi.html" rel="alternate"></link><updated>2014-07-24T00:00:00+08:00</updated><author><name>heLomaN</name></author><id>tag:heloman.github.io,2014-07-24:pages/2014/07/duo-pu-le-shi-zhen-xin-hao-zhong-cai-yang-de-matlabfang-zhen-fen-xi.html</id><summary type="html">&lt;h1&gt;多普勒失真信号重采样的Matlab仿真分析&lt;/h1&gt;
+&lt;h2&gt;应用场景&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;水声通信指的是使用声信号在水中传输数据。相对而言，电磁信号在水中吸收严重衰减过快，光信号受水中悬浮颗粒的影响，也无法完成远距离传输。这两种信号的传播距离约为数百米，而声信号在水中传播距离达到数十千米，成为水下通信的首选方式。&lt;/li&gt;
+&lt;li&gt;水声通信的一个重大挑战就是运动带来的多普勒。多普勒造成信号的频率漂移，影响系统性能，因此非常有必要消除多普勒带来的影响。而多普勒在时域的表现为信号的长度压缩和扩展，即'y(t) = x((1+a) * t)'，其中&lt;code&gt;a&lt;/code&gt;为多普勒因子。而如果估计出多普勒因子，之后采用重采样技术就可以恢复得到原始信号&lt;code&gt;x(t) = y( t/(a+a) )&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;重采样的意义就是插值，从一个信号插值得到多普勒影响前后的信号。而&lt;code&gt;1+a&lt;/code&gt;一般为小数，虽然采用多相滤波可以达到很好的插值效果，但复杂度太高。相比之下，线性插值、样条插值等方式运算量小，在做数字系统的时候更加合适&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Matlab一维插值&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;MATLAB中的插值函数为&lt;code&gt;interp1()&lt;/code&gt;,其调用格式为 &lt;code&gt;yi=interp1(x,y,xi, 'method')&lt;/code&gt;。其中x,y为观测数据点,xi为插值(自变量)向量,yi为xi的插值结果(函数值)。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;'method'&lt;/code&gt;表示采用的插值方法。取值'nearest'为最邻近插值，'linear'是线性插值，'spline'是三次样条插值，'cubic'为分段三次Hermite插值。默认情况为线性插值，三次样条效果最平滑，三次效果多项式介于两者之间。&lt;/li&gt;
+&lt;li&gt;线性插值：通过所在位置相邻两点的值来插值。已知f(a)和f(c)，b在a,c中间，求f(b)的公式为：&lt;code&gt;f(b) = f(a) + (b-a)/(c-a) *[f(c) - f(a)]&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;分段三次Hermite插值：分段让邻近两点的导数相同，曲线更平滑。&lt;/li&gt;
+&lt;li&gt;样条插值：样条插值通常比多项式插值好用。用低阶的样条插值能产生和高阶的多项式插值类似的效果，并且可以避免龙格现象。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;线性插值的误差&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;插值不免会造成信号失真，定义原始信号功率与噪声功率的比值为信干比，计算公式为：&lt;code&gt;SDR = 10 * log10( power(x(t)) / power(x(t) - x'(t) )&lt;/code&gt;。&lt;code&gt;x'(t)&lt;/code&gt;为插值后得到的信号。&lt;/li&gt;
+&lt;li&gt;而对于线性插值，SDR与信号采样频率&lt;code&gt;fs&lt;/code&gt;和信号频率&lt;code&gt;f&lt;/code&gt;的比值有近似如下关系：&lt;code&gt;SDR(dB) = 40 * log10( fs/f /2 )&lt;/code&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;仿真对比&lt;/h2&gt;
+&lt;p&gt;代码如下。&lt;br /&gt;
+- 首先设置多普勒因子&lt;code&gt;dop&lt;/code&gt;，插值方法，采样率与信号频率的比例ns。最小值取2，对应奈奎斯特频率。&lt;br /&gt;
+- 之后对于每个ns值，生成相应的初始信号&lt;code&gt;a&lt;/code&gt;，之后插值以对信号添加多普勒。因&lt;code&gt;spline&lt;/code&gt;方法造成的误差最小，选择作为添加多普勒的方法。&lt;br /&gt;
+- 采用不同的插值方法去除多普勒。因为插值造成信号长度变化，每次都只略去尾部6000个数据点。&lt;br /&gt;
+- 之后画图，每个ns对应一张图，并注明实测SDR以及线性插值的理论SDR值以作对比。&lt;br /&gt;
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;dop&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;0.05&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;intermethod&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;nearest&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;nearest&lt;/span&gt; &lt;span class="n"&gt;linear&lt;/span&gt; &lt;span class="n"&gt;cubic&lt;/span&gt; &lt;span class="n"&gt;spline&lt;/span&gt; 
+
+&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;fs&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;fc&lt;/span&gt;
+&lt;span class="n"&gt;ns&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;figure&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;ns&lt;/span&gt;
+    &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;pi&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;rand&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;50000&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+    &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;interp1&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;length&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;length&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;6000&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;dop&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;spline&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+    &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;interp1&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;length&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;,[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;length&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;6000&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;dop&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;&lt;span class="n"&gt;intermethod&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+    &lt;span class="n"&gt;subplot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;ceil&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;length&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ns&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="n"&gt;plot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;29901&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;30000&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+    &lt;span class="n"&gt;hold&lt;/span&gt; &lt;span class="n"&gt;on&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="n"&gt;plot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;29901&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;30000&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;&lt;span class="sc"&gt;&amp;#39;r&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+    &lt;span class="n"&gt;error&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sum&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;abs&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;30000&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;30000&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;^&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;sum&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;abs&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;30000&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;^&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="n"&gt;title&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;fs&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;fc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;num2str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt; &lt;span class="n"&gt;SDR&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;num2str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;log10&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;error&lt;/span&gt;&lt;span class="p"&gt;)),&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;dB&lt;/span&gt; &lt;span class="n"&gt;VS&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;num2str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;40&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;log10&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)),&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt; &lt;span class="n"&gt;dB&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+
+&lt;span class="n"&gt;end&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;仿真结果分析&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;临近点插值仿真结果：性能极差，无法使用。&lt;br /&gt;
+&lt;img alt="" src="img/![](img/20140429主定理.png" /&gt;  )&lt;br /&gt;
+&lt;/li&gt;
+&lt;li&gt;线性插值仿真结果：可见与理论值符合的较好。&lt;br /&gt;
+&lt;img alt="" src="img/20140724多普勒失真linear.jpg" /&gt;&lt;br /&gt;
+&lt;/li&gt;
+&lt;li&gt;分段三次Hermite插值插值仿真结果：大约提高5dB，但带来的是大量的计算。&lt;br /&gt;
+&lt;img alt="" src="img/20140724多普勒失真cubic.jpg" /&gt;&lt;br /&gt;
+&lt;/li&gt;
+&lt;li&gt;三次样条插值仿真结果：性能非常好，但最复杂。因为添加多普勒时也采用了样条插值，仿真结果加上3dB才应该是理论结果。&lt;br /&gt;
+&lt;img alt="" src="img/20140724多普勒失真spline.jpg" /&gt;&lt;br /&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;结论&lt;/h2&gt;
+&lt;p&gt;如果采用重采样来去除多普勒带来的影响，并且采用较为实用的线性插值法，若要达到约19dB的通信信噪比要求，需要提高采样率至少为6倍信号频率。&lt;br /&gt;
+&lt;/p&gt;</summary><category term="重采样"></category><category term="Matlab"></category></entry></feed>
