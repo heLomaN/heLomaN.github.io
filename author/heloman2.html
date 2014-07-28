@@ -58,6 +58,52 @@
  
 
     <div class='article'>
+        <a href="../pages/2014/07/ru-he-xie-chu-ge-jiao-hao-de-kuai-su-pai-xu-cheng-xu.html"><h2>如何写出一个较好的快速排序程序</h2></a>
+        <div class= "well small"> 2014-07-27
+
+by <a class="url fn" href="../author/heloman.html">heLomaN</a>
+ 
+
+
+ </div>
+        <div class="summary"><h2>写出一个较好的快速排序程序</h2>
+<ul>
+<li>快速排序是常用的排序算法之一，但要想写出一个又快又准的使用程序，就不是那么简单了</li>
+</ul>
+<h3>需要注意的事项</h3>
+<ul>
+<li>首先要写正确。通常使用递归实现。其递归相当于二叉树展开，因此如果要用迭代实现的话需要使用一个队列来保存后续遍历信息。<br />
+</li>
+<li>快速排序需要找到一个pivot值，如果顺序选择pivot则易造成N^2的复杂度，如果使用随机数则效果最好，但开销又太大，采取三数中值法比较合适。三数中值法指的是选取第一个值，最后一个值，数组中间的值的中值。有文献表明可以提升5%的运行时间。<br />
+</li>
+<li>当数组长度较小时，如10个元素以下，最好使用插入排序或者选择排序完成，以防止复杂度常数因子过大或多次函数调用带来的开销。而递归到底层数组长度总是会变小的，因此这么做非常有必要。<br />
+</li>
+<li>在合并前后两部分数组时，采用两边夹方法，在前后两部分各找到一个大于和小于的值再交换。相比通常情况下找到比pivot小的值就进行交换，能提高运行效率。<br />
+</li>
+</ul>
+<h3>实现代码</h3>
+<ul>
+<li>代码如下。包括插入排序insert_sort，递归函数，三分中值函数三个辅助函数。<br />
+</li>
+<li>三分中值函数其实采用的是插入排序。通过三次比较，确定中值。<br />
+</li>
+<li>插值算法使用临时变量tmp避免了大量swap函数调用。<br />
+</li>
+</ul>
+<div class="highlight"><pre><span class="vi">#include</span><span class="o">&lt;</span><span class="nx">iostream</span><span class="o">&gt;</span>
+<span class="vi">#include</span><span class="o">&lt;</span><span class="nx">iomanip</span><span class="o">&gt;</span>
+<span class="vi">#include</span><span class="o">&lt;</span><span class="nx">vector</span><span class="o">&gt;</span>
+<span class="vi">#include</span><span class="o">&lt;</span><span class="nx">cstdlib</span><span class="o">&gt;</span>
+<span class="vi">#include</span><span class="o">&lt;</span><span class="nx">ctime ...</span></pre></div> <a class="btn btn-info xsmall" href="../pages/2014/07/ru-he-xie-chu-ge-jiao-hao-de-kuai-su-pai-xu-cheng-xu.html">read more</a></div>
+    </div>	
+				
+    
+ 
+        
+
+ 
+
+    <div class='article'>
         <a href="../pages/2014/07/ruan-ying-jian-jie-kou-ke-cheng-da-gang.html"><h2>《软硬件接口》课程大纲</h2></a>
         <div class= "well small"> 2014-07-16
 

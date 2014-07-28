@@ -58,8 +58,8 @@
 
     <div class='article'>
         <div class="content-title">
-            <a href="./pages/2014/07/duo-pu-le-shi-zhen-xin-hao-zhong-cai-yang-de-matlabfang-zhen-fen-xi.html"><h1>多普勒失真信号重采样的Matlab仿真分析</h1></a>
-            2014-07-24
+            <a href="./pages/2014/07/ru-he-xie-chu-ge-jiao-hao-de-kuai-su-pai-xu-cheng-xu.html"><h1>如何写出一个较好的快速排序程序</h1></a>
+            2014-07-27
 
 by <a class="url fn" href="./author/heloman.html">heLomaN</a>
  
@@ -68,7 +68,134 @@ by <a class="url fn" href="./author/heloman.html">heLomaN</a>
  
         </div>
         
-        <div><h1>多普勒失真信号重采样的Matlab仿真分析</h1>
+        <div><h2>写出一个较好的快速排序程序</h2>
+<ul>
+<li>快速排序是常用的排序算法之一，但要想写出一个又快又准的使用程序，就不是那么简单了</li>
+</ul>
+<h3>需要注意的事项</h3>
+<ul>
+<li>首先要写正确。通常使用递归实现。其递归相当于二叉树展开，因此如果要用迭代实现的话需要使用一个队列来保存后续遍历信息。<br />
+</li>
+<li>快速排序需要找到一个pivot值，如果顺序选择pivot则易造成N^2的复杂度，如果使用随机数则效果最好，但开销又太大，采取三数中值法比较合适。三数中值法指的是选取第一个值，最后一个值，数组中间的值的中值。有文献表明可以提升5%的运行时间。<br />
+</li>
+<li>当数组长度较小时，如10个元素以下，最好使用插入排序或者选择排序完成，以防止复杂度常数因子过大或多次函数调用带来的开销。而递归到底层数组长度总是会变小的，因此这么做非常有必要。<br />
+</li>
+<li>在合并前后两部分数组时，采用两边夹方法，在前后两部分各找到一个大于和小于的值再交换。相比通常情况下找到比pivot小的值就进行交换，能提高运行效率。<br />
+</li>
+</ul>
+<h3>实现代码</h3>
+<ul>
+<li>代码如下。包括插入排序insert_sort，递归函数，三分中值函数三个辅助函数。<br />
+</li>
+<li>三分中值函数其实采用的是插入排序。通过三次比较，确定中值。<br />
+</li>
+<li>插值算法使用临时变量tmp避免了大量swap函数调用。<br />
+</li>
+</ul>
+<div class="highlight"><pre><span class="vi">#include</span><span class="o">&lt;</span><span class="nx">iostream</span><span class="o">&gt;</span>
+<span class="vi">#include</span><span class="o">&lt;</span><span class="nx">iomanip</span><span class="o">&gt;</span>
+<span class="vi">#include</span><span class="o">&lt;</span><span class="nx">vector</span><span class="o">&gt;</span>
+<span class="vi">#include</span><span class="o">&lt;</span><span class="nx">cstdlib</span><span class="o">&gt;</span>
+<span class="vi">#include</span><span class="o">&lt;</span><span class="nx">ctime</span><span class="o">&gt;</span>
+<span class="vi">#include</span><span class="o">&lt;</span><span class="nx">algorithm</span><span class="o">&gt;</span>
+
+<span class="nx">using</span> <span class="nx">namespace</span> <span class="nx">std</span><span class="p">;</span>
+
+<span class="k">inline</span> <span class="bp">void</span> <span class="nx">swap</span><span class="p">(</span><span class="nx">vector</span><span class="o">&lt;</span><span class="nx">int</span><span class="o">&gt;&amp;</span> <span class="nx">num</span><span class="p">,</span> <span class="nx">int</span> <span class="nx">p</span><span class="p">,</span> <span class="nx">int</span> <span class="nx">q</span><span class="p">){</span>
+    <span class="nx">int</span> <span class="n">t</span> <span class="o">=</span> <span class="nx">num</span><span class="err">[</span><span class="nx">p</span><span class="cp">]</span>;
+    num<span class="cp">[</span><span class="nx">p</span><span class="cp">]</span> = num<span class="cp">[</span><span class="nx">q</span><span class="cp">]</span>;
+    num<span class="cp">[</span><span class="nx">q</span><span class="cp">]</span> = t;
+}
+
+void insert_sort(vector<span class="nt">&lt;int&gt;</span><span class="err">&amp;</span> num){
+    int tmp, j;
+    for (int i = 1; i <span class="nt">&lt; num</span><span class="err">.</span><span class="na">size</span><span class="err">();</span> <span class="na">i</span><span class="err">++){</span>
+        <span class="na">tmp =</span><span class="err"> </span><span class="s">num</span><span class="cp">[</span><span class="nx">i</span><span class="cp">]</span><span class="s">;</span>
+        <span class="na">for</span> <span class="err">(</span><span class="na">j =</span><span class="err"> </span><span class="s">i</span> <span class="na">-</span> <span class="na">1</span><span class="err">;</span> <span class="na">j</span> <span class="nt">&gt;</span>= 0 <span class="err">&amp;&amp;</span> num<span class="cp">[</span><span class="nx">j</span><span class="cp">]</span> &gt; tmp; j--)
+            num<span class="cp">[</span><span class="nx">j</span> <span class="o">+</span> <span class="mi">1</span><span class="cp">]</span> = num<span class="cp">[</span><span class="nx">j</span><span class="cp">]</span>;
+        num<span class="cp">[</span><span class="nx">j</span> <span class="o">+</span> <span class="mi">1</span><span class="cp">]</span> =tmp;
+    }
+}
+
+int quick_sort_sub(vector<span class="nt">&lt;int&gt;</span><span class="err">&amp;</span> num, int p, int q){
+    if (p &gt;= q)
+        return 0;
+
+    // if 4 elements or less, use insert sort
+    if (p + 10 &gt; q){
+        vector<span class="nt">&lt;int&gt;</span> tnum(num.begin() + p, num.begin() + q + 1);
+        insert_sort(tnum);
+        for (int i = 0; i <span class="nt">&lt; tnum</span><span class="err">.</span><span class="na">size</span><span class="err">();</span> <span class="na">i</span><span class="err">++)</span>
+            <span class="na">num</span><span class="cp">[</span><span class="nx">p</span> <span class="o">+</span> <span class="nx">i</span><span class="cp">]</span><span class="na"> =</span><span class="err"> </span><span class="s">tnum</span><span class="cp">[</span><span class="nx">i</span><span class="cp">]</span><span class="s">;</span>
+    <span class="err">}</span>
+
+    <span class="na">int</span> <span class="na">idx =</span><span class="err"> </span><span class="s">quick_three_partition(num,</span> <span class="na">p</span><span class="err">,</span> <span class="na">q</span><span class="err">);</span>
+    <span class="na">swap</span><span class="err">(</span><span class="na">num</span><span class="err">,</span> <span class="na">idx</span><span class="err">,</span> <span class="na">q</span><span class="err">);</span>
+
+    <span class="na">int</span> <span class="na">pivot =</span><span class="err"> </span><span class="s">num</span><span class="cp">[</span><span class="nx">q</span><span class="cp">]</span><span class="s">;</span>
+    <span class="na">int</span> <span class="na">left =</span><span class="err"> </span><span class="s">p,</span> <span class="na">right =</span><span class="err"> </span><span class="s">q</span> <span class="na">-</span> <span class="na">1</span><span class="err">;</span>
+    <span class="na">while</span> <span class="err">(</span><span class="na">1</span><span class="err">){</span>
+        <span class="na">while</span> <span class="err">(</span><span class="na">num</span><span class="cp">[</span><span class="nb">left</span><span class="cp">]</span> <span class="err">&lt;</span> <span class="na">pivot</span><span class="err">)</span>
+            <span class="err">++</span><span class="na">left</span><span class="err">;</span>
+        <span class="na">while</span> <span class="err">(</span><span class="na">num</span><span class="cp">[</span><span class="nb">right</span><span class="cp">]</span> <span class="nt">&gt;</span>= pivot)
+            --right;
+        if (left <span class="nt">&lt; right</span><span class="err">)</span>
+            <span class="na">swap</span><span class="err">(</span><span class="na">num</span><span class="err">,</span> <span class="na">left</span><span class="err">,</span> <span class="na">right</span><span class="err">);</span>
+        <span class="na">else</span>
+            <span class="na">break</span><span class="err">;</span>
+    <span class="err">}</span>
+    <span class="na">swap</span><span class="err">(</span><span class="na">num</span><span class="err">,</span> <span class="na">left</span><span class="err">,</span> <span class="na">q</span><span class="err">);</span>
+    <span class="na">quick_sort_sub</span><span class="err">(</span><span class="na">num</span><span class="err">,</span> <span class="na">p</span><span class="err">,</span> <span class="na">left</span> <span class="na">-</span> <span class="na">1</span><span class="err">);</span>
+    <span class="na">quick_sort_sub</span><span class="err">(</span><span class="na">num</span><span class="err">,</span> <span class="na">left</span> <span class="err">+</span> <span class="na">1</span><span class="err">,</span> <span class="na">q</span><span class="err">);</span>
+
+    <span class="na">return</span> <span class="na">left</span><span class="err">;</span>
+<span class="err">}</span>
+
+<span class="na">void</span> <span class="na">quick_sort</span><span class="err">(</span><span class="na">vector</span><span class="err">&lt;</span><span class="na">int</span><span class="nt">&gt;</span><span class="err">&amp;</span> num){
+    quick_sort_sub(num, 0, num.size() - 1);
+}
+
+int main(){
+    const int n = 10;
+    /*int num_array<span class="cp">[</span><span class="nb">n</span><span class="cp">]</span>= {2,1};
+    vector<span class="nt">&lt;int&gt;</span> num(num_array, num_array + n);*/
+
+    srand( time(NULL) );
+    vector<span class="nt">&lt;int&gt;</span> num(n);
+    for (auto<span class="err">&amp;</span> e : num)
+        e = rand() % n;
+
+    quick_sort(num);
+
+    for (auto<span class="err">&amp;</span> e : num)
+        cout <span class="err">&lt;</span><span class="nt">&lt; setw</span><span class="err">(</span><span class="na">4</span><span class="err">)</span> <span class="err">&lt;&lt;</span> <span class="na">e</span> <span class="err">&lt;&lt;</span> <span class="err">&#39;</span> <span class="err">&#39;;</span>
+    <span class="na">cout</span> <span class="err">&lt;&lt;</span> <span class="na">endl</span><span class="err">;</span>
+
+    <span class="na">cout</span> <span class="err">&lt;&lt;</span> <span class="err">&quot;</span><span class="na">vector</span> <span class="na">is</span> <span class="na">sorted</span><span class="err">?</span> <span class="na">:</span> <span class="err">&quot;</span> <span class="err">&lt;&lt;</span> <span class="na">is_sorted</span><span class="err">(</span><span class="na">num</span><span class="err">.</span><span class="na">begin</span><span class="err">(),</span> <span class="na">num</span><span class="err">.</span><span class="na">end</span><span class="err">())</span> <span class="err">&lt;&lt;</span> <span class="na">endl</span><span class="err">;</span>
+
+    <span class="na">return</span> <span class="na">0</span><span class="err">;</span>
+
+<span class="err">}</span>
+</pre></div></div>
+        <hr />
+    </div>
+		
+    
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="./pages/2014/07/duo-pu-le-shi-zhen-xin-hao-zhong-cai-yang-de-matlabfang-zhen-fen-xi.html"><h2>多普勒失真信号重采样的Matlab仿真分析</h2></a>
+        <div class= "well small"> 2014-07-24
+
+by <a class="url fn" href="./author/heloman.html">heLomaN</a>
+ 
+
+
+ </div>
+        <div class="summary"><h1>多普勒失真信号重采样的Matlab仿真分析</h1>
 <h2>应用场景</h2>
 <ul>
 <li>水声通信指的是使用声信号在水中传输数据。相对而言，电磁信号在水中吸收严重衰减过快，光信号受水中悬浮颗粒的影响，也无法完成远距离传输。这两种信号的传播距离约为数百米，而声信号在水中传播距离达到数十千米，成为水下通信的首选方式。</li>
@@ -77,71 +204,9 @@ by <a class="url fn" href="./author/heloman.html">heLomaN</a>
 </ul>
 <h2>Matlab一维插值</h2>
 <ul>
-<li>MATLAB中的插值函数为<code>interp1()</code>,其调用格式为 <code>yi=interp1(x,y,xi, 'method')</code>。其中x,y为观测数据点,xi为插值(自变量)向量,yi为xi的插值结果(函数值)。</li>
-<li><code>'method'</code>表示采用的插值方法。取值'nearest'为最邻近插值，'linear'是线性插值，'spline'是三次样条插值，'cubic'为分段三次Hermite插值。默认情况为线性插值，三次样条效果最平滑，三次效果多项式介于两者之间。</li>
-<li>线性插值：通过所在位置相邻两点的值来插值。已知f(a)和f(c)，b在a,c中间，求f(b)的公式为：<code>f(b) = f(a) + (b-a)/(c-a) *[f(c) - f(a)]</code>。</li>
-<li>分段三次Hermite插值：分段让邻近两点的导数相同，曲线更平滑。</li>
-<li>样条插值：样条插值通常比多项式插值好用。用低阶的样条插值能产生和高阶的多项式插值类似的效果，并且可以避免龙格现象。</li>
-</ul>
-<h2>线性插值的误差</h2>
-<ul>
-<li>插值不免会造成信号失真，定义原始信号功率与噪声功率的比值为信干比，计算公式为：<code>SDR = 10 * log10( power(x(t)) / power(x(t) - x'(t) )</code>。<code>x'(t)</code>为插值后得到的信号。</li>
-<li>而对于线性插值，SDR与信号采样频率<code>fs</code>和信号频率<code>f</code>的比值有近似如下关系：<code>SDR(dB) = 40 * log10( fs/f /2 )</code>。</li>
-</ul>
-<h2>仿真对比</h2>
-<p>代码如下。<br />
-- 首先设置多普勒因子<code>dop</code>，插值方法，采样率与信号频率的比例ns。最小值取2，对应奈奎斯特频率。<br />
-- 之后对于每个ns值，生成相应的初始信号<code>a</code>，之后插值以对信号添加多普勒。因<code>spline</code>方法造成的误差最小，选择作为添加多普勒的方法。<br />
-- 采用不同的插值方法去除多普勒。因为插值造成信号长度变化，每次都只略去尾部6000个数据点。<br />
-- 之后画图，每个ns对应一张图，并注明实测SDR以及线性插值的理论SDR值以作对比。<br />
-</p>
-<div class="highlight"><pre><span class="n">dop</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">;</span>
-<span class="n">intermethod</span> <span class="o">=</span> <span class="err">&#39;</span><span class="n">nearest</span><span class="err">&#39;</span><span class="p">;</span><span class="o">%</span> <span class="n">nearest</span> <span class="n">linear</span> <span class="n">cubic</span> <span class="n">spline</span> 
-
-<span class="o">%</span><span class="n">n</span><span class="o">:</span> <span class="n">fs</span> <span class="o">/</span> <span class="n">fc</span>
-<span class="n">ns</span> <span class="o">=</span> <span class="mi">2</span><span class="o">:</span><span class="mi">7</span><span class="p">;</span>
-<span class="n">figure</span><span class="p">;</span>
-
-<span class="k">for</span> <span class="n">n</span> <span class="o">=</span> <span class="n">ns</span>
-    <span class="n">a</span> <span class="o">=</span> <span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">rand</span><span class="p">()</span><span class="o">:</span><span class="mi">1</span><span class="o">:</span><span class="mi">50000</span><span class="p">)</span><span class="o">/</span><span class="n">n</span><span class="p">);</span>
-
-    <span class="n">b</span><span class="o">=</span><span class="n">interp1</span><span class="p">([</span><span class="mi">0</span><span class="o">:</span><span class="n">length</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">a</span><span class="p">,[</span><span class="mi">1</span><span class="o">-</span><span class="mi">1</span><span class="o">:</span><span class="n">length</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">-</span><span class="mi">6000</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">dop</span><span class="p">),</span><span class="err">&#39;</span><span class="n">spline</span><span class="err">&#39;</span><span class="p">);</span>
-
-    <span class="n">c</span><span class="o">=</span><span class="n">interp1</span><span class="p">([</span><span class="mi">1</span><span class="o">-</span><span class="mi">1</span><span class="o">:</span><span class="n">length</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">b</span><span class="p">,[</span><span class="mi">1</span><span class="o">-</span><span class="mi">1</span><span class="o">:</span><span class="n">length</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="o">-</span><span class="mi">6000</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">dop</span><span class="p">),</span><span class="n">intermethod</span><span class="p">);</span>
-
-    <span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="n">ceil</span><span class="p">(</span><span class="n">length</span><span class="p">(</span><span class="n">ns</span><span class="p">)</span><span class="o">/</span><span class="mi">3</span><span class="p">),</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
-    <span class="n">plot</span><span class="p">(</span><span class="n">a</span><span class="p">(</span><span class="mi">29901</span><span class="o">:</span><span class="mi">30000</span><span class="p">));</span>
-    <span class="n">hold</span> <span class="n">on</span><span class="p">;</span>
-    <span class="n">plot</span><span class="p">(</span><span class="n">c</span><span class="p">(</span><span class="mi">29901</span><span class="o">:</span><span class="mi">30000</span><span class="p">),</span><span class="sc">&#39;r&#39;</span><span class="p">);</span>
-
-    <span class="n">error</span> <span class="o">=</span> <span class="n">sum</span><span class="p">(</span><span class="n">abs</span><span class="p">(</span><span class="n">a</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="mi">30000</span><span class="p">)</span><span class="o">-</span><span class="n">c</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="mi">30000</span><span class="p">))</span> <span class="p">.</span><span class="o">^</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="n">sum</span><span class="p">(</span><span class="n">abs</span><span class="p">(</span><span class="n">a</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="mi">30000</span><span class="p">))</span> <span class="p">.</span><span class="o">^</span><span class="mi">2</span><span class="p">);</span>
-    <span class="n">title</span><span class="p">([</span><span class="err">&#39;</span><span class="n">fs</span><span class="o">/</span><span class="n">fc</span> <span class="o">=</span> <span class="err">&#39;</span><span class="p">,</span><span class="n">num2str</span><span class="p">(</span><span class="n">n</span><span class="p">),</span><span class="err">&#39;</span> <span class="n">SDR</span> <span class="o">=</span> <span class="err">&#39;</span><span class="p">,</span><span class="n">num2str</span><span class="p">(</span><span class="mi">10</span><span class="o">*</span><span class="n">log10</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">error</span><span class="p">)),</span> <span class="err">&#39;</span><span class="n">dB</span> <span class="n">VS</span><span class="err">&#39;</span><span class="p">,</span> <span class="n">num2str</span><span class="p">(</span><span class="mi">40</span><span class="o">*</span><span class="n">log10</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">)),</span><span class="err">&#39;</span> <span class="n">dB</span><span class="err">&#39;</span><span class="p">])</span>
-
-<span class="n">end</span>
-</pre></div>
-
-
-<h2>仿真结果分析</h2>
-<ul>
-<li>临近点插值仿真结果：性能极差，无法使用。<br />
-<img alt="" src="img/![](img/20140429主定理.png" />  )<br />
-</li>
-<li>线性插值仿真结果：可见与理论值符合的较好。<br />
-<img alt="" src="img/20140724多普勒失真linear.jpg" /><br />
-</li>
-<li>分段三次Hermite插值插值仿真结果：大约提高5dB，但带来的是大量的计算。<br />
-<img alt="" src="img/20140724多普勒失真cubic.jpg" /><br />
-</li>
-<li>三次样条插值仿真结果：性能非常好，但最复杂。因为添加多普勒时也采用了样条插值，仿真结果加上3dB才应该是理论结果。<br />
-<img alt="" src="img/20140724多普勒失真spline.jpg" /><br />
-</li>
-</ul>
-<h2>结论</h2>
-<p>如果采用重采样来去除多普勒带来的影响，并且采用较为实用的线性插值法，若要达到约19dB的通信信噪比要求，需要提高采样率至少为6倍信号频率。<br />
-</p></div>
-        <hr />
-    </div>
-		
+<li>MATLAB中的插值函数为<code>interp1()</code>,其调用格式为 <code>yi ...</code></li></ul> <a class="btn btn-info xsmall" href="./pages/2014/07/duo-pu-le-shi-zhen-xin-hao-zhong-cai-yang-de-matlabfang-zhen-fen-xi.html">read more</a></div>
+    </div>	
+				
     
  
         
@@ -415,38 +480,6 @@ by <a class="url fn" href="./author/heloman.html">heLomaN</a>
 <li><strong>T(n) = O(n^d ), if a &lt; b^d</strong><br />
 </li>
 <li><strong>T(n) = O(n^logb(a))), if a &gt; b^d ...</strong></li></ul> <a class="btn btn-info xsmall" href="./pages/2014/04/zhu-ding-li-de-zheng-ming-ji-ying-yong-ju-li.html">read more</a></div>
-    </div>	
-				
-    
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="./pages/2014/04/map-reduceyuan-li.html"><h2>Map-Reduce原理</h2></a>
-        <div class= "well small"> 2014-04-22
-
-by <a class="url fn" href="./author/heloman.html">heLomaN</a>
- 
-
-
- </div>
-        <div class="summary"><h1>Map-Reduce</h1>
-<p>Map-Reduce是由Google在2004年提出的大数据并行编程架构，分为Map（映射）和Reduce（化简）两个步骤，因此得名。它隐藏并行化、容错、数据分布、负载均衡等细节，可以搭建在普通PC上，程序员可以很方便完成大数据并行编程。</p>
-<h2>并行运算的效率</h2>
-<ul>
-<li>假如使用1个处理器花费T1时长可以完成任务，而使用了p个处理器需要Tp时长。那么加速比为：S(Speeup) = T1/Tp，效率为：E = S/p = T1 / (p Tp) <br />
-</li>
-<li>一般效率都小于1，而且p越大效率越低，但是在数据集增大时，效率会相应的有所提高。<br />
-</li>
-</ul>
-<h2>传统的并行处理架构</h2>
-<h3>数据并行架构：共享内存-分割任务</h3>
-<ul>
-<li>内存（数据）是共享的，把任务分为p个部分，分别由p个处理器完成。为防止冲突，每个处理器都要在开始工作时对使用的数据段加锁，以阻塞其他任务使用这一数据段。任务完成之后，才会解锁。<br />
-</li>
-<li>很显然，如果p个处理器同时对不同的数据段进行处理，效率是很高的。但如果有冲突 ...</li></ul> <a class="btn btn-info xsmall" href="./pages/2014/04/map-reduceyuan-li.html">read more</a></div>
     </div>	
 				
             <div class="pagination">

@@ -1,5 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Focus</title><link>http://heloman.github.io/</link><description></description><atom:link href="http://heloman.github.io/feeds/algorithm.rss.xml" rel="self"></atom:link><lastBuildDate>Tue, 22 Jul 2014 00:00:00 +0800</lastBuildDate><item><title>《剑指offer》解题笔记</title><link>http://heloman.github.io/pages/2014/07/jian-zhi-offer-jie-ti-bi-ji.html</link><description>&lt;h1&gt;《剑指offer》解题笔记&lt;/h1&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Focus</title><link>http://heloman.github.io/</link><description></description><atom:link href="http://heloman.github.io/feeds/algorithm.rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 27 Jul 2014 00:00:00 +0800</lastBuildDate><item><title>如何写出一个较好的快速排序程序</title><link>http://heloman.github.io/pages/2014/07/ru-he-xie-chu-ge-jiao-hao-de-kuai-su-pai-xu-cheng-xu.html</link><description>&lt;h2&gt;写出一个较好的快速排序程序&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;快速排序是常用的排序算法之一，但要想写出一个又快又准的使用程序，就不是那么简单了&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;需要注意的事项&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;首先要写正确。通常使用递归实现。其递归相当于二叉树展开，因此如果要用迭代实现的话需要使用一个队列来保存后续遍历信息。&lt;br /&gt;
+&lt;/li&gt;
+&lt;li&gt;快速排序需要找到一个pivot值，如果顺序选择pivot则易造成N^2的复杂度，如果使用随机数则效果最好，但开销又太大，采取三数中值法比较合适。三数中值法指的是选取第一个值，最后一个值，数组中间的值的中值。有文献表明可以提升5%的运行时间。&lt;br /&gt;
+&lt;/li&gt;
+&lt;li&gt;当数组长度较小时，如10个元素以下，最好使用插入排序或者选择排序完成，以防止复杂度常数因子过大或多次函数调用带来的开销。而递归到底层数组长度总是会变小的，因此这么做非常有必要。&lt;br /&gt;
+&lt;/li&gt;
+&lt;li&gt;在合并前后两部分数组时，采用两边夹方法，在前后两部分各找到一个大于和小于的值再交换。相比通常情况下找到比pivot小的值就进行交换，能提高运行效率。&lt;br /&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;实现代码&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;代码如下。包括插入排序insert_sort，递归函数，三分中值函数三个辅助函数。&lt;br /&gt;
+&lt;/li&gt;
+&lt;li&gt;三分中值函数其实采用的是插入排序。通过三次比较，确定中值。&lt;br /&gt;
+&lt;/li&gt;
+&lt;li&gt;插值算法使用临时变量tmp避免了大量swap函数调用。&lt;br /&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="vi"&gt;#include&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;iostream&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="vi"&gt;#include&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;iomanip&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="vi"&gt;#include&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;vector&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="vi"&gt;#include&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;cstdlib&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="vi"&gt;#include&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;ctime&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="vi"&gt;#include&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;algorithm&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+
+&lt;span class="nx"&gt;using&lt;/span&gt; &lt;span class="nx"&gt;namespace&lt;/span&gt; &lt;span class="nx"&gt;std&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="k"&gt;inline&lt;/span&gt; &lt;span class="bp"&gt;void&lt;/span&gt; &lt;span class="nx"&gt;swap&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;vector&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;int&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;amp;&lt;/span&gt; &lt;span class="nx"&gt;num&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;int&lt;/span&gt; &lt;span class="nx"&gt;p&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;int&lt;/span&gt; &lt;span class="nx"&gt;q&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+    &lt;span class="nx"&gt;int&lt;/span&gt; &lt;span class="n"&gt;t&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;num&lt;/span&gt;&lt;span class="err"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;p&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt;;
+    num&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;p&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt; = num&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;q&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt;;
+    num&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;q&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt; = t;
+}
+
+void insert_sort(vector&lt;span class="nt"&gt;&amp;lt;int&amp;gt;&lt;/span&gt;&lt;span class="err"&gt;&amp;amp;&lt;/span&gt; num){
+    int tmp, j;
+    for (int i = 1; i &lt;span class="nt"&gt;&amp;lt; num&lt;/span&gt;&lt;span class="err"&gt;.&lt;/span&gt;&lt;span class="na"&gt;size&lt;/span&gt;&lt;span class="err"&gt;();&lt;/span&gt; &lt;span class="na"&gt;i&lt;/span&gt;&lt;span class="err"&gt;++){&lt;/span&gt;
+        &lt;span class="na"&gt;tmp =&lt;/span&gt;&lt;span class="err"&gt; &lt;/span&gt;&lt;span class="s"&gt;num&lt;/span&gt;&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt;&lt;span class="s"&gt;;&lt;/span&gt;
+        &lt;span class="na"&gt;for&lt;/span&gt; &lt;span class="err"&gt;(&lt;/span&gt;&lt;span class="na"&gt;j =&lt;/span&gt;&lt;span class="err"&gt; &lt;/span&gt;&lt;span class="s"&gt;i&lt;/span&gt; &lt;span class="na"&gt;-&lt;/span&gt; &lt;span class="na"&gt;1&lt;/span&gt;&lt;span class="err"&gt;;&lt;/span&gt; &lt;span class="na"&gt;j&lt;/span&gt; &lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;= 0 &lt;span class="err"&gt;&amp;amp;&amp;amp;&lt;/span&gt; num&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;j&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt; &amp;gt; tmp; j--)
+            num&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;j&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt; = num&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;j&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt;;
+        num&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;j&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt; =tmp;
+    }
+}
+
+int quick_sort_sub(vector&lt;span class="nt"&gt;&amp;lt;int&amp;gt;&lt;/span&gt;&lt;span class="err"&gt;&amp;amp;&lt;/span&gt; num, int p, int q){
+    if (p &amp;gt;= q)
+        return 0;
+
+    // if 4 elements or less, use insert sort
+    if (p + 10 &amp;gt; q){
+        vector&lt;span class="nt"&gt;&amp;lt;int&amp;gt;&lt;/span&gt; tnum(num.begin() + p, num.begin() + q + 1);
+        insert_sort(tnum);
+        for (int i = 0; i &lt;span class="nt"&gt;&amp;lt; tnum&lt;/span&gt;&lt;span class="err"&gt;.&lt;/span&gt;&lt;span class="na"&gt;size&lt;/span&gt;&lt;span class="err"&gt;();&lt;/span&gt; &lt;span class="na"&gt;i&lt;/span&gt;&lt;span class="err"&gt;++)&lt;/span&gt;
+            &lt;span class="na"&gt;num&lt;/span&gt;&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;p&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt;&lt;span class="na"&gt; =&lt;/span&gt;&lt;span class="err"&gt; &lt;/span&gt;&lt;span class="s"&gt;tnum&lt;/span&gt;&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt;&lt;span class="s"&gt;;&lt;/span&gt;
+    &lt;span class="err"&gt;}&lt;/span&gt;
+
+    &lt;span class="na"&gt;int&lt;/span&gt; &lt;span class="na"&gt;idx =&lt;/span&gt;&lt;span class="err"&gt; &lt;/span&gt;&lt;span class="s"&gt;quick_three_partition(num,&lt;/span&gt; &lt;span class="na"&gt;p&lt;/span&gt;&lt;span class="err"&gt;,&lt;/span&gt; &lt;span class="na"&gt;q&lt;/span&gt;&lt;span class="err"&gt;);&lt;/span&gt;
+    &lt;span class="na"&gt;swap&lt;/span&gt;&lt;span class="err"&gt;(&lt;/span&gt;&lt;span class="na"&gt;num&lt;/span&gt;&lt;span class="err"&gt;,&lt;/span&gt; &lt;span class="na"&gt;idx&lt;/span&gt;&lt;span class="err"&gt;,&lt;/span&gt; &lt;span class="na"&gt;q&lt;/span&gt;&lt;span class="err"&gt;);&lt;/span&gt;
+
+    &lt;span class="na"&gt;int&lt;/span&gt; &lt;span class="na"&gt;pivot =&lt;/span&gt;&lt;span class="err"&gt; &lt;/span&gt;&lt;span class="s"&gt;num&lt;/span&gt;&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;q&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt;&lt;span class="s"&gt;;&lt;/span&gt;
+    &lt;span class="na"&gt;int&lt;/span&gt; &lt;span class="na"&gt;left =&lt;/span&gt;&lt;span class="err"&gt; &lt;/span&gt;&lt;span class="s"&gt;p,&lt;/span&gt; &lt;span class="na"&gt;right =&lt;/span&gt;&lt;span class="err"&gt; &lt;/span&gt;&lt;span class="s"&gt;q&lt;/span&gt; &lt;span class="na"&gt;-&lt;/span&gt; &lt;span class="na"&gt;1&lt;/span&gt;&lt;span class="err"&gt;;&lt;/span&gt;
+    &lt;span class="na"&gt;while&lt;/span&gt; &lt;span class="err"&gt;(&lt;/span&gt;&lt;span class="na"&gt;1&lt;/span&gt;&lt;span class="err"&gt;){&lt;/span&gt;
+        &lt;span class="na"&gt;while&lt;/span&gt; &lt;span class="err"&gt;(&lt;/span&gt;&lt;span class="na"&gt;num&lt;/span&gt;&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;left&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;&lt;/span&gt; &lt;span class="na"&gt;pivot&lt;/span&gt;&lt;span class="err"&gt;)&lt;/span&gt;
+            &lt;span class="err"&gt;++&lt;/span&gt;&lt;span class="na"&gt;left&lt;/span&gt;&lt;span class="err"&gt;;&lt;/span&gt;
+        &lt;span class="na"&gt;while&lt;/span&gt; &lt;span class="err"&gt;(&lt;/span&gt;&lt;span class="na"&gt;num&lt;/span&gt;&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;right&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt; &lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;= pivot)
+            --right;
+        if (left &lt;span class="nt"&gt;&amp;lt; right&lt;/span&gt;&lt;span class="err"&gt;)&lt;/span&gt;
+            &lt;span class="na"&gt;swap&lt;/span&gt;&lt;span class="err"&gt;(&lt;/span&gt;&lt;span class="na"&gt;num&lt;/span&gt;&lt;span class="err"&gt;,&lt;/span&gt; &lt;span class="na"&gt;left&lt;/span&gt;&lt;span class="err"&gt;,&lt;/span&gt; &lt;span class="na"&gt;right&lt;/span&gt;&lt;span class="err"&gt;);&lt;/span&gt;
+        &lt;span class="na"&gt;else&lt;/span&gt;
+            &lt;span class="na"&gt;break&lt;/span&gt;&lt;span class="err"&gt;;&lt;/span&gt;
+    &lt;span class="err"&gt;}&lt;/span&gt;
+    &lt;span class="na"&gt;swap&lt;/span&gt;&lt;span class="err"&gt;(&lt;/span&gt;&lt;span class="na"&gt;num&lt;/span&gt;&lt;span class="err"&gt;,&lt;/span&gt; &lt;span class="na"&gt;left&lt;/span&gt;&lt;span class="err"&gt;,&lt;/span&gt; &lt;span class="na"&gt;q&lt;/span&gt;&lt;span class="err"&gt;);&lt;/span&gt;
+    &lt;span class="na"&gt;quick_sort_sub&lt;/span&gt;&lt;span class="err"&gt;(&lt;/span&gt;&lt;span class="na"&gt;num&lt;/span&gt;&lt;span class="err"&gt;,&lt;/span&gt; &lt;span class="na"&gt;p&lt;/span&gt;&lt;span class="err"&gt;,&lt;/span&gt; &lt;span class="na"&gt;left&lt;/span&gt; &lt;span class="na"&gt;-&lt;/span&gt; &lt;span class="na"&gt;1&lt;/span&gt;&lt;span class="err"&gt;);&lt;/span&gt;
+    &lt;span class="na"&gt;quick_sort_sub&lt;/span&gt;&lt;span class="err"&gt;(&lt;/span&gt;&lt;span class="na"&gt;num&lt;/span&gt;&lt;span class="err"&gt;,&lt;/span&gt; &lt;span class="na"&gt;left&lt;/span&gt; &lt;span class="err"&gt;+&lt;/span&gt; &lt;span class="na"&gt;1&lt;/span&gt;&lt;span class="err"&gt;,&lt;/span&gt; &lt;span class="na"&gt;q&lt;/span&gt;&lt;span class="err"&gt;);&lt;/span&gt;
+
+    &lt;span class="na"&gt;return&lt;/span&gt; &lt;span class="na"&gt;left&lt;/span&gt;&lt;span class="err"&gt;;&lt;/span&gt;
+&lt;span class="err"&gt;}&lt;/span&gt;
+
+&lt;span class="na"&gt;void&lt;/span&gt; &lt;span class="na"&gt;quick_sort&lt;/span&gt;&lt;span class="err"&gt;(&lt;/span&gt;&lt;span class="na"&gt;vector&lt;/span&gt;&lt;span class="err"&gt;&amp;lt;&lt;/span&gt;&lt;span class="na"&gt;int&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;&lt;span class="err"&gt;&amp;amp;&lt;/span&gt; num){
+    quick_sort_sub(num, 0, num.size() - 1);
+}
+
+int main(){
+    const int n = 10;
+    /*int num_array&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;n&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt;= {2,1};
+    vector&lt;span class="nt"&gt;&amp;lt;int&amp;gt;&lt;/span&gt; num(num_array, num_array + n);*/
+
+    srand( time(NULL) );
+    vector&lt;span class="nt"&gt;&amp;lt;int&amp;gt;&lt;/span&gt; num(n);
+    for (auto&lt;span class="err"&gt;&amp;amp;&lt;/span&gt; e : num)
+        e = rand() % n;
+
+    quick_sort(num);
+
+    for (auto&lt;span class="err"&gt;&amp;amp;&lt;/span&gt; e : num)
+        cout &lt;span class="err"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt; setw&lt;/span&gt;&lt;span class="err"&gt;(&lt;/span&gt;&lt;span class="na"&gt;4&lt;/span&gt;&lt;span class="err"&gt;)&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="na"&gt;e&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;;&lt;/span&gt;
+    &lt;span class="na"&gt;cout&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="na"&gt;endl&lt;/span&gt;&lt;span class="err"&gt;;&lt;/span&gt;
+
+    &lt;span class="na"&gt;cout&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="err"&gt;&amp;quot;&lt;/span&gt;&lt;span class="na"&gt;vector&lt;/span&gt; &lt;span class="na"&gt;is&lt;/span&gt; &lt;span class="na"&gt;sorted&lt;/span&gt;&lt;span class="err"&gt;?&lt;/span&gt; &lt;span class="na"&gt;:&lt;/span&gt; &lt;span class="err"&gt;&amp;quot;&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="na"&gt;is_sorted&lt;/span&gt;&lt;span class="err"&gt;(&lt;/span&gt;&lt;span class="na"&gt;num&lt;/span&gt;&lt;span class="err"&gt;.&lt;/span&gt;&lt;span class="na"&gt;begin&lt;/span&gt;&lt;span class="err"&gt;(),&lt;/span&gt; &lt;span class="na"&gt;num&lt;/span&gt;&lt;span class="err"&gt;.&lt;/span&gt;&lt;span class="na"&gt;end&lt;/span&gt;&lt;span class="err"&gt;())&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="na"&gt;endl&lt;/span&gt;&lt;span class="err"&gt;;&lt;/span&gt;
+
+    &lt;span class="na"&gt;return&lt;/span&gt; &lt;span class="na"&gt;0&lt;/span&gt;&lt;span class="err"&gt;;&lt;/span&gt;
+
+&lt;span class="err"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">heLomaN</dc:creator><pubDate>Sun, 27 Jul 2014 00:00:00 +0800</pubDate><guid>tag:heloman.github.io,2014-07-27:pages/2014/07/ru-he-xie-chu-ge-jiao-hao-de-kuai-su-pai-xu-cheng-xu.html</guid><category>Quick Sort</category></item><item><title>《剑指offer》解题笔记</title><link>http://heloman.github.io/pages/2014/07/jian-zhi-offer-jie-ti-bi-ji.html</link><description>&lt;h1&gt;《剑指offer》解题笔记&lt;/h1&gt;
 &lt;p&gt;《剑指offer》共50题，这两周使用C++花时间做了一遍，谨在此把一些很巧妙的方法、写代码遇到的难点、易犯错的细节等做一个简单的标注，但不会太过详细，具体算法还是请参考书本。 &lt;br /&gt;
 做的比较急，代码还有很多不完善的地方，如有错误，欢迎改正，地址为：&lt;a href="https://github.com/heLomaN/sword_of_offer.git"&gt;github:sword_of_offer&lt;/a&gt;。可以使用&lt;code&gt;git clone https://github.com/heLomaN/sword_of_offer.git&lt;/code&gt;命令获取代码。&lt;br /&gt;
 其中，少数无法验证正确与否的题目没有写代码，部分二叉树的题目写了代码，但由于生成二叉树太过麻烦没有验证。&lt;br /&gt;
