@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="../../../theme/css/elegant.prod.9e9d5ce754.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="../../../theme/css/custom.css" media="screen">
+
+        <link rel="dns-prefetch" href="//fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+
+        <meta name="author" content="heLomaN" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content=", misc, " />
+
+<meta property="og:title" content="20140802如何统计代码行数 "/>
+<meta property="og:url" content="../../../pages/2014/08/20140802ru-he-tong-ji-dai-ma-xing-shu.html" />
+<meta property="og:description" content="如何统计代码行数 linux下提供了很多实用工具，甚至在安卓上，都有移植的busybox包含这些工具。 根据KISS理念，这些工具的功能很单一。但这些工具组合起来，就可以很方面的统计代码量了。 统计代码行数 流程为：首先使用find命令找到所有后缀名符合规则的源代码文件，之后使用wc命令统计行数。文件数可能过多，为防止出错使用xargs命令分割参数列表，最后得到的结果可以使用sort排序 统计所有c源代码行数的命令：find -name *.c | xargs wc -l |sort -r。结果按照反序排列 find -name *.c | xargs wc -l |sort -k2 结果按照文件名排列 如需统计c++代码，将*.c更改为*.cc即可。如果c++使用cpp后缀名，改为*.cpp 用到的命令详解 find命令 find命令递归搜索目录，若任一文件使表达式为真则放入结果 使用方法 …" />
+<meta property="og:site_name" content="Focus" />
+<meta property="og:article:author" content="heLomaN" />
+<meta property="og:article:published_time" content="2014-08-02T09:29:07.523526+08:00" />
+<meta property="og:article:modified_time" content="2014-08-02T09:29:07.523526+08:00" />
+<meta name="twitter:title" content="20140802如何统计代码行数 ">
+<meta name="twitter:description" content="如何统计代码行数 linux下提供了很多实用工具，甚至在安卓上，都有移植的busybox包含这些工具。 根据KISS理念，这些工具的功能很单一。但这些工具组合起来，就可以很方面的统计代码量了。 统计代码行数 流程为：首先使用find命令找到所有后缀名符合规则的源代码文件，之后使用wc命令统计行数。文件数可能过多，为防止出错使用xargs命令分割参数列表，最后得到的结果可以使用sort排序 统计所有c源代码行数的命令：find -name *.c | xargs wc -l |sort -r。结果按照反序排列 find -name *.c | xargs wc -l |sort -k2 结果按照文件名排列 如需统计c++代码，将*.c更改为*.cc即可。如果c++使用cpp后缀名，改为*.cpp 用到的命令详解 find命令 find命令递归搜索目录，若任一文件使表达式为真则放入结果 使用方法 …">
+
+        <title>20140802如何统计代码行数  · Focus
+</title>
+        <link href="http://heloman.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Focus - Full Atom Feed" />
+        <link href="http://heloman.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Focus - RSS Feed" />
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-43314222-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+    </head>
+    <body>
+        <div id="content">
+            <div class="navbar navbar-static-top">
+                <div class="navbar-inner">
+                    <div class="container-fluid">
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+                        <a class="brand" href="../../../"><span class=site-name>Focus</span></a>
+                        <div class="nav-collapse collapse">
+                            <ul class="nav pull-right top-menu">
+                                <li >
+                                    <a href=
+                                       ../../..
+                                    >Home</a>
+                                </li>
+                                <li ><a href="../../../pages/about-me.html">About Me</a></li>
+                                <li ><a href="../../../pages/resume.html">Resume</a></li>
+                                <li ><a href="../../../categories.html">Categories</a></li>
+                                <li ><a href="../../../tags.html">Tags</a></li>
+                                <li ><a href="../../../archives.html">Archives</a></li>
+                                <li><form class="navbar-search" action="../../../search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span1"></div>
+                    <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+        <h1>
+            <a href="../../../pages/2014/08/20140802ru-he-tong-ji-dai-ma-xing-shu.html">
+                20140802如何统计代码行数
+            </a>
+        </h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+            
+            <h1>如何统计代码行数</h1>
+<ul>
+<li>linux下提供了很多实用工具，甚至在安卓上，都有移植的busybox包含这些工具。 </li>
+<li>根据KISS理念，这些工具的功能很单一。但这些工具组合起来，就可以很方面的统计代码量了。 </li>
+</ul>
+<h2>统计代码行数</h2>
+<ul>
+<li>流程为：首先使用find命令找到所有后缀名符合规则的源代码文件，之后使用wc命令统计行数。文件数可能过多，为防止出错使用xargs命令分割参数列表，最后得到的结果可以使用sort排序</li>
+<li>统计所有c源代码行数的命令：<code>find -name *.c | xargs wc -l |sort -r</code>。结果按照反序排列</li>
+<li><code>find -name *.c | xargs wc -l |sort -k2</code> 结果按照文件名排列</li>
+<li>如需统计c++代码，将<code>*.c</code>更改为<code>*.cc</code>即可。如果c++使用cpp后缀名，改为<code>*.cpp</code></li>
+</ul>
+<h2>用到的命令详解</h2>
+<h3>find命令</h3>
+<ul>
+<li>find命令递归搜索目录，若任一文件使表达式为真则放入结果</li>
+<li>使用方法<code>find [path...] [expression]</code>  </li>
+<li>path指定需要寻找的目录范围，默认为当前目录  </li>
+<li>expression通常为测试条件，返回true或false  </li>
+<li><code>-name pattern</code>文件名符合shell正则式  </li>
+<li><code>-path pattern</code>文件路径名符合shell正则式  </li>
+<li><code>-exec order {}</code>执行命令，若返回值为0则真</li>
+<li>例子：<code>find -name *.c</code> 搜索后缀名为c的文件</li>
+<li>例子：<code>find . -exec sleep {1}</code> 每隔1s显示一个文件</li>
+</ul>
+<h3>wc命令</h3>
+<ul>
+<li>wc为wordcount的缩写，用于统计文件</li>
+<li>使用方法<code>wc [-lwc] filename</code></li>
+<li>l、w、c分别表示统计行数、单词数、字符数。默认为统计全部三者</li>
+<li>例子：<code>wc -l file1 file2</code>统计两文件的行数</li>
+</ul>
+<h3>xargs命令</h3>
+<ul>
+<li>xargs的功能是捕获管道中前一个命令的输出，建立分段参数表并执行另一个命令</li>
+<li>find命令如果产生的参数列太长，可以使用xargs命令每次只传递一部分参数，防止在部分系统上出现溢出错误</li>
+<li>xargs通常以空格或者换行符分割参数，<code>-0</code>选项可以保证参数列中含有空格、换行符等时分割正确</li>
+<li>例子：<code>find /tmp -name core | xargs -0 /bin/rm -f</code>。把<code>/tmp</code>文件夹下所有名称为core的文件传递给rm命令，强制删除。<code>-0</code>选项可以保证正确处理文件名中含有换行或空格的情况。</li>
+</ul>
+<h3>sort命令</h3>
+<ul>
+<li>sort用于对不同的文本进行排序，以行为单位</li>
+<li>默认排序方式为升序，<code>-r</code>选项可以修改为降序排列</li>
+<li><code>-n</code>选项按照字符表示的数字的值来排序，如<code>1 2 10 20</code>没有开启此选项排序结果为<code>1 10 2 20</code></li>
+<li><code>-f</code>忽略大小写</li>
+<li><code>-t</code>设置列之间的分隔符，<code>-k</code>指定按照第几列排序</li>
+<li>例子：<code>sort -n -f -k 2 test.txt</code>。将test.txt中的各行按照第二列排序，忽略大小写</li>
+</ul>
+<h3>重定向</h3>
+<ul>
+<li>行数统计结果可以存入文本文件中，命令行最后加上<code>&gt; count.txt</code>即可</li>
+<li>标准输入、输出、错误输出分别用0，1，2表示</li>
+<li>输入重定向使用输入重定向运算符<code>&lt;</code>，可以把文件中的内容作为程序的输入。例如测试代码时使用：<code>./a.out &lt; test.in</code>，test.in文件里面是程序的测试输入</li>
+<li>输出重定向可以将程序的输出写入到文件中，使用输出重定向运算符<code>&gt;</code>。<ul>
+<li>例子：<code>ls 1&gt;/dev/null 2&gt;/dev/null</code> 不显示输出和错误输出。1、2与&gt;之间不能有空格</li>
+<li>例子：<code>ls 2&gt; &amp;1&gt; t.txt</code> 将错误输出重定向到标准输出，而此时标准输出还未重定向，因此标准输出内容将写入t.txt，而错误输出仍留在屏幕上</li>
+<li>例子：<code>ls 1&gt; t.txt 2&gt; &amp;1</code>将标准输出和错误输出都写入t.txt</li>
+</ul>
+</li>
+</ul>
+<h3>管道</h3>
+<ul>
+<li>管道使用<code>|</code>表示</li>
+<li>功能为前一个命令的标准输出定向为第二个命令的标准输入</li>
+<li>第二个命令必须能从标准输入中读取才行，如<code>ls</code>命令就不符合要求</li>
+</ul>
+<p><center>转载请注明作者：Focustc，博客地址为<a href="http://blog.csdn.net/caozhk">http://blog.csdn.net/caozhk</a>，原文链接为点击打开</center>
+　
+　</p>
+
+
+             
+ 
+            
+            
+            
+
+
+
+
+
+
+
+<section>
+    <h6 style="display:none;">Comments</h6>
+    <p id="comment-message"> </p>
+
+    <div class="accordion" id="accordion2">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <a class="accordion-toggle disqus-comment-count comment-count collapsed"
+                   data-toggle="collapse"
+                   data-parent="#accordion2"
+                   data-disqus-identifier="../../../pages/2014/08/20140802ru-he-tong-ji-dai-ma-xing-shu.html"
+                   href="../../../pages/2014/08/20140802ru-he-tong-ji-dai-ma-xing-shu.html#comment_thread"
+                   id="comment-accordion-toggle">
+                    Comments
+                </a>
+            </div>
+            <div id="comment_thread" class="accordion-body collapse">
+                <div class="accordion-inner">
+                    <div class="comments">
+                        <div id="disqus_thread"></div>
+                        <script>
+    var disqus_shortname = 'focustc';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+
+    var disqus_identifier = '../../../pages/2014/08/20140802ru-he-tong-ji-dai-ma-xing-shu.html';
+    var disqus_url = '../../../pages/2014/08/20140802ru-he-tong-ji-dai-ma-xing-shu.html';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+            <hr/>
+        </div>
+        <section id="article-sidebar" class="span2">
+            <h4>Published</h4>
+            <time itemprop="dateCreated" datetime="2014-08-02T09:29:07.523526+08:00">2014-08-02</time>
+
+            <h4>Category</h4>
+            <a class="category-link" href="../../../categories.html#misc-ref">misc</a>
+<h4>Contact</h4>
+<div id="sidebar-social-link">
+    <a href="https://github.com/heloman" title="" target="_blank" rel="nofollow noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-label="GitHub" role="img" viewBox="0 0 512 512"><rect width="512" height="512" rx="15%" fill="#1B1817"/><path fill="#fff" d="M335 499c14 0 12 17 12 17H165s-2-17 12-17c13 0 16-6 16-12l-1-50c-71 16-86-28-86-28-12-30-28-37-28-37-24-16 1-16 1-16 26 2 40 26 40 26 22 39 59 28 74 22 2-17 9-28 16-35-57-6-116-28-116-126 0-28 10-51 26-69-3-6-11-32 3-67 0 0 21-7 70 26 42-12 86-12 128 0 49-33 70-26 70-26 14 35 6 61 3 67 16 18 26 41 26 69 0 98-60 120-117 126 10 8 18 24 18 48l-1 70c0 6 3 12 16 12z"/></svg>
+    </a>
+    <a href="http://heloman.github.io/feeds/all.rss.xml" title="" target="_blank" rel="nofollow noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-label="RSS" role="img" viewBox="0 0 512 512"><rect width="512" height="512" rx="15%" fill="#f80"/><circle cx="145" cy="367" r="35" fill="#fff"/><path fill="none" stroke="#fff" stroke-width="60" d="M109 241c89 0 162 73 162 162M109 127c152 0 276 124 276 276"/></svg>
+    </a>
+</div>
+            
+
+
+
+
+
+            
+
+
+
+
+
+        </section>
+</div>
+</article>
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe.
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides.
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>                    </div>
+                    <div class="span1"></div>
+                </div>
+            </div>
+        </div>
+<footer>
+
+
+
+
+    <div id="fpowered">
+        Powered by: <a href="http://getpelican.com/" title="Pelican Home Page" target="_blank" rel="nofollow noopener noreferrer">Pelican</a>
+        Theme: <a href="https://elegant.oncrashreboot.com/" title="Theme Elegant Home Page" target="_blank" rel="nofollow noopener noreferrer">Elegant</a>
+    </div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script src="../../../theme/js/elegant.prod.9e9d5ce754.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    <script>
+    (function () {
+        if (window.location.hash.match(/^#comment-\d+$/)) {
+            $('#comment_thread').collapse('show');
+        }
+    })();
+    window.onhashchange=function(){
+        if (window.location.hash.match(/^#comment-\d+$/))
+            window.location.reload(true);
+    }
+    $('#comment_thread').on('shown', function () {
+        var link = document.getElementById('comment-accordion-toggle');
+        var old_innerHTML = link.innerHTML;
+        $(link).fadeOut(200, function() {
+            $(this).text('Click here to hide comments').fadeIn(200);
+        });
+        $('#comment_thread').on('hidden', function () {
+            $(link).fadeOut(200, function() {
+                $(this).text(old_innerHTML).fadeIn(200);
+            });
+        })
+    })
+</script>
+
+    </body>
+    <!-- Theme: Elegant built for Pelican
+        License : MIT -->
+</html>

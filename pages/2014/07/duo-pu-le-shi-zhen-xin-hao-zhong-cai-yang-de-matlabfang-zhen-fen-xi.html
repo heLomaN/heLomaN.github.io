@@ -1,68 +1,95 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>Focus</title>
-    <meta name="description" content="">
-    <meta name="author" content="heLomaN">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="zh">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="../../../theme/css/elegant.prod.9e9d5ce754.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="../../../theme/css/custom.css" media="screen">
 
-    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
-    <!--[if lt IE 9]>
-    <script src="../../../theme/html5.js"></script>
-    <![endif]-->
+        <link rel="dns-prefetch" href="//fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
 
-    <!-- Le styles -->
-    <link href="../../../theme/bootstrap.min.css" rel="stylesheet">
-    <link href="../../../theme/bootstrap.min.responsive.css" rel="stylesheet">
-    <link href="../../../theme/local.css" rel="stylesheet">
-    <link href="../../../theme/pygments.css" rel="stylesheet">
+        <meta name="author" content="heLomaN" />
 
-</head>
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
 
-<body>
+<meta name="keywords" content=", misc, " />
 
-<div class="navbar">
-    <div class="navbar-inner">
-    <div class="container">
+<meta property="og:title" content="多普勒失真信号重采样的Matlab仿真分析 "/>
+<meta property="og:url" content="../../../pages/2014/07/duo-pu-le-shi-zhen-xin-hao-zhong-cai-yang-de-matlabfang-zhen-fen-xi.html" />
+<meta property="og:description" content="多普勒失真信号重采样的Matlab仿真分析 应用场景 水声通信指的是使用声信号在水中传输数据。相对而言，电磁信号在水中吸收严重衰减过快，光信号受水中悬浮颗粒的影响，也无法完成远距离传输。这两种信号的传播距离约为数百米，而声信号在水中传播距离达到数十千米，成为水下通信的首选方式。 水声通信的一个重大挑战就是运动带来的多普勒。多普勒造成信号的频率漂移，影响系统性能，因此非常有必要消除多普勒带来的影响。而多普勒在时域的表现为信号的长度压缩和扩展，即&#39;y(t) = x((1+a) * t)&#39;，其中a为多普勒因子。而如果估计出多普勒因子，之后采用重采样技术就可以恢复得到原始信号x(t) = y( t/(a+a) )。 重采样的意义就是插值，从一个信号插值得到多普勒影响前后的信号。而1+a一般为小数，虽然采用多相滤波可以达到很好的插值效果，但复杂度太高。相比之下，线性插值、样条插值等方式运算量小，在做数字系统的时候更加合适 Matlab一维插值 MATLAB中的插值函数为interp1(),其调用格式为 yi=interp1 …" />
+<meta property="og:site_name" content="Focus" />
+<meta property="og:article:author" content="heLomaN" />
+<meta property="og:article:published_time" content="2014-07-24T16:48:26.534232+08:00" />
+<meta property="og:article:modified_time" content="2014-07-24T16:48:26.534232+08:00" />
+<meta name="twitter:title" content="多普勒失真信号重采样的Matlab仿真分析 ">
+<meta name="twitter:description" content="多普勒失真信号重采样的Matlab仿真分析 应用场景 水声通信指的是使用声信号在水中传输数据。相对而言，电磁信号在水中吸收严重衰减过快，光信号受水中悬浮颗粒的影响，也无法完成远距离传输。这两种信号的传播距离约为数百米，而声信号在水中传播距离达到数十千米，成为水下通信的首选方式。 水声通信的一个重大挑战就是运动带来的多普勒。多普勒造成信号的频率漂移，影响系统性能，因此非常有必要消除多普勒带来的影响。而多普勒在时域的表现为信号的长度压缩和扩展，即&#39;y(t) = x((1+a) * t)&#39;，其中a为多普勒因子。而如果估计出多普勒因子，之后采用重采样技术就可以恢复得到原始信号x(t) = y( t/(a+a) )。 重采样的意义就是插值，从一个信号插值得到多普勒影响前后的信号。而1+a一般为小数，虽然采用多相滤波可以达到很好的插值效果，但复杂度太高。相比之下，线性插值、样条插值等方式运算量小，在做数字系统的时候更加合适 Matlab一维插值 MATLAB中的插值函数为interp1(),其调用格式为 yi=interp1 …">
 
-         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-             <span class="icon-bar"></span>
-             <span class="icon-bar"></span>
-             <span class="icon-bar"></span>
-         </a>
+        <title>多普勒失真信号重采样的Matlab仿真分析  · Focus
+</title>
+        <link href="http://heloman.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Focus - Full Atom Feed" />
+        <link href="http://heloman.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Focus - RSS Feed" />
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-43314222-1', 'auto');
+    ga('send', 'pageview');
+</script>
 
-        <a class="brand" href="../../..">Focus</a>
 
-        <div class="nav-collapse">
-        <ul class="nav">
-                    
-                            <li><a href="../../../pages/about-me.html">About Me</a></li>
-                    <li><a href="../../../pages/resume.html">Resume</a></li>
-                        </ul>
-        </div>
-        
-    </div>
-    </div>
+    </head>
+    <body>
+        <div id="content">
+            <div class="navbar navbar-static-top">
+                <div class="navbar-inner">
+                    <div class="container-fluid">
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+                        <a class="brand" href="../../../"><span class=site-name>Focus</span></a>
+                        <div class="nav-collapse collapse">
+                            <ul class="nav pull-right top-menu">
+                                <li >
+                                    <a href=
+                                       ../../..
+                                    >Home</a>
+                                </li>
+                                <li ><a href="../../../pages/about-me.html">About Me</a></li>
+                                <li ><a href="../../../pages/resume.html">Resume</a></li>
+                                <li ><a href="../../../categories.html">Categories</a></li>
+                                <li ><a href="../../../tags.html">Tags</a></li>
+                                <li ><a href="../../../archives.html">Archives</a></li>
+                                <li><form class="navbar-search" action="../../../search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span1"></div>
+                    <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+        <h1>
+            <a href="../../../pages/2014/07/duo-pu-le-shi-zhen-xin-hao-zhong-cai-yang-de-matlabfang-zhen-fen-xi.html">
+                多普勒失真信号重采样的Matlab仿真分析
+            </a>
+        </h1>
+    </header>
 </div>
 
-<div class="container">
-    <div class="content">
-    <div class="row">
-
-        <div class="span9">
-            <div class='article'>
-        <div class="content-title">
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+            
             <h1>多普勒失真信号重采样的Matlab仿真分析</h1>
-            2014-07-24
-
-by <a class="url fn" href="../../../author/heloman.html">heLomaN</a>
- 
-
-
-        </div>
-	
-        <div><h1>多普勒失真信号重采样的Matlab仿真分析</h1>
 <h2>应用场景</h2>
 <ul>
 <li>水声通信指的是使用声信号在水中传输数据。相对而言，电磁信号在水中吸收严重衰减过快，光信号受水中悬浮颗粒的影响，也无法完成远距离传输。这两种信号的传播距离约为数百米，而声信号在水中传播距离达到数十千米，成为水下通信的首选方式。</li>
@@ -83,16 +110,15 @@ by <a class="url fn" href="../../../author/heloman.html">heLomaN</a>
 <li>而对于线性插值，SDR与信号采样频率<code>fs</code>和信号频率<code>f</code>的比值有近似如下关系：<code>SDR(dB) = 40 * log10( fs/f /2 )</code>。</li>
 </ul>
 <h2>仿真对比</h2>
-<p>代码如下。<br />
-- 首先设置多普勒因子<code>dop</code>，插值方法，采样率与信号频率的比例ns。最小值取2，对应奈奎斯特频率。<br />
-- 之后对于每个ns值，生成相应的初始信号<code>a</code>，之后插值以对信号添加多普勒。因<code>spline</code>方法造成的误差最小，选择作为添加多普勒的方法。<br />
-- 采用不同的插值方法去除多普勒。因为插值造成信号长度变化，每次都只略去尾部6000个数据点。<br />
-- 之后画图，每个ns对应一张图，并注明实测SDR以及线性插值的理论SDR值以作对比。<br />
-</p>
-<div class="highlight"><pre><span class="n">dop</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">;</span>
+<p>代码如下。
+- 首先设置多普勒因子<code>dop</code>，插值方法，采样率与信号频率的比例ns。最小值取2，对应奈奎斯特频率。
+- 之后对于每个ns值，生成相应的初始信号<code>a</code>，之后插值以对信号添加多普勒。因<code>spline</code>方法造成的误差最小，选择作为添加多普勒的方法。
+- 采用不同的插值方法去除多普勒。因为插值造成信号长度变化，每次都只略去尾部6000个数据点。
+- 之后画图，每个ns对应一张图，并注明实测SDR以及线性插值的理论SDR值以作对比。</p>
+<div class="highlight"><pre><span></span><code><span class="n">dop</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">;</span>
 <span class="n">intermethod</span> <span class="o">=</span> <span class="err">&#39;</span><span class="n">nearest</span><span class="err">&#39;</span><span class="p">;</span><span class="o">%</span> <span class="n">nearest</span> <span class="n">linear</span> <span class="n">cubic</span> <span class="n">spline</span> 
 
-<span class="o">%</span><span class="n">n</span><span class="o">:</span> <span class="n">fs</span> <span class="o">/</span> <span class="n">fc</span>
+<span class="nf">%n</span><span class="o">:</span> <span class="n">fs</span> <span class="o">/</span> <span class="n">fc</span>
 <span class="n">ns</span> <span class="o">=</span> <span class="mi">2</span><span class="o">:</span><span class="mi">7</span><span class="p">;</span>
 <span class="n">figure</span><span class="p">;</span>
 
@@ -112,122 +138,234 @@ by <a class="url fn" href="../../../author/heloman.html">heLomaN</a>
     <span class="n">title</span><span class="p">([</span><span class="err">&#39;</span><span class="n">fs</span><span class="o">/</span><span class="n">fc</span> <span class="o">=</span> <span class="err">&#39;</span><span class="p">,</span><span class="n">num2str</span><span class="p">(</span><span class="n">n</span><span class="p">),</span><span class="err">&#39;</span> <span class="n">SDR</span> <span class="o">=</span> <span class="err">&#39;</span><span class="p">,</span><span class="n">num2str</span><span class="p">(</span><span class="mi">10</span><span class="o">*</span><span class="n">log10</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">error</span><span class="p">)),</span> <span class="err">&#39;</span><span class="n">dB</span> <span class="n">VS</span><span class="err">&#39;</span><span class="p">,</span> <span class="n">num2str</span><span class="p">(</span><span class="mi">40</span><span class="o">*</span><span class="n">log10</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">)),</span><span class="err">&#39;</span> <span class="n">dB</span><span class="err">&#39;</span><span class="p">])</span>
 
 <span class="n">end</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2>仿真结果分析</h2>
 <ul>
-<li>临近点插值仿真结果：性能极差，无法使用。<br />
-<img alt="" src="img/![](img/20140429主定理.png" />  )<br />
-</li>
-<li>线性插值仿真结果：可见与理论值符合的较好。<br />
-<img alt="" src="img/20140724多普勒失真linear.jpg" /><br />
-</li>
-<li>分段三次Hermite插值插值仿真结果：大约提高5dB，但带来的是大量的计算。<br />
-<img alt="" src="img/20140724多普勒失真cubic.jpg" /><br />
-</li>
-<li>三次样条插值仿真结果：性能非常好，但最复杂。因为添加多普勒时也采用了样条插值，仿真结果加上3dB才应该是理论结果。<br />
-<img alt="" src="img/20140724多普勒失真spline.jpg" /><br />
-</li>
+<li>临近点插值仿真结果：性能极差，无法使用。</li>
+<li>线性插值仿真结果：可见与理论值符合的较好。</li>
+<li>分段三次Hermite插值插值仿真结果：大约提高5dB，但带来的是大量的计算。</li>
+<li>三次样条插值仿真结果：性能非常好，但最复杂。因为添加多普勒时也采用了样条插值，仿真结果加上3dB才应该是理论结果。</li>
 </ul>
 <h2>结论</h2>
-<p>如果采用重采样来去除多普勒带来的影响，并且采用较为实用的线性插值法，若要达到约19dB的通信信噪比要求，需要提高采样率至少为6倍信号频率。<br />
-</p></div>
-	
-        <hr>
-    	   
-        <h2>Comments</h2>
-		<div id="disqus_thread"></div>
-<script type="text/javascript">
-    var disqus_shortname = 'focustc'; 
-    var disqus_title = '多普勒失真信号重采样的Matlab仿真分析';
+<p>如果采用重采样来去除多普勒带来的影响，并且采用较为实用的线性插值法，若要达到约19dB的通信信噪比要求，需要提高采样率至少为6倍信号频率。
+　　
+　　
+　　
+<center>转载请注明作者：Focustc，博客地址为<a href="http://blog.csdn.net/caozhk">http://blog.csdn.net/caozhk</a>，原文链接为点我</center></p>
+
+
+             
+ 
+            
+            
+            
+
+
+
+
+
+
+
+<section>
+    <h6 style="display:none;">Comments</h6>
+    <p id="comment-message"> </p>
+
+    <div class="accordion" id="accordion2">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <a class="accordion-toggle disqus-comment-count comment-count collapsed"
+                   data-toggle="collapse"
+                   data-parent="#accordion2"
+                   data-disqus-identifier="../../../pages/2014/07/duo-pu-le-shi-zhen-xin-hao-zhong-cai-yang-de-matlabfang-zhen-fen-xi.html"
+                   href="../../../pages/2014/07/duo-pu-le-shi-zhen-xin-hao-zhong-cai-yang-de-matlabfang-zhen-fen-xi.html#comment_thread"
+                   id="comment-accordion-toggle">
+                    Comments
+                </a>
+            </div>
+            <div id="comment_thread" class="accordion-body collapse">
+                <div class="accordion-inner">
+                    <div class="comments">
+                        <div id="disqus_thread"></div>
+                        <script>
+    var disqus_shortname = 'focustc';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+
+    var disqus_identifier = '../../../pages/2014/07/duo-pu-le-shi-zhen-xin-hao-zhong-cai-yang-de-matlabfang-zhen-fen-xi.html';
+    var disqus_url = '../../../pages/2014/07/duo-pu-le-shi-zhen-xin-hao-zhong-cai-yang-de-matlabfang-zhen-fen-xi.html';
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
 </script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    </div>
+
+<noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+                    </div>
+                </div>
+            </div>
         </div>
-        
-        <div class="span3">
+    </div>
+</section>
 
-            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
-            <ul class="nav nav-list">
-                <li class="nav-header"> 
-                Site
-                </li>
-            
-                <li><a href="../../../archives.html">Archives</a>
-                <li><a href="../../../tags.html">Tags</a>
-                <li><a href="http://heloman.github.io/" rel="alternate">Atom feed</a></li>
-                                <li><a href="http://heloman.github.io/feeds/all.rss.xml" rel="alternate">RSS feed</a></li>
-                            </ul>
-            </div>
+            <hr/>
+        </div>
+        <section id="article-sidebar" class="span2">
+            <h4>Published</h4>
+            <time itemprop="dateCreated" datetime="2014-07-24T16:48:26.534232+08:00">2014-07-24</time>
 
-
-                        <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
-            <ul class="nav nav-list">
-                <li class="nav-header"> 
-                Categories
-                </li>
-                
-                                <li><a href="../../../category/algorithm.html">Algorithm</a></li>
-                                <li><a href="../../../category/app.html">App</a></li>
-                                <li><a href="../../../category/c.html">C</a></li>
-                                <li><a href="../../../category/c.html">C++</a></li>
-                                <li><a href="../../../category/coding.html">Coding</a></li>
-                                <li><a href="../../../category/competition.html">Competition</a></li>
-                                <li><a href="../../../category/mooc.html">MOOC</a></li>
-                                <li><a href="../../../category/web.html">Web</a></li>
-                                <li><a href="../../../category/wireless-communication.html">Wireless Communication</a></li>
-                                <li><a href="../../../category/linux.html">linux</a></li>
-                                   
-            </ul>
-            </div>
+            <h4>Category</h4>
+            <a class="category-link" href="../../../categories.html#misc-ref">misc</a>
+<h4>Contact</h4>
+<div id="sidebar-social-link">
+    <a href="https://github.com/heloman" title="" target="_blank" rel="nofollow noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-label="GitHub" role="img" viewBox="0 0 512 512"><rect width="512" height="512" rx="15%" fill="#1B1817"/><path fill="#fff" d="M335 499c14 0 12 17 12 17H165s-2-17 12-17c13 0 16-6 16-12l-1-50c-71 16-86-28-86-28-12-30-28-37-28-37-24-16 1-16 1-16 26 2 40 26 40 26 22 39 59 28 74 22 2-17 9-28 16-35-57-6-116-28-116-126 0-28 10-51 26-69-3-6-11-32 3-67 0 0 21-7 70 26 42-12 86-12 128 0 49-33 70-26 70-26 14 35 6 61 3 67 16 18 26 41 26 69 0 98-60 120-117 126 10 8 18 24 18 48l-1 70c0 6 3 12 16 12z"/></svg>
+    </a>
+    <a href="http://heloman.github.io/feeds/all.rss.xml" title="" target="_blank" rel="nofollow noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-label="RSS" role="img" viewBox="0 0 512 512"><rect width="512" height="512" rx="15%" fill="#f80"/><circle cx="145" cy="367" r="35" fill="#fff"/><path fill="none" stroke="#fff" stroke-width="60" d="M109 241c89 0 162 73 162 162M109 127c152 0 276 124 276 276"/></svg>
+    </a>
+</div>
             
 
-                        <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
-            <ul class="nav nav-list">
-                <li class="nav-header"> 
-                Links
-                </li>
-            
-                            <li><a href="http://getpelican.com/">Pelican</a></li>
-                            <li><a href="http://python.org/">Python.org</a></li>
-                        </ul>
-            </div>
+
+
+
+
             
 
-                        <div class="social">
-            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
-            <ul class="nav nav-list">
-                <li class="nav-header"> 
-                Social
-                </li>
-           
-                                <li><a href="http://weibo.com/focustc">Weibo</a></li>
-                                <li><a href="https://github.com/heloman">Github</a></li>
-                                <li><a href="http://blog.csdn.net/caozhk">CSDN Blog</a></li>
-                                <li><a href="http://heloman.github.io/feeds/all.rss.xml">Rss</a></li>
-                            </ul>
+
+
+
+
+        </section>
+</div>
+</article>
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe.
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides.
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
             </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
             </div>
-            
-        </div>  
-    </div>     </div> 
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>                    </div>
+                    <div class="span1"></div>
+                </div>
+            </div>
+        </div>
 <footer>
-<br />
-<p><a href="../../..">Focus</a> &copy; heLomaN 2012</p>
-</footer>
 
-</div> <!-- /container -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-collapse.js"></script>
-<script>var _gaq=[['_setAccount','UA-43314222-1'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))</script>
-<a href="https://github.com/heloman"><img style="position: absolute; top: 40px; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" /></a>
- 
-</body>
+
+
+
+    <div id="fpowered">
+        Powered by: <a href="http://getpelican.com/" title="Pelican Home Page" target="_blank" rel="nofollow noopener noreferrer">Pelican</a>
+        Theme: <a href="https://elegant.oncrashreboot.com/" title="Theme Elegant Home Page" target="_blank" rel="nofollow noopener noreferrer">Elegant</a>
+    </div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script src="../../../theme/js/elegant.prod.9e9d5ce754.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    <script>
+    (function () {
+        if (window.location.hash.match(/^#comment-\d+$/)) {
+            $('#comment_thread').collapse('show');
+        }
+    })();
+    window.onhashchange=function(){
+        if (window.location.hash.match(/^#comment-\d+$/))
+            window.location.reload(true);
+    }
+    $('#comment_thread').on('shown', function () {
+        var link = document.getElementById('comment-accordion-toggle');
+        var old_innerHTML = link.innerHTML;
+        $(link).fadeOut(200, function() {
+            $(this).text('Click here to hide comments').fadeIn(200);
+        });
+        $('#comment_thread').on('hidden', function () {
+            $(link).fadeOut(200, function() {
+                $(this).text(old_innerHTML).fadeIn(200);
+            });
+        })
+    })
+</script>
+
+    </body>
+    <!-- Theme: Elegant built for Pelican
+        License : MIT -->
 </html>

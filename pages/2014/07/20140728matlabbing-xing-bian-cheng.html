@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="../../../theme/css/elegant.prod.9e9d5ce754.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="../../../theme/css/custom.css" media="screen">
+
+        <link rel="dns-prefetch" href="//fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+
+        <meta name="author" content="heLomaN" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content=", misc, " />
+
+<meta property="og:title" content="20140728Matlab并行编程 "/>
+<meta property="og:url" content="../../../pages/2014/07/20140728matlabbing-xing-bian-cheng.html" />
+<meta property="og:description" content="Matlab的parfor并行编程 通常消耗最多计算资源的程序往往是循环。把循环并行化，或者优化循环体中的代码是最常用的加快程序运行速度的思路。 Matlab提供了parfor关键字，可以很方便的在多核机器或集群上实现并行计算。 parfor关键字的使用 由for关键字引导的循环通常为串行运行，如果改为parfor则可以由多个worker以并行方式执行。 parfor可以将n次循环分解为独立不相关的m部分，然后将各部分分别交给一个worker执行。 循环执行的结果应该与n次循环执行的顺序无关。 parfor中的变量类型 简约变量 一般parfor中各次循环对应的运算应该相互独立，但简约操作可以在多次循环内同时对一个变量操作。这种变量称为简约变量。例如下方代码中a就是简约变量。 a = 0; for i = 1:1000 a = a+i; end 简约操作包括+ - * .* &amp; | [,] [;] {,} {;} min max union intersect。 同一个parfor循环对简约变量的操作必须一致，即必须是同一种简约操作符。而且与操作符的相对位置也必须一致。 简约变量赋值表达式应该满足结合律和交换律。* [] {}底层有特殊处理保证结果的正确性。 切片变量 parfor中可能需要读取或写入parfor之外的矩阵，读取写入位置与循环变量相关。这样就需要向worker传输大量的数据。 矩阵如果被Matlab识别为切片变量，则数据可以分段传输到各worker，提高传输效率。 切片变量矩阵的大小是不可在parfor中改变的，且为了保证Matlab识别正确，每次循环中只能读取由同一个索引值索引的切片，如a …" />
+<meta property="og:site_name" content="Focus" />
+<meta property="og:article:author" content="heLomaN" />
+<meta property="og:article:published_time" content="2014-07-28T17:27:37.060091+08:00" />
+<meta property="og:article:modified_time" content="2014-07-28T17:27:37.060091+08:00" />
+<meta name="twitter:title" content="20140728Matlab并行编程 ">
+<meta name="twitter:description" content="Matlab的parfor并行编程 通常消耗最多计算资源的程序往往是循环。把循环并行化，或者优化循环体中的代码是最常用的加快程序运行速度的思路。 Matlab提供了parfor关键字，可以很方便的在多核机器或集群上实现并行计算。 parfor关键字的使用 由for关键字引导的循环通常为串行运行，如果改为parfor则可以由多个worker以并行方式执行。 parfor可以将n次循环分解为独立不相关的m部分，然后将各部分分别交给一个worker执行。 循环执行的结果应该与n次循环执行的顺序无关。 parfor中的变量类型 简约变量 一般parfor中各次循环对应的运算应该相互独立，但简约操作可以在多次循环内同时对一个变量操作。这种变量称为简约变量。例如下方代码中a就是简约变量。 a = 0; for i = 1:1000 a = a+i; end 简约操作包括+ - * .* &amp; | [,] [;] {,} {;} min max union intersect。 同一个parfor循环对简约变量的操作必须一致，即必须是同一种简约操作符。而且与操作符的相对位置也必须一致。 简约变量赋值表达式应该满足结合律和交换律。* [] {}底层有特殊处理保证结果的正确性。 切片变量 parfor中可能需要读取或写入parfor之外的矩阵，读取写入位置与循环变量相关。这样就需要向worker传输大量的数据。 矩阵如果被Matlab识别为切片变量，则数据可以分段传输到各worker，提高传输效率。 切片变量矩阵的大小是不可在parfor中改变的，且为了保证Matlab识别正确，每次循环中只能读取由同一个索引值索引的切片，如a …">
+
+        <title>20140728Matlab并行编程  · Focus
+</title>
+        <link href="http://heloman.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Focus - Full Atom Feed" />
+        <link href="http://heloman.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Focus - RSS Feed" />
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-43314222-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+    </head>
+    <body>
+        <div id="content">
+            <div class="navbar navbar-static-top">
+                <div class="navbar-inner">
+                    <div class="container-fluid">
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+                        <a class="brand" href="../../../"><span class=site-name>Focus</span></a>
+                        <div class="nav-collapse collapse">
+                            <ul class="nav pull-right top-menu">
+                                <li >
+                                    <a href=
+                                       ../../..
+                                    >Home</a>
+                                </li>
+                                <li ><a href="../../../pages/about-me.html">About Me</a></li>
+                                <li ><a href="../../../pages/resume.html">Resume</a></li>
+                                <li ><a href="../../../categories.html">Categories</a></li>
+                                <li ><a href="../../../tags.html">Tags</a></li>
+                                <li ><a href="../../../archives.html">Archives</a></li>
+                                <li><form class="navbar-search" action="../../../search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span1"></div>
+                    <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+        <h1>
+            <a href="../../../pages/2014/07/20140728matlabbing-xing-bian-cheng.html">
+                20140728Matlab并行编程
+            </a>
+        </h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+            
+            <h1>Matlab的parfor并行编程</h1>
+<ul>
+<li>通常消耗最多计算资源的程序往往是循环。把循环并行化，或者优化循环体中的代码是最常用的加快程序运行速度的思路。</li>
+<li>Matlab提供了parfor关键字，可以很方便的在多核机器或集群上实现并行计算。</li>
+</ul>
+<h2>parfor关键字的使用</h2>
+<ul>
+<li>由for关键字引导的循环通常为串行运行，如果改为parfor则可以由多个worker以并行方式执行。</li>
+<li>parfor可以将n次循环分解为独立不相关的m部分，然后将各部分分别交给一个worker执行。</li>
+<li>循环执行的结果应该与n次循环执行的顺序无关。</li>
+</ul>
+<h2>parfor中的变量类型</h2>
+<h3>简约变量</h3>
+<ul>
+<li>一般parfor中各次循环对应的运算应该相互独立，但简约操作可以在多次循环内同时对一个变量操作。这种变量称为简约变量。例如下方代码中a就是简约变量。</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err">a = 0;</span>
+<span class="err">for i = 1:1000</span>
+<span class="err">    a = a+i;</span>
+<span class="err">end</span>
+</code></pre></div>
+
+
+<ul>
+<li>简约操作包括<code>+ - * .* &amp; | [,] [;] {,} {;} min max union intersect</code>。</li>
+<li>同一个parfor循环对简约变量的操作必须一致，即必须是同一种简约操作符。而且与操作符的相对位置也必须一致。</li>
+<li>简约变量赋值表达式应该满足结合律和交换律。<code>* [] {}</code>底层有特殊处理保证结果的正确性。</li>
+</ul>
+<h3>切片变量</h3>
+<ul>
+<li>parfor中可能需要读取或写入parfor之外的矩阵，读取写入位置与循环变量相关。这样就需要向worker传输大量的数据。</li>
+<li>矩阵如果被Matlab识别为切片变量，则数据可以分段传输到各worker，提高传输效率。</li>
+<li>切片变量矩阵的大小是不可在parfor中改变的，且为了保证Matlab识别正确，每次循环中只能读取由同一个索引值索引的切片，如<code>a[i] a[i+1]</code>同时出现则a不被识别为切片变量。</li>
+</ul>
+<h3>循环变量</h3>
+<ul>
+<li>如上例中的i，表示当前循环的id。</li>
+</ul>
+<h3>广播变量</h3>
+<ul>
+<li>在parfor之前赋值，在parfor内只进行读取操作。</li>
+</ul>
+<h3>临时变量</h3>
+<ul>
+<li>作用域局限于parfor内，parfor结束后不存在。不影响parfor之前声明的同名变量。</li>
+</ul>
+<h3>各种变量区分的例子</h3>
+<ul>
+<li>下例中，parfor中的tmp是临时变量，parfor结束后tmp的值依然是5，不受临时变量的影响。</li>
+<li>broadcast是广播变量，每次循环中的值不变。</li>
+<li>redued是简约变量，Matlab对其的值将分段由各worker计算后送回主进程处理。</li>
+<li>sliced为切片变量，数据传输有优化提升。</li>
+<li>i为循环变量。</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err">tmp = 5;</span>
+<span class="err">broadcast = 1;</span>
+<span class="err">reduced = 0;</span>
+<span class="err">sliced = ones(1, 10);</span>
+<span class="err">parfor i = 1:10</span>
+<span class="err">    tmp = i;</span>
+<span class="err">    reduced = reduced + i + broadcast;</span>
+<span class="err">    sliced(i) = sliced(i) * i;</span>
+<span class="err">end </span>
+</code></pre></div>
+
+
+<h2>worker配置</h2>
+<ul>
+<li>在运行程序之前，需要配置worker。否则如前文所说，parfor循环将以普通for循环的形式运行，无法并行。</li>
+</ul>
+<h3>单机配置</h3>
+<ul>
+<li>使用matlabpool命令可以开启关闭本机的并行计算池。</li>
+<li><code>matlabpool n</code>命令可以打开n个worker。</li>
+<li><code>matlabpool open configname</code>按照指定配置打开，默认配置为<code>local</code>。</li>
+<li>程序运行结束后，应该使用<code>matlabpool close</code>关闭worker。</li>
+<li>配置项的修改可以通过<code>Parallel -&gt; Manage Cluster Profile</code>完成。</li>
+<li>n的选择：如果有c个cpu核心，通常可以设置为c。如果是远程服务器，为防止服务器响应卡顿，可以设置为<code>c-1</code>。对于计算密集型程序，超线程带来的性能提升几乎为0，可以设置为核心数，而不是线程数。</li>
+</ul>
+<h2>注意事项</h2>
+<ul>
+<li>循环次数n最好能整除以worker个数m，否则部分worker会分配较多的循环，造成一部分worker闲置一段时间，降低了并行性。</li>
+<li>并行运行时各个worker之间会进行通信，要注意大量数据传输带来的性能下降。尤其对于广播变量，如果较大可尝试变为切片变量。</li>
+</ul>
+<p><center>转载请注明作者：Focustc，博客地址为<a href="http://blog.csdn.net/caozhk">http://blog.csdn.net/caozhk</a>，原文链接为点我</center></p>
+
+
+             
+ 
+            
+            
+            
+
+
+
+
+
+
+
+<section>
+    <h6 style="display:none;">Comments</h6>
+    <p id="comment-message"> </p>
+
+    <div class="accordion" id="accordion2">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <a class="accordion-toggle disqus-comment-count comment-count collapsed"
+                   data-toggle="collapse"
+                   data-parent="#accordion2"
+                   data-disqus-identifier="../../../pages/2014/07/20140728matlabbing-xing-bian-cheng.html"
+                   href="../../../pages/2014/07/20140728matlabbing-xing-bian-cheng.html#comment_thread"
+                   id="comment-accordion-toggle">
+                    Comments
+                </a>
+            </div>
+            <div id="comment_thread" class="accordion-body collapse">
+                <div class="accordion-inner">
+                    <div class="comments">
+                        <div id="disqus_thread"></div>
+                        <script>
+    var disqus_shortname = 'focustc';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+
+    var disqus_identifier = '../../../pages/2014/07/20140728matlabbing-xing-bian-cheng.html';
+    var disqus_url = '../../../pages/2014/07/20140728matlabbing-xing-bian-cheng.html';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+            <hr/>
+        </div>
+        <section id="article-sidebar" class="span2">
+            <h4>Published</h4>
+            <time itemprop="dateCreated" datetime="2014-07-28T17:27:37.060091+08:00">2014-07-28</time>
+
+            <h4>Category</h4>
+            <a class="category-link" href="../../../categories.html#misc-ref">misc</a>
+<h4>Contact</h4>
+<div id="sidebar-social-link">
+    <a href="https://github.com/heloman" title="" target="_blank" rel="nofollow noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-label="GitHub" role="img" viewBox="0 0 512 512"><rect width="512" height="512" rx="15%" fill="#1B1817"/><path fill="#fff" d="M335 499c14 0 12 17 12 17H165s-2-17 12-17c13 0 16-6 16-12l-1-50c-71 16-86-28-86-28-12-30-28-37-28-37-24-16 1-16 1-16 26 2 40 26 40 26 22 39 59 28 74 22 2-17 9-28 16-35-57-6-116-28-116-126 0-28 10-51 26-69-3-6-11-32 3-67 0 0 21-7 70 26 42-12 86-12 128 0 49-33 70-26 70-26 14 35 6 61 3 67 16 18 26 41 26 69 0 98-60 120-117 126 10 8 18 24 18 48l-1 70c0 6 3 12 16 12z"/></svg>
+    </a>
+    <a href="http://heloman.github.io/feeds/all.rss.xml" title="" target="_blank" rel="nofollow noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-label="RSS" role="img" viewBox="0 0 512 512"><rect width="512" height="512" rx="15%" fill="#f80"/><circle cx="145" cy="367" r="35" fill="#fff"/><path fill="none" stroke="#fff" stroke-width="60" d="M109 241c89 0 162 73 162 162M109 127c152 0 276 124 276 276"/></svg>
+    </a>
+</div>
+            
+
+
+
+
+
+            
+
+
+
+
+
+        </section>
+</div>
+</article>
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe.
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides.
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>                    </div>
+                    <div class="span1"></div>
+                </div>
+            </div>
+        </div>
+<footer>
+
+
+
+
+    <div id="fpowered">
+        Powered by: <a href="http://getpelican.com/" title="Pelican Home Page" target="_blank" rel="nofollow noopener noreferrer">Pelican</a>
+        Theme: <a href="https://elegant.oncrashreboot.com/" title="Theme Elegant Home Page" target="_blank" rel="nofollow noopener noreferrer">Elegant</a>
+    </div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script src="../../../theme/js/elegant.prod.9e9d5ce754.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    <script>
+    (function () {
+        if (window.location.hash.match(/^#comment-\d+$/)) {
+            $('#comment_thread').collapse('show');
+        }
+    })();
+    window.onhashchange=function(){
+        if (window.location.hash.match(/^#comment-\d+$/))
+            window.location.reload(true);
+    }
+    $('#comment_thread').on('shown', function () {
+        var link = document.getElementById('comment-accordion-toggle');
+        var old_innerHTML = link.innerHTML;
+        $(link).fadeOut(200, function() {
+            $(this).text('Click here to hide comments').fadeIn(200);
+        });
+        $('#comment_thread').on('hidden', function () {
+            $(link).fadeOut(200, function() {
+                $(this).text(old_innerHTML).fadeIn(200);
+            });
+        })
+    })
+</script>
+
+    </body>
+    <!-- Theme: Elegant built for Pelican
+        License : MIT -->
+</html>

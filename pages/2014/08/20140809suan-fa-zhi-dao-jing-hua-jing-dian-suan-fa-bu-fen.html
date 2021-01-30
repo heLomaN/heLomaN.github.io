@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="../../../theme/css/elegant.prod.9e9d5ce754.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="../../../theme/css/custom.css" media="screen">
+
+        <link rel="dns-prefetch" href="//fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+
+        <meta name="author" content="heLomaN" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content=", misc, " />
+
+<meta property="og:title" content="20140809《算法之道》精华 经典算法部分 "/>
+<meta property="og:url" content="../../../pages/2014/08/20140809suan-fa-zhi-dao-jing-hua-jing-dian-suan-fa-bu-fen.html" />
+<meta property="og:description" content="《算法之道》精华 经典算法部分 本书作者邹恒明，作者另有一本书《数据结构之弦》，以及《操作系统之哲学原理》都是很好的书 这本书可以算得上是深入浅出，文笔很好，作者添加了很多自己的思考 本文包括经典算法部分 第十章 排序与次序 插入排序 从无序部分抽取一张插入有序部分 为原地排序，无需占用临时存储空间 最优情况下为O(n)，平均O(n^2) 折半插入排序 插入时使用二分查找 归并排序 分治，从中间分解，分别排序后进行仔细的合并 异地排序，需要占用额外空间 n&gt;=30时性能比插入排序更好。复杂度固定为O(nlog(n)) 快排 分治，复杂的部分在于分解，而归并复杂在于合并 原地排序 最坏情况为O(n^2)，但只要不是每次都是最坏，复杂度就不是n^2，具有韧性 任何基于比较的排序 …" />
+<meta property="og:site_name" content="Focus" />
+<meta property="og:article:author" content="heLomaN" />
+<meta property="og:article:published_time" content="2014-08-09T13:00:15.157910+08:00" />
+<meta property="og:article:modified_time" content="2014-08-09T13:00:15.157910+08:00" />
+<meta name="twitter:title" content="20140809《算法之道》精华 经典算法部分 ">
+<meta name="twitter:description" content="《算法之道》精华 经典算法部分 本书作者邹恒明，作者另有一本书《数据结构之弦》，以及《操作系统之哲学原理》都是很好的书 这本书可以算得上是深入浅出，文笔很好，作者添加了很多自己的思考 本文包括经典算法部分 第十章 排序与次序 插入排序 从无序部分抽取一张插入有序部分 为原地排序，无需占用临时存储空间 最优情况下为O(n)，平均O(n^2) 折半插入排序 插入时使用二分查找 归并排序 分治，从中间分解，分别排序后进行仔细的合并 异地排序，需要占用额外空间 n&gt;=30时性能比插入排序更好。复杂度固定为O(nlog(n)) 快排 分治，复杂的部分在于分解，而归并复杂在于合并 原地排序 最坏情况为O(n^2)，但只要不是每次都是最坏，复杂度就不是n^2，具有韧性 任何基于比较的排序 …">
+
+        <title>20140809《算法之道》精华 经典算法部分  · Focus
+</title>
+        <link href="http://heloman.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Focus - Full Atom Feed" />
+        <link href="http://heloman.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Focus - RSS Feed" />
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-43314222-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+    </head>
+    <body>
+        <div id="content">
+            <div class="navbar navbar-static-top">
+                <div class="navbar-inner">
+                    <div class="container-fluid">
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+                        <a class="brand" href="../../../"><span class=site-name>Focus</span></a>
+                        <div class="nav-collapse collapse">
+                            <ul class="nav pull-right top-menu">
+                                <li >
+                                    <a href=
+                                       ../../..
+                                    >Home</a>
+                                </li>
+                                <li ><a href="../../../pages/about-me.html">About Me</a></li>
+                                <li ><a href="../../../pages/resume.html">Resume</a></li>
+                                <li ><a href="../../../categories.html">Categories</a></li>
+                                <li ><a href="../../../tags.html">Tags</a></li>
+                                <li ><a href="../../../archives.html">Archives</a></li>
+                                <li><form class="navbar-search" action="../../../search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span1"></div>
+                    <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+        <h1>
+            <a href="../../../pages/2014/08/20140809suan-fa-zhi-dao-jing-hua-jing-dian-suan-fa-bu-fen.html">
+                20140809《算法之道》精华  经典算法部分
+            </a>
+        </h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+            
+            <h1>《算法之道》精华 经典算法部分</h1>
+<ul>
+<li>本书作者邹恒明，作者另有一本书《数据结构之弦》，以及《操作系统之哲学原理》都是很好的书</li>
+<li>这本书可以算得上是深入浅出，文笔很好，作者添加了很多自己的思考</li>
+<li>本文包括经典算法部分</li>
+</ul>
+<h2>第十章 排序与次序</h2>
+<ul>
+<li>插入排序<ul>
+<li>从无序部分抽取一张插入有序部分</li>
+<li>为原地排序，无需占用临时存储空间</li>
+<li>最优情况下为O(n)，平均O(n^2)</li>
+</ul>
+</li>
+<li>折半插入排序<ul>
+<li>插入时使用二分查找</li>
+</ul>
+</li>
+<li>归并排序<ul>
+<li>分治，从中间分解，分别排序后进行仔细的合并</li>
+<li>异地排序，需要占用额外空间</li>
+<li>n&gt;=30时性能比插入排序更好。复杂度固定为O(nlog(n))</li>
+</ul>
+</li>
+<li>快排<ul>
+<li>分治，复杂的部分在于分解，而归并复杂在于合并</li>
+<li>原地排序</li>
+<li>最坏情况为O(n^2)，但只要不是每次都是最坏，复杂度就不是n^2，具有韧性</li>
+</ul>
+</li>
+<li>任何基于比较的排序，决策树高度至少为nlog(n)</li>
+<li>计数排序<ul>
+<li>元素值范围必须有限</li>
+<li>空间复杂度高</li>
+<li>O(n)</li>
+</ul>
+</li>
+<li>基数排序<ul>
+<li>从最低位到最高位排序，每一位排序都采用稳定排序，如计数排序</li>
+<li>一位排序应该选择log(n)个比特，使整体成本最低</li>
+</ul>
+</li>
+<li>桶排序<ul>
+<li>把n元素按值分到n个桶里，每个桶内部进行插入排序，将各桶首位相连</li>
+<li>元素应该是均匀分布</li>
+</ul>
+</li>
+<li>快速次序选择：求第K大的数<ul>
+<li>使用快排的partition</li>
+<li>最差O(n^2)，平均O(n)</li>
+</ul>
+</li>
+<li>线性最差快速次序选择<ul>
+<li>将元素每5个一组，分别取中值。在n/5个中值里面找到中值，作为partition的pivot</li>
+<li><strong>为什么</strong>*不每3个一组？</li>
+<li>保证pivot左边右边至少3n/10个元素</li>
+<li>最差O(n)</li>
+</ul>
+</li>
+</ul>
+<h2>第十一章 搜索与散列</h2>
+<ul>
+<li>顺序搜索<ul>
+<li>在序列里面如果搜索频率从头到尾指数递减，则为O(1)</li>
+</ul>
+</li>
+<li>折半搜索<ul>
+<li>对于有序序列，为O(logn)</li>
+</ul>
+</li>
+<li>常数搜索：散列搜索<ul>
+<li>直接散列：非常简单，不会发生碰撞，空间浪费大</li>
+<li>除法（模除法）散列<ul>
+<li>元素对散列表大小m取模得到</li>
+<li>m必须为素数，否则造成不均匀散射。比如m包含因子d，而大部分元素对d余数相等</li>
+<li>m不能靠近2的幂。如m为2的幂，散列结果将不依赖元素的所有位。靠近也不行，<strong>为什么</strong>？</li>
+</ul>
+</li>
+<li>乘法散列<ul>
+<li>h(k) = (A * k ) % 2^r &gt;&gt; (w - r)，w为计算机字宽，A为2^(w-1)与2^w之间的一个奇数</li>
+<li>乘方取中法：乘方n次（常取n=2），取中间r位</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>开放寻址散列：散列碰撞时纵深扩展，添加一个链表<ul>
+<li>平均搜索时间为O(1+a)，a为加载因子</li>
+</ul>
+</li>
+<li>封闭寻址散列：散列碰撞时为元素找到另一个位置<ul>
+<li>找另一个位置的操作称为探寻</li>
+<li>线性探寻<ul>
+<li><code>h(k,i) = (h'(k) + i) % m</code>，h'(k)为家位</li>
+<li>向单方向寻找未被占用的位置</li>
+<li>易出现顶级聚集</li>
+</ul>
+</li>
+<li>非线性探寻<ul>
+<li>平方探寻 <code>h(k,i) = (h'(k) + c1 * i + c2 * i^2) % m</code> 易出现次级聚集</li>
+</ul>
+</li>
+<li>双重散列探寻<ul>
+<li>使用两个散列函数h1、h2来构造新散列函数</li>
+<li><code>h(k,i) = (h1(k) + i * h2(k) ) mod m</code></li>
+</ul>
+</li>
+<li>伪随机探寻<ul>
+<li>使用伪随机序列</li>
+<li>存在次级聚集</li>
+</ul>
+</li>
+<li>不成功搜索的探寻次数期望为<code>1/(1-a)</code></li>
+<li>成功搜索探寻次数最多为<code>1 / a * ln( 1/(1-a))</code></li>
+<li>封闭散列不能删除元素，可以放标记解决。如果插入相比搜索非常稀疏，则可以通过重新散列解决空位问题</li>
+</ul>
+</li>
+<li>随机化散列<ul>
+<li>找到一组散列函数，每次随机选择一个不同的散列函数</li>
+<li>用于避免单个散列函数极端情况下聚集效应严重</li>
+<li>全域散列<ul>
+<li>一组H个散列函数，将任意两个不同的元素映射到同一位置的函数个数为H/m</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>完美散列<ul>
+<li>n个元素，构造m=O(n)大小的散列表，使搜索最坏达到O(1)</li>
+<li>采用双层散列，第一层大小n，第二层每个表的大小为落到第一层位置i上的元素个数的平方</li>
+<li>空间消耗为O(n)</li>
+</ul>
+</li>
+</ul>
+<h2>第十二章 最短路径</h2>
+<ul>
+<li>如果图中有负环，则不存在最短路径</li>
+<li>单源多点最短路径 <ul>
+<li>Dijkstra算法<ul>
+<li>贪婪算法，要求不存在负路径</li>
+<li>最优子结构：最短路径里的每一段都是两点之间的最短路径</li>
+<li>贪婪选择属性：路径向外延伸的下一个节点就是离源点最近的节点</li>
+<li>每次选取离源点最近的节点，更新所有与此节点相邻节点的距离</li>
+<li>时间复杂度为O(V^2)，采用堆实现，可以达到O(E log(V))。与Prim算法相同</li>
+</ul>
+</li>
+<li>Bellman-Ford算法<ul>
+<li>可以应对负权重</li>
+<li>进行V-1轮降距，每次更新图中所有边</li>
+<li>复杂度为O(VE)</li>
+</ul>
+</li>
+<li>BFS<ul>
+<li>各边权重相等的情况</li>
+<li>O(V+E)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>多源多点最短路径<ul>
+<li>Floyd-Warshall算法<ul>
+<li>动态规划算法</li>
+<li>子问题为从i到j，中间结点只属于集合1...k的最短路径长度</li>
+<li>c_ijk = min{c_ij(k-1), c_ik(k-1) + ckj(k-1)}|k</li>
+<li>复杂度O(n^3)</li>
+</ul>
+</li>
+<li>Jonhson算法<ul>
+<li>等效变换为无负权重的图，使用Dijkstra算法</li>
+<li>添加一个节点s，到所有点路径长度为0，运行Bellman-Ford算法，对节点赋值</li>
+<li>对每个节点运行Dijkstra算法</li>
+<li>复杂度主要是Dijkstra算法运算，为O(VE + V^2 log(V))</li>
+<li>若Bellman-Ford算法报告有负环存在，不能使用此方法</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><center>转载请注明作者：Focustc，博客地址为<a href="http://blog.csdn.net/caozhk">http://blog.csdn.net/caozhk</a>，原文链接为点击打开</center>
+　　
+　　</p>
+
+
+             
+ 
+            
+            
+            
+
+
+
+
+
+
+
+<section>
+    <h6 style="display:none;">Comments</h6>
+    <p id="comment-message"> </p>
+
+    <div class="accordion" id="accordion2">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <a class="accordion-toggle disqus-comment-count comment-count collapsed"
+                   data-toggle="collapse"
+                   data-parent="#accordion2"
+                   data-disqus-identifier="../../../pages/2014/08/20140809suan-fa-zhi-dao-jing-hua-jing-dian-suan-fa-bu-fen.html"
+                   href="../../../pages/2014/08/20140809suan-fa-zhi-dao-jing-hua-jing-dian-suan-fa-bu-fen.html#comment_thread"
+                   id="comment-accordion-toggle">
+                    Comments
+                </a>
+            </div>
+            <div id="comment_thread" class="accordion-body collapse">
+                <div class="accordion-inner">
+                    <div class="comments">
+                        <div id="disqus_thread"></div>
+                        <script>
+    var disqus_shortname = 'focustc';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+
+    var disqus_identifier = '../../../pages/2014/08/20140809suan-fa-zhi-dao-jing-hua-jing-dian-suan-fa-bu-fen.html';
+    var disqus_url = '../../../pages/2014/08/20140809suan-fa-zhi-dao-jing-hua-jing-dian-suan-fa-bu-fen.html';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+            <hr/>
+        </div>
+        <section id="article-sidebar" class="span2">
+            <h4>Published</h4>
+            <time itemprop="dateCreated" datetime="2014-08-09T13:00:15.157910+08:00">2014-08-09</time>
+
+            <h4>Category</h4>
+            <a class="category-link" href="../../../categories.html#misc-ref">misc</a>
+<h4>Contact</h4>
+<div id="sidebar-social-link">
+    <a href="https://github.com/heloman" title="" target="_blank" rel="nofollow noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-label="GitHub" role="img" viewBox="0 0 512 512"><rect width="512" height="512" rx="15%" fill="#1B1817"/><path fill="#fff" d="M335 499c14 0 12 17 12 17H165s-2-17 12-17c13 0 16-6 16-12l-1-50c-71 16-86-28-86-28-12-30-28-37-28-37-24-16 1-16 1-16 26 2 40 26 40 26 22 39 59 28 74 22 2-17 9-28 16-35-57-6-116-28-116-126 0-28 10-51 26-69-3-6-11-32 3-67 0 0 21-7 70 26 42-12 86-12 128 0 49-33 70-26 70-26 14 35 6 61 3 67 16 18 26 41 26 69 0 98-60 120-117 126 10 8 18 24 18 48l-1 70c0 6 3 12 16 12z"/></svg>
+    </a>
+    <a href="http://heloman.github.io/feeds/all.rss.xml" title="" target="_blank" rel="nofollow noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-label="RSS" role="img" viewBox="0 0 512 512"><rect width="512" height="512" rx="15%" fill="#f80"/><circle cx="145" cy="367" r="35" fill="#fff"/><path fill="none" stroke="#fff" stroke-width="60" d="M109 241c89 0 162 73 162 162M109 127c152 0 276 124 276 276"/></svg>
+    </a>
+</div>
+            
+
+
+
+
+
+            
+
+
+
+
+
+        </section>
+</div>
+</article>
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe.
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides.
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>                    </div>
+                    <div class="span1"></div>
+                </div>
+            </div>
+        </div>
+<footer>
+
+
+
+
+    <div id="fpowered">
+        Powered by: <a href="http://getpelican.com/" title="Pelican Home Page" target="_blank" rel="nofollow noopener noreferrer">Pelican</a>
+        Theme: <a href="https://elegant.oncrashreboot.com/" title="Theme Elegant Home Page" target="_blank" rel="nofollow noopener noreferrer">Elegant</a>
+    </div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script src="../../../theme/js/elegant.prod.9e9d5ce754.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    <script>
+    (function () {
+        if (window.location.hash.match(/^#comment-\d+$/)) {
+            $('#comment_thread').collapse('show');
+        }
+    })();
+    window.onhashchange=function(){
+        if (window.location.hash.match(/^#comment-\d+$/))
+            window.location.reload(true);
+    }
+    $('#comment_thread').on('shown', function () {
+        var link = document.getElementById('comment-accordion-toggle');
+        var old_innerHTML = link.innerHTML;
+        $(link).fadeOut(200, function() {
+            $(this).text('Click here to hide comments').fadeIn(200);
+        });
+        $('#comment_thread').on('hidden', function () {
+            $(link).fadeOut(200, function() {
+                $(this).text(old_innerHTML).fadeIn(200);
+            });
+        })
+    })
+</script>
+
+    </body>
+    <!-- Theme: Elegant built for Pelican
+        License : MIT -->
+</html>

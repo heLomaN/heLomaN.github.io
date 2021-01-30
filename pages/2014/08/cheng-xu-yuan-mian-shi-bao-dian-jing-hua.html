@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="../../../theme/css/elegant.prod.9e9d5ce754.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="../../../theme/css/custom.css" media="screen">
+
+        <link rel="dns-prefetch" href="//fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+
+        <meta name="author" content="heLomaN" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content=", misc, " />
+
+<meta property="og:title" content="《程序员面试宝典》精华 "/>
+<meta property="og:url" content="../../../pages/2014/08/cheng-xu-yuan-mian-shi-bao-dian-jing-hua.html" />
+<meta property="og:description" content="《程序员面试宝典》精华 正所谓取其精华，去其糟粕。本文谨记录下《程序员面试宝典》一些关键的知识点、易错点，对于一些虽然重要但书中没有解释清楚的地方不做记录。当然这里的糟粕只是指不那么重要，或者比较简单，并不是说书写的不好。希望以后回顾时无需再看此书，只看保留在文中的精华即可。 文中有少许bug，亦摘录在此。 第五章 语言细节 5.1 y = z = 5，等号先计算右边，返回值是赋值后的左边的变量值 5.1 printf函数中的表达式从右向左压栈，应该先计算右方的值 5.4 float型1.0f在内存中表示为：0x3f 80 00 00 5.5 出现int常数的表达式中的变量通常都要提升至int型 5.5 赋值运算符默认从右向左结合，也就是先计算右方的值 5.5 (x&amp;y) + ((x^y …" />
+<meta property="og:site_name" content="Focus" />
+<meta property="og:article:author" content="heLomaN" />
+<meta property="og:article:published_time" content="2014-08-06T20:54:52+08:00" />
+<meta property="og:article:modified_time" content="2014-08-06T20:54:52+08:00" />
+<meta name="twitter:title" content="《程序员面试宝典》精华 ">
+<meta name="twitter:description" content="《程序员面试宝典》精华 正所谓取其精华，去其糟粕。本文谨记录下《程序员面试宝典》一些关键的知识点、易错点，对于一些虽然重要但书中没有解释清楚的地方不做记录。当然这里的糟粕只是指不那么重要，或者比较简单，并不是说书写的不好。希望以后回顾时无需再看此书，只看保留在文中的精华即可。 文中有少许bug，亦摘录在此。 第五章 语言细节 5.1 y = z = 5，等号先计算右边，返回值是赋值后的左边的变量值 5.1 printf函数中的表达式从右向左压栈，应该先计算右方的值 5.4 float型1.0f在内存中表示为：0x3f 80 00 00 5.5 出现int常数的表达式中的变量通常都要提升至int型 5.5 赋值运算符默认从右向左结合，也就是先计算右方的值 5.5 (x&amp;y) + ((x^y …">
+
+        <title>《程序员面试宝典》精华  · Focus
+</title>
+        <link href="http://heloman.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Focus - Full Atom Feed" />
+        <link href="http://heloman.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Focus - RSS Feed" />
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-43314222-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+    </head>
+    <body>
+        <div id="content">
+            <div class="navbar navbar-static-top">
+                <div class="navbar-inner">
+                    <div class="container-fluid">
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+                        <a class="brand" href="../../../"><span class=site-name>Focus</span></a>
+                        <div class="nav-collapse collapse">
+                            <ul class="nav pull-right top-menu">
+                                <li >
+                                    <a href=
+                                       ../../..
+                                    >Home</a>
+                                </li>
+                                <li ><a href="../../../pages/about-me.html">About Me</a></li>
+                                <li ><a href="../../../pages/resume.html">Resume</a></li>
+                                <li ><a href="../../../categories.html">Categories</a></li>
+                                <li ><a href="../../../tags.html">Tags</a></li>
+                                <li ><a href="../../../archives.html">Archives</a></li>
+                                <li><form class="navbar-search" action="../../../search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span1"></div>
+                    <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+        <h1>
+            <a href="../../../pages/2014/08/cheng-xu-yuan-mian-shi-bao-dian-jing-hua.html">
+                《程序员面试宝典》精华
+            </a>
+        </h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+            
+            <h1>《程序员面试宝典》精华</h1>
+<ul>
+<li>正所谓取其精华，去其糟粕。本文谨记录下《程序员面试宝典》一些关键的知识点、易错点，对于一些虽然重要但书中没有解释清楚的地方不做记录。当然这里的糟粕只是指不那么重要，或者比较简单，并不是说书写的不好。希望以后回顾时无需再看此书，只看保留在文中的精华即可。</li>
+<li>文中有少许bug，亦摘录在此。</li>
+</ul>
+<h2>第五章 语言细节</h2>
+<ul>
+<li>5.1 <code>y = z = 5</code>，等号先计算右边，返回值是赋值后的左边的变量值</li>
+<li>5.1 printf函数中的表达式从右向左压栈，应该先计算右方的值</li>
+<li>5.4 float型1.0f在内存中表示为：0x3f 80 00 00</li>
+<li>5.5 出现int常数的表达式中的变量通常都要提升至int型</li>
+<li>5.5 赋值运算符默认从右向左结合，也就是先计算右方的值</li>
+<li>5.5 (x&amp;y) + ((x^y)&gt;&gt;1)效果是取二者的平均数</li>
+<li>5.6 不用判断和switch语句求a、b中的较大的一个：((a + b) + abs(a - b)) / 2</li>
+<li>5.7 <code>extern "C"</code>的用法：函数声明前添加，解决C/C++编译器的名字包装的不同问题</li>
+</ul>
+<h2>第六章 预处理、const和sizeof</h2>
+<ul>
+<li>6.1 求结构体中某成员的偏移量：<code>#define FIND(struc, e) (size_t)&amp;(((struc *)0)-&gt;e)</code></li>
+<li>6.2 C语言中，<code>const n = 10; char carray[n]</code>是错误的，因为C编译器不能把const看成编译期的常量。但实验得出是正确的，bug</li>
+<li>6.3 C++中给类成员变量添加mutable修饰符，就可以使用const函数修改</li>
+<li>6.3 结构体对齐原则：结构体长度一定是最长数据元素整数倍，但如果大于处理器位数，则以处理器位数为对齐单位。CPU数据对齐原则是数据的内存地址必须是该数据长度的整数倍，以提高运行速度</li>
+<li>6.3 sizeof(string) == 4</li>
+<li>6.3 空类以及（多重）继承的空类大小都为1，但虚继承的类含有虚表指针，大小为4</li>
+</ul>
+<h2>第七章 指针与引用</h2>
+<ul>
+<li>7.1 指针与引用的区别<ul>
+<li>引用总是非空的，指针可能为空，使用时要小心测试</li>
+<li>引用不可以指向另一个对象，但指针可以更改</li>
+</ul>
+</li>
+<li>7.1 <code>int *p; *p = 0;</code>是错误的，指针p并未指向某个实际的地址</li>
+<li>7.2 <code>char  a[] = "a"</code>数组存放中栈中，函数返回即消失，<code>char *a = "a"</code>数组存放于全局只读数据段</li>
+<li>7.2 若类B继承类A，两者皆有成员变量，A中有f方法，则<code>B b; b.f()</code>调用的是A中的f，f使用的变量也为A中的变量</li>
+<li>7.3 指向const的指针应该是<code>const int *</code>，bug</li>
+<li>7.3 <code>int ( *(*f)(int, int) )(int)</code>定义了一个函数指针，接收两个int参数，返回值为一个函数指针</li>
+<li>7.4 指向整型数组的指针声明为：<code>int (*p) []</code>，指向整型的指针数组声明为：<code>int *p[]</code>，函数指针的数组的声明：<code>int (*p[10])(int)</code></li>
+<li>7.5 悬浮指针指的是delete之后的指针，应该让指针等于0，使得后续程序使用此悬浮指针出错是可控的。比如第二次delete</li>
+<li>7.5 new/delete与malloc/free的区别<ul>
+<li>前者是运算符，后者是函数</li>
+<li>前者除了后者申请与释放动态内存的工作之外，对于非内置类型，还完成类初始化与析构操作</li>
+</ul>
+</li>
+<li>7.6 autoptr中拷贝时会尝试只保留一份指针，因此不适合放在容器中</li>
+</ul>
+<h2>第九章 STL模板与容器</h2>
+<ul>
+<li>9.1 如果没有重载拷贝构造函数为深拷贝，而又包含指针，那么调用拷贝构造函数时会复制指针，造成同一个指针 delete多次</li>
+</ul>
+<h2>第十章 面向对象</h2>
+<ul>
+<li>10.2 类与结构体的区别：都能继承、拥有析构等成员函数，唯一的区别是struct成员默认为public，而class默认为private。C++是为了兼容C代码才保留struct关键字</li>
+<li>10.3 <code>class B{...}; B b(); b.f();</code>是错误的，b声明为了一个函数</li>
+<li>10.3 静态成员变量必须显式初始化，例如<code>int A::i  0;</code></li>
+<li>10.3 成员变量初始化顺序与初始化列表顺序无关，与变量声明顺序有关</li>
+<li>10.3 常数(cosnt)成员变量必须中构造函数的初始化列表里面初始化，或者声明为<code>static const</code>成员</li>
+<li>10.4 把成员函数声明为虚函数造成调用开销增大，为什么常常把基类的析构函数声明为虚函数：多态情况下常常把派生类对象的指针赋给基类指针，那么使用虚函数保证delete时能调用派生类对象的析构函数，而不造成内存泄露</li>
+<li>10.4 构造函数为什么不能声明为virtual：虚调用是来调用一个只知道接口而不知道其对象类型的成员函数，实例化对象时必须知道对象的准确类型，因此构造函数不能为virtual（存疑，不够clear）</li>
+<li>10.4 函数f返回一个对象时，使用<code>A t = f()</code>，会调用拷贝构造函数。即函数参数和返回值都是对象时，都会调用一次拷贝构造函数</li>
+<li>10.4 含有单个参数的构造函数会定义一个从参数类型到类的隐式类型转换，使用explicit关键字可以避免此转换</li>
+<li>10.5 函数参数常声明为const，这是因为const变量不能随意转换为非const，反之则可</li>
+<li>10.5 要求类的每个对象有唯一id，需要自定义拷贝构造函数避免重复</li>
+<li>10.5 如果类包含动态分配的指针，那么需要定义拷贝构造函数和赋值函数</li>
+<li>
+<p>10.6 什么是多态？</p>
+<ul>
+<li>概念：封装、继承、多态是OO的三大基本概念。多态指的是允许将子类类型赋值给父类指针，而父类指针可以通过统一的接口对所有子类对象进行操作</li>
+<li>作用与目的：封装为了隐藏实现细节，以及数据类型和函数的统一，模块化；继承是为了方便扩展已有的代码模块；两者均可实现代码重用，而多态是为了实现接口重用</li>
+<li>实现方法：虚函数</li>
+</ul>
+</li>
+<li>
+<p>10.6 重写与重载，前者override是指子类重新定义父类的虚函数，后者overload是指同时存在多个参数列表不同的同名函数</p>
+</li>
+</ul>
+<h2>第十一章 继承与接口</h2>
+<ul>
+<li>11.1 如果显式调用虚函数，则虚调用机制失效，如<code>class B::public A{}; B b; b.A::f();</code>，类f为虚函数，但此时显式调用A中的f</li>
+<li>11.2 三种继承方式的区别<ul>
+<li>public继承：基类的public和protected成员对基类保持原有状态<ul>
+<li>基类成员对派生类的可见性：派生类（的成员函数）可以访问基类的public和protected成员</li>
+<li>基类成员对派生类对象的可见性：（通过）派生类的对象（指例如<code>a.f()的方式</code>）可以访问基类的public成员</li>
+</ul>
+</li>
+<li>private继承：将基类的public和protected成员当成派生类的private成员，且不能被派生类的子类访问<ul>
+<li>基类成员对派生类的可见性：派生类（的成员函数）可以访问基类的public和protected成员</li>
+<li>基类成员对派生类对象的可见性：（通过）派生类的对象不可以访问基类的任何成员,因此基类的成员无法再向下继承</li>
+</ul>
+</li>
+<li>protected继承：将基类的public和protected成员当成派生类的protected成员，且不能被派生类的子类访问<ul>
+<li>基类成员对派生类的可见性：派生类（的成员函数）可以访问基类的public和protected成员</li>
+<li>基类成员对派生类对象的可见性：（通过）派生类的对象不可以访问基类的任何成员,因此基类的成员无法再向下继承</li>
+</ul>
+</li>
+<li>关键差别在于通过派生类对象可以访问基类的哪些成员，以及派生类的子类能否访问派生类的成员</li>
+</ul>
+</li>
+<li>11.2 三种成员属性的区别：基类的private成员对派生类屏蔽，protected成员使派生类可以访问，基类仅有public成员可以通过基类的对象访问</li>
+<li>11.2 虚继承是为了解决多重继承中的菱形继承冲突，派生类中会添加一个指向基类虚函数表的指针<ul>
+<li>例如，C、B虚继承自A，D继承自B、C，则D中共有1个A</li>
+</ul>
+</li>
+<li>11.4 Java中使用接口替代多重继承，C++可以使用抽象类模拟接口</li>
+<li>11.4 C继承自A，B，pC指向C对象，pB把pC转换为指向B的指针，则<code>pC  == pB</code>，这里发生从C的指针到B的指针的隐式转换，书中说反了，bug</li>
+<li>11.5 类的继承默认为private，通常需要加public关键字</li>
+<li>11.6 如何防止一个类实例化：使用带有纯虚函数的抽象类，或者把构造函数声明为private</li>
+<li>11.7 RTTI的缺点：除了运行开销外，使程序变得不确定，缺乏扩展性</li>
+<li>11.7 类型转换运算符重载，无返回值无参数，以目标类型为函数名，如：<code>operator char*()</code></li>
+<li>11.8 dynamic_cast如果转换失败返回0</li>
+<li>11.8 typeid返回值为对type_info常量对象的引用</li>
+</ul>
+<h2>第十二章 位运算与嵌入式编程</h2>
+<ul>
+<li>12.1 printf的%f说明符可以输出float和double型，float型会被提升为double型。<code>printf("%f",5);printf("%d",5.01)</code>，前者会从存放5的位置取double型的8个字节，内存越界，并按bit解释，后者会按照整数来解释5.01的比特，输出为0，一个大整数。<strong>真的是越界</strong>？</li>
+<li>12.1 <code>struct a{int z:33;};</code>报错，因为z为int型，不可能有33位</li>
+<li>12.1 dynamic_cast,static_cast,reinterpret_cast的区别，没有讲清楚</li>
+<li>12.2 ISR终端服务程序不应该有参数和返回值，且不能使用不可重入的函数</li>
+<li>12.2 volatile的意思是易变的，指的是它可能在程序控制的范围之外意外发生变化，防止编译器的优化。volatile变量可以声明为const，表示是只读的</li>
+<li>12.2 const的意思是只读的</li>
+<li>12.2 <code>malloc(0)</code>能得到一个合法的指针，而不是空指针，对其调用strlen和sizeof结果为0和4</li>
+<li>12.2 对于结构体<code>struct bit{int b1:5;int :2;int b2:2;};</code>赋值后，取b1,b2的值，该如何解析？</li>
+<li>12.3 static的作用包括哪些？<ul>
+<li>函数内的static变量中下次调用时保持值不变</li>
+<li>源代码文件（模块）内的static全局变量和函数的作用范围限制在模块内</li>
+<li>类的static成员变量对所有对象共享，static成员函数只能访问static成员变量</li>
+</ul>
+</li>
+</ul>
+<h2>第十六章 操作系统</h2>
+<ul>
+<li>16.1 进程间如何通信：信号，信号量，消息队列，共享内存</li>
+<li>16.1 死锁的必要条件：互斥，请求与保持，不可剥夺，循环等待。后三种条件可以破坏</li>
+<li>16.2 进程与线程的区别：<ul>
+<li>进程是程序的一次执行，线程为进程中执行的一段程序</li>
+<li>进程直接是独立的，而同一进程的线程共享内存空间</li>
+</ul>
+</li>
+</ul>
+<h2>第十七章 数据库</h2>
+<ul>
+<li>17.1 事务：作为单个逻辑工作单元执行的一系列操作，不可分割。具有原子性、一致性、独立性、持久性</li>
+<li>17.1 聚集索引与非聚集索引的区别：<ul>
+<li>聚集索引的顺序就是数据的物理存储顺序，而非聚集索引顺序与物理存储顺序无关</li>
+<li>每个表只能有一个聚集索引，聚集索引对于范围查询的列非常有效</li>
+</ul>
+</li>
+<li>17.2 表ppp里面num最小的数<ul>
+<li>不使用min：<code>select top 1 num from ppp order by num</code></li>
+<li>使用min：<code>select * from ppp where num = (select Min(num) from ppp)</code></li>
+</ul>
+</li>
+<li>17.2 从表中取出第5行到第七行的数据的语句</li>
+</ul>
+<h2>第十八章 计算机网络</h2>
+<ul>
+<li>18.1 OSI七层模型及其作用：<ul>
+<li>物理层 传输原始比特流</li>
+<li>数据链路层 </li>
+<li>网络层 路由选择</li>
+<li>传输层</li>
+<li>会话层</li>
+<li>表示层</li>
+<li>应用层</li>
+</ul>
+</li>
+<li>18.2 TCP与UDP的区别<ul>
+<li>TCP是传输控制协议，提供面向连接、可靠的字节流服务。提供超时重发、数据检验、流量控制等功能</li>
+<li>UDP是用户数据报协议，是面向数据报的传输层协议，不提供可靠性。但由于无需建立连接、超时重发，传输速度快</li>
+</ul>
+</li>
+<li>18.3 socket编程流程<ul>
+<li>服务器端：socket bind accept  sned recv close</li>
+<li>客户端： socket connect send recv close</li>
+</ul>
+</li>
+<li>18.3 常用端口号：0到1023范围内，21为FTP，25为SMTP，80为HTTP，23为telnet</li>
+<li>18.4 TCP的三次握手与四次挥手</li>
+</ul>
+
+
+             
+ 
+            
+            
+            
+
+
+
+
+
+
+
+<section>
+    <h6 style="display:none;">Comments</h6>
+    <p id="comment-message"> </p>
+
+    <div class="accordion" id="accordion2">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <a class="accordion-toggle disqus-comment-count comment-count collapsed"
+                   data-toggle="collapse"
+                   data-parent="#accordion2"
+                   data-disqus-identifier="../../../pages/2014/08/cheng-xu-yuan-mian-shi-bao-dian-jing-hua.html"
+                   href="../../../pages/2014/08/cheng-xu-yuan-mian-shi-bao-dian-jing-hua.html#comment_thread"
+                   id="comment-accordion-toggle">
+                    Comments
+                </a>
+            </div>
+            <div id="comment_thread" class="accordion-body collapse">
+                <div class="accordion-inner">
+                    <div class="comments">
+                        <div id="disqus_thread"></div>
+                        <script>
+    var disqus_shortname = 'focustc';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+
+    var disqus_identifier = '../../../pages/2014/08/cheng-xu-yuan-mian-shi-bao-dian-jing-hua.html';
+    var disqus_url = '../../../pages/2014/08/cheng-xu-yuan-mian-shi-bao-dian-jing-hua.html';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+            <hr/>
+        </div>
+        <section id="article-sidebar" class="span2">
+            <h4>Published</h4>
+            <time itemprop="dateCreated" datetime="2014-08-06T20:54:52+08:00">2014-08-06</time>
+
+            <h4>Category</h4>
+            <a class="category-link" href="../../../categories.html#misc-ref">misc</a>
+<h4>Contact</h4>
+<div id="sidebar-social-link">
+    <a href="https://github.com/heloman" title="" target="_blank" rel="nofollow noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-label="GitHub" role="img" viewBox="0 0 512 512"><rect width="512" height="512" rx="15%" fill="#1B1817"/><path fill="#fff" d="M335 499c14 0 12 17 12 17H165s-2-17 12-17c13 0 16-6 16-12l-1-50c-71 16-86-28-86-28-12-30-28-37-28-37-24-16 1-16 1-16 26 2 40 26 40 26 22 39 59 28 74 22 2-17 9-28 16-35-57-6-116-28-116-126 0-28 10-51 26-69-3-6-11-32 3-67 0 0 21-7 70 26 42-12 86-12 128 0 49-33 70-26 70-26 14 35 6 61 3 67 16 18 26 41 26 69 0 98-60 120-117 126 10 8 18 24 18 48l-1 70c0 6 3 12 16 12z"/></svg>
+    </a>
+    <a href="http://heloman.github.io/feeds/all.rss.xml" title="" target="_blank" rel="nofollow noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-label="RSS" role="img" viewBox="0 0 512 512"><rect width="512" height="512" rx="15%" fill="#f80"/><circle cx="145" cy="367" r="35" fill="#fff"/><path fill="none" stroke="#fff" stroke-width="60" d="M109 241c89 0 162 73 162 162M109 127c152 0 276 124 276 276"/></svg>
+    </a>
+</div>
+            
+
+
+
+
+
+            
+
+
+
+
+
+        </section>
+</div>
+</article>
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe.
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides.
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>                    </div>
+                    <div class="span1"></div>
+                </div>
+            </div>
+        </div>
+<footer>
+
+
+
+
+    <div id="fpowered">
+        Powered by: <a href="http://getpelican.com/" title="Pelican Home Page" target="_blank" rel="nofollow noopener noreferrer">Pelican</a>
+        Theme: <a href="https://elegant.oncrashreboot.com/" title="Theme Elegant Home Page" target="_blank" rel="nofollow noopener noreferrer">Elegant</a>
+    </div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script src="../../../theme/js/elegant.prod.9e9d5ce754.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    <script>
+    (function () {
+        if (window.location.hash.match(/^#comment-\d+$/)) {
+            $('#comment_thread').collapse('show');
+        }
+    })();
+    window.onhashchange=function(){
+        if (window.location.hash.match(/^#comment-\d+$/))
+            window.location.reload(true);
+    }
+    $('#comment_thread').on('shown', function () {
+        var link = document.getElementById('comment-accordion-toggle');
+        var old_innerHTML = link.innerHTML;
+        $(link).fadeOut(200, function() {
+            $(this).text('Click here to hide comments').fadeIn(200);
+        });
+        $('#comment_thread').on('hidden', function () {
+            $(link).fadeOut(200, function() {
+                $(this).text(old_innerHTML).fadeIn(200);
+            });
+        })
+    })
+</script>
+
+    </body>
+    <!-- Theme: Elegant built for Pelican
+        License : MIT -->
+</html>

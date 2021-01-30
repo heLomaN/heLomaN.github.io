@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="../../../theme/css/elegant.prod.9e9d5ce754.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="../../../theme/css/custom.css" media="screen">
+
+        <link rel="dns-prefetch" href="//fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+
+        <meta name="author" content="heLomaN" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content=", misc, " />
+
+<meta property="og:title" content="20140806《程序员面试宝典》精华 语言部分 "/>
+<meta property="og:url" content="../../../pages/2014/08/20140806cheng-xu-yuan-mian-shi-bao-dian-jing-hua-yu-yan-bu-fen.html" />
+<meta property="og:description" content="《程序员面试宝典》精华 编程语言部分 正所谓取其精华，去其糟粕。本文谨记录下《程序员面试宝典》一些关键的知识点、易错点，对于一些虽然重要但书中没有解释清楚的地方不做记录。当然这里的糟粕只是指不那么重要，或者比较简单，并不是说书写的不好。希望以后回顾时无需再看此书，只看保留在文中的精华即可。 文中有少许bug，亦摘录在此。 本文专注编程语言部分，包括第五章到第九章的内容 第五章 语言细节 5.1 y = z = 5，等号先计算右边，返回值是赋值后的左边的变量值 5.1 printf函数中的表达式从右向左压栈，应该先计算右方的值 5.4 float型1.0f在内存中表示为：0x3f 80 00 00 5.5 出现int常数的表达式中的变量通常都要提升至int型 5.5 赋值运算符默认从右向左结合，也就是先计算右方的值 5.5 (x …" />
+<meta property="og:site_name" content="Focus" />
+<meta property="og:article:author" content="heLomaN" />
+<meta property="og:article:published_time" content="2014-08-06T00:43:22.485993+08:00" />
+<meta property="og:article:modified_time" content="2014-08-06T00:43:22.485993+08:00" />
+<meta name="twitter:title" content="20140806《程序员面试宝典》精华 语言部分 ">
+<meta name="twitter:description" content="《程序员面试宝典》精华 编程语言部分 正所谓取其精华，去其糟粕。本文谨记录下《程序员面试宝典》一些关键的知识点、易错点，对于一些虽然重要但书中没有解释清楚的地方不做记录。当然这里的糟粕只是指不那么重要，或者比较简单，并不是说书写的不好。希望以后回顾时无需再看此书，只看保留在文中的精华即可。 文中有少许bug，亦摘录在此。 本文专注编程语言部分，包括第五章到第九章的内容 第五章 语言细节 5.1 y = z = 5，等号先计算右边，返回值是赋值后的左边的变量值 5.1 printf函数中的表达式从右向左压栈，应该先计算右方的值 5.4 float型1.0f在内存中表示为：0x3f 80 00 00 5.5 出现int常数的表达式中的变量通常都要提升至int型 5.5 赋值运算符默认从右向左结合，也就是先计算右方的值 5.5 (x …">
+
+        <title>20140806《程序员面试宝典》精华 语言部分  · Focus
+</title>
+        <link href="http://heloman.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Focus - Full Atom Feed" />
+        <link href="http://heloman.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Focus - RSS Feed" />
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-43314222-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+    </head>
+    <body>
+        <div id="content">
+            <div class="navbar navbar-static-top">
+                <div class="navbar-inner">
+                    <div class="container-fluid">
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+                        <a class="brand" href="../../../"><span class=site-name>Focus</span></a>
+                        <div class="nav-collapse collapse">
+                            <ul class="nav pull-right top-menu">
+                                <li >
+                                    <a href=
+                                       ../../..
+                                    >Home</a>
+                                </li>
+                                <li ><a href="../../../pages/about-me.html">About Me</a></li>
+                                <li ><a href="../../../pages/resume.html">Resume</a></li>
+                                <li ><a href="../../../categories.html">Categories</a></li>
+                                <li ><a href="../../../tags.html">Tags</a></li>
+                                <li ><a href="../../../archives.html">Archives</a></li>
+                                <li><form class="navbar-search" action="../../../search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span1"></div>
+                    <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+        <h1>
+            <a href="../../../pages/2014/08/20140806cheng-xu-yuan-mian-shi-bao-dian-jing-hua-yu-yan-bu-fen.html">
+                20140806《程序员面试宝典》精华 语言部分
+            </a>
+        </h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+            
+            <h1>《程序员面试宝典》精华 编程语言部分</h1>
+<ul>
+<li>正所谓取其精华，去其糟粕。本文谨记录下《程序员面试宝典》一些关键的知识点、易错点，对于一些虽然重要但书中没有解释清楚的地方不做记录。当然这里的糟粕只是指不那么重要，或者比较简单，并不是说书写的不好。希望以后回顾时无需再看此书，只看保留在文中的精华即可。</li>
+<li>文中有少许bug，亦摘录在此。</li>
+<li>本文专注编程语言部分，包括第五章到第九章的内容</li>
+</ul>
+<h2>第五章 语言细节</h2>
+<ul>
+<li>5.1 <code>y = z = 5</code>，等号先计算右边，返回值是赋值后的左边的变量值</li>
+<li>5.1 printf函数中的表达式从右向左压栈，应该先计算右方的值</li>
+<li>5.4 float型1.0f在内存中表示为：0x3f 80 00 00</li>
+<li>5.5 出现int常数的表达式中的变量通常都要提升至int型</li>
+<li>5.5 赋值运算符默认从右向左结合，也就是先计算右方的值</li>
+<li>5.5 (x&amp;y) + ((x^y)&gt;&gt;1)效果是取二者的平均数</li>
+<li>5.6 不用判断和switch语句求a、b中的较大的一个：((a + b) + abs(a - b)) / 2</li>
+<li>5.7 <code>extern "C"</code>的用法：函数声明前添加，解决C/C++编译器的名字包装的不同问题</li>
+</ul>
+<h2>第六章 预处理、const和sizeof</h2>
+<ul>
+<li>6.1 求结构体中某成员的偏移量：<code>#define FIND(struc, e) (size_t)&amp;(((struc *)0)-&gt;e)</code></li>
+<li>6.2 C语言中，<code>const n = 10; char carray[n]</code>是错误的，因为C编译器不能把const看成编译期的常量。但实验得出是正确的，bug</li>
+<li>6.3 C++中给类成员变量添加mutable修饰符，就可以使用const函数修改</li>
+<li>6.3 结构体对齐原则：结构体长度一定是最长数据元素整数倍，但如果大于处理器位数，则以处理器位数为对齐单位。CPU数据对齐原则是数据的内存地址必须是该数据长度的整数倍，以提高运行速度</li>
+<li>6.3 sizeof(string) == 4</li>
+<li>6.3 空类以及（多重）继承的空类大小都为1，但虚继承的类含有虚表指针，大小为4</li>
+</ul>
+<h2>第七章 指针与引用</h2>
+<ul>
+<li>7.1 指针与引用的区别<ul>
+<li>引用总是非空的，指针可能为空，使用时要小心测试</li>
+<li>引用不可以指向另一个对象，但指针可以更改</li>
+</ul>
+</li>
+<li>7.1 <code>int *p; *p = 0;</code>是错误的，指针p并未指向某个实际的地址</li>
+<li>7.2 <code>char  a[] = "a"</code>数组存放中栈中，函数返回即消失，<code>char *a = "a"</code>数组存放于全局只读数据段</li>
+<li>7.2 若类B继承类A，两者皆有成员变量，A中有f方法，则<code>B b; b.f()</code>调用的是A中的f，f使用的变量也为A中的变量</li>
+<li>7.3 指向const的指针应该是<code>const int *</code>，bug</li>
+<li>7.3 <code>int ( *(*f)(int, int) )(int)</code>定义了一个函数指针，接收两个int参数，返回值为一个函数指针</li>
+<li>7.4 指向整型数组的指针声明为：<code>int (*p) []</code>，指向整型的指针数组声明为：<code>int *p[]</code>，函数指针的数组的声明：<code>int (*p[10])(int)</code></li>
+<li>7.5 悬浮指针指的是delete之后的指针，应该让指针等于0，使得后续程序使用此悬浮指针出错是可控的。比如第二次delete</li>
+<li>7.5 new/delete与malloc/free的区别<ul>
+<li>前者是运算符，后者是函数</li>
+<li>前者除了后者申请与释放动态内存的工作之外，对于非内置类型，还完成类初始化与析构操作</li>
+</ul>
+</li>
+<li>7.6 autoptr中拷贝时会尝试只保留一份指针，因此不适合放在容器中</li>
+</ul>
+<h2>第九章 STL模板与容器</h2>
+<ul>
+<li>9.1 如果没有重载拷贝构造函数为深拷贝，而又包含指针，那么调用拷贝构造函数时会复制指针，造成同一个指针 delete多次</li>
+</ul>
+<p><center>转载请注明作者：Focustc，博客地址为<a href="http://blog.csdn.net/caozhk">http://blog.csdn.net/caozhk</a>，原文链接为点击打开</center>
+　　
+　　</p>
+
+
+             
+ 
+            
+            
+            
+
+
+
+
+
+
+
+<section>
+    <h6 style="display:none;">Comments</h6>
+    <p id="comment-message"> </p>
+
+    <div class="accordion" id="accordion2">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <a class="accordion-toggle disqus-comment-count comment-count collapsed"
+                   data-toggle="collapse"
+                   data-parent="#accordion2"
+                   data-disqus-identifier="../../../pages/2014/08/20140806cheng-xu-yuan-mian-shi-bao-dian-jing-hua-yu-yan-bu-fen.html"
+                   href="../../../pages/2014/08/20140806cheng-xu-yuan-mian-shi-bao-dian-jing-hua-yu-yan-bu-fen.html#comment_thread"
+                   id="comment-accordion-toggle">
+                    Comments
+                </a>
+            </div>
+            <div id="comment_thread" class="accordion-body collapse">
+                <div class="accordion-inner">
+                    <div class="comments">
+                        <div id="disqus_thread"></div>
+                        <script>
+    var disqus_shortname = 'focustc';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+
+    var disqus_identifier = '../../../pages/2014/08/20140806cheng-xu-yuan-mian-shi-bao-dian-jing-hua-yu-yan-bu-fen.html';
+    var disqus_url = '../../../pages/2014/08/20140806cheng-xu-yuan-mian-shi-bao-dian-jing-hua-yu-yan-bu-fen.html';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+            <hr/>
+        </div>
+        <section id="article-sidebar" class="span2">
+            <h4>Published</h4>
+            <time itemprop="dateCreated" datetime="2014-08-06T00:43:22.485993+08:00">2014-08-06</time>
+
+            <h4>Category</h4>
+            <a class="category-link" href="../../../categories.html#misc-ref">misc</a>
+<h4>Contact</h4>
+<div id="sidebar-social-link">
+    <a href="https://github.com/heloman" title="" target="_blank" rel="nofollow noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-label="GitHub" role="img" viewBox="0 0 512 512"><rect width="512" height="512" rx="15%" fill="#1B1817"/><path fill="#fff" d="M335 499c14 0 12 17 12 17H165s-2-17 12-17c13 0 16-6 16-12l-1-50c-71 16-86-28-86-28-12-30-28-37-28-37-24-16 1-16 1-16 26 2 40 26 40 26 22 39 59 28 74 22 2-17 9-28 16-35-57-6-116-28-116-126 0-28 10-51 26-69-3-6-11-32 3-67 0 0 21-7 70 26 42-12 86-12 128 0 49-33 70-26 70-26 14 35 6 61 3 67 16 18 26 41 26 69 0 98-60 120-117 126 10 8 18 24 18 48l-1 70c0 6 3 12 16 12z"/></svg>
+    </a>
+    <a href="http://heloman.github.io/feeds/all.rss.xml" title="" target="_blank" rel="nofollow noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-label="RSS" role="img" viewBox="0 0 512 512"><rect width="512" height="512" rx="15%" fill="#f80"/><circle cx="145" cy="367" r="35" fill="#fff"/><path fill="none" stroke="#fff" stroke-width="60" d="M109 241c89 0 162 73 162 162M109 127c152 0 276 124 276 276"/></svg>
+    </a>
+</div>
+            
+
+
+
+
+
+            
+
+
+
+
+
+        </section>
+</div>
+</article>
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe.
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides.
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>                    </div>
+                    <div class="span1"></div>
+                </div>
+            </div>
+        </div>
+<footer>
+
+
+
+
+    <div id="fpowered">
+        Powered by: <a href="http://getpelican.com/" title="Pelican Home Page" target="_blank" rel="nofollow noopener noreferrer">Pelican</a>
+        Theme: <a href="https://elegant.oncrashreboot.com/" title="Theme Elegant Home Page" target="_blank" rel="nofollow noopener noreferrer">Elegant</a>
+    </div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script src="../../../theme/js/elegant.prod.9e9d5ce754.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    <script>
+    (function () {
+        if (window.location.hash.match(/^#comment-\d+$/)) {
+            $('#comment_thread').collapse('show');
+        }
+    })();
+    window.onhashchange=function(){
+        if (window.location.hash.match(/^#comment-\d+$/))
+            window.location.reload(true);
+    }
+    $('#comment_thread').on('shown', function () {
+        var link = document.getElementById('comment-accordion-toggle');
+        var old_innerHTML = link.innerHTML;
+        $(link).fadeOut(200, function() {
+            $(this).text('Click here to hide comments').fadeIn(200);
+        });
+        $('#comment_thread').on('hidden', function () {
+            $(link).fadeOut(200, function() {
+                $(this).text(old_innerHTML).fadeIn(200);
+            });
+        })
+    })
+</script>
+
+    </body>
+    <!-- Theme: Elegant built for Pelican
+        License : MIT -->
+</html>

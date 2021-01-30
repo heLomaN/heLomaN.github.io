@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="../../../theme/css/elegant.prod.9e9d5ce754.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="../../../theme/css/custom.css" media="screen">
+
+        <link rel="dns-prefetch" href="//fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+
+        <meta name="author" content="heLomaN" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content=", misc, " />
+
+<meta property="og:title" content="20141208 python数据类型 "/>
+<meta property="og:url" content="../../../pages/2014/12/20141208-pythonshu-ju-lei-xing.html" />
+<meta property="og:description" content="Python中的数据类型 字符串和数组是immutable的 使用type(var)可以很方便的确认变量类型 使用id(var)可以查看每个变量对象的id，id相同表示两个对象在内存中位置相同，节省了开销 tuple、list、dict分别用() [] {}表示 数据类型间转换： int() float() complex() str() list() tuple() 布尔类型 True和False 布尔运算：and or not 整数Int 超出一个范围后，会自动转换为Long数据类型，也可以使用345L的方式强制使用long类型 浮点数Float 字符串 字符串用单引号&#39; &#39;、双引号&#34; &#34;、三引号&#39;&#39;&#39; &#39;&#39;&#39;，其中三引号内的字符串可以分成多行书写 \表示转义，而字符串前加入r可以防止转义 split join是最常用的方法，用于分词，在list和string之间转换 …" />
+<meta property="og:site_name" content="Focus" />
+<meta property="og:article:author" content="heLomaN" />
+<meta property="og:article:published_time" content="2014-12-08T23:11:00.981456+08:00" />
+<meta property="og:article:modified_time" content="2014-12-08T23:11:00.981456+08:00" />
+<meta name="twitter:title" content="20141208 python数据类型 ">
+<meta name="twitter:description" content="Python中的数据类型 字符串和数组是immutable的 使用type(var)可以很方便的确认变量类型 使用id(var)可以查看每个变量对象的id，id相同表示两个对象在内存中位置相同，节省了开销 tuple、list、dict分别用() [] {}表示 数据类型间转换： int() float() complex() str() list() tuple() 布尔类型 True和False 布尔运算：and or not 整数Int 超出一个范围后，会自动转换为Long数据类型，也可以使用345L的方式强制使用long类型 浮点数Float 字符串 字符串用单引号&#39; &#39;、双引号&#34; &#34;、三引号&#39;&#39;&#39; &#39;&#39;&#39;，其中三引号内的字符串可以分成多行书写 \表示转义，而字符串前加入r可以防止转义 split join是最常用的方法，用于分词，在list和string之间转换 …">
+
+        <title>20141208 python数据类型  · Focus
+</title>
+        <link href="http://heloman.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Focus - Full Atom Feed" />
+        <link href="http://heloman.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Focus - RSS Feed" />
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-43314222-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+    </head>
+    <body>
+        <div id="content">
+            <div class="navbar navbar-static-top">
+                <div class="navbar-inner">
+                    <div class="container-fluid">
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+                        <a class="brand" href="../../../"><span class=site-name>Focus</span></a>
+                        <div class="nav-collapse collapse">
+                            <ul class="nav pull-right top-menu">
+                                <li >
+                                    <a href=
+                                       ../../..
+                                    >Home</a>
+                                </li>
+                                <li ><a href="../../../pages/about-me.html">About Me</a></li>
+                                <li ><a href="../../../pages/resume.html">Resume</a></li>
+                                <li ><a href="../../../categories.html">Categories</a></li>
+                                <li ><a href="../../../tags.html">Tags</a></li>
+                                <li ><a href="../../../archives.html">Archives</a></li>
+                                <li><form class="navbar-search" action="../../../search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span1"></div>
+                    <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+        <h1>
+            <a href="../../../pages/2014/12/20141208-pythonshu-ju-lei-xing.html">
+                20141208 python数据类型
+            </a>
+        </h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+            
+            <h1>Python中的数据类型</h1>
+<ul>
+<li>字符串和数组是immutable的</li>
+<li>使用<code>type(var)</code>可以很方便的确认变量类型</li>
+<li>使用<code>id(var)</code>可以查看每个变量对象的id，id相同表示两个对象在内存中位置相同，节省了开销</li>
+<li>tuple、list、dict分别用<code>() [] {}</code>表示</li>
+<li>数据类型间转换：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err">int() float() complex() str() list() tuple()</span>
+</code></pre></div>
+
+
+<h2>布尔类型</h2>
+<ul>
+<li><code>True</code>和<code>False</code></li>
+<li>布尔运算：and or not</li>
+</ul>
+<h2>整数Int</h2>
+<ul>
+<li>超出一个范围后，会自动转换为Long数据类型，也可以使用<code>345L</code>的方式强制使用long类型</li>
+</ul>
+<h2>浮点数Float</h2>
+<h2>字符串</h2>
+<ul>
+<li>字符串用单引号<code>' '</code>、双引号<code>" "</code>、三引号<code>''' '''</code>，其中三引号内的字符串可以分成多行书写</li>
+<li><code>\</code>表示转义，而字符串前加入r可以防止转义</li>
+<li><code>split join</code>是最常用的方法，用于分词，在list和string之间转换</li>
+</ul>
+<h2>列表List</h2>
+<ul>
+<li>用<code>[]</code>表示，包含的元素可以是不同类型的任何类型</li>
+<li>方法包括：append extend insert remove reverse pop index count sort len del</li>
+<li><code>+ *</code>可以对两个、多个list进行连接</li>
+<li>sort：对list排序</li>
+<li>list slice:类似于matlab，使用形式为<code>a[start:end:step]</code>，可以使用负数表示从后向前数，下标区间前开后闭</li>
+<li>in:可以使用in判断是否在list中<code>'a' in ['a','b']</code></li>
+</ul>
+<h2>元组Tuple</h2>
+<ul>
+<li>与List的不同之处在于初始化后不能更改</li>
+<li>若要创建单元素的tuple则需要在变量后添加一个逗号，如<code>type(('a',))</code></li>
+<li>与list相同，支持slice</li>
+</ul>
+<h2>集合Set</h2>
+<ul>
+<li>元素不可重复，包含集合运算</li>
+</ul>
+<h2>字典Dict</h2>
+<ul>
+<li>key必须为不可变类型</li>
+<li><code>keys() values()</code>方法获取key和valuelist</li>
+<li>判断key是否存在：<code>dct.has_key('key')</code></li>
+<li>clear:清空字典内容</li>
+</ul>
+<h1>python控制语句</h1>
+<h2>if</h2>
+<ul>
+<li><code>if...elif...else</code></li>
+</ul>
+<h2>for</h2>
+<ul>
+<li>按照顺序迭代序列</li>
+<li><code>for i in range(10)</code></li>
+</ul>
+<h2>break continue</h2>
+<ul>
+<li>循环语句的else子句：在for或者while执行结束后，如果不是由break中断，则执行else字句中的代码</li>
+</ul>
+<h2>pass</h2>
+<ul>
+<li>表示什么也不做，用于占位</li>
+</ul>
+<h1>list comprehension</h1>
+<ul>
+<li><code>[expr for var in iterable if cond_expr]</code></li>
+<li>方便的使用已有列表生成新列表</li>
+<li><code>[2**i for i in list(range(10)) if i%2 == 0]</code></li>
+<li>map reduce filter都可以使用这种方式实现</li>
+</ul>
+<h2>generator expression</h2>
+<ul>
+<li><code>(expr for var in iterable if cond_expr)</code></li>
+<li>更节省内存，返回一个generator</li>
+</ul>
+<h1>操作符优先级</h1>
+<ul>
+<li>从最优先开始：slice/属性/调用 幂 正负/按位取反 乘除取余 加减 移位 按位与/异或/或 比较 布尔运算 if_else lambda表达式</li>
+<li><code>=</code>不能放在表达式中，与C不同</li>
+<li></li>
+</ul>
+<h1>函数</h1>
+<h2>docstring</h2>
+<ul>
+<li>第一行是用途的简短描述，第二行空白</li>
+</ul>
+<h2>函数参数</h2>
+<ul>
+<li>每个函数调用都会创建一个被调函数的局部符号表，参数传递使用call by value（对象的引用）</li>
+<li>没有return语句的函数返回值为None，没有参数的return语句也返回None</li>
+<li>可以使用<code>=</code>指定默认参数值，调用时可以不给出默认参数值，或者给出部分默认参数值。而默认值在函数定义时已经指定，即代码执行到def methodname时</li>
+<li>函数调用时positional argument可以与keyword arguments混用，但positional argument一定要在前面。keyword arguments出现顺序随意</li>
+<li><code>*name</code>作为函数参数可以接收到所有不在形参列表中的positional argument，<code>**name</code>可以接收到所有不在形参列表中的keyword arguments</li>
+<li>相反的，可以在调用函数时，使用<code>*name``**name</code>展开已有的tuple/list或者dict作为函数参数</li>
+</ul>
+<h2>函数嵌套</h2>
+<ul>
+<li>与C语言不同，函数定义内可以包含另一个函数的定义，即函数嵌套</li>
+<li>嵌套外部函数称为外部作用域。变量查找顺序为LEGB（L：Local，E：Enclosing，G：Global，B：Built-in）</li>
+<li>查找变量时，若有对变量的赋值操作但没有用global，则为局部变量，按照：局部作用域-外部作用域-全局作用域-python内建作用域的顺序查找。若变量已经被声明为global，则直接从全局作用域开始查找</li>
+<li>最内嵌套作用域规则：由一个赋值语句引进的名字在这个赋值语句所在的作用域里是可见（起作用）的，而且在其内部嵌套的每个作用域里也可见，除非它被嵌套于内部的，引进同样名字的另一条赋值语句所遮蔽/覆盖</li>
+<li><strong>发生函数嵌套后，如果内部函数引用了外部函数的局部变量，那么外部函数的局部变量将被静态存储，即当函数退出后，其局部变量所占内存也不会被释放</strong>。为什么？参考<a href="http://developer.51cto.com/art/200809/90863_4.htm">http://developer.51cto.com/art/200809/90863_4.htm</a></li>
+</ul>
+<h2>global</h2>
+<ul>
+<li>若函数内部变量和外部变量同名，通常，如果函数内部对变量进行赋值，那么此变量认为是局部变量；若函数内从未有赋值，则此变量为全局变量</li>
+<li>若使用global声明，则可以在函数内部对全局变量赋值</li>
+</ul>
+<h1>书写规范</h1>
+<ul>
+<li>参照PEP8风格</li>
+<li>每行不超过79个字符</li>
+<li>运算符前后和逗号后面使用空格，但是括号里侧不加空格</li>
+<li>类使用CamelCase，函数使用lower_case_with_underscores</li>
+<li>只使用ASCII编码</li>
+</ul>
+<h1>遍历技巧</h1>
+<h2>enumerate</h2>
+<ul>
+<li>可以同时得到索引下标和对应的值</li>
+<li><code>for ind,val in enumerate(list_a)</code></li>
+</ul>
+<h2>zip</h2>
+<ul>
+<li>同时成对读取元素</li>
+<li><code>for p,q in zip(list_a, list_b)</code></li>
+</ul>
+<h2>reversed</h2>
+<ul>
+<li>反向遍历</li>
+<li><code>for i in reversed(list_a)</code></li>
+</ul>
+<h2>sorted</h2>
+<ul>
+<li>遍历排序后序列，源列表不变</li>
+<li><code>for i in sorted(list_a)</code></li>
+</ul>
+<h2>iteritems</h2>
+<ul>
+<li>遍历字典时同时得到key和value</li>
+<li><code>for k, v in dct.iteritems()</code></li>
+</ul>
+<h1>generator和yield</h1>
+<ul>
+<li>含有yield语句的函数返回值为类型generator，其next方法可以一次函数调用到下一个yield语句</li>
+<li>每次发生next调用时，函数执行完yield后挂起，返回yield值，保存函数状态。下次调用时从yield语句后执行到再次遇到yield</li>
+</ul>
+<h1>内置函数</h1>
+<ul>
+<li>python内置，包括之前提到的id type等等，包括数学运算、集合运算、逻辑运算、反射、IO等等。可以参考<a href="http://jianfeihit.iteye.com/blog/1835272">http://jianfeihit.iteye.com/blog/1835272</a></li>
+<li>enumerate:返回一个generator，next调用返回一个tuple(index, value)</li>
+<li>xrange:与range类似，但返回一个generator，节省内存</li>
+<li>eval:计算表达式的值</li>
+<li>execfile:执行文件</li>
+<li>hasattr：检测对象是否具有某个属性</li>
+</ul>
+
+
+             
+ 
+            
+            
+            
+
+
+
+
+
+
+
+<section>
+    <h6 style="display:none;">Comments</h6>
+    <p id="comment-message"> </p>
+
+    <div class="accordion" id="accordion2">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <a class="accordion-toggle disqus-comment-count comment-count collapsed"
+                   data-toggle="collapse"
+                   data-parent="#accordion2"
+                   data-disqus-identifier="../../../pages/2014/12/20141208-pythonshu-ju-lei-xing.html"
+                   href="../../../pages/2014/12/20141208-pythonshu-ju-lei-xing.html#comment_thread"
+                   id="comment-accordion-toggle">
+                    Comments
+                </a>
+            </div>
+            <div id="comment_thread" class="accordion-body collapse">
+                <div class="accordion-inner">
+                    <div class="comments">
+                        <div id="disqus_thread"></div>
+                        <script>
+    var disqus_shortname = 'focustc';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+
+    var disqus_identifier = '../../../pages/2014/12/20141208-pythonshu-ju-lei-xing.html';
+    var disqus_url = '../../../pages/2014/12/20141208-pythonshu-ju-lei-xing.html';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+            <hr/>
+        </div>
+        <section id="article-sidebar" class="span2">
+            <h4>Published</h4>
+            <time itemprop="dateCreated" datetime="2014-12-08T23:11:00.981456+08:00">2014-12-08</time>
+
+            <h4>Category</h4>
+            <a class="category-link" href="../../../categories.html#misc-ref">misc</a>
+<h4>Contact</h4>
+<div id="sidebar-social-link">
+    <a href="https://github.com/heloman" title="" target="_blank" rel="nofollow noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-label="GitHub" role="img" viewBox="0 0 512 512"><rect width="512" height="512" rx="15%" fill="#1B1817"/><path fill="#fff" d="M335 499c14 0 12 17 12 17H165s-2-17 12-17c13 0 16-6 16-12l-1-50c-71 16-86-28-86-28-12-30-28-37-28-37-24-16 1-16 1-16 26 2 40 26 40 26 22 39 59 28 74 22 2-17 9-28 16-35-57-6-116-28-116-126 0-28 10-51 26-69-3-6-11-32 3-67 0 0 21-7 70 26 42-12 86-12 128 0 49-33 70-26 70-26 14 35 6 61 3 67 16 18 26 41 26 69 0 98-60 120-117 126 10 8 18 24 18 48l-1 70c0 6 3 12 16 12z"/></svg>
+    </a>
+    <a href="http://heloman.github.io/feeds/all.rss.xml" title="" target="_blank" rel="nofollow noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-label="RSS" role="img" viewBox="0 0 512 512"><rect width="512" height="512" rx="15%" fill="#f80"/><circle cx="145" cy="367" r="35" fill="#fff"/><path fill="none" stroke="#fff" stroke-width="60" d="M109 241c89 0 162 73 162 162M109 127c152 0 276 124 276 276"/></svg>
+    </a>
+</div>
+            
+
+
+
+
+
+            
+
+
+
+
+
+        </section>
+</div>
+</article>
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe.
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides.
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>                    </div>
+                    <div class="span1"></div>
+                </div>
+            </div>
+        </div>
+<footer>
+
+
+
+
+    <div id="fpowered">
+        Powered by: <a href="http://getpelican.com/" title="Pelican Home Page" target="_blank" rel="nofollow noopener noreferrer">Pelican</a>
+        Theme: <a href="https://elegant.oncrashreboot.com/" title="Theme Elegant Home Page" target="_blank" rel="nofollow noopener noreferrer">Elegant</a>
+    </div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script src="../../../theme/js/elegant.prod.9e9d5ce754.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    <script>
+    (function () {
+        if (window.location.hash.match(/^#comment-\d+$/)) {
+            $('#comment_thread').collapse('show');
+        }
+    })();
+    window.onhashchange=function(){
+        if (window.location.hash.match(/^#comment-\d+$/))
+            window.location.reload(true);
+    }
+    $('#comment_thread').on('shown', function () {
+        var link = document.getElementById('comment-accordion-toggle');
+        var old_innerHTML = link.innerHTML;
+        $(link).fadeOut(200, function() {
+            $(this).text('Click here to hide comments').fadeIn(200);
+        });
+        $('#comment_thread').on('hidden', function () {
+            $(link).fadeOut(200, function() {
+                $(this).text(old_innerHTML).fadeIn(200);
+            });
+        })
+    })
+</script>
+
+    </body>
+    <!-- Theme: Elegant built for Pelican
+        License : MIT -->
+</html>

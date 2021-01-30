@@ -1,72 +1,99 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>Focus</title>
-    <meta name="description" content="">
-    <meta name="author" content="heLomaN">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="zh">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="../../../theme/css/elegant.prod.9e9d5ce754.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="../../../theme/css/custom.css" media="screen">
 
-    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
-    <!--[if lt IE 9]>
-    <script src="../../../theme/html5.js"></script>
-    <![endif]-->
+        <link rel="dns-prefetch" href="//fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
 
-    <!-- Le styles -->
-    <link href="../../../theme/bootstrap.min.css" rel="stylesheet">
-    <link href="../../../theme/bootstrap.min.responsive.css" rel="stylesheet">
-    <link href="../../../theme/local.css" rel="stylesheet">
-    <link href="../../../theme/pygments.css" rel="stylesheet">
+        <meta name="author" content="heLomaN" />
 
-</head>
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
 
-<body>
+<meta name="keywords" content="github, open source, blog, translation, Coding, " />
 
-<div class="navbar">
-    <div class="navbar-inner">
-    <div class="container">
+<meta property="og:title" content="国外大学生谈经验：如何在Github参与开源（Open Source on Github: Your First Contribution） "/>
+<meta property="og:url" content="../../../pages/2013/08/guo-wai-da-xue-sheng-tan-jing-yan-ru-he-zai-githubcan-yu-kai-yuan-open-source-on-github-your-first-contribution.html" />
+<meta property="og:description" content="原作者：spencerpmoran 转载自http://spencermoran.me/2013/08/13/open-source-on-github-your-first-contribution/ 我是一个即将毕业的计算机大四学生，我经常听人谈论对github上的开源项目做出贡献是多么有意义的事情。许多职位要求里面都写明这种经历是一个很重要的基本条件或加分项，而且这种事情经常在各种seminar课程和活动中提到。做出贡献确实挺起来很酷，我也应该做啊。可唯一的问题是，我是一个大菜鸟。我的计算机课程学的很好，而且我做过几个被家人同学称赞的项目。可是，我确信我不可能对一个真正有用户的项目做出任何有意义的贡献，对吧？这种想法是正确的吗？ 大错特错！即使你是一名新手，也可以以很多方式对github上面的项目做出实质的贡献。如果想要做一些真正有意义的影响用户的贡献，你大可不必读懂所有项目代码或者知道如何解决类似于bootstrap里的动态窗格问题。对于每个人都有合适的做出贡献的方法。 最近，我的第一个实质性的贡献在一个开源项目上完成了。尽管贡献很小，我获得了全新的成就感，因为你知道有人在用你参与完成的东西。你必须从非常小的项目开始并持续前进。下面是我对想要对github上开源项目做出贡献但感觉困难而不敢尝试的同学的建议： 你要做的第一步就是找到一个有pull request的仓库（项目）。有很多种方式可以找到。最简单直接的办法是读仓库的readme文件，里面经常明确的写明仓库所有者希望有人来完成pull request。如果readme文件没有提到这一点，你可以看看问题然后把代码下载下来。检查一下pull request的日期，看看哪些pull request已经关闭 …" />
+<meta property="og:site_name" content="Focus" />
+<meta property="og:article:author" content="heLomaN" />
+<meta property="og:article:published_time" content="2013-08-25T00:00:00+08:00" />
+<meta property="og:article:modified_time" content="2013-08-28T16:27:20+08:00" />
+<meta name="twitter:title" content="国外大学生谈经验：如何在Github参与开源（Open Source on Github: Your First Contribution） ">
+<meta name="twitter:description" content="原作者：spencerpmoran 转载自http://spencermoran.me/2013/08/13/open-source-on-github-your-first-contribution/ 我是一个即将毕业的计算机大四学生，我经常听人谈论对github上的开源项目做出贡献是多么有意义的事情。许多职位要求里面都写明这种经历是一个很重要的基本条件或加分项，而且这种事情经常在各种seminar课程和活动中提到。做出贡献确实挺起来很酷，我也应该做啊。可唯一的问题是，我是一个大菜鸟。我的计算机课程学的很好，而且我做过几个被家人同学称赞的项目。可是，我确信我不可能对一个真正有用户的项目做出任何有意义的贡献，对吧？这种想法是正确的吗？ 大错特错！即使你是一名新手，也可以以很多方式对github上面的项目做出实质的贡献。如果想要做一些真正有意义的影响用户的贡献，你大可不必读懂所有项目代码或者知道如何解决类似于bootstrap里的动态窗格问题。对于每个人都有合适的做出贡献的方法。 最近，我的第一个实质性的贡献在一个开源项目上完成了。尽管贡献很小，我获得了全新的成就感，因为你知道有人在用你参与完成的东西。你必须从非常小的项目开始并持续前进。下面是我对想要对github上开源项目做出贡献但感觉困难而不敢尝试的同学的建议： 你要做的第一步就是找到一个有pull request的仓库（项目）。有很多种方式可以找到。最简单直接的办法是读仓库的readme文件，里面经常明确的写明仓库所有者希望有人来完成pull request。如果readme文件没有提到这一点，你可以看看问题然后把代码下载下来。检查一下pull request的日期，看看哪些pull request已经关闭 …">
 
-         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-             <span class="icon-bar"></span>
-             <span class="icon-bar"></span>
-             <span class="icon-bar"></span>
-         </a>
+        <title>国外大学生谈经验：如何在Github参与开源（Open Source on Github: Your First Contribution）  · Focus
+</title>
+        <link href="http://heloman.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Focus - Full Atom Feed" />
+        <link href="http://heloman.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Focus - RSS Feed" />
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-43314222-1', 'auto');
+    ga('send', 'pageview');
+</script>
 
-        <a class="brand" href="../../..">Focus</a>
 
-        <div class="nav-collapse">
-        <ul class="nav">
-                    
-                            <li><a href="../../../pages/about-me.html">About Me</a></li>
-                    <li><a href="../../../pages/resume.html">Resume</a></li>
-                        </ul>
-        </div>
-        
-    </div>
-    </div>
+    </head>
+    <body>
+        <div id="content">
+            <div class="navbar navbar-static-top">
+                <div class="navbar-inner">
+                    <div class="container-fluid">
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+                        <a class="brand" href="../../../"><span class=site-name>Focus</span></a>
+                        <div class="nav-collapse collapse">
+                            <ul class="nav pull-right top-menu">
+                                <li >
+                                    <a href=
+                                       ../../..
+                                    >Home</a>
+                                </li>
+                                <li ><a href="../../../pages/about-me.html">About Me</a></li>
+                                <li ><a href="../../../pages/resume.html">Resume</a></li>
+                                <li ><a href="../../../categories.html">Categories</a></li>
+                                <li ><a href="../../../tags.html">Tags</a></li>
+                                <li ><a href="../../../archives.html">Archives</a></li>
+                                <li><form class="navbar-search" action="../../../search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span1"></div>
+                    <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+        <h1>
+            <a href="../../../pages/2013/08/guo-wai-da-xue-sheng-tan-jing-yan-ru-he-zai-githubcan-yu-kai-yuan-open-source-on-github-your-first-contribution.html">
+                国外大学生谈经验：如何在Github参与开源（Open Source on Github: Your First Contribution）
+            </a>
+        </h1>
+    </header>
 </div>
 
-<div class="container">
-    <div class="content">
-    <div class="row">
-
-        <div class="span9">
-            <div class='article'>
-        <div class="content-title">
-            <h1>国外大学生谈经验：如何在Github参与开源（Open Source on Github: Your First Contribution）</h1>
-            2013-08-25
-
-by <a class="url fn" href="../../../author/heloman.html">heLomaN</a>
- 
-
-
-        </div>
-	
-        <div><p>原作者：spencerpmoran<br />
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+            
+            <p>原作者：spencerpmoran<br>
 转载自<a href="http://spencermoran.me/2013/08/13/open-source-on-github-your-first-contribution/">http://spencermoran.me/2013/08/13/open-source-on-github-your-first-contribution/</a></p>
-<hr />
+<hr>
 <p>我是一个即将毕业的计算机大四学生，我经常听人谈论对github上的开源项目做出贡献是多么有意义的事情。许多职位要求里面都写明这种经历是一个很重要的基本条件或加分项，而且这种事情经常在各种seminar课程和活动中提到。做出贡献确实挺起来很酷，我也应该做啊。可唯一的问题是，我是一个大菜鸟。我的计算机课程学的很好，而且我做过几个被家人同学称赞的项目。可是，我确信我不可能对一个真正有用户的项目做出任何有意义的贡献，对吧？这种想法是正确的吗？</p>
-<hr />
+<hr>
 <p>大错特错！即使你是一名新手，也可以以很多方式对github上面的项目做出实质的贡献。如果想要做一些真正有意义的影响用户的贡献，你大可不必读懂所有项目代码或者知道如何解决类似于bootstrap里的动态窗格问题。对于每个人都有合适的做出贡献的方法。</p>
 <p>最近，我的第一个实质性的贡献在一个开源项目上完成了。尽管贡献很小，我获得了全新的成就感，因为你知道有人在用你参与完成的东西。你必须从非常小的项目开始并持续前进。下面是我对想要对github上开源项目做出贡献但感觉困难而不敢尝试的同学的建议：</p>
 <p>你要做的第一步就是找到一个有pull request的仓库（项目）。有很多种方式可以找到。最简单直接的办法是读仓库的readme文件，里面经常明确的写明仓库所有者希望有人来完成pull request。如果readme文件没有提到这一点，你可以看看问题然后把代码下载下来。检查一下pull request的日期，看看哪些pull request已经关闭，你就能判断仓库所有者有多大的可能还在更新它。如果你能找到一个你真正喜欢并符合上述要求的项目，你就喜出望外吧。举个我自己的例子，我找到了一个用于创建新工程的rails模版项目，它的readme文件用黑体标出了欢迎pull request。太棒了！</p>
@@ -74,109 +101,243 @@ by <a class="url fn" href="../../../author/heloman.html">heLomaN</a>
 <p>按照readme里面说明，你要先确保你在你的电脑上可以正确的配置运行这个项目。如果你碰到了任何没有在readme里面提到的错误或问题，这将成为你的第一个贡献！你可要编辑readme文件把这个问题向其他开发者说清楚。最好的开始贡献的方式之一是使它们更方便运行。你可以整理readme，编辑文档里面的错误或把错误标出来。一头扎进别人的代码库立刻开始改写代码是有点太不礼貌了。不过你可以以温和的方式开始你的开源生涯。我愿意参与改进的代码库都是文档完整简洁的。</p>
 <p>如果你仍然没有找到一种做贡献的方式，就通读这个项目的所有issues吧。Issue是关于增加功能或修改的建议，有时候已经有人给出了伪代码甚至已经有人开始码代码，只是时间紧无法完成而已。你也许能找到这种已经开始的、不需要大量改变的任务。</p>
 <p>如果你感觉无法完成任何一处错误的纠正，仓库所有者也许已经在readme文件中写明了下一步要完成的部分，或者你自己有新的想法。我本身而言已经厌倦了到处浏览检查仓库，甚至是我自己的仓库也不愿意。DS_Store目录被使用Mac的人提交到了github上，这是毫无道理的。我可以把它加到rails模版项目的.gitignore文件里面，这样就保证没人会再干出这种事情。哈哈，我已经有贡献了！你看我只是做了很简单的事情而已。你要确认你遵循了项目已有的约定。查看readme和其他的pull request，找出别人的编程习惯，然后要保证你使用了大家约定的commit说明。我按照上述的教程提交了一个pull request，代码如下：</p>
-<div class="highlight"><pre>    <span class="err">#</span> <span class="n">DS_Store</span> <span class="n">gets</span> <span class="n">added</span> <span class="n">to</span> <span class="n">project</span> <span class="k">if</span> <span class="n">viewedin</span> <span class="n">OSX</span> <span class="n">Finder</span>
-    <span class="n">run</span><span class="s">&quot;echo &#39;.DS_Store&#39; &gt;&gt; .gitignore&quot;</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">    # DS_Store gets added to project if viewedin OSX Finder</span>
+<span class="err">    run&quot;echo &#39;.DS_Store&#39; &gt;&gt; .gitignore&quot;</span>
+</code></pre></div>
 
 
 <p>一个小时之后，我的pull request已经被合并到了这个几百人同时关注的项目中了。我感到了一种全新的工作的目标和动力。他们在用我参与完成的东西啊！</p>
 <p>在我作为一个计算机专业本科生的生活里，始终缺乏一种实实在在的成就感，或者说，我希望证明我真的在做事情。我学过算法、数据结构、很多种编程语言，我无休止的编程。我清楚的知道我自己。但是不过我从来没有过一种我的成果影响了其他人的感觉。我总是一个人想，谁做了这件事情？这件事情影响了谁？今天晚上，我想知道我的工作对一些人很重要。</p>
-<p>对github上的开源项目做贡献尽管可能显得不礼貌，而且有一个很陡峭的学习曲线，然而它确实是一种很有意义的获得成就感的途径。</p></div>
-	
-        <hr>
-    	   
-        <h2>Comments</h2>
-		<div id="disqus_thread"></div>
-<script type="text/javascript">
-    var disqus_shortname = 'focustc'; 
-    var disqus_title = '国外大学生谈经验：如何在Github参与开源（Open Source on Github: Your First Contribution）';
+<p>对github上的开源项目做贡献尽管可能显得不礼貌，而且有一个很陡峭的学习曲线，然而它确实是一种很有意义的获得成就感的途径。</p>
+
+
+             
+ 
+            
+            
+            
+
+
+
+
+
+
+
+<section>
+    <h6 style="display:none;">Comments</h6>
+    <p id="comment-message"> </p>
+
+    <div class="accordion" id="accordion2">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <a class="accordion-toggle disqus-comment-count comment-count collapsed"
+                   data-toggle="collapse"
+                   data-parent="#accordion2"
+                   data-disqus-identifier="../../../pages/2013/08/guo-wai-da-xue-sheng-tan-jing-yan-ru-he-zai-githubcan-yu-kai-yuan-open-source-on-github-your-first-contribution.html"
+                   href="../../../pages/2013/08/guo-wai-da-xue-sheng-tan-jing-yan-ru-he-zai-githubcan-yu-kai-yuan-open-source-on-github-your-first-contribution.html#comment_thread"
+                   id="comment-accordion-toggle">
+                    Comments
+                </a>
+            </div>
+            <div id="comment_thread" class="accordion-body collapse">
+                <div class="accordion-inner">
+                    <div class="comments">
+                        <div id="disqus_thread"></div>
+                        <script>
+    var disqus_shortname = 'focustc';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+
+    var disqus_identifier = '../../../pages/2013/08/guo-wai-da-xue-sheng-tan-jing-yan-ru-he-zai-githubcan-yu-kai-yuan-open-source-on-github-your-first-contribution.html';
+    var disqus_url = '../../../pages/2013/08/guo-wai-da-xue-sheng-tan-jing-yan-ru-he-zai-githubcan-yu-kai-yuan-open-source-on-github-your-first-contribution.html';
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
 </script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    </div>
+
+<noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+                    </div>
+                </div>
+            </div>
         </div>
-        
-        <div class="span3">
+    </div>
+</section>
 
-            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
-            <ul class="nav nav-list">
-                <li class="nav-header"> 
-                Site
-                </li>
-            
-                <li><a href="../../../archives.html">Archives</a>
-                <li><a href="../../../tags.html">Tags</a>
-                <li><a href="http://heloman.github.io/" rel="alternate">Atom feed</a></li>
-                                <li><a href="http://heloman.github.io/feeds/all.rss.xml" rel="alternate">RSS feed</a></li>
-                            </ul>
-            </div>
+            <hr/>
+        </div>
+        <section id="article-sidebar" class="span2">
+            <h4>Published</h4>
+            <time itemprop="dateCreated" datetime="2013-08-25T00:00:00+08:00">2013-08-25</time>
+<h4>Last Updated</h4>
+<time datetime="2013-08-28T16:27:20+08:00">8月 28, 2013</time>
 
-
-                        <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
-            <ul class="nav nav-list">
-                <li class="nav-header"> 
-                Categories
-                </li>
-                
-                                <li><a href="../../../category/algorithm.html">Algorithm</a></li>
-                                <li><a href="../../../category/app.html">App</a></li>
-                                <li><a href="../../../category/c.html">C</a></li>
-                                <li><a href="../../../category/c.html">C++</a></li>
-                                <li><a href="../../../category/coding.html">Coding</a></li>
-                                <li><a href="../../../category/competition.html">Competition</a></li>
-                                <li><a href="../../../category/mooc.html">MOOC</a></li>
-                                <li><a href="../../../category/web.html">Web</a></li>
-                                <li><a href="../../../category/wireless-communication.html">Wireless Communication</a></li>
-                                <li><a href="../../../category/linux.html">linux</a></li>
-                                   
+            <h4>Category</h4>
+            <a class="category-link" href="../../../categories.html#coding-ref">Coding</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="../../../tags.html#blog-ref">blog
+                    <span class="superscript">2</span>
+</a></li>
+                <li><a href="../../../tags.html#github-ref">github
+                    <span class="superscript">1</span>
+</a></li>
+                <li><a href="../../../tags.html#open-source-ref">open source
+                    <span class="superscript">1</span>
+</a></li>
+                <li><a href="../../../tags.html#translation-ref">translation
+                    <span class="superscript">1</span>
+</a></li>
             </ul>
-            </div>
+<h4>Contact</h4>
+<div id="sidebar-social-link">
+    <a href="https://github.com/heloman" title="" target="_blank" rel="nofollow noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-label="GitHub" role="img" viewBox="0 0 512 512"><rect width="512" height="512" rx="15%" fill="#1B1817"/><path fill="#fff" d="M335 499c14 0 12 17 12 17H165s-2-17 12-17c13 0 16-6 16-12l-1-50c-71 16-86-28-86-28-12-30-28-37-28-37-24-16 1-16 1-16 26 2 40 26 40 26 22 39 59 28 74 22 2-17 9-28 16-35-57-6-116-28-116-126 0-28 10-51 26-69-3-6-11-32 3-67 0 0 21-7 70 26 42-12 86-12 128 0 49-33 70-26 70-26 14 35 6 61 3 67 16 18 26 41 26 69 0 98-60 120-117 126 10 8 18 24 18 48l-1 70c0 6 3 12 16 12z"/></svg>
+    </a>
+    <a href="http://heloman.github.io/feeds/all.rss.xml" title="" target="_blank" rel="nofollow noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-label="RSS" role="img" viewBox="0 0 512 512"><rect width="512" height="512" rx="15%" fill="#f80"/><circle cx="145" cy="367" r="35" fill="#fff"/><path fill="none" stroke="#fff" stroke-width="60" d="M109 241c89 0 162 73 162 162M109 127c152 0 276 124 276 276"/></svg>
+    </a>
+</div>
             
 
-                        <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
-            <ul class="nav nav-list">
-                <li class="nav-header"> 
-                Links
-                </li>
-            
-                            <li><a href="http://getpelican.com/">Pelican</a></li>
-                            <li><a href="http://python.org/">Python.org</a></li>
-                        </ul>
-            </div>
+
+
+
+
             
 
-                        <div class="social">
-            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
-            <ul class="nav nav-list">
-                <li class="nav-header"> 
-                Social
-                </li>
-           
-                                <li><a href="http://weibo.com/focustc">Weibo</a></li>
-                                <li><a href="https://github.com/heloman">Github</a></li>
-                                <li><a href="http://blog.csdn.net/caozhk">CSDN Blog</a></li>
-                                <li><a href="http://heloman.github.io/feeds/all.rss.xml">Rss</a></li>
-                            </ul>
+
+
+
+
+        </section>
+</div>
+</article>
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe.
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides.
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
             </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
             </div>
-            
-        </div>  
-    </div>     </div> 
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>                    </div>
+                    <div class="span1"></div>
+                </div>
+            </div>
+        </div>
 <footer>
-<br />
-<p><a href="../../..">Focus</a> &copy; heLomaN 2012</p>
-</footer>
 
-</div> <!-- /container -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-collapse.js"></script>
-<script>var _gaq=[['_setAccount','UA-43314222-1'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))</script>
-<a href="https://github.com/heloman"><img style="position: absolute; top: 40px; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" /></a>
- 
-</body>
+
+
+
+    <div id="fpowered">
+        Powered by: <a href="http://getpelican.com/" title="Pelican Home Page" target="_blank" rel="nofollow noopener noreferrer">Pelican</a>
+        Theme: <a href="https://elegant.oncrashreboot.com/" title="Theme Elegant Home Page" target="_blank" rel="nofollow noopener noreferrer">Elegant</a>
+    </div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script src="../../../theme/js/elegant.prod.9e9d5ce754.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    <script>
+    (function () {
+        if (window.location.hash.match(/^#comment-\d+$/)) {
+            $('#comment_thread').collapse('show');
+        }
+    })();
+    window.onhashchange=function(){
+        if (window.location.hash.match(/^#comment-\d+$/))
+            window.location.reload(true);
+    }
+    $('#comment_thread').on('shown', function () {
+        var link = document.getElementById('comment-accordion-toggle');
+        var old_innerHTML = link.innerHTML;
+        $(link).fadeOut(200, function() {
+            $(this).text('Click here to hide comments').fadeIn(200);
+        });
+        $('#comment_thread').on('hidden', function () {
+            $(link).fadeOut(200, function() {
+                $(this).text(old_innerHTML).fadeIn(200);
+            });
+        })
+    })
+</script>
+
+    </body>
+    <!-- Theme: Elegant built for Pelican
+        License : MIT -->
 </html>

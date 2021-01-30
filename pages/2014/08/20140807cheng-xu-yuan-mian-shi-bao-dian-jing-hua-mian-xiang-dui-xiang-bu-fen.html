@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="../../../theme/css/elegant.prod.9e9d5ce754.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="../../../theme/css/custom.css" media="screen">
+
+        <link rel="dns-prefetch" href="//fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+
+        <meta name="author" content="heLomaN" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content=", misc, " />
+
+<meta property="og:title" content="20140807《程序员面试宝典》精华 面向对象部分 "/>
+<meta property="og:url" content="../../../pages/2014/08/20140807cheng-xu-yuan-mian-shi-bao-dian-jing-hua-mian-xiang-dui-xiang-bu-fen.html" />
+<meta property="og:description" content="《程序员面试宝典》精华 面向对象部分 正所谓取其精华，去其糟粕。本文谨记录下《程序员面试宝典》一些关键的知识点、易错点，对于一些虽然重要但书中没有解释清楚的地方不做记录。书里是没有糟粕的，只是指不那么重要，或者比较简单的地方略过而已，并不是说书写的不好。希望以后回顾时无需再看此书，只看保留在文中的精华即可。 文中有少许bug，亦摘录在此。 本文专注面向对象部分，包括第十章到第十一章的内容 第十章 面向对象 10.2 类与结构体的区别：都能继承、拥有析构等成员函数，唯一的区别是struct成员默认为public，而class默认为private。C++是为了兼容C代码才保留struct关键字 10.3 class B{...}; B b(); b.f();是错误的，b声明为了一个函数 10.3 静态成员变量必须显式初始化，例如int A::i 0; 10 …" />
+<meta property="og:site_name" content="Focus" />
+<meta property="og:article:author" content="heLomaN" />
+<meta property="og:article:published_time" content="2014-08-07T00:00:36.069033+08:00" />
+<meta property="og:article:modified_time" content="2014-08-07T00:00:36.069033+08:00" />
+<meta name="twitter:title" content="20140807《程序员面试宝典》精华 面向对象部分 ">
+<meta name="twitter:description" content="《程序员面试宝典》精华 面向对象部分 正所谓取其精华，去其糟粕。本文谨记录下《程序员面试宝典》一些关键的知识点、易错点，对于一些虽然重要但书中没有解释清楚的地方不做记录。书里是没有糟粕的，只是指不那么重要，或者比较简单的地方略过而已，并不是说书写的不好。希望以后回顾时无需再看此书，只看保留在文中的精华即可。 文中有少许bug，亦摘录在此。 本文专注面向对象部分，包括第十章到第十一章的内容 第十章 面向对象 10.2 类与结构体的区别：都能继承、拥有析构等成员函数，唯一的区别是struct成员默认为public，而class默认为private。C++是为了兼容C代码才保留struct关键字 10.3 class B{...}; B b(); b.f();是错误的，b声明为了一个函数 10.3 静态成员变量必须显式初始化，例如int A::i 0; 10 …">
+
+        <title>20140807《程序员面试宝典》精华 面向对象部分  · Focus
+</title>
+        <link href="http://heloman.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Focus - Full Atom Feed" />
+        <link href="http://heloman.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Focus - RSS Feed" />
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-43314222-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+    </head>
+    <body>
+        <div id="content">
+            <div class="navbar navbar-static-top">
+                <div class="navbar-inner">
+                    <div class="container-fluid">
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+                        <a class="brand" href="../../../"><span class=site-name>Focus</span></a>
+                        <div class="nav-collapse collapse">
+                            <ul class="nav pull-right top-menu">
+                                <li >
+                                    <a href=
+                                       ../../..
+                                    >Home</a>
+                                </li>
+                                <li ><a href="../../../pages/about-me.html">About Me</a></li>
+                                <li ><a href="../../../pages/resume.html">Resume</a></li>
+                                <li ><a href="../../../categories.html">Categories</a></li>
+                                <li ><a href="../../../tags.html">Tags</a></li>
+                                <li ><a href="../../../archives.html">Archives</a></li>
+                                <li><form class="navbar-search" action="../../../search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span1"></div>
+                    <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+        <h1>
+            <a href="../../../pages/2014/08/20140807cheng-xu-yuan-mian-shi-bao-dian-jing-hua-mian-xiang-dui-xiang-bu-fen.html">
+                20140807《程序员面试宝典》精华  面向对象部分 
+            </a>
+        </h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+            
+            <h1>《程序员面试宝典》精华 面向对象部分</h1>
+<ul>
+<li>正所谓取其精华，去其糟粕。本文谨记录下《程序员面试宝典》一些关键的知识点、易错点，对于一些虽然重要但书中没有解释清楚的地方不做记录。书里是没有糟粕的，只是指不那么重要，或者比较简单的地方略过而已，并不是说书写的不好。希望以后回顾时无需再看此书，只看保留在文中的精华即可。</li>
+<li>文中有少许bug，亦摘录在此。</li>
+<li>本文专注面向对象部分，包括第十章到第十一章的内容</li>
+</ul>
+<h2>第十章 面向对象</h2>
+<ul>
+<li>10.2 类与结构体的区别：都能继承、拥有析构等成员函数，唯一的区别是struct成员默认为public，而class默认为private。C++是为了兼容C代码才保留struct关键字</li>
+<li>10.3 <code>class B{...}; B b(); b.f();</code>是错误的，b声明为了一个函数</li>
+<li>10.3 静态成员变量必须显式初始化，例如<code>int A::i  0;</code></li>
+<li>10.3 成员变量初始化顺序与初始化列表顺序无关，与变量声明顺序有关</li>
+<li>10.3 常数(cosnt)成员变量必须中构造函数的初始化列表里面初始化，或者声明为<code>static const</code>成员</li>
+<li>10.4 把成员函数声明为虚函数造成调用开销增大，为什么常常把基类的析构函数声明为虚函数：多态情况下常常把派生类对象的指针赋给基类指针，那么使用虚函数保证delete时能调用派生类对象的析构函数，而不造成内存泄露</li>
+<li>10.4 构造函数为什么不能声明为virtual：虚调用是来调用一个只知道接口而不知道其对象类型的成员函数，实例化对象时必须知道对象的准确类型，因此构造函数不能为virtual（存疑，不够clear）</li>
+<li>10.4 函数f返回一个对象时，使用<code>A t = f()</code>，会调用拷贝构造函数。即函数参数和返回值都是对象时，都会调用一次拷贝构造函数</li>
+<li>10.4 含有单个参数的构造函数会定义一个从参数类型到类的隐式类型转换，使用explicit关键字可以避免此转换</li>
+<li>10.5 函数参数常声明为const，这是因为const变量不能随意转换为非const，反之则可</li>
+<li>10.5 要求类的每个对象有唯一id，需要自定义拷贝构造函数避免重复</li>
+<li>10.5 如果类包含动态分配的指针，那么需要定义拷贝构造函数和赋值函数</li>
+<li>10.6 什么是多态？<ul>
+<li>概念：封装、继承、多态是OO的三大基本概念。多态指的是允许将子类类型赋值给父类指针，而父类指针可以通过统一的接口对所有子类对象进行操作</li>
+<li>作用与目的：封装为了隐藏实现细节，以及数据类型和函数的统一，模块化；继承是为了方便扩展已有的代码模块；两者均可实现代码重用，而多态是为了实现接口重用</li>
+<li>实现方法：虚函数</li>
+</ul>
+</li>
+<li>10.6 重写与重载，前者override是指子类重新定义父类的虚函数，后者overload是指同时存在多个参数列表不同的同名函数</li>
+</ul>
+<h2>第十一章 继承与接口</h2>
+<ul>
+<li>11.1 如果显式调用虚函数，则虚调用机制失效，如<code>class B::public A{}; B b; b.A::f();</code>，类f为虚函数，但此时显式调用A中的f</li>
+<li>11.2 三种继承方式的区别<ul>
+<li>public继承：基类的public和protected成员对基类保持原有状态<ul>
+<li>基类成员对派生类的可见性：派生类（的成员函数）可以访问基类的public和protected成员</li>
+<li>基类成员对派生类对象的可见性：（通过）派生类的对象（指例如<code>a.f()的方式</code>）可以访问基类的public成员</li>
+</ul>
+</li>
+<li>private继承：将基类的public和protected成员当成派生类的private成员，且不能被派生类的子类访问<ul>
+<li>基类成员对派生类的可见性：派生类（的成员函数）可以访问基类的public和protected成员</li>
+<li>基类成员对派生类对象的可见性：（通过）派生类的对象不可以访问基类的任何成员,因此基类的成员无法再向下继承</li>
+</ul>
+</li>
+<li>protected继承：将基类的public和protected成员当成派生类的protected成员，且不能被派生类的子类访问<ul>
+<li>基类成员对派生类的可见性：派生类（的成员函数）可以访问基类的public和protected成员</li>
+<li>基类成员对派生类对象的可见性：（通过）派生类的对象不可以访问基类的任何成员,因此基类的成员无法再向下继承</li>
+</ul>
+</li>
+<li>关键差别在于通过派生类对象可以访问基类的哪些成员，以及派生类的子类能否访问派生类的成员</li>
+</ul>
+</li>
+<li>11.2 三种成员属性的区别：基类的private成员对派生类屏蔽，protected成员使派生类可以访问，基类仅有public成员可以通过基类的对象访问</li>
+<li>11.2 虚继承是为了解决多重继承中的菱形继承冲突，派生类中会添加一个指向基类虚函数表的指针<ul>
+<li>例如，C、B虚继承自A，D继承自B、C，则D中共有1个A</li>
+</ul>
+</li>
+<li>11.4 Java中使用接口替代多重继承，C++可以使用抽象类模拟接口</li>
+<li>11.4 C继承自A，B，pC指向C对象，pB把pC转换为指向B的指针，则<code>pC  == pB</code>，这里发生从C的指针到B的指针的隐式转换，书中说反了，bug</li>
+<li>11.5 类的继承默认为private，通常需要加public关键字</li>
+<li>11.6 如何防止一个类实例化：使用带有纯虚函数的抽象类，或者把构造函数声明为private</li>
+<li>11.7 RTTI的缺点：除了运行开销外，使程序变得不确定，缺乏扩展性</li>
+<li>11.7 类型转换运算符重载，无返回值无参数，以目标类型为函数名，如：<code>operator char*()</code></li>
+<li>11.8 dynamic_cast如果转换失败返回0</li>
+<li>11.8 typeid返回值为对type_info常量对象的引用</li>
+</ul>
+<p><center>转载请注明作者：Focustc，博客地址为<a href="http://blog.csdn.net/caozhk">http://blog.csdn.net/caozhk</a>，原文链接为点击打开</center>
+　　
+　　</p>
+
+
+             
+ 
+            
+            
+            
+
+
+
+
+
+
+
+<section>
+    <h6 style="display:none;">Comments</h6>
+    <p id="comment-message"> </p>
+
+    <div class="accordion" id="accordion2">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <a class="accordion-toggle disqus-comment-count comment-count collapsed"
+                   data-toggle="collapse"
+                   data-parent="#accordion2"
+                   data-disqus-identifier="../../../pages/2014/08/20140807cheng-xu-yuan-mian-shi-bao-dian-jing-hua-mian-xiang-dui-xiang-bu-fen.html"
+                   href="../../../pages/2014/08/20140807cheng-xu-yuan-mian-shi-bao-dian-jing-hua-mian-xiang-dui-xiang-bu-fen.html#comment_thread"
+                   id="comment-accordion-toggle">
+                    Comments
+                </a>
+            </div>
+            <div id="comment_thread" class="accordion-body collapse">
+                <div class="accordion-inner">
+                    <div class="comments">
+                        <div id="disqus_thread"></div>
+                        <script>
+    var disqus_shortname = 'focustc';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+
+    var disqus_identifier = '../../../pages/2014/08/20140807cheng-xu-yuan-mian-shi-bao-dian-jing-hua-mian-xiang-dui-xiang-bu-fen.html';
+    var disqus_url = '../../../pages/2014/08/20140807cheng-xu-yuan-mian-shi-bao-dian-jing-hua-mian-xiang-dui-xiang-bu-fen.html';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+            <hr/>
+        </div>
+        <section id="article-sidebar" class="span2">
+            <h4>Published</h4>
+            <time itemprop="dateCreated" datetime="2014-08-07T00:00:36.069033+08:00">2014-08-07</time>
+
+            <h4>Category</h4>
+            <a class="category-link" href="../../../categories.html#misc-ref">misc</a>
+<h4>Contact</h4>
+<div id="sidebar-social-link">
+    <a href="https://github.com/heloman" title="" target="_blank" rel="nofollow noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-label="GitHub" role="img" viewBox="0 0 512 512"><rect width="512" height="512" rx="15%" fill="#1B1817"/><path fill="#fff" d="M335 499c14 0 12 17 12 17H165s-2-17 12-17c13 0 16-6 16-12l-1-50c-71 16-86-28-86-28-12-30-28-37-28-37-24-16 1-16 1-16 26 2 40 26 40 26 22 39 59 28 74 22 2-17 9-28 16-35-57-6-116-28-116-126 0-28 10-51 26-69-3-6-11-32 3-67 0 0 21-7 70 26 42-12 86-12 128 0 49-33 70-26 70-26 14 35 6 61 3 67 16 18 26 41 26 69 0 98-60 120-117 126 10 8 18 24 18 48l-1 70c0 6 3 12 16 12z"/></svg>
+    </a>
+    <a href="http://heloman.github.io/feeds/all.rss.xml" title="" target="_blank" rel="nofollow noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-label="RSS" role="img" viewBox="0 0 512 512"><rect width="512" height="512" rx="15%" fill="#f80"/><circle cx="145" cy="367" r="35" fill="#fff"/><path fill="none" stroke="#fff" stroke-width="60" d="M109 241c89 0 162 73 162 162M109 127c152 0 276 124 276 276"/></svg>
+    </a>
+</div>
+            
+
+
+
+
+
+            
+
+
+
+
+
+        </section>
+</div>
+</article>
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe.
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides.
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>                    </div>
+                    <div class="span1"></div>
+                </div>
+            </div>
+        </div>
+<footer>
+
+
+
+
+    <div id="fpowered">
+        Powered by: <a href="http://getpelican.com/" title="Pelican Home Page" target="_blank" rel="nofollow noopener noreferrer">Pelican</a>
+        Theme: <a href="https://elegant.oncrashreboot.com/" title="Theme Elegant Home Page" target="_blank" rel="nofollow noopener noreferrer">Elegant</a>
+    </div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script src="../../../theme/js/elegant.prod.9e9d5ce754.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    <script>
+    (function () {
+        if (window.location.hash.match(/^#comment-\d+$/)) {
+            $('#comment_thread').collapse('show');
+        }
+    })();
+    window.onhashchange=function(){
+        if (window.location.hash.match(/^#comment-\d+$/))
+            window.location.reload(true);
+    }
+    $('#comment_thread').on('shown', function () {
+        var link = document.getElementById('comment-accordion-toggle');
+        var old_innerHTML = link.innerHTML;
+        $(link).fadeOut(200, function() {
+            $(this).text('Click here to hide comments').fadeIn(200);
+        });
+        $('#comment_thread').on('hidden', function () {
+            $(link).fadeOut(200, function() {
+                $(this).text(old_innerHTML).fadeIn(200);
+            });
+        })
+    })
+</script>
+
+    </body>
+    <!-- Theme: Elegant built for Pelican
+        License : MIT -->
+</html>
