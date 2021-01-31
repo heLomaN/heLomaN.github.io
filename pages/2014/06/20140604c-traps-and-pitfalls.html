@@ -19,18 +19,18 @@
 
 <meta property="og:title" content="20140604c traps and pitfalls "/>
 <meta property="og:url" content="../../../pages/2014/06/20140604c-traps-and-pitfalls.html" />
-<meta property="og:description" content="看完《C陷阱与缺陷》，忍不住要重新翻一下，记录一下与自己的惯性思维不符合的地方。记录的是知识的增量，是这几天的流量，而不是存量。 这本书是在ASCI C/C89订制之前写的，有些地方有疏漏。 第一章 词法陷阱 1.3 C语言中解析符号时使用贪心策略，如x+++++y将被解析为x++ ++ +y，并编译出错。 1.5 单引号引起的一个字符代表一个对应的整数，对于采用ASCII字符集的编译器而言，&#39;a&#39;与0141、97含义一致。 练习1.1 嵌套注释（如/*/**/*/）只在某些C编译器中允许，如gcc4.8.2编译时是不支持的。 第二章 语法陷阱 2.6 else始终与同一个括号内最近的未匹配的if结合 第三章 语义陷阱 3.1 int a[12][31 …" />
-<meta property="og:site_name" content="Focus" />
+<meta property="og:description" content="看完《C陷阱与缺陷》，忍不住要重新翻一下，记录一下与自己的惯性思维不符合的地方。记录的是知识的增量，是这几天的流量，而不是存量。 这本书是在ASCI C/C89订制之前写的，有些地方有疏漏。 第一章 词法陷阱 1.3 C语言中解析符号时使用贪心策略，如x+++++y将被解析为x++ ++ +y，并编译出错。 1.5 单引号引起的一个字符代表一个对应的整数，对于采用ASCII字符集的编译器而言，&#39;a&#39;与0141、97含义一致。 练习1.1 嵌套注释（如/*/**/*/）只在某些C编译器中允许，如gcc4.8.2编译时是不支持的。 第二章 语法陷阱 2.6 else始终与同一个括号内最近的未匹配的if结合 第三章 语义陷阱 3.1 int a[12][31]表示的是一个长度12的数组，每个元素是一个长度31的数组。 3.1 在需要指针的地方如果使用数组名来替换，那么数组名就被视为其下标为0的元素的指针，p = &amp;a的写法是非法的（gcc4.8.2只是警告）。 3.2 如何连接两个给出的字符串s、t？细节很重要，书中给出的答案如下： char *r,*malloc() //原文称不能直接声明一个s、t长度之和的数组，但c99可以声明变长数组，已经可以了 //记得要把长度加1 r = malloc(strlen(s) + strlen(t) +1); //必须判断内存是否分配成功 if(!r){ complain(); exit(1); } strcpy(r,s); strcat(r,t); ...... //完成之后一定要释放r free(r); 3.6 如何正确计算数组的边界？原则一，考虑最简单情况下的特例；原则二，仔细计算边界。 3.6 以下一段代码为何引起死循环？这是因为在内存地址递减时，a[10]就是i。 int i,a[10]; for(i = 1; i&lt;=10; i++) a[i] = 0; 3.6 边界的编程技巧：用第一个入界点和第一个出界点表示数值范围，即[low,high)。这样的效果是 取值范围的大小为两者之差。 若取值范围为空，则上界等于下界。 3.6 --n一般比n--执行速度更快。 3.7 运算符&amp;&amp;和||保证两个操作数从左至右求值，其他运算符的操作数求值顺序未定义。比如y[i] = x[i++]结果是未定义的。 3.9 如何检测a+b是否溢出？ if(a+b &lt; 0)是不正确的，因为溢出时的行为是未定义的。正确的方法是将两者转换为unsigned型与INT_MAX比较 更巧妙的方法：if(a &gt; INT_MAX - b) 第四章 连接 4.2 int a若出现在所有函数体之外，则完成了声明与定义（分配存储空间）。而extern int a;只是声明，说明a的存储空间是在其他地方分配的，不是定义；因此必须在别的某个地方定义，同一个或不同的源文件均可。 4.3 static修饰符可以将一个函数或变量的作用域限制在一个源文件之内，不会与其他文件中的同名量发生冲突 4.5 声明与定义必须严格相同，而数组和指针是不同的 …" />
+<meta property="og:site_name" content="Render a New World" />
 <meta property="og:article:author" content="heLomaN" />
 <meta property="og:article:published_time" content="2014-06-30T02:55:57.493436+08:00" />
 <meta property="og:article:modified_time" content="2014-06-30T02:55:57.493436+08:00" />
 <meta name="twitter:title" content="20140604c traps and pitfalls ">
-<meta name="twitter:description" content="看完《C陷阱与缺陷》，忍不住要重新翻一下，记录一下与自己的惯性思维不符合的地方。记录的是知识的增量，是这几天的流量，而不是存量。 这本书是在ASCI C/C89订制之前写的，有些地方有疏漏。 第一章 词法陷阱 1.3 C语言中解析符号时使用贪心策略，如x+++++y将被解析为x++ ++ +y，并编译出错。 1.5 单引号引起的一个字符代表一个对应的整数，对于采用ASCII字符集的编译器而言，&#39;a&#39;与0141、97含义一致。 练习1.1 嵌套注释（如/*/**/*/）只在某些C编译器中允许，如gcc4.8.2编译时是不支持的。 第二章 语法陷阱 2.6 else始终与同一个括号内最近的未匹配的if结合 第三章 语义陷阱 3.1 int a[12][31 …">
+<meta name="twitter:description" content="看完《C陷阱与缺陷》，忍不住要重新翻一下，记录一下与自己的惯性思维不符合的地方。记录的是知识的增量，是这几天的流量，而不是存量。 这本书是在ASCI C/C89订制之前写的，有些地方有疏漏。 第一章 词法陷阱 1.3 C语言中解析符号时使用贪心策略，如x+++++y将被解析为x++ ++ +y，并编译出错。 1.5 单引号引起的一个字符代表一个对应的整数，对于采用ASCII字符集的编译器而言，&#39;a&#39;与0141、97含义一致。 练习1.1 嵌套注释（如/*/**/*/）只在某些C编译器中允许，如gcc4.8.2编译时是不支持的。 第二章 语法陷阱 2.6 else始终与同一个括号内最近的未匹配的if结合 第三章 语义陷阱 3.1 int a[12][31]表示的是一个长度12的数组，每个元素是一个长度31的数组。 3.1 在需要指针的地方如果使用数组名来替换，那么数组名就被视为其下标为0的元素的指针，p = &amp;a的写法是非法的（gcc4.8.2只是警告）。 3.2 如何连接两个给出的字符串s、t？细节很重要，书中给出的答案如下： char *r,*malloc() //原文称不能直接声明一个s、t长度之和的数组，但c99可以声明变长数组，已经可以了 //记得要把长度加1 r = malloc(strlen(s) + strlen(t) +1); //必须判断内存是否分配成功 if(!r){ complain(); exit(1); } strcpy(r,s); strcat(r,t); ...... //完成之后一定要释放r free(r); 3.6 如何正确计算数组的边界？原则一，考虑最简单情况下的特例；原则二，仔细计算边界。 3.6 以下一段代码为何引起死循环？这是因为在内存地址递减时，a[10]就是i。 int i,a[10]; for(i = 1; i&lt;=10; i++) a[i] = 0; 3.6 边界的编程技巧：用第一个入界点和第一个出界点表示数值范围，即[low,high)。这样的效果是 取值范围的大小为两者之差。 若取值范围为空，则上界等于下界。 3.6 --n一般比n--执行速度更快。 3.7 运算符&amp;&amp;和||保证两个操作数从左至右求值，其他运算符的操作数求值顺序未定义。比如y[i] = x[i++]结果是未定义的。 3.9 如何检测a+b是否溢出？ if(a+b &lt; 0)是不正确的，因为溢出时的行为是未定义的。正确的方法是将两者转换为unsigned型与INT_MAX比较 更巧妙的方法：if(a &gt; INT_MAX - b) 第四章 连接 4.2 int a若出现在所有函数体之外，则完成了声明与定义（分配存储空间）。而extern int a;只是声明，说明a的存储空间是在其他地方分配的，不是定义；因此必须在别的某个地方定义，同一个或不同的源文件均可。 4.3 static修饰符可以将一个函数或变量的作用域限制在一个源文件之内，不会与其他文件中的同名量发生冲突 4.5 声明与定义必须严格相同，而数组和指针是不同的 …">
 
-        <title>20140604c traps and pitfalls  · Focus
+        <title>20140604c traps and pitfalls  · Render a New World
 </title>
-        <link href="http://heloman.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Focus - Full Atom Feed" />
-        <link href="http://heloman.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Focus - RSS Feed" />
+        <link href="http://heloman.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Render a New World - Full Atom Feed" />
+        <link href="http://heloman.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Render a New World - RSS Feed" />
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -52,7 +52,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </a>
-                        <a class="brand" href="../../../"><span class=site-name>Focus</span></a>
+                        <a class="brand" href="../../../"><span class=site-name>Render a New World</span></a>
                         <div class="nav-collapse collapse">
                             <ul class="nav pull-right top-menu">
                                 <li >

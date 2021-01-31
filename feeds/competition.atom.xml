@@ -1,14 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Focus - Competition</title><link href="http://heloman.github.io/" rel="alternate"></link><link href="http://heloman.github.io/feeds/competition.atom.xml" rel="self"></link><id>http://heloman.github.io/</id><updated>2013-08-28T16:34:10+08:00</updated><entry><title>Project Euler 001-006 解法总结</title><link href="http://heloman.github.io/pages/2013/08/project-euler-001-006-jie-fa-zong-jie.html" rel="alternate"></link><published>2013-08-27T00:00:00+08:00</published><updated>2013-08-28T16:34:10+08:00</updated><author><name>heLomaN</name></author><id>tag:heloman.github.io,2013-08-27:/pages/2013/08/project-euler-001-006-jie-fa-zong-jie.html</id><summary type="html">&lt;h4&gt;Problem 1&lt;/h4&gt;
-&lt;p&gt;Find the sum of all the multiples of 3 or 5 below 1000.&lt;/p&gt;
-&lt;p&gt;题目要求找出所有1000以下的3或者5的倍数之和。&lt;br&gt;
-最简便的方法是，计算出1000以下总共有多少个3、5、15的倍数，然后用等差数列求三种数分别之和，最后3、5的倍数和减去15的倍数和就得到了结果。&lt;br&gt;
-NOte：这是因为15的倍数多算了一遍，所以要减去。  &lt;/p&gt;
-&lt;hr&gt;
-&lt;h4&gt;Problem 2&lt;/h4&gt;
-&lt;p&gt;Find the sum of all the even-valued terms in the Fibonacci sequence which do not exceed four million.&lt;/p&gt;
-&lt;p&gt;题目要求找出斐波那契数列中偶数之和。&lt;br&gt;
-我的方法是，斐波那契数列每三个连续的数中有一个为偶数，计算斐波那契数时用一个长度为3的数据完成缓存 …&lt;/p&gt;</summary><content type="html">&lt;h4&gt;Problem 1&lt;/h4&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Render a New World - Competition</title><link href="http://heloman.github.io/" rel="alternate"></link><link href="http://heloman.github.io/feeds/competition.atom.xml" rel="self"></link><id>http://heloman.github.io/</id><updated>2013-08-28T16:34:10+08:00</updated><entry><title>Project Euler 001-006 解法总结</title><link href="http://heloman.github.io/pages/2013/08/project-euler-001-006-jie-fa-zong-jie.html" rel="alternate"></link><published>2013-08-27T00:00:00+08:00</published><updated>2013-08-28T16:34:10+08:00</updated><author><name>heLomaN</name></author><id>tag:heloman.github.io,2013-08-27:/pages/2013/08/project-euler-001-006-jie-fa-zong-jie.html</id><content type="html">&lt;h4&gt;Problem 1&lt;/h4&gt;
 &lt;p&gt;Find the sum of all the multiples of 3 or 5 below 1000.&lt;/p&gt;
 &lt;p&gt;题目要求找出所有1000以下的3或者5的倍数之和。&lt;br&gt;
 最简便的方法是，计算出1000以下总共有多少个3、5、15的倍数，然后用等差数列求三种数分别之和，最后3、5的倍数和减去15的倍数和就得到了结果。&lt;br&gt;

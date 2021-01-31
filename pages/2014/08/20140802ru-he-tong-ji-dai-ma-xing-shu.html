@@ -19,18 +19,18 @@
 
 <meta property="og:title" content="20140802如何统计代码行数 "/>
 <meta property="og:url" content="../../../pages/2014/08/20140802ru-he-tong-ji-dai-ma-xing-shu.html" />
-<meta property="og:description" content="如何统计代码行数 linux下提供了很多实用工具，甚至在安卓上，都有移植的busybox包含这些工具。 根据KISS理念，这些工具的功能很单一。但这些工具组合起来，就可以很方面的统计代码量了。 统计代码行数 流程为：首先使用find命令找到所有后缀名符合规则的源代码文件，之后使用wc命令统计行数。文件数可能过多，为防止出错使用xargs命令分割参数列表，最后得到的结果可以使用sort排序 统计所有c源代码行数的命令：find -name *.c | xargs wc -l |sort -r。结果按照反序排列 find -name *.c | xargs wc -l |sort -k2 结果按照文件名排列 如需统计c++代码，将*.c更改为*.cc即可。如果c++使用cpp后缀名，改为*.cpp 用到的命令详解 find命令 find命令递归搜索目录，若任一文件使表达式为真则放入结果 使用方法 …" />
-<meta property="og:site_name" content="Focus" />
+<meta property="og:description" content="如何统计代码行数 linux下提供了很多实用工具，甚至在安卓上，都有移植的busybox包含这些工具。 根据KISS理念，这些工具的功能很单一。但这些工具组合起来，就可以很方面的统计代码量了。 统计代码行数 流程为：首先使用find命令找到所有后缀名符合规则的源代码文件，之后使用wc命令统计行数。文件数可能过多，为防止出错使用xargs命令分割参数列表，最后得到的结果可以使用sort排序 统计所有c源代码行数的命令：find -name *.c | xargs wc -l |sort -r。结果按照反序排列 find -name *.c | xargs wc -l |sort -k2 结果按照文件名排列 如需统计c++代码，将*.c更改为*.cc即可。如果c++使用cpp后缀名，改为*.cpp 用到的命令详解 find命令 find命令递归搜索目录，若任一文件使表达式为真则放入结果 使用方法find [path...] [expression] path指定需要寻找的目录范围，默认为当前目录 expression通常为测试条件，返回true或false -name pattern文件名符合shell正则式 -path pattern文件路径名符合shell正则式 -exec order {}执行命令，若返回值为0则真 例子：find -name *.c 搜索后缀名为c的文件 例子：find . -exec sleep {1} 每隔1s显示一个文件 wc命令 wc为wordcount的缩写，用于统计文件 使用方法wc [-lwc] filename l、w、c分别表示统计行数、单词数、字符数。默认为统计全部三者 例子：wc -l file1 file2统计两文件的行数 xargs命令 xargs的功能是捕获管道中前一个命令的输出，建立分段参数表并执行另一个命令 find命令如果产生的参数列太长，可以使用xargs命令每次只传递一部分参数，防止在部分系统上出现溢出错误 xargs通常以空格或者换行符分割参数，-0选项可以保证参数列中含有空格、换行符等时分割正确 例子：find /tmp -name core | xargs -0 /bin/rm -f。把/tmp文件夹下所有名称为core的文件传递给rm命令，强制删除。-0选项可以保证正确处理文件名中含有换行或空格的情况。 sort命令 sort用于对不同的文本进行排序，以行为单位 默认排序方式为升序，-r选项可以修改为降序排列 -n选项按照字符表示的数字的值来排序，如1 2 10 20没有开启此选项排序结果为1 10 2 20 -f忽略大小写 -t设置列之间的分隔符，-k指定按照第几列排序 例子：sort -n -f -k 2 test.txt。将test.txt中的各行按照第二列排序，忽略大小写 重定向 行数统计结果可以存入文本文件中，命令行最后加上&gt; count.txt即可 标准输入、输出、错误输出分别用0，1，2表示 输入重定向使用输入重定向运算符&lt;，可以把文件中的内容作为程序的输入。例如测试代码时使用：./a.out &lt; test.in，test.in文件里面是程序的测试输入 输出重定向可以将程序的输出写入到文件中，使用输出重定向运算符&gt;。 例子：ls 1&gt;/dev/null 2&gt;/dev/null 不显示输出和错误输出。1、2与&gt;之间不能有空格 例子：ls 2&gt; &amp;1&gt; t.txt 将错误输出重定向到标准输出，而此时标准输出还未重定向 …" />
+<meta property="og:site_name" content="Render a New World" />
 <meta property="og:article:author" content="heLomaN" />
 <meta property="og:article:published_time" content="2014-08-02T09:29:07.523526+08:00" />
 <meta property="og:article:modified_time" content="2014-08-02T09:29:07.523526+08:00" />
 <meta name="twitter:title" content="20140802如何统计代码行数 ">
-<meta name="twitter:description" content="如何统计代码行数 linux下提供了很多实用工具，甚至在安卓上，都有移植的busybox包含这些工具。 根据KISS理念，这些工具的功能很单一。但这些工具组合起来，就可以很方面的统计代码量了。 统计代码行数 流程为：首先使用find命令找到所有后缀名符合规则的源代码文件，之后使用wc命令统计行数。文件数可能过多，为防止出错使用xargs命令分割参数列表，最后得到的结果可以使用sort排序 统计所有c源代码行数的命令：find -name *.c | xargs wc -l |sort -r。结果按照反序排列 find -name *.c | xargs wc -l |sort -k2 结果按照文件名排列 如需统计c++代码，将*.c更改为*.cc即可。如果c++使用cpp后缀名，改为*.cpp 用到的命令详解 find命令 find命令递归搜索目录，若任一文件使表达式为真则放入结果 使用方法 …">
+<meta name="twitter:description" content="如何统计代码行数 linux下提供了很多实用工具，甚至在安卓上，都有移植的busybox包含这些工具。 根据KISS理念，这些工具的功能很单一。但这些工具组合起来，就可以很方面的统计代码量了。 统计代码行数 流程为：首先使用find命令找到所有后缀名符合规则的源代码文件，之后使用wc命令统计行数。文件数可能过多，为防止出错使用xargs命令分割参数列表，最后得到的结果可以使用sort排序 统计所有c源代码行数的命令：find -name *.c | xargs wc -l |sort -r。结果按照反序排列 find -name *.c | xargs wc -l |sort -k2 结果按照文件名排列 如需统计c++代码，将*.c更改为*.cc即可。如果c++使用cpp后缀名，改为*.cpp 用到的命令详解 find命令 find命令递归搜索目录，若任一文件使表达式为真则放入结果 使用方法find [path...] [expression] path指定需要寻找的目录范围，默认为当前目录 expression通常为测试条件，返回true或false -name pattern文件名符合shell正则式 -path pattern文件路径名符合shell正则式 -exec order {}执行命令，若返回值为0则真 例子：find -name *.c 搜索后缀名为c的文件 例子：find . -exec sleep {1} 每隔1s显示一个文件 wc命令 wc为wordcount的缩写，用于统计文件 使用方法wc [-lwc] filename l、w、c分别表示统计行数、单词数、字符数。默认为统计全部三者 例子：wc -l file1 file2统计两文件的行数 xargs命令 xargs的功能是捕获管道中前一个命令的输出，建立分段参数表并执行另一个命令 find命令如果产生的参数列太长，可以使用xargs命令每次只传递一部分参数，防止在部分系统上出现溢出错误 xargs通常以空格或者换行符分割参数，-0选项可以保证参数列中含有空格、换行符等时分割正确 例子：find /tmp -name core | xargs -0 /bin/rm -f。把/tmp文件夹下所有名称为core的文件传递给rm命令，强制删除。-0选项可以保证正确处理文件名中含有换行或空格的情况。 sort命令 sort用于对不同的文本进行排序，以行为单位 默认排序方式为升序，-r选项可以修改为降序排列 -n选项按照字符表示的数字的值来排序，如1 2 10 20没有开启此选项排序结果为1 10 2 20 -f忽略大小写 -t设置列之间的分隔符，-k指定按照第几列排序 例子：sort -n -f -k 2 test.txt。将test.txt中的各行按照第二列排序，忽略大小写 重定向 行数统计结果可以存入文本文件中，命令行最后加上&gt; count.txt即可 标准输入、输出、错误输出分别用0，1，2表示 输入重定向使用输入重定向运算符&lt;，可以把文件中的内容作为程序的输入。例如测试代码时使用：./a.out &lt; test.in，test.in文件里面是程序的测试输入 输出重定向可以将程序的输出写入到文件中，使用输出重定向运算符&gt;。 例子：ls 1&gt;/dev/null 2&gt;/dev/null 不显示输出和错误输出。1、2与&gt;之间不能有空格 例子：ls 2&gt; &amp;1&gt; t.txt 将错误输出重定向到标准输出，而此时标准输出还未重定向 …">
 
-        <title>20140802如何统计代码行数  · Focus
+        <title>20140802如何统计代码行数  · Render a New World
 </title>
-        <link href="http://heloman.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Focus - Full Atom Feed" />
-        <link href="http://heloman.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Focus - RSS Feed" />
+        <link href="http://heloman.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Render a New World - Full Atom Feed" />
+        <link href="http://heloman.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Render a New World - RSS Feed" />
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -52,7 +52,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </a>
-                        <a class="brand" href="../../../"><span class=site-name>Focus</span></a>
+                        <a class="brand" href="../../../"><span class=site-name>Render a New World</span></a>
                         <div class="nav-collapse collapse">
                             <ul class="nav pull-right top-menu">
                                 <li >

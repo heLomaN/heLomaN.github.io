@@ -19,18 +19,18 @@
 
 <meta property="og:title" content="20140422Map_reduce "/>
 <meta property="og:url" content="../../../pages/2014/04/20140422map_reduce.html" />
-<meta property="og:description" content="Map-Reduce Map-Reduce是由Google在2004年提出的大数据并行编程架构，分为Map（映射）和Reduce（化简）两个步骤，因此得名。它隐藏并行化、容错、数据分布、负载均衡等细节，可以搭建在普通PC上，程序员可以很方便完成大数据并行编程。 并行运算的效率 假如使用1个处理器花费T1时长可以完成任务，而使用了p个处理器需要Tp时长。那么加速比为：S(Speeup) = T1/Tp，效率为：E = S/p = T1 / (p Tp) 一般效率都小于1，而且p越大效率越低，但是在数据集增大时，效率会相应的有所提高。 传统的并行处理架构 数据并行架构：共享内存-分割任务 内存（数据）是共享的，把任务分为p个部分，分别由p个处理器完成。为防止冲突，每个处理器都要在开始工作时对使用的数据段加锁，以阻塞其他任务使用这一数据段。任务完成之后，才会解锁。 很显然，如果p个处理器同时对不同的数据段进行处理，效率是很高的。但如果有冲突 …" />
-<meta property="og:site_name" content="Focus" />
+<meta property="og:description" content="Map-Reduce Map-Reduce是由Google在2004年提出的大数据并行编程架构，分为Map（映射）和Reduce（化简）两个步骤，因此得名。它隐藏并行化、容错、数据分布、负载均衡等细节，可以搭建在普通PC上，程序员可以很方便完成大数据并行编程。 并行运算的效率 假如使用1个处理器花费T1时长可以完成任务，而使用了p个处理器需要Tp时长。那么加速比为：S(Speeup) = T1/Tp，效率为：E = S/p = T1 / (p Tp) 一般效率都小于1，而且p越大效率越低，但是在数据集增大时，效率会相应的有所提高。 传统的并行处理架构 数据并行架构：共享内存-分割任务 内存（数据）是共享的，把任务分为p个部分，分别由p个处理器完成。为防止冲突，每个处理器都要在开始工作时对使用的数据段加锁，以阻塞其他任务使用这一数据段。任务完成之后，才会解锁。 很显然，如果p个处理器同时对不同的数据段进行处理，效率是很高的。但如果有冲突，就会带来额外的通信开销，降低效率。 消息传递架构：消息传递-分割数据 如MPI和PVM。 消息传递机制把数据分为p个数据段，p个CPU分别使用一个数据段完成同样的任务。 这种方式的问题是，一个CPU的运算需要使用另一个CPU的运算结果以完成下一步的任务，这样，它们之间就需要交换数据。 这个问题使得消息传递架构比数据并行架构更复杂。但消息传递架构更具有可扩展性，比如在数千个CPU的情况下，减少冲突是很难做到的。 除了上述两种方式外，共享内存-分割数据和消息传递-分割任务也是可以的。 Map-Reduce架构 Map-Reduce是一种抽象的消息传递，及数据并行化的架构。 如图所示，左方为代处理数据集，右方为处理结果数据集。图中圆角矩形代表map和reduce节点，每个对应一台电脑。 Map函数把输入数据中的一个key/value对（k1,v1）映射为一组临时key/value对（k2,v2）。每个key/value对都是被独立操作的，而且没有修改原始数据，因此Map操作是可以高度并行的，如图示map1、map2……mapM。 Reduce函数接收键为特定的k2的一组临时key/value对，并合并这些结果得到最终结果（k2,v3），这里键值k2是不变的。如图示reduce1，reduce2……reduceR。相对来说实现并行要难一些。 除了这两个函数之外，还需要做一些额外工作。 每个Reduce节点只接收键固定的临时key/value对，平台要根据临时key/value对的键把key/value对送至相应的Reduce节点。 临时key/value对的读写工作量也相当大。 Word counting Word counting指的是给出一系列文档，统计所有单词的词频。Word counting就是Map-Reduce的Hello word!。 输入数据：（k1,v1），k1是文档id，v1是文档内容，即图中的(d1,&#34;w1w2w4&#34;)，d1代表文档id，w1代表一个单词 Map函数：从文档中每读入一个单词，就产生一个临时key/value对，即图中左边一列灰色宽箭头 临时元素：（k2,v2），k2是单词，v2是单词出现次数，即图中的第二列(w1,2) Reduce函数：接收所有具有同一个k2的临时key/value对，对v2求和得到v3，即图中右边一列灰色宽箭头 输出结果：（k2,v3），v3是所有文档中单词k2的词频数 转载请注明作者：Focustc，博客地址为http://blog.csdn.net/caozhk" />
+<meta property="og:site_name" content="Render a New World" />
 <meta property="og:article:author" content="heLomaN" />
 <meta property="og:article:published_time" content="2014-04-22T17:55:48.342244+08:00" />
 <meta property="og:article:modified_time" content="2014-04-22T17:55:48.342244+08:00" />
 <meta name="twitter:title" content="20140422Map_reduce ">
-<meta name="twitter:description" content="Map-Reduce Map-Reduce是由Google在2004年提出的大数据并行编程架构，分为Map（映射）和Reduce（化简）两个步骤，因此得名。它隐藏并行化、容错、数据分布、负载均衡等细节，可以搭建在普通PC上，程序员可以很方便完成大数据并行编程。 并行运算的效率 假如使用1个处理器花费T1时长可以完成任务，而使用了p个处理器需要Tp时长。那么加速比为：S(Speeup) = T1/Tp，效率为：E = S/p = T1 / (p Tp) 一般效率都小于1，而且p越大效率越低，但是在数据集增大时，效率会相应的有所提高。 传统的并行处理架构 数据并行架构：共享内存-分割任务 内存（数据）是共享的，把任务分为p个部分，分别由p个处理器完成。为防止冲突，每个处理器都要在开始工作时对使用的数据段加锁，以阻塞其他任务使用这一数据段。任务完成之后，才会解锁。 很显然，如果p个处理器同时对不同的数据段进行处理，效率是很高的。但如果有冲突 …">
+<meta name="twitter:description" content="Map-Reduce Map-Reduce是由Google在2004年提出的大数据并行编程架构，分为Map（映射）和Reduce（化简）两个步骤，因此得名。它隐藏并行化、容错、数据分布、负载均衡等细节，可以搭建在普通PC上，程序员可以很方便完成大数据并行编程。 并行运算的效率 假如使用1个处理器花费T1时长可以完成任务，而使用了p个处理器需要Tp时长。那么加速比为：S(Speeup) = T1/Tp，效率为：E = S/p = T1 / (p Tp) 一般效率都小于1，而且p越大效率越低，但是在数据集增大时，效率会相应的有所提高。 传统的并行处理架构 数据并行架构：共享内存-分割任务 内存（数据）是共享的，把任务分为p个部分，分别由p个处理器完成。为防止冲突，每个处理器都要在开始工作时对使用的数据段加锁，以阻塞其他任务使用这一数据段。任务完成之后，才会解锁。 很显然，如果p个处理器同时对不同的数据段进行处理，效率是很高的。但如果有冲突，就会带来额外的通信开销，降低效率。 消息传递架构：消息传递-分割数据 如MPI和PVM。 消息传递机制把数据分为p个数据段，p个CPU分别使用一个数据段完成同样的任务。 这种方式的问题是，一个CPU的运算需要使用另一个CPU的运算结果以完成下一步的任务，这样，它们之间就需要交换数据。 这个问题使得消息传递架构比数据并行架构更复杂。但消息传递架构更具有可扩展性，比如在数千个CPU的情况下，减少冲突是很难做到的。 除了上述两种方式外，共享内存-分割数据和消息传递-分割任务也是可以的。 Map-Reduce架构 Map-Reduce是一种抽象的消息传递，及数据并行化的架构。 如图所示，左方为代处理数据集，右方为处理结果数据集。图中圆角矩形代表map和reduce节点，每个对应一台电脑。 Map函数把输入数据中的一个key/value对（k1,v1）映射为一组临时key/value对（k2,v2）。每个key/value对都是被独立操作的，而且没有修改原始数据，因此Map操作是可以高度并行的，如图示map1、map2……mapM。 Reduce函数接收键为特定的k2的一组临时key/value对，并合并这些结果得到最终结果（k2,v3），这里键值k2是不变的。如图示reduce1，reduce2……reduceR。相对来说实现并行要难一些。 除了这两个函数之外，还需要做一些额外工作。 每个Reduce节点只接收键固定的临时key/value对，平台要根据临时key/value对的键把key/value对送至相应的Reduce节点。 临时key/value对的读写工作量也相当大。 Word counting Word counting指的是给出一系列文档，统计所有单词的词频。Word counting就是Map-Reduce的Hello word!。 输入数据：（k1,v1），k1是文档id，v1是文档内容，即图中的(d1,&#34;w1w2w4&#34;)，d1代表文档id，w1代表一个单词 Map函数：从文档中每读入一个单词，就产生一个临时key/value对，即图中左边一列灰色宽箭头 临时元素：（k2,v2），k2是单词，v2是单词出现次数，即图中的第二列(w1,2) Reduce函数：接收所有具有同一个k2的临时key/value对，对v2求和得到v3，即图中右边一列灰色宽箭头 输出结果：（k2,v3），v3是所有文档中单词k2的词频数 转载请注明作者：Focustc，博客地址为http://blog.csdn.net/caozhk">
 
-        <title>20140422Map_reduce  · Focus
+        <title>20140422Map_reduce  · Render a New World
 </title>
-        <link href="http://heloman.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Focus - Full Atom Feed" />
-        <link href="http://heloman.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Focus - RSS Feed" />
+        <link href="http://heloman.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Render a New World - Full Atom Feed" />
+        <link href="http://heloman.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Render a New World - RSS Feed" />
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -52,7 +52,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </a>
-                        <a class="brand" href="../../../"><span class=site-name>Focus</span></a>
+                        <a class="brand" href="../../../"><span class=site-name>Render a New World</span></a>
                         <div class="nav-collapse collapse">
                             <ul class="nav pull-right top-menu">
                                 <li >

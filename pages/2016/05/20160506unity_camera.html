@@ -19,18 +19,18 @@
 
 <meta property="og:title" content="20160506unity_camera "/>
 <meta property="og:url" content="../../../pages/2016/05/20160506unity_camera.html" />
-<meta property="og:description" content="Unity的camera组件 文章介绍的是个大概，其中rendering paths和culling、clear flag还有更详细的用法 正交和透视 unity的camera支持两种投影方式：正交和透视 人眼看到的物体，近处的比较大、远处的比较小，unity的摄像机支持这种透视效果，称为透视相机 如果不需要物体大小随到摄像机的距离改变，可以采用正交投影 可视区域 一般摄像机仅关注一个范围内的物体，垂直于摄像机z轴有两个平面，分别称为远、近裁剪平面，只有两个平面之间的物体才会投影到摄像机 对于正交投影，可视区域为一个长方体 对于透视投影，可视区域为一个锥体的一部分，锥体顶端是摄像机，锥体底面为远裁剪面，并被近裁剪面切割掉顶部 背景图和天空盒 在户外场景，投影到2D平面后部分区域是没有任何投影的，这时可以用背景色填充，但更逼真的方法是使用天空盒 摄像机转动时会看到天空盒的不同位置，但位置始终在天空盒的正中心 天空盒是由6张图片拼接成的立方体盒子，显示在所有物体之后 多摄像头切换 如果多个摄像头可用，则深度最大的摄像头会显示在最上方，覆盖其他摄像头。可以设置disable完成多个摄像头之间的切换 使用第二个摄像机显示小地图 深度调高，以显示在上方 设置viewport rect，调整占用2D屏幕的大小 摄像头射线投影 …" />
-<meta property="og:site_name" content="Focus" />
+<meta property="og:description" content="Unity的camera组件 文章介绍的是个大概，其中rendering paths和culling、clear flag还有更详细的用法 正交和透视 unity的camera支持两种投影方式：正交和透视 人眼看到的物体，近处的比较大、远处的比较小，unity的摄像机支持这种透视效果，称为透视相机 如果不需要物体大小随到摄像机的距离改变，可以采用正交投影 可视区域 一般摄像机仅关注一个范围内的物体，垂直于摄像机z轴有两个平面，分别称为远、近裁剪平面，只有两个平面之间的物体才会投影到摄像机 对于正交投影，可视区域为一个长方体 对于透视投影，可视区域为一个锥体的一部分，锥体顶端是摄像机，锥体底面为远裁剪面，并被近裁剪面切割掉顶部 背景图和天空盒 在户外场景，投影到2D平面后部分区域是没有任何投影的，这时可以用背景色填充，但更逼真的方法是使用天空盒 摄像机转动时会看到天空盒的不同位置，但位置始终在天空盒的正中心 天空盒是由6张图片拼接成的立方体盒子，显示在所有物体之后 多摄像头切换 如果多个摄像头可用，则深度最大的摄像头会显示在最上方，覆盖其他摄像头。可以设置disable完成多个摄像头之间的切换 使用第二个摄像机显示小地图 深度调高，以显示在上方 设置viewport rect，调整占用2D屏幕的大小 摄像头射线投影 2D屏幕上的任意点都对应一条射线，可以使用ScreenPointToRay和ViewportPointToRay来获得此射线 此射线起点位于近裁剪面 camera组件参数 Clear Flags:使用什么清除像素缓存？比如天空盒或当前camera的背景色 Depth only选项配合Culling Mask可以完成单独显示一个物体不被遮挡的效果，如fps游戏中的枪 Background:背景色 Culling Mask:仅渲染选中的layer Projection:正交或透视 Size:当选中正交时，设置可视区域大小 FOV:当选中透视时，y轴方向视角 Clipping Planes:裁剪面位置 Viewport Rect:显示在屏幕上的大小、位置 Depth:深度，值大的渲染在最前面 Rendering Path:渲染方法，包括： 延迟光照Deffered Lighting:将lighting在屏幕空间进行 Target Texture:用于截图，如果使用则会停止渲染到屏幕 HDR:开启HDR 作者Focustc，来自于CSDN" />
+<meta property="og:site_name" content="Render a New World" />
 <meta property="og:article:author" content="heLomaN" />
 <meta property="og:article:published_time" content="2016-05-31T12:02:36+08:00" />
 <meta property="og:article:modified_time" content="2016-05-31T12:02:36+08:00" />
 <meta name="twitter:title" content="20160506unity_camera ">
-<meta name="twitter:description" content="Unity的camera组件 文章介绍的是个大概，其中rendering paths和culling、clear flag还有更详细的用法 正交和透视 unity的camera支持两种投影方式：正交和透视 人眼看到的物体，近处的比较大、远处的比较小，unity的摄像机支持这种透视效果，称为透视相机 如果不需要物体大小随到摄像机的距离改变，可以采用正交投影 可视区域 一般摄像机仅关注一个范围内的物体，垂直于摄像机z轴有两个平面，分别称为远、近裁剪平面，只有两个平面之间的物体才会投影到摄像机 对于正交投影，可视区域为一个长方体 对于透视投影，可视区域为一个锥体的一部分，锥体顶端是摄像机，锥体底面为远裁剪面，并被近裁剪面切割掉顶部 背景图和天空盒 在户外场景，投影到2D平面后部分区域是没有任何投影的，这时可以用背景色填充，但更逼真的方法是使用天空盒 摄像机转动时会看到天空盒的不同位置，但位置始终在天空盒的正中心 天空盒是由6张图片拼接成的立方体盒子，显示在所有物体之后 多摄像头切换 如果多个摄像头可用，则深度最大的摄像头会显示在最上方，覆盖其他摄像头。可以设置disable完成多个摄像头之间的切换 使用第二个摄像机显示小地图 深度调高，以显示在上方 设置viewport rect，调整占用2D屏幕的大小 摄像头射线投影 …">
+<meta name="twitter:description" content="Unity的camera组件 文章介绍的是个大概，其中rendering paths和culling、clear flag还有更详细的用法 正交和透视 unity的camera支持两种投影方式：正交和透视 人眼看到的物体，近处的比较大、远处的比较小，unity的摄像机支持这种透视效果，称为透视相机 如果不需要物体大小随到摄像机的距离改变，可以采用正交投影 可视区域 一般摄像机仅关注一个范围内的物体，垂直于摄像机z轴有两个平面，分别称为远、近裁剪平面，只有两个平面之间的物体才会投影到摄像机 对于正交投影，可视区域为一个长方体 对于透视投影，可视区域为一个锥体的一部分，锥体顶端是摄像机，锥体底面为远裁剪面，并被近裁剪面切割掉顶部 背景图和天空盒 在户外场景，投影到2D平面后部分区域是没有任何投影的，这时可以用背景色填充，但更逼真的方法是使用天空盒 摄像机转动时会看到天空盒的不同位置，但位置始终在天空盒的正中心 天空盒是由6张图片拼接成的立方体盒子，显示在所有物体之后 多摄像头切换 如果多个摄像头可用，则深度最大的摄像头会显示在最上方，覆盖其他摄像头。可以设置disable完成多个摄像头之间的切换 使用第二个摄像机显示小地图 深度调高，以显示在上方 设置viewport rect，调整占用2D屏幕的大小 摄像头射线投影 2D屏幕上的任意点都对应一条射线，可以使用ScreenPointToRay和ViewportPointToRay来获得此射线 此射线起点位于近裁剪面 camera组件参数 Clear Flags:使用什么清除像素缓存？比如天空盒或当前camera的背景色 Depth only选项配合Culling Mask可以完成单独显示一个物体不被遮挡的效果，如fps游戏中的枪 Background:背景色 Culling Mask:仅渲染选中的layer Projection:正交或透视 Size:当选中正交时，设置可视区域大小 FOV:当选中透视时，y轴方向视角 Clipping Planes:裁剪面位置 Viewport Rect:显示在屏幕上的大小、位置 Depth:深度，值大的渲染在最前面 Rendering Path:渲染方法，包括： 延迟光照Deffered Lighting:将lighting在屏幕空间进行 Target Texture:用于截图，如果使用则会停止渲染到屏幕 HDR:开启HDR 作者Focustc，来自于CSDN">
 
-        <title>20160506unity_camera  · Focus
+        <title>20160506unity_camera  · Render a New World
 </title>
-        <link href="http://heloman.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Focus - Full Atom Feed" />
-        <link href="http://heloman.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Focus - RSS Feed" />
+        <link href="http://heloman.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Render a New World - Full Atom Feed" />
+        <link href="http://heloman.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Render a New World - RSS Feed" />
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -52,7 +52,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </a>
-                        <a class="brand" href="../../../"><span class=site-name>Focus</span></a>
+                        <a class="brand" href="../../../"><span class=site-name>Render a New World</span></a>
                         <div class="nav-collapse collapse">
                             <ul class="nav pull-right top-menu">
                                 <li >

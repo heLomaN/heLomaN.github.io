@@ -19,18 +19,18 @@
 
 <meta property="og:title" content="20140722《剑指offer》解题笔记 "/>
 <meta property="og:url" content="../../../pages/2014/07/20140722jian-zhi-offer-jie-ti-bi-ji.html" />
-<meta property="og:description" content="《剑指offer》解题笔记 《剑指offer》共50题，这两周使用C++花时间做了一遍，谨在此把一些很巧妙的方法、写代码遇到的难点、易犯错的细节等做一个简单的标注，但不会太过详细，具体算法还是请参考书本。 做的比较急，代码还有很多不完善的地方，如有错误，欢迎改正，地址为：github:sword_of_offer。可以使用git clone https://github.com/heLomaN/sword_of_offer.git命令获取代码。 其中，少数无法验证正确与否的题目没有写代码，部分二叉树的题目写了代码，但由于生成二叉树太过麻烦没有验证。 解题笔记 Q3 声明并初始化二维数组的语句如何写？ cin如何判断输入结束？ Q4 字符数组的末尾位置计算差了1，忘了加上\0，要小心 Q5 递归的方法更简洁 Q6 stl的find算法 vector传值性能差，应该用引用 截取一段时要根据左右子树的长度来截，再次find是错误的 Q7 …" />
-<meta property="og:site_name" content="Focus" />
+<meta property="og:description" content="《剑指offer》解题笔记 《剑指offer》共50题，这两周使用C++花时间做了一遍，谨在此把一些很巧妙的方法、写代码遇到的难点、易犯错的细节等做一个简单的标注，但不会太过详细，具体算法还是请参考书本。 做的比较急，代码还有很多不完善的地方，如有错误，欢迎改正，地址为：github:sword_of_offer。可以使用git clone https://github.com/heLomaN/sword_of_offer.git命令获取代码。 其中，少数无法验证正确与否的题目没有写代码，部分二叉树的题目写了代码，但由于生成二叉树太过麻烦没有验证。 解题笔记 Q3 声明并初始化二维数组的语句如何写？ cin如何判断输入结束？ Q4 字符数组的末尾位置计算差了1，忘了加上\0，要小心 Q5 递归的方法更简洁 Q6 stl的find算法 vector传值性能差，应该用引用 截取一段时要根据左右子树的长度来截，再次find是错误的 Q7 stack的pop返回值是void，而top方法才返回顶部值 Q8 这个二分相当的难。尤其是非递归的写法 边界值处理要仔细想 不能忽略如1 0 1的特殊情况 Q9 应该用long long类型 Q10 求数的二进制表示种1的个数应记住：减1再&amp;自身总会消去一个1 Q11 除以2用&gt;&gt;，模2用&amp;，效率更高 应该加上错误检测 Q12 遇到数字有关的题，首先考虑是不是大数问题 Q13 把下一个节点的值拷贝到当前节点即可，之后删除下一个节点 Q14 9du oj要求奇数或偶数的顺序不变，现在的代码没有符合这个要求 Q15 node *p,q只把p声明为指针，小心 参考https://github.com/julycoding/The-Art-Of-Programming-By-July，*应该靠近类型名 Q16 画图以帮助理解 Q18 !p判断指针为空是可以的 代码未测试 Q22 方法很难想起来，要仔细分析其中规律 Q25 代码未测试 Q26 方法很难想起来 第三步分离链表操作不够简洁 Q27 使用了一个辅助vector，书上的方法不能仔细的写出来 Q28 这种解法无法处理多个字符重复的情况，会造成重复 递归的时候修改全局数组，但递归调用后要把全局数组修改回来，和之前递归调用前后出入栈的方法有异曲同工之妙 8皇后问题也可以用这个方法解决 Q29 求数组中任意第K大的数字有成熟的O(n)的算法 Q30 C++中throw new excetion(&#34;error&#34;)是不正确的，不能用字符串初始化excetion set和multiset是基于红黑树实现的 Q31 第一种解法和DP解法原理是一样的 Q32 1到n个9之间出现1的次数是n*10^(n-1) 代码未测试 Q33 itoa不是标准库函数，只是linux下的库函数，可以用printf代替 string可以直接+、&gt;、&lt;运算 Q34 关键是如何保证已经找到的丑数数组是有序的 Q35 memset函数是在cstring头文件中 Q35 关键是merge两个数组时的细节处理 归并排序相当于O(n)的空间换来了时间复杂度提升到O(nlogn) Q37 代码未测试 Q38 关键是改变二分查找的循环判断条件 Q39 题目2的算法不易想起 代码未测试 Q40 方法很巧妙 C++中auto&amp; e : v遍历容器注意v指向元素的引用才可以改变容器中的值 Q41 书中未给出算法证明，亟待解决 Q43 方法巧妙，解法很难想起来 Q45 方法巧妙，解法很难想起来 Q50 如果有指向父节点的指针，那么找到这两个点到根节点的链表，求第一个公共节点 如果没有，那么dfs遍历得到这两个点的链表，求第一个公共节点 转载请注明作者：Focustc，博客地址为http://blog.csdn.net/caozhk，原文链接为点击打开" />
+<meta property="og:site_name" content="Render a New World" />
 <meta property="og:article:author" content="heLomaN" />
 <meta property="og:article:published_time" content="2014-07-22T08:43:00.077672+08:00" />
 <meta property="og:article:modified_time" content="2014-07-22T08:43:00.077672+08:00" />
 <meta name="twitter:title" content="20140722《剑指offer》解题笔记 ">
-<meta name="twitter:description" content="《剑指offer》解题笔记 《剑指offer》共50题，这两周使用C++花时间做了一遍，谨在此把一些很巧妙的方法、写代码遇到的难点、易犯错的细节等做一个简单的标注，但不会太过详细，具体算法还是请参考书本。 做的比较急，代码还有很多不完善的地方，如有错误，欢迎改正，地址为：github:sword_of_offer。可以使用git clone https://github.com/heLomaN/sword_of_offer.git命令获取代码。 其中，少数无法验证正确与否的题目没有写代码，部分二叉树的题目写了代码，但由于生成二叉树太过麻烦没有验证。 解题笔记 Q3 声明并初始化二维数组的语句如何写？ cin如何判断输入结束？ Q4 字符数组的末尾位置计算差了1，忘了加上\0，要小心 Q5 递归的方法更简洁 Q6 stl的find算法 vector传值性能差，应该用引用 截取一段时要根据左右子树的长度来截，再次find是错误的 Q7 …">
+<meta name="twitter:description" content="《剑指offer》解题笔记 《剑指offer》共50题，这两周使用C++花时间做了一遍，谨在此把一些很巧妙的方法、写代码遇到的难点、易犯错的细节等做一个简单的标注，但不会太过详细，具体算法还是请参考书本。 做的比较急，代码还有很多不完善的地方，如有错误，欢迎改正，地址为：github:sword_of_offer。可以使用git clone https://github.com/heLomaN/sword_of_offer.git命令获取代码。 其中，少数无法验证正确与否的题目没有写代码，部分二叉树的题目写了代码，但由于生成二叉树太过麻烦没有验证。 解题笔记 Q3 声明并初始化二维数组的语句如何写？ cin如何判断输入结束？ Q4 字符数组的末尾位置计算差了1，忘了加上\0，要小心 Q5 递归的方法更简洁 Q6 stl的find算法 vector传值性能差，应该用引用 截取一段时要根据左右子树的长度来截，再次find是错误的 Q7 stack的pop返回值是void，而top方法才返回顶部值 Q8 这个二分相当的难。尤其是非递归的写法 边界值处理要仔细想 不能忽略如1 0 1的特殊情况 Q9 应该用long long类型 Q10 求数的二进制表示种1的个数应记住：减1再&amp;自身总会消去一个1 Q11 除以2用&gt;&gt;，模2用&amp;，效率更高 应该加上错误检测 Q12 遇到数字有关的题，首先考虑是不是大数问题 Q13 把下一个节点的值拷贝到当前节点即可，之后删除下一个节点 Q14 9du oj要求奇数或偶数的顺序不变，现在的代码没有符合这个要求 Q15 node *p,q只把p声明为指针，小心 参考https://github.com/julycoding/The-Art-Of-Programming-By-July，*应该靠近类型名 Q16 画图以帮助理解 Q18 !p判断指针为空是可以的 代码未测试 Q22 方法很难想起来，要仔细分析其中规律 Q25 代码未测试 Q26 方法很难想起来 第三步分离链表操作不够简洁 Q27 使用了一个辅助vector，书上的方法不能仔细的写出来 Q28 这种解法无法处理多个字符重复的情况，会造成重复 递归的时候修改全局数组，但递归调用后要把全局数组修改回来，和之前递归调用前后出入栈的方法有异曲同工之妙 8皇后问题也可以用这个方法解决 Q29 求数组中任意第K大的数字有成熟的O(n)的算法 Q30 C++中throw new excetion(&#34;error&#34;)是不正确的，不能用字符串初始化excetion set和multiset是基于红黑树实现的 Q31 第一种解法和DP解法原理是一样的 Q32 1到n个9之间出现1的次数是n*10^(n-1) 代码未测试 Q33 itoa不是标准库函数，只是linux下的库函数，可以用printf代替 string可以直接+、&gt;、&lt;运算 Q34 关键是如何保证已经找到的丑数数组是有序的 Q35 memset函数是在cstring头文件中 Q35 关键是merge两个数组时的细节处理 归并排序相当于O(n)的空间换来了时间复杂度提升到O(nlogn) Q37 代码未测试 Q38 关键是改变二分查找的循环判断条件 Q39 题目2的算法不易想起 代码未测试 Q40 方法很巧妙 C++中auto&amp; e : v遍历容器注意v指向元素的引用才可以改变容器中的值 Q41 书中未给出算法证明，亟待解决 Q43 方法巧妙，解法很难想起来 Q45 方法巧妙，解法很难想起来 Q50 如果有指向父节点的指针，那么找到这两个点到根节点的链表，求第一个公共节点 如果没有，那么dfs遍历得到这两个点的链表，求第一个公共节点 转载请注明作者：Focustc，博客地址为http://blog.csdn.net/caozhk，原文链接为点击打开">
 
-        <title>20140722《剑指offer》解题笔记  · Focus
+        <title>20140722《剑指offer》解题笔记  · Render a New World
 </title>
-        <link href="http://heloman.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Focus - Full Atom Feed" />
-        <link href="http://heloman.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Focus - RSS Feed" />
+        <link href="http://heloman.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Render a New World - Full Atom Feed" />
+        <link href="http://heloman.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Render a New World - RSS Feed" />
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -52,7 +52,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </a>
-                        <a class="brand" href="../../../"><span class=site-name>Focus</span></a>
+                        <a class="brand" href="../../../"><span class=site-name>Render a New World</span></a>
                         <div class="nav-collapse collapse">
                             <ul class="nav pull-right top-menu">
                                 <li >

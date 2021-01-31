@@ -19,18 +19,18 @@
 
 <meta property="og:title" content="20140624codeforces解初体验 "/>
 <meta property="og:url" content="../../../pages/2014/06/20140624codeforcesjie-chu-ti-yan.html" />
-<meta property="og:description" content="Codeforces印象 这两天抽时间去codeforces体验了一把。 首先，果然有众多大牛存在，很多名人一直参加每周一次的比赛，积分2000+，并参与出题。 另外，上面题目很多，估计至少一千题。比赛结束后，题目将转为练习题，可以持续尝试。每道题目都有标签，如greedy， math， matrices等等，可以点击相应的标签只做相关的题目。可惜我做了好几道之后才发现。 这次解决的题目 首次尝试，这次做的几个都是选的完成人数最多的，比较简单，但还是有些东西是从中新学习到的。以后最好分类练习。 1A Theatre Square 用a x a的砖块去铺满面积m x n的广场，不准破坏砖块，允许超出广场，求砖块数目 分别计算长宽至少多少块即可 小技巧：(m-1)/a+1来计算长度方向的砖块数目 #include&lt;iostream&gt; #include&lt;limits&gt; using namespace std; int main …" />
-<meta property="og:site_name" content="Focus" />
+<meta property="og:description" content="Codeforces印象 这两天抽时间去codeforces体验了一把。 首先，果然有众多大牛存在，很多名人一直参加每周一次的比赛，积分2000+，并参与出题。 另外，上面题目很多，估计至少一千题。比赛结束后，题目将转为练习题，可以持续尝试。每道题目都有标签，如greedy， math， matrices等等，可以点击相应的标签只做相关的题目。可惜我做了好几道之后才发现。 这次解决的题目 首次尝试，这次做的几个都是选的完成人数最多的，比较简单，但还是有些东西是从中新学习到的。以后最好分类练习。 1A Theatre Square 用a x a的砖块去铺满面积m x n的广场，不准破坏砖块，允许超出广场，求砖块数目 分别计算长宽至少多少块即可 小技巧：(m-1)/a+1来计算长度方向的砖块数目 #include&lt;iostream&gt; #include&lt;limits&gt; using namespace std; int main(){ long long m,n,a; //cout &lt;&lt; numeric_limits&lt;long&gt;::max() &lt;&lt; endl; cin &gt;&gt; m &gt;&gt; n &gt;&gt; a; cout &lt;&lt; ((m-1)/a + 1)*((n-1)/a + 1) &lt;&lt; endl; return 0; } 4A Watermelon 太过简单 158A Next Round 太过简单 71A Way Too Long Words 给定一个单词，如果长度超过10，改成缩写形式：首字母+中间的字母个数+尾字母 直接输出结果即可 118A String Task 给定一个单词，删掉所有元音字母，其余字母转换为小写并每个字母前加.符号 使用ostringstream和tolower函数 #include&lt;iostream&gt; #include&lt;sstream&gt; using namespace std; int main(){ string str; cin &gt;&gt; str; ostringstream ostr; for(auto i:str){ char t=tolower(i); if(t == &#39;a&#39; || t==&#39;o&#39; || t==&#39;y&#39;||t==&#39;e&#39; ||t==&#39;u&#39; || t==&#39;i&#39;) ; else ostr&lt;&lt; &#39;.&#39; &lt;&lt; t; } cout &lt;&lt; ostr.str() &lt;&lt; endl; return 0; } 158B Taxi n个小组，每组不超过4人，出租车每车不能超过4人，同组人不能分开，求最少要多少辆车 贪心，尽量坐满每一辆车，剩下的进行组合 #include&lt;iostream&gt; #include&lt;vector&gt; using namespace std; int main(){ int n; cin &gt;&gt; n; // can&#39;t initialize a vector with its element; //vector&lt;int&gt; test(1,2,3,4); vector&lt;int&gt; stat(4,0); for(int i = 0;i &lt; n;i++){ int tmp …" />
+<meta property="og:site_name" content="Render a New World" />
 <meta property="og:article:author" content="heLomaN" />
 <meta property="og:article:published_time" content="2014-06-24T15:30:46.772819+08:00" />
 <meta property="og:article:modified_time" content="2014-06-24T15:30:46.772819+08:00" />
 <meta name="twitter:title" content="20140624codeforces解初体验 ">
-<meta name="twitter:description" content="Codeforces印象 这两天抽时间去codeforces体验了一把。 首先，果然有众多大牛存在，很多名人一直参加每周一次的比赛，积分2000+，并参与出题。 另外，上面题目很多，估计至少一千题。比赛结束后，题目将转为练习题，可以持续尝试。每道题目都有标签，如greedy， math， matrices等等，可以点击相应的标签只做相关的题目。可惜我做了好几道之后才发现。 这次解决的题目 首次尝试，这次做的几个都是选的完成人数最多的，比较简单，但还是有些东西是从中新学习到的。以后最好分类练习。 1A Theatre Square 用a x a的砖块去铺满面积m x n的广场，不准破坏砖块，允许超出广场，求砖块数目 分别计算长宽至少多少块即可 小技巧：(m-1)/a+1来计算长度方向的砖块数目 #include&lt;iostream&gt; #include&lt;limits&gt; using namespace std; int main …">
+<meta name="twitter:description" content="Codeforces印象 这两天抽时间去codeforces体验了一把。 首先，果然有众多大牛存在，很多名人一直参加每周一次的比赛，积分2000+，并参与出题。 另外，上面题目很多，估计至少一千题。比赛结束后，题目将转为练习题，可以持续尝试。每道题目都有标签，如greedy， math， matrices等等，可以点击相应的标签只做相关的题目。可惜我做了好几道之后才发现。 这次解决的题目 首次尝试，这次做的几个都是选的完成人数最多的，比较简单，但还是有些东西是从中新学习到的。以后最好分类练习。 1A Theatre Square 用a x a的砖块去铺满面积m x n的广场，不准破坏砖块，允许超出广场，求砖块数目 分别计算长宽至少多少块即可 小技巧：(m-1)/a+1来计算长度方向的砖块数目 #include&lt;iostream&gt; #include&lt;limits&gt; using namespace std; int main(){ long long m,n,a; //cout &lt;&lt; numeric_limits&lt;long&gt;::max() &lt;&lt; endl; cin &gt;&gt; m &gt;&gt; n &gt;&gt; a; cout &lt;&lt; ((m-1)/a + 1)*((n-1)/a + 1) &lt;&lt; endl; return 0; } 4A Watermelon 太过简单 158A Next Round 太过简单 71A Way Too Long Words 给定一个单词，如果长度超过10，改成缩写形式：首字母+中间的字母个数+尾字母 直接输出结果即可 118A String Task 给定一个单词，删掉所有元音字母，其余字母转换为小写并每个字母前加.符号 使用ostringstream和tolower函数 #include&lt;iostream&gt; #include&lt;sstream&gt; using namespace std; int main(){ string str; cin &gt;&gt; str; ostringstream ostr; for(auto i:str){ char t=tolower(i); if(t == &#39;a&#39; || t==&#39;o&#39; || t==&#39;y&#39;||t==&#39;e&#39; ||t==&#39;u&#39; || t==&#39;i&#39;) ; else ostr&lt;&lt; &#39;.&#39; &lt;&lt; t; } cout &lt;&lt; ostr.str() &lt;&lt; endl; return 0; } 158B Taxi n个小组，每组不超过4人，出租车每车不能超过4人，同组人不能分开，求最少要多少辆车 贪心，尽量坐满每一辆车，剩下的进行组合 #include&lt;iostream&gt; #include&lt;vector&gt; using namespace std; int main(){ int n; cin &gt;&gt; n; // can&#39;t initialize a vector with its element; //vector&lt;int&gt; test(1,2,3,4); vector&lt;int&gt; stat(4,0); for(int i = 0;i &lt; n;i++){ int tmp …">
 
-        <title>20140624codeforces解初体验  · Focus
+        <title>20140624codeforces解初体验  · Render a New World
 </title>
-        <link href="http://heloman.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Focus - Full Atom Feed" />
-        <link href="http://heloman.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Focus - RSS Feed" />
+        <link href="http://heloman.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Render a New World - Full Atom Feed" />
+        <link href="http://heloman.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Render a New World - RSS Feed" />
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -52,7 +52,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </a>
-                        <a class="brand" href="../../../"><span class=site-name>Focus</span></a>
+                        <a class="brand" href="../../../"><span class=site-name>Render a New World</span></a>
                         <div class="nav-collapse collapse">
                             <ul class="nav pull-right top-menu">
                                 <li >

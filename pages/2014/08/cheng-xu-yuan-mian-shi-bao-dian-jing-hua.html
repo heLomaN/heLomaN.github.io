@@ -19,18 +19,18 @@
 
 <meta property="og:title" content="《程序员面试宝典》精华 "/>
 <meta property="og:url" content="../../../pages/2014/08/cheng-xu-yuan-mian-shi-bao-dian-jing-hua.html" />
-<meta property="og:description" content="《程序员面试宝典》精华 正所谓取其精华，去其糟粕。本文谨记录下《程序员面试宝典》一些关键的知识点、易错点，对于一些虽然重要但书中没有解释清楚的地方不做记录。当然这里的糟粕只是指不那么重要，或者比较简单，并不是说书写的不好。希望以后回顾时无需再看此书，只看保留在文中的精华即可。 文中有少许bug，亦摘录在此。 第五章 语言细节 5.1 y = z = 5，等号先计算右边，返回值是赋值后的左边的变量值 5.1 printf函数中的表达式从右向左压栈，应该先计算右方的值 5.4 float型1.0f在内存中表示为：0x3f 80 00 00 5.5 出现int常数的表达式中的变量通常都要提升至int型 5.5 赋值运算符默认从右向左结合，也就是先计算右方的值 5.5 (x&amp;y) + ((x^y …" />
-<meta property="og:site_name" content="Focus" />
+<meta property="og:description" content="《程序员面试宝典》精华 正所谓取其精华，去其糟粕。本文谨记录下《程序员面试宝典》一些关键的知识点、易错点，对于一些虽然重要但书中没有解释清楚的地方不做记录。当然这里的糟粕只是指不那么重要，或者比较简单，并不是说书写的不好。希望以后回顾时无需再看此书，只看保留在文中的精华即可。 文中有少许bug，亦摘录在此。 第五章 语言细节 5.1 y = z = 5，等号先计算右边，返回值是赋值后的左边的变量值 5.1 printf函数中的表达式从右向左压栈，应该先计算右方的值 5.4 float型1.0f在内存中表示为：0x3f 80 00 00 5.5 出现int常数的表达式中的变量通常都要提升至int型 5.5 赋值运算符默认从右向左结合，也就是先计算右方的值 5.5 (x&amp;y) + ((x^y)&gt;&gt;1)效果是取二者的平均数 5.6 不用判断和switch语句求a、b中的较大的一个：((a + b) + abs(a - b)) / 2 5.7 extern &#34;C&#34;的用法：函数声明前添加，解决C/C++编译器的名字包装的不同问题 第六章 预处理、const和sizeof 6.1 求结构体中某成员的偏移量：#define FIND(struc, e) (size_t)&amp;(((struc *)0)-&gt;e) 6.2 C语言中，const n = 10; char carray[n]是错误的，因为C编译器不能把const看成编译期的常量。但实验得出是正确的，bug 6.3 C++中给类成员变量添加mutable修饰符，就可以使用const函数修改 6.3 结构体对齐原则：结构体长度一定是最长数据元素整数倍，但如果大于处理器位数，则以处理器位数为对齐单位。CPU数据对齐原则是数据的内存地址必须是该数据长度的整数倍，以提高运行速度 6.3 sizeof(string) == 4 6.3 空类以及（多重）继承的空类大小都为1，但虚继承的类含有虚表指针，大小为4 第七章 指针与引用 7.1 指针与引用的区别 引用总是非空的，指针可能为空，使用时要小心测试 引用不可以指向另一个对象，但指针可以更改 7.1 int *p; *p = 0;是错误的，指针p并未指向某个实际的地址 7.2 char a[] = &#34;a&#34;数组存放中栈中，函数返回即消失，char *a = &#34;a&#34;数组存放于全局只读数据段 7.2 若类B继承类A，两者皆有成员变量，A中有f方法，则B b; b.f()调用的是A中的f，f使用的变量也为A中的变量 7.3 指向const的指针应该是const int *，bug 7.3 int ( *(*f)(int, int) )(int)定义了一个函数指针，接收两个int参数，返回值为一个函数指针 7.4 指向整型数组的指针声明为：int (*p) []，指向整型的指针数组声明为：int *p[]，函数指针的数组的声明：int (*p[10])(int) 7.5 悬浮指针指的是delete之后的指针，应该让指针等于0，使得后续程序使用此悬浮指针出错是可控的。比如第二次delete 7 …" />
+<meta property="og:site_name" content="Render a New World" />
 <meta property="og:article:author" content="heLomaN" />
 <meta property="og:article:published_time" content="2014-08-06T20:54:52+08:00" />
 <meta property="og:article:modified_time" content="2014-08-06T20:54:52+08:00" />
 <meta name="twitter:title" content="《程序员面试宝典》精华 ">
-<meta name="twitter:description" content="《程序员面试宝典》精华 正所谓取其精华，去其糟粕。本文谨记录下《程序员面试宝典》一些关键的知识点、易错点，对于一些虽然重要但书中没有解释清楚的地方不做记录。当然这里的糟粕只是指不那么重要，或者比较简单，并不是说书写的不好。希望以后回顾时无需再看此书，只看保留在文中的精华即可。 文中有少许bug，亦摘录在此。 第五章 语言细节 5.1 y = z = 5，等号先计算右边，返回值是赋值后的左边的变量值 5.1 printf函数中的表达式从右向左压栈，应该先计算右方的值 5.4 float型1.0f在内存中表示为：0x3f 80 00 00 5.5 出现int常数的表达式中的变量通常都要提升至int型 5.5 赋值运算符默认从右向左结合，也就是先计算右方的值 5.5 (x&amp;y) + ((x^y …">
+<meta name="twitter:description" content="《程序员面试宝典》精华 正所谓取其精华，去其糟粕。本文谨记录下《程序员面试宝典》一些关键的知识点、易错点，对于一些虽然重要但书中没有解释清楚的地方不做记录。当然这里的糟粕只是指不那么重要，或者比较简单，并不是说书写的不好。希望以后回顾时无需再看此书，只看保留在文中的精华即可。 文中有少许bug，亦摘录在此。 第五章 语言细节 5.1 y = z = 5，等号先计算右边，返回值是赋值后的左边的变量值 5.1 printf函数中的表达式从右向左压栈，应该先计算右方的值 5.4 float型1.0f在内存中表示为：0x3f 80 00 00 5.5 出现int常数的表达式中的变量通常都要提升至int型 5.5 赋值运算符默认从右向左结合，也就是先计算右方的值 5.5 (x&amp;y) + ((x^y)&gt;&gt;1)效果是取二者的平均数 5.6 不用判断和switch语句求a、b中的较大的一个：((a + b) + abs(a - b)) / 2 5.7 extern &#34;C&#34;的用法：函数声明前添加，解决C/C++编译器的名字包装的不同问题 第六章 预处理、const和sizeof 6.1 求结构体中某成员的偏移量：#define FIND(struc, e) (size_t)&amp;(((struc *)0)-&gt;e) 6.2 C语言中，const n = 10; char carray[n]是错误的，因为C编译器不能把const看成编译期的常量。但实验得出是正确的，bug 6.3 C++中给类成员变量添加mutable修饰符，就可以使用const函数修改 6.3 结构体对齐原则：结构体长度一定是最长数据元素整数倍，但如果大于处理器位数，则以处理器位数为对齐单位。CPU数据对齐原则是数据的内存地址必须是该数据长度的整数倍，以提高运行速度 6.3 sizeof(string) == 4 6.3 空类以及（多重）继承的空类大小都为1，但虚继承的类含有虚表指针，大小为4 第七章 指针与引用 7.1 指针与引用的区别 引用总是非空的，指针可能为空，使用时要小心测试 引用不可以指向另一个对象，但指针可以更改 7.1 int *p; *p = 0;是错误的，指针p并未指向某个实际的地址 7.2 char a[] = &#34;a&#34;数组存放中栈中，函数返回即消失，char *a = &#34;a&#34;数组存放于全局只读数据段 7.2 若类B继承类A，两者皆有成员变量，A中有f方法，则B b; b.f()调用的是A中的f，f使用的变量也为A中的变量 7.3 指向const的指针应该是const int *，bug 7.3 int ( *(*f)(int, int) )(int)定义了一个函数指针，接收两个int参数，返回值为一个函数指针 7.4 指向整型数组的指针声明为：int (*p) []，指向整型的指针数组声明为：int *p[]，函数指针的数组的声明：int (*p[10])(int) 7.5 悬浮指针指的是delete之后的指针，应该让指针等于0，使得后续程序使用此悬浮指针出错是可控的。比如第二次delete 7 …">
 
-        <title>《程序员面试宝典》精华  · Focus
+        <title>《程序员面试宝典》精华  · Render a New World
 </title>
-        <link href="http://heloman.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Focus - Full Atom Feed" />
-        <link href="http://heloman.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Focus - RSS Feed" />
+        <link href="http://heloman.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Render a New World - Full Atom Feed" />
+        <link href="http://heloman.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Render a New World - RSS Feed" />
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -52,7 +52,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </a>
-                        <a class="brand" href="../../../"><span class=site-name>Focus</span></a>
+                        <a class="brand" href="../../../"><span class=site-name>Render a New World</span></a>
                         <div class="nav-collapse collapse">
                             <ul class="nav pull-right top-menu">
                                 <li >

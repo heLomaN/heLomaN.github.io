@@ -19,18 +19,18 @@
 
 <meta property="og:title" content="20150409C++中的容器 "/>
 <meta property="og:url" content="../../../pages/2015/04/20150409czhong-de-rong-qi.html" />
-<meta property="og:description" content="C++中的容器 容器与容器适配器 容器包括vector, deque, list, map, multimap, set, multiset。容器适配器包括基于deque的stack和queue，基于vector的priority_queue。string也实现了stl的接口。 因为编写C++程序时经常需要查找容器的函数接口，故作此总结。C++新引入的容器与函数未引入。主要参考自：STL Containers and Container Adaptors 序列容器 包括vector，deque，list 共有函数 构造函数 ContainerType&lt;T&gt; c; ContainerType&lt;T&gt; c(num); ContainerType&lt;T&gt; c(num, val); ContainerType&lt;T&gt; c(inIterBegin, inIterEnd); //复制构造函数 ContainerType&lt;T …" />
-<meta property="og:site_name" content="Focus" />
+<meta property="og:description" content="C++中的容器 容器与容器适配器 容器包括vector, deque, list, map, multimap, set, multiset。容器适配器包括基于deque的stack和queue，基于vector的priority_queue。string也实现了stl的接口。 因为编写C++程序时经常需要查找容器的函数接口，故作此总结。C++新引入的容器与函数未引入。主要参考自：STL Containers and Container Adaptors 序列容器 包括vector，deque，list 共有函数 构造函数 ContainerType&lt;T&gt; c; ContainerType&lt;T&gt; c(num); ContainerType&lt;T&gt; c(num, val); ContainerType&lt;T&gt; c(inIterBegin, inIterEnd); //复制构造函数 ContainerType&lt;T&gt; c(otherLikeContainer); ContainerType&lt;T&gt; c = otherLikeContainer; 赋值构造函数 c1 = c2 比较运算 c1 == c2 c1 != c2 c1 &lt; c2 //按元素逐个比较 c1 &lt;= c2 c1 &gt; c2 c1 &gt;= c2 容量 empty() size() max_size() resize(num, val = default) 迭代器和引用 begin() end() rbegin() rend() front() back() 插入值 push_back(val) insert(iter, val) insert(iter, num, val) insert(iter, inIterBegin, inIterEnd) 赋值（换掉容器内所有元素） assign(inIterBegin, inIterEnd) assign(num, val) 删除元素 pop_back() erase(iter) erase(iterBegin, iterEnd) clear() 其他 swap(otherLikeContainer) get_allocator() 特有函数 vector特有 reserve(num) capacity() list特有 merge(otherList) //按照大小顺序合并，二者必须是有序的 merge(otherList, binPred) remove(val) remove_if(unPred) reverse() sort() sort(binPred) splice(iter, otherList) //将otherList中所有元素移动到iter处 splice(iter, otherList, otherIterBegin, otherIterEnd) unique() unique(binPred) vector和deque特有 at(index) //会检查下标范围 operator[](index) deque和list特有 push_front(val) pop_front() 容器适配器 包括stack，queue，priority_queue 共有函数 c1 = c2 empty() size() push(val) pop() 特有函数 queue特有函数 front() back() stack和priority_queue 特有函数 top() == != &lt; &lt;= &gt; &gt;= 序列容器与容器适配器函数表格 参见The STL Sequential Containers and Container Adaptors, and their Member Functions 关联容器 包括map, multimap …" />
+<meta property="og:site_name" content="Render a New World" />
 <meta property="og:article:author" content="heLomaN" />
 <meta property="og:article:published_time" content="2015-04-08T02:36:11.313982+08:00" />
 <meta property="og:article:modified_time" content="2015-04-08T02:36:11.313982+08:00" />
 <meta name="twitter:title" content="20150409C++中的容器 ">
-<meta name="twitter:description" content="C++中的容器 容器与容器适配器 容器包括vector, deque, list, map, multimap, set, multiset。容器适配器包括基于deque的stack和queue，基于vector的priority_queue。string也实现了stl的接口。 因为编写C++程序时经常需要查找容器的函数接口，故作此总结。C++新引入的容器与函数未引入。主要参考自：STL Containers and Container Adaptors 序列容器 包括vector，deque，list 共有函数 构造函数 ContainerType&lt;T&gt; c; ContainerType&lt;T&gt; c(num); ContainerType&lt;T&gt; c(num, val); ContainerType&lt;T&gt; c(inIterBegin, inIterEnd); //复制构造函数 ContainerType&lt;T …">
+<meta name="twitter:description" content="C++中的容器 容器与容器适配器 容器包括vector, deque, list, map, multimap, set, multiset。容器适配器包括基于deque的stack和queue，基于vector的priority_queue。string也实现了stl的接口。 因为编写C++程序时经常需要查找容器的函数接口，故作此总结。C++新引入的容器与函数未引入。主要参考自：STL Containers and Container Adaptors 序列容器 包括vector，deque，list 共有函数 构造函数 ContainerType&lt;T&gt; c; ContainerType&lt;T&gt; c(num); ContainerType&lt;T&gt; c(num, val); ContainerType&lt;T&gt; c(inIterBegin, inIterEnd); //复制构造函数 ContainerType&lt;T&gt; c(otherLikeContainer); ContainerType&lt;T&gt; c = otherLikeContainer; 赋值构造函数 c1 = c2 比较运算 c1 == c2 c1 != c2 c1 &lt; c2 //按元素逐个比较 c1 &lt;= c2 c1 &gt; c2 c1 &gt;= c2 容量 empty() size() max_size() resize(num, val = default) 迭代器和引用 begin() end() rbegin() rend() front() back() 插入值 push_back(val) insert(iter, val) insert(iter, num, val) insert(iter, inIterBegin, inIterEnd) 赋值（换掉容器内所有元素） assign(inIterBegin, inIterEnd) assign(num, val) 删除元素 pop_back() erase(iter) erase(iterBegin, iterEnd) clear() 其他 swap(otherLikeContainer) get_allocator() 特有函数 vector特有 reserve(num) capacity() list特有 merge(otherList) //按照大小顺序合并，二者必须是有序的 merge(otherList, binPred) remove(val) remove_if(unPred) reverse() sort() sort(binPred) splice(iter, otherList) //将otherList中所有元素移动到iter处 splice(iter, otherList, otherIterBegin, otherIterEnd) unique() unique(binPred) vector和deque特有 at(index) //会检查下标范围 operator[](index) deque和list特有 push_front(val) pop_front() 容器适配器 包括stack，queue，priority_queue 共有函数 c1 = c2 empty() size() push(val) pop() 特有函数 queue特有函数 front() back() stack和priority_queue 特有函数 top() == != &lt; &lt;= &gt; &gt;= 序列容器与容器适配器函数表格 参见The STL Sequential Containers and Container Adaptors, and their Member Functions 关联容器 包括map, multimap …">
 
-        <title>20150409C++中的容器  · Focus
+        <title>20150409C++中的容器  · Render a New World
 </title>
-        <link href="http://heloman.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Focus - Full Atom Feed" />
-        <link href="http://heloman.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Focus - RSS Feed" />
+        <link href="http://heloman.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Render a New World - Full Atom Feed" />
+        <link href="http://heloman.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Render a New World - RSS Feed" />
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -52,7 +52,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </a>
-                        <a class="brand" href="../../../"><span class=site-name>Focus</span></a>
+                        <a class="brand" href="../../../"><span class=site-name>Render a New World</span></a>
                         <div class="nav-collapse collapse">
                             <ul class="nav pull-right top-menu">
                                 <li >

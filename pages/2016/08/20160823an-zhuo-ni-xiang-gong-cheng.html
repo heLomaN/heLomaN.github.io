@@ -19,18 +19,18 @@
 
 <meta property="og:title" content="20160823安卓逆向工程 "/>
 <meta property="og:url" content="../../../pages/2016/08/20160823an-zhuo-ni-xiang-gong-cheng.html" />
-<meta property="og:description" content="安卓逆向简介 常用逆向方法 Apk文件格式 Apk文件其实是一个zip文件，解压之后可以看到其中的目录结构 AndroidManifest.xml 已经过编译，包括activity、权限等配置 classes.dex java程序生成的.class文件经过打包生成 resources.arsc 资源文件索引 res 此文件夹包括布局文件、图片、strings等文件，可以通过R.java引用 lib 用到的第三方库，包括.so文件。.so文件不易破解 assets 不经编译的资源文件，可以通过AssetManager类访问 META-INF 应用签名文件，用于验证apk中的文件没有被修改过 使用dex2jar和jdgui查看java代码 首先将apk或者apk中的dex文件拖到d2j-dex2jar.bat上，会得到一个jar文件 用jdgui打开此jar文件，即可看到java源码 注意，部分源码无法正确得到 使用apktool反编译和打包 反编译命令apktool d *.apk 重新打包命令 …" />
-<meta property="og:site_name" content="Focus" />
+<meta property="og:description" content="安卓逆向简介 常用逆向方法 Apk文件格式 Apk文件其实是一个zip文件，解压之后可以看到其中的目录结构 AndroidManifest.xml 已经过编译，包括activity、权限等配置 classes.dex java程序生成的.class文件经过打包生成 resources.arsc 资源文件索引 res 此文件夹包括布局文件、图片、strings等文件，可以通过R.java引用 lib 用到的第三方库，包括.so文件。.so文件不易破解 assets 不经编译的资源文件，可以通过AssetManager类访问 META-INF 应用签名文件，用于验证apk中的文件没有被修改过 使用dex2jar和jdgui查看java代码 首先将apk或者apk中的dex文件拖到d2j-dex2jar.bat上，会得到一个jar文件 用jdgui打开此jar文件，即可看到java源码 注意，部分源码无法正确得到 使用apktool反编译和打包 反编译命令apktool d *.apk 重新打包命令apktool p folder 使用auto-sign重签名 将apk改名为update.zip,复制到签名工具的目录下,运行Sign.bat 重新打包之前可以修改smali文件夹下的源码达到破解的目的 使用IDA Pro查看.so文件 窗口左侧选中函数后，按F5可以在Pseudocode窗口查看反编译得到的C代码 同样可以动态调试.so代码 常用apk保护方法 加固/加壳 加壳指的是将dex文件加密后和加密apk写入一个新的dex文件，运行时首先通过加密apk解密得到源dex文件，再通过DexClassLoader动态加载源dex 运行时必然将源dex加载到内存中运行，因此在加载源dex后dump内存中对应区块即可得到源dex文件，即脱壳成功 混淆 混淆java或者C#(Unity)代码，即使反编译也无法看懂源代码，增加分析代码逻辑的难度 对于java代码，可以配置proguard脚本生成apk时混淆classes.dex 对于Unity项目，反编译后得到的Assembly-CSharp.dll即可使用.NET Reflector直接查看源代码，建议使用Obfuscar混淆 运行时验证 目的是防止二次打包 可以对dex文件进行验证 阻止内存修改 要对抗八门神器这种内存修改器，可以将关键变量实时加密，仅在使用时解密 作者Focustc，来自于CSDN" />
+<meta property="og:site_name" content="Render a New World" />
 <meta property="og:article:author" content="heLomaN" />
 <meta property="og:article:published_time" content="2016-08-23T21:20:16+08:00" />
 <meta property="og:article:modified_time" content="2016-08-23T21:20:16+08:00" />
 <meta name="twitter:title" content="20160823安卓逆向工程 ">
-<meta name="twitter:description" content="安卓逆向简介 常用逆向方法 Apk文件格式 Apk文件其实是一个zip文件，解压之后可以看到其中的目录结构 AndroidManifest.xml 已经过编译，包括activity、权限等配置 classes.dex java程序生成的.class文件经过打包生成 resources.arsc 资源文件索引 res 此文件夹包括布局文件、图片、strings等文件，可以通过R.java引用 lib 用到的第三方库，包括.so文件。.so文件不易破解 assets 不经编译的资源文件，可以通过AssetManager类访问 META-INF 应用签名文件，用于验证apk中的文件没有被修改过 使用dex2jar和jdgui查看java代码 首先将apk或者apk中的dex文件拖到d2j-dex2jar.bat上，会得到一个jar文件 用jdgui打开此jar文件，即可看到java源码 注意，部分源码无法正确得到 使用apktool反编译和打包 反编译命令apktool d *.apk 重新打包命令 …">
+<meta name="twitter:description" content="安卓逆向简介 常用逆向方法 Apk文件格式 Apk文件其实是一个zip文件，解压之后可以看到其中的目录结构 AndroidManifest.xml 已经过编译，包括activity、权限等配置 classes.dex java程序生成的.class文件经过打包生成 resources.arsc 资源文件索引 res 此文件夹包括布局文件、图片、strings等文件，可以通过R.java引用 lib 用到的第三方库，包括.so文件。.so文件不易破解 assets 不经编译的资源文件，可以通过AssetManager类访问 META-INF 应用签名文件，用于验证apk中的文件没有被修改过 使用dex2jar和jdgui查看java代码 首先将apk或者apk中的dex文件拖到d2j-dex2jar.bat上，会得到一个jar文件 用jdgui打开此jar文件，即可看到java源码 注意，部分源码无法正确得到 使用apktool反编译和打包 反编译命令apktool d *.apk 重新打包命令apktool p folder 使用auto-sign重签名 将apk改名为update.zip,复制到签名工具的目录下,运行Sign.bat 重新打包之前可以修改smali文件夹下的源码达到破解的目的 使用IDA Pro查看.so文件 窗口左侧选中函数后，按F5可以在Pseudocode窗口查看反编译得到的C代码 同样可以动态调试.so代码 常用apk保护方法 加固/加壳 加壳指的是将dex文件加密后和加密apk写入一个新的dex文件，运行时首先通过加密apk解密得到源dex文件，再通过DexClassLoader动态加载源dex 运行时必然将源dex加载到内存中运行，因此在加载源dex后dump内存中对应区块即可得到源dex文件，即脱壳成功 混淆 混淆java或者C#(Unity)代码，即使反编译也无法看懂源代码，增加分析代码逻辑的难度 对于java代码，可以配置proguard脚本生成apk时混淆classes.dex 对于Unity项目，反编译后得到的Assembly-CSharp.dll即可使用.NET Reflector直接查看源代码，建议使用Obfuscar混淆 运行时验证 目的是防止二次打包 可以对dex文件进行验证 阻止内存修改 要对抗八门神器这种内存修改器，可以将关键变量实时加密，仅在使用时解密 作者Focustc，来自于CSDN">
 
-        <title>20160823安卓逆向工程  · Focus
+        <title>20160823安卓逆向工程  · Render a New World
 </title>
-        <link href="http://heloman.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Focus - Full Atom Feed" />
-        <link href="http://heloman.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Focus - RSS Feed" />
+        <link href="http://heloman.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Render a New World - Full Atom Feed" />
+        <link href="http://heloman.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Render a New World - RSS Feed" />
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -52,7 +52,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </a>
-                        <a class="brand" href="../../../"><span class=site-name>Focus</span></a>
+                        <a class="brand" href="../../../"><span class=site-name>Render a New World</span></a>
                         <div class="nav-collapse collapse">
                             <ul class="nav pull-right top-menu">
                                 <li >

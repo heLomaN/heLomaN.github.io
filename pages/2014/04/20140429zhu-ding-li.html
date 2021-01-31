@@ -19,18 +19,18 @@
 
 <meta property="og:title" content="20140429主定理 "/>
 <meta property="og:url" content="../../../pages/2014/04/20140429zhu-ding-li.html" />
-<meta property="og:description" content="主定理 主定理最早出现在《算法导论》中，提供了分治方法带来的递归表达式的渐近复杂度分析。 规模为n的问题通过分治，得到a个规模为n/b的问题，每次递归带来的额外计算为c(n^d) T(n) &lt;= aT(n/b)+c(n^d) 那么就可以得到问题的复杂度为： T(n) = O(n^d log(n)), if a = b^d T(n) = O(n^d ), if a &lt; b^d T(n) = O(n^logb(a))), if a &gt; b^d …" />
-<meta property="og:site_name" content="Focus" />
+<meta property="og:description" content="主定理 主定理最早出现在《算法导论》中，提供了分治方法带来的递归表达式的渐近复杂度分析。 规模为n的问题通过分治，得到a个规模为n/b的问题，每次递归带来的额外计算为c(n^d) T(n) &lt;= aT(n/b)+c(n^d) 那么就可以得到问题的复杂度为： T(n) = O(n^d log(n)), if a = b^d T(n) = O(n^d ), if a &lt; b^d T(n) = O(n^logb(a))), if a &gt; b^d 证明方法 本来使用主定理是可以免去画递归树的，但为了证明主定理，还是需要画树。 可见，每次递归把问题分为a个规模为n/b的子问题。从根节点开始，共有logb(n)+1层，叶子节点数为a^(logb(n))。 那么，第j层共有a^j个子问题，每个问题规模为n/b^j，每个子问题运算量为c*(n/b^j)^d需要完成的计算量为： 求和得到整个问题的运算量： 那么，根据a与b^d的关系，很容易得到主定理。 应用 二分搜索 每次问题规模减半，a=1，b=2，d=0 复杂度为n^0 log(n) = log(n)。 快速排序 随机选择待排序序列中的一个数字作为划分字问题的标准，划分是否平均影响算法复杂度 每次问题规模减半，a=2，b=2，d=1 复杂度为n^2 log(n) 最差情况下，复杂度为O(n^2) 归并排序 数据列均分为两部分，分别排序，之后以O(n)的复杂度进行合并，空间复杂度O(n) 每次问题规模减半，a=2，b=2，d=1 复杂度为n log(n) 基数排序(Radix sort) 对于待排序的整数序列，从最低位到最高位每次按照相应的位排序一次 每次递归问题规模变为原来的1/10，但需要求解10个子问题，额外运算为O(n)的，a=10，b=10，d=1 复杂度为n^1 log(n) = n log(n)，近似为O(kN)，k为整数的位数 快速傅里叶变换：FFT 每次问题规模减半，a=2，b=2，d=1 复杂度为n log(n) Karatsuba快速乘法 正常两个n位数乘法为n^2 算法把两个乘数各分为高低位两部分，如X*Y = (a+b) * (c+d) = ac+bd + (bc+ad) = ac+bd+(ac+bd - (a-b)(c-d)) 只需要ac,bd,(a-b)(c-d)三次乘法 每次问题规模减半，但需要解3个子问题，加法是O(n)的 …" />
+<meta property="og:site_name" content="Render a New World" />
 <meta property="og:article:author" content="heLomaN" />
 <meta property="og:article:published_time" content="2014-04-29T18:54:26.987137+08:00" />
 <meta property="og:article:modified_time" content="2014-04-29T18:54:26.987137+08:00" />
 <meta name="twitter:title" content="20140429主定理 ">
-<meta name="twitter:description" content="主定理 主定理最早出现在《算法导论》中，提供了分治方法带来的递归表达式的渐近复杂度分析。 规模为n的问题通过分治，得到a个规模为n/b的问题，每次递归带来的额外计算为c(n^d) T(n) &lt;= aT(n/b)+c(n^d) 那么就可以得到问题的复杂度为： T(n) = O(n^d log(n)), if a = b^d T(n) = O(n^d ), if a &lt; b^d T(n) = O(n^logb(a))), if a &gt; b^d …">
+<meta name="twitter:description" content="主定理 主定理最早出现在《算法导论》中，提供了分治方法带来的递归表达式的渐近复杂度分析。 规模为n的问题通过分治，得到a个规模为n/b的问题，每次递归带来的额外计算为c(n^d) T(n) &lt;= aT(n/b)+c(n^d) 那么就可以得到问题的复杂度为： T(n) = O(n^d log(n)), if a = b^d T(n) = O(n^d ), if a &lt; b^d T(n) = O(n^logb(a))), if a &gt; b^d 证明方法 本来使用主定理是可以免去画递归树的，但为了证明主定理，还是需要画树。 可见，每次递归把问题分为a个规模为n/b的子问题。从根节点开始，共有logb(n)+1层，叶子节点数为a^(logb(n))。 那么，第j层共有a^j个子问题，每个问题规模为n/b^j，每个子问题运算量为c*(n/b^j)^d需要完成的计算量为： 求和得到整个问题的运算量： 那么，根据a与b^d的关系，很容易得到主定理。 应用 二分搜索 每次问题规模减半，a=1，b=2，d=0 复杂度为n^0 log(n) = log(n)。 快速排序 随机选择待排序序列中的一个数字作为划分字问题的标准，划分是否平均影响算法复杂度 每次问题规模减半，a=2，b=2，d=1 复杂度为n^2 log(n) 最差情况下，复杂度为O(n^2) 归并排序 数据列均分为两部分，分别排序，之后以O(n)的复杂度进行合并，空间复杂度O(n) 每次问题规模减半，a=2，b=2，d=1 复杂度为n log(n) 基数排序(Radix sort) 对于待排序的整数序列，从最低位到最高位每次按照相应的位排序一次 每次递归问题规模变为原来的1/10，但需要求解10个子问题，额外运算为O(n)的，a=10，b=10，d=1 复杂度为n^1 log(n) = n log(n)，近似为O(kN)，k为整数的位数 快速傅里叶变换：FFT 每次问题规模减半，a=2，b=2，d=1 复杂度为n log(n) Karatsuba快速乘法 正常两个n位数乘法为n^2 算法把两个乘数各分为高低位两部分，如X*Y = (a+b) * (c+d) = ac+bd + (bc+ad) = ac+bd+(ac+bd - (a-b)(c-d)) 只需要ac,bd,(a-b)(c-d)三次乘法 每次问题规模减半，但需要解3个子问题，加法是O(n)的 …">
 
-        <title>20140429主定理  · Focus
+        <title>20140429主定理  · Render a New World
 </title>
-        <link href="http://heloman.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Focus - Full Atom Feed" />
-        <link href="http://heloman.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Focus - RSS Feed" />
+        <link href="http://heloman.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Render a New World - Full Atom Feed" />
+        <link href="http://heloman.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Render a New World - RSS Feed" />
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -52,7 +52,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </a>
-                        <a class="brand" href="../../../"><span class=site-name>Focus</span></a>
+                        <a class="brand" href="../../../"><span class=site-name>Render a New World</span></a>
                         <div class="nav-collapse collapse">
                             <ul class="nav pull-right top-menu">
                                 <li >

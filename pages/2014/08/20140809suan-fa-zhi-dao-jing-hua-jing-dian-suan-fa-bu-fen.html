@@ -19,18 +19,18 @@
 
 <meta property="og:title" content="20140809《算法之道》精华 经典算法部分 "/>
 <meta property="og:url" content="../../../pages/2014/08/20140809suan-fa-zhi-dao-jing-hua-jing-dian-suan-fa-bu-fen.html" />
-<meta property="og:description" content="《算法之道》精华 经典算法部分 本书作者邹恒明，作者另有一本书《数据结构之弦》，以及《操作系统之哲学原理》都是很好的书 这本书可以算得上是深入浅出，文笔很好，作者添加了很多自己的思考 本文包括经典算法部分 第十章 排序与次序 插入排序 从无序部分抽取一张插入有序部分 为原地排序，无需占用临时存储空间 最优情况下为O(n)，平均O(n^2) 折半插入排序 插入时使用二分查找 归并排序 分治，从中间分解，分别排序后进行仔细的合并 异地排序，需要占用额外空间 n&gt;=30时性能比插入排序更好。复杂度固定为O(nlog(n)) 快排 分治，复杂的部分在于分解，而归并复杂在于合并 原地排序 最坏情况为O(n^2)，但只要不是每次都是最坏，复杂度就不是n^2，具有韧性 任何基于比较的排序 …" />
-<meta property="og:site_name" content="Focus" />
+<meta property="og:description" content="《算法之道》精华 经典算法部分 本书作者邹恒明，作者另有一本书《数据结构之弦》，以及《操作系统之哲学原理》都是很好的书 这本书可以算得上是深入浅出，文笔很好，作者添加了很多自己的思考 本文包括经典算法部分 第十章 排序与次序 插入排序 从无序部分抽取一张插入有序部分 为原地排序，无需占用临时存储空间 最优情况下为O(n)，平均O(n^2) 折半插入排序 插入时使用二分查找 归并排序 分治，从中间分解，分别排序后进行仔细的合并 异地排序，需要占用额外空间 n&gt;=30时性能比插入排序更好。复杂度固定为O(nlog(n)) 快排 分治，复杂的部分在于分解，而归并复杂在于合并 原地排序 最坏情况为O(n^2)，但只要不是每次都是最坏，复杂度就不是n^2，具有韧性 任何基于比较的排序，决策树高度至少为nlog(n) 计数排序 元素值范围必须有限 空间复杂度高 O(n) 基数排序 从最低位到最高位排序，每一位排序都采用稳定排序，如计数排序 一位排序应该选择log(n)个比特，使整体成本最低 桶排序 把n元素按值分到n个桶里，每个桶内部进行插入排序，将各桶首位相连 元素应该是均匀分布 快速次序选择：求第K大的数 使用快排的partition 最差O(n^2)，平均O(n) 线性最差快速次序选择 将元素每5个一组，分别取中值。在n/5个中值里面找到中值，作为partition的pivot 为什么*不每3个一组？ 保证pivot左边右边至少3n/10个元素 最差O(n) 第十一章 搜索与散列 顺序搜索 在序列里面如果搜索频率从头到尾指数递减，则为O(1) 折半搜索 对于有序序列，为O(logn) 常数搜索：散列搜索 直接散列：非常简单，不会发生碰撞，空间浪费大 除法（模除法）散列 元素对散列表大小m取模得到 m必须为素数，否则造成不均匀散射。比如m包含因子d，而大部分元素对d余数相等 m不能靠近2的幂。如m为2的幂，散列结果将不依赖元素的所有位。靠近也不行，为什么？ 乘法散列 h(k) = (A * k ) % 2^r &gt;&gt; (w - r)，w为计算机字宽，A为2^(w-1)与2^w之间的一个奇数 乘方取中法：乘方n次（常取n=2），取中间r位 开放寻址散列：散列碰撞时纵深扩展，添加一个链表 平均搜索时间为O(1+a)，a为加载因子 封闭寻址散列：散列碰撞时为元素找到另一个位置 找另一个位置的操作称为探寻 线性探寻 h(k,i) = (h&#39;(k) + i) % m，h&#39;(k)为家位 向单方向寻找未被占用的位置 易出现顶级聚集 非线性探寻 平方探寻 h(k,i) = (h&#39;(k) + c1 * i + c2 * i^2) % m 易出现次级聚集 双重散列探寻 使用两个散列函数h1、h2来构造新散列函数 h(k,i) = (h1(k) + i * h2(k) ) mod m 伪随机探寻 使用伪随机序列 存在次级聚集 不成功搜索的探寻次数期望为1/(1-a) 成功搜索探寻次数最多为1 / a * ln( 1/(1-a …" />
+<meta property="og:site_name" content="Render a New World" />
 <meta property="og:article:author" content="heLomaN" />
 <meta property="og:article:published_time" content="2014-08-09T13:00:15.157910+08:00" />
 <meta property="og:article:modified_time" content="2014-08-09T13:00:15.157910+08:00" />
 <meta name="twitter:title" content="20140809《算法之道》精华 经典算法部分 ">
-<meta name="twitter:description" content="《算法之道》精华 经典算法部分 本书作者邹恒明，作者另有一本书《数据结构之弦》，以及《操作系统之哲学原理》都是很好的书 这本书可以算得上是深入浅出，文笔很好，作者添加了很多自己的思考 本文包括经典算法部分 第十章 排序与次序 插入排序 从无序部分抽取一张插入有序部分 为原地排序，无需占用临时存储空间 最优情况下为O(n)，平均O(n^2) 折半插入排序 插入时使用二分查找 归并排序 分治，从中间分解，分别排序后进行仔细的合并 异地排序，需要占用额外空间 n&gt;=30时性能比插入排序更好。复杂度固定为O(nlog(n)) 快排 分治，复杂的部分在于分解，而归并复杂在于合并 原地排序 最坏情况为O(n^2)，但只要不是每次都是最坏，复杂度就不是n^2，具有韧性 任何基于比较的排序 …">
+<meta name="twitter:description" content="《算法之道》精华 经典算法部分 本书作者邹恒明，作者另有一本书《数据结构之弦》，以及《操作系统之哲学原理》都是很好的书 这本书可以算得上是深入浅出，文笔很好，作者添加了很多自己的思考 本文包括经典算法部分 第十章 排序与次序 插入排序 从无序部分抽取一张插入有序部分 为原地排序，无需占用临时存储空间 最优情况下为O(n)，平均O(n^2) 折半插入排序 插入时使用二分查找 归并排序 分治，从中间分解，分别排序后进行仔细的合并 异地排序，需要占用额外空间 n&gt;=30时性能比插入排序更好。复杂度固定为O(nlog(n)) 快排 分治，复杂的部分在于分解，而归并复杂在于合并 原地排序 最坏情况为O(n^2)，但只要不是每次都是最坏，复杂度就不是n^2，具有韧性 任何基于比较的排序，决策树高度至少为nlog(n) 计数排序 元素值范围必须有限 空间复杂度高 O(n) 基数排序 从最低位到最高位排序，每一位排序都采用稳定排序，如计数排序 一位排序应该选择log(n)个比特，使整体成本最低 桶排序 把n元素按值分到n个桶里，每个桶内部进行插入排序，将各桶首位相连 元素应该是均匀分布 快速次序选择：求第K大的数 使用快排的partition 最差O(n^2)，平均O(n) 线性最差快速次序选择 将元素每5个一组，分别取中值。在n/5个中值里面找到中值，作为partition的pivot 为什么*不每3个一组？ 保证pivot左边右边至少3n/10个元素 最差O(n) 第十一章 搜索与散列 顺序搜索 在序列里面如果搜索频率从头到尾指数递减，则为O(1) 折半搜索 对于有序序列，为O(logn) 常数搜索：散列搜索 直接散列：非常简单，不会发生碰撞，空间浪费大 除法（模除法）散列 元素对散列表大小m取模得到 m必须为素数，否则造成不均匀散射。比如m包含因子d，而大部分元素对d余数相等 m不能靠近2的幂。如m为2的幂，散列结果将不依赖元素的所有位。靠近也不行，为什么？ 乘法散列 h(k) = (A * k ) % 2^r &gt;&gt; (w - r)，w为计算机字宽，A为2^(w-1)与2^w之间的一个奇数 乘方取中法：乘方n次（常取n=2），取中间r位 开放寻址散列：散列碰撞时纵深扩展，添加一个链表 平均搜索时间为O(1+a)，a为加载因子 封闭寻址散列：散列碰撞时为元素找到另一个位置 找另一个位置的操作称为探寻 线性探寻 h(k,i) = (h&#39;(k) + i) % m，h&#39;(k)为家位 向单方向寻找未被占用的位置 易出现顶级聚集 非线性探寻 平方探寻 h(k,i) = (h&#39;(k) + c1 * i + c2 * i^2) % m 易出现次级聚集 双重散列探寻 使用两个散列函数h1、h2来构造新散列函数 h(k,i) = (h1(k) + i * h2(k) ) mod m 伪随机探寻 使用伪随机序列 存在次级聚集 不成功搜索的探寻次数期望为1/(1-a) 成功搜索探寻次数最多为1 / a * ln( 1/(1-a …">
 
-        <title>20140809《算法之道》精华 经典算法部分  · Focus
+        <title>20140809《算法之道》精华 经典算法部分  · Render a New World
 </title>
-        <link href="http://heloman.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Focus - Full Atom Feed" />
-        <link href="http://heloman.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Focus - RSS Feed" />
+        <link href="http://heloman.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Render a New World - Full Atom Feed" />
+        <link href="http://heloman.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Render a New World - RSS Feed" />
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -52,7 +52,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </a>
-                        <a class="brand" href="../../../"><span class=site-name>Focus</span></a>
+                        <a class="brand" href="../../../"><span class=site-name>Render a New World</span></a>
                         <div class="nav-collapse collapse">
                             <ul class="nav pull-right top-menu">
                                 <li >

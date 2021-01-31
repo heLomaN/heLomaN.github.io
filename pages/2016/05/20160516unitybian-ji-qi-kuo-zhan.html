@@ -19,18 +19,18 @@
 
 <meta property="og:title" content="20160516unity编辑器扩展 "/>
 <meta property="og:url" content="../../../pages/2016/05/20160516unitybian-ji-qi-kuo-zhan.html" />
-<meta property="og:description" content="Unity编辑器扩展之EditorWindow 继承这个类的编辑器脚本可以用来创建一个编辑器窗口，类似Inspector窗口 若要在这个类中添加一些控件，可以使用GUI和GUILayout控件，还可以使用编辑器专用控件EditorGUI/EditorGUILayout 脚本创建 在Assets/Editor文件夹下创建脚本，并继承UnityEditor.EditorWindow 在OnGUI函数中写控件代码 窗口显示的触发 一般使用MenuItem属性创建一个菜单选项，点击后调用此函数显示窗口，如EditorWindow.GetWindow(typeof(MyWindow)) 为窗口添加控件 上述提到的EditorGUILayout等类中包含类各种控件，比如IntField, IntPopup, IntSlider, Vector2Field, TextField等等 将创建这些控件的代码放在OnGUI函数中，则每一次渲染窗口都会执行一次 其他功能 Update():对于可见窗口，每秒调用100次 OnDestroy():关闭窗口时调用 OnFocus():窗口被选中时调用 OnLostFocus():窗口不再被选中时调用 例子 以下为示例，还可参考Unity官方文档EditorWindow部分using UnityEditor; using UnityEngine; public …" />
-<meta property="og:site_name" content="Focus" />
+<meta property="og:description" content="Unity编辑器扩展之EditorWindow 继承这个类的编辑器脚本可以用来创建一个编辑器窗口，类似Inspector窗口 若要在这个类中添加一些控件，可以使用GUI和GUILayout控件，还可以使用编辑器专用控件EditorGUI/EditorGUILayout 脚本创建 在Assets/Editor文件夹下创建脚本，并继承UnityEditor.EditorWindow 在OnGUI函数中写控件代码 窗口显示的触发 一般使用MenuItem属性创建一个菜单选项，点击后调用此函数显示窗口，如EditorWindow.GetWindow(typeof(MyWindow)) 为窗口添加控件 上述提到的EditorGUILayout等类中包含类各种控件，比如IntField, IntPopup, IntSlider, Vector2Field, TextField等等 将创建这些控件的代码放在OnGUI函数中，则每一次渲染窗口都会执行一次 其他功能 Update():对于可见窗口，每秒调用100次 OnDestroy():关闭窗口时调用 OnFocus():窗口被选中时调用 OnLostFocus():窗口不再被选中时调用 例子 以下为示例，还可参考Unity官方文档EditorWindow部分using UnityEditor; using UnityEngine; public class MyExt : EditorWindow { private int param1 = -1; private float param2 = 0; private string name = &#34;&#34;; private int id = 0; [MenuItem(&#34;MyExt/Edit&#34;, false, 1)] private static void Init() { MyExt editor = (MyExt)EditorWindow.GetWindow(typeof(MyExt)); editor.Show(); } void OnGUI() { GUILayout.Label(&#34;Section1&#34;, EditorStyles.boldLabel); param1 = EditorGUILayout.IntField(&#34;param1 int&#34;, param1); if (GUILayout.Button(&#34;Load&#34;)) { Debug.Log(&#34;Load&#34;); } GUILayout.Label(&#34;Section2&#34;, EditorStyles.boldLabel); param2 = EditorGUILayout.FloatField(&#34;param2 float&#34;, param2); name = EditorGUILayout.TextField(&#34;Name&#34;, name); id = EditorGUILayout.IntSlider(&#34;id 0~8&#34;, id, 0, 100); } } 作者Focustc，来自于CSDN" />
+<meta property="og:site_name" content="Render a New World" />
 <meta property="og:article:author" content="heLomaN" />
 <meta property="og:article:published_time" content="2016-05-16T21:01:24+08:00" />
 <meta property="og:article:modified_time" content="2016-05-16T21:01:24+08:00" />
 <meta name="twitter:title" content="20160516unity编辑器扩展 ">
-<meta name="twitter:description" content="Unity编辑器扩展之EditorWindow 继承这个类的编辑器脚本可以用来创建一个编辑器窗口，类似Inspector窗口 若要在这个类中添加一些控件，可以使用GUI和GUILayout控件，还可以使用编辑器专用控件EditorGUI/EditorGUILayout 脚本创建 在Assets/Editor文件夹下创建脚本，并继承UnityEditor.EditorWindow 在OnGUI函数中写控件代码 窗口显示的触发 一般使用MenuItem属性创建一个菜单选项，点击后调用此函数显示窗口，如EditorWindow.GetWindow(typeof(MyWindow)) 为窗口添加控件 上述提到的EditorGUILayout等类中包含类各种控件，比如IntField, IntPopup, IntSlider, Vector2Field, TextField等等 将创建这些控件的代码放在OnGUI函数中，则每一次渲染窗口都会执行一次 其他功能 Update():对于可见窗口，每秒调用100次 OnDestroy():关闭窗口时调用 OnFocus():窗口被选中时调用 OnLostFocus():窗口不再被选中时调用 例子 以下为示例，还可参考Unity官方文档EditorWindow部分using UnityEditor; using UnityEngine; public …">
+<meta name="twitter:description" content="Unity编辑器扩展之EditorWindow 继承这个类的编辑器脚本可以用来创建一个编辑器窗口，类似Inspector窗口 若要在这个类中添加一些控件，可以使用GUI和GUILayout控件，还可以使用编辑器专用控件EditorGUI/EditorGUILayout 脚本创建 在Assets/Editor文件夹下创建脚本，并继承UnityEditor.EditorWindow 在OnGUI函数中写控件代码 窗口显示的触发 一般使用MenuItem属性创建一个菜单选项，点击后调用此函数显示窗口，如EditorWindow.GetWindow(typeof(MyWindow)) 为窗口添加控件 上述提到的EditorGUILayout等类中包含类各种控件，比如IntField, IntPopup, IntSlider, Vector2Field, TextField等等 将创建这些控件的代码放在OnGUI函数中，则每一次渲染窗口都会执行一次 其他功能 Update():对于可见窗口，每秒调用100次 OnDestroy():关闭窗口时调用 OnFocus():窗口被选中时调用 OnLostFocus():窗口不再被选中时调用 例子 以下为示例，还可参考Unity官方文档EditorWindow部分using UnityEditor; using UnityEngine; public class MyExt : EditorWindow { private int param1 = -1; private float param2 = 0; private string name = &#34;&#34;; private int id = 0; [MenuItem(&#34;MyExt/Edit&#34;, false, 1)] private static void Init() { MyExt editor = (MyExt)EditorWindow.GetWindow(typeof(MyExt)); editor.Show(); } void OnGUI() { GUILayout.Label(&#34;Section1&#34;, EditorStyles.boldLabel); param1 = EditorGUILayout.IntField(&#34;param1 int&#34;, param1); if (GUILayout.Button(&#34;Load&#34;)) { Debug.Log(&#34;Load&#34;); } GUILayout.Label(&#34;Section2&#34;, EditorStyles.boldLabel); param2 = EditorGUILayout.FloatField(&#34;param2 float&#34;, param2); name = EditorGUILayout.TextField(&#34;Name&#34;, name); id = EditorGUILayout.IntSlider(&#34;id 0~8&#34;, id, 0, 100); } } 作者Focustc，来自于CSDN">
 
-        <title>20160516unity编辑器扩展  · Focus
+        <title>20160516unity编辑器扩展  · Render a New World
 </title>
-        <link href="http://heloman.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Focus - Full Atom Feed" />
-        <link href="http://heloman.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Focus - RSS Feed" />
+        <link href="http://heloman.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Render a New World - Full Atom Feed" />
+        <link href="http://heloman.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Render a New World - RSS Feed" />
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -52,7 +52,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </a>
-                        <a class="brand" href="../../../"><span class=site-name>Focus</span></a>
+                        <a class="brand" href="../../../"><span class=site-name>Render a New World</span></a>
                         <div class="nav-collapse collapse">
                             <ul class="nav pull-right top-menu">
                                 <li >

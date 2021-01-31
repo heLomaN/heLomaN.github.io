@@ -19,18 +19,18 @@
 
 <meta property="og:title" content="Project Euler 001-006 解法总结 "/>
 <meta property="og:url" content="../../../pages/2013/08/project-euler-001-006-jie-fa-zong-jie.html" />
-<meta property="og:description" content="Problem 1 Find the sum of all the multiples of 3 or 5 below 1000. 题目要求找出所有1000以下的3或者5的倍数之和。 最简便的方法是，计算出1000以下总共有多少个3、5、15的倍数，然后用等差数列求三种数分别之和，最后3、5的倍数和减去15的倍数和就得到了结果。 NOte：这是因为15的倍数多算了一遍，所以要减去。 Problem 2 Find the sum of all the even-valued terms in the Fibonacci sequence which do not exceed four million. 题目要求找出斐波那契数列中偶数之和。 我的方法是，斐波那契数列每三个连续的数中有一个为偶数，计算斐波那契数时用一个长度为3的数据完成缓存 …" />
-<meta property="og:site_name" content="Focus" />
+<meta property="og:description" content="Problem 1 Find the sum of all the multiples of 3 or 5 below 1000. 题目要求找出所有1000以下的3或者5的倍数之和。 最简便的方法是，计算出1000以下总共有多少个3、5、15的倍数，然后用等差数列求三种数分别之和，最后3、5的倍数和减去15的倍数和就得到了结果。 NOte：这是因为15的倍数多算了一遍，所以要减去。 Problem 2 Find the sum of all the even-valued terms in the Fibonacci sequence which do not exceed four million. 题目要求找出斐波那契数列中偶数之和。 我的方法是，斐波那契数列每三个连续的数中有一个为偶数，计算斐波那契数时用一个长度为3的数据完成缓存，每次循环完成三个数的更新，即计算三次斐波那契数，取偶数位相加即可。 最简便的方法是，既然没三个连续数就有一个为偶数，那个可以推出连续的三个偶数斐波那契数之间的关系，这样就可以用长度为2的数据完成计算，而且计算量减少很多。 Problem 3 Find the largest prime factor of a composite number 题目要求找出一个数的最大质因子。 我的方法是，首先除以所有为2的质因子，然后从3到sqrt(n)依次找出质因子。排序得到最大的，应该用遍历法得到。过程中参考了CSDN的一篇剪枝的方法（回退法除以所有同一个质因子）。 Problem 4 Find the largest palindrome made from the product of two 3-digit numbers. 题目要求找出能分解为两个三位数相乘的最大回文数。 我的方法是，判断是否为回文数把每一位都提取出来，看前后是否相等。然后按照因此从999到100遍历啊和b的乘积判断是否为回文数，避免重复。找到第一个回文数后，计算出还有可能的a、b是多少，然后再次遍历。最后对遍历的结果取最大值。 最简便的方法是，在上述方法的基础上，经过分析知道这个回文数一定是11的倍数，因为11是质数，则a或b必须为质数。在遍历时，可以判断出a不是11的倍数时b的可能值范围变成原来的1/11，运算量大大减少。 Problem 5 What is the smallest number divisible by each of the numbers 1 to 20? 题目要求找出1~20的最小公倍数。 我的方法是首先用费马方法实现最大公因子gcd的计算。然后从大到小依次计算前者最小公倍数与下一个数的最小公因子，然后得到所有数的最小公倍数。 最简单的方法是，对这个公倍数进行分析，必然是小于k的一系列质数的乘积。如果知道质数表，那么对于每一个小于k的质数为底计算floor(log)，然后把所有这些质数的幂相乘就得到了最小公倍数。可以优化的一点是，对于大于sqrt(k)的质数，已经不可能为1次以上的幂了，直接设幂指数为1即可。 Problem 6 What is the di erence between the sum of the squares and the square of the sums? 题目要求算出和的平方与平方和的差。 我的方法就是直接算，因为没有想到一种方法可以减少运算量。 最简便的方式，是把求和用高斯的方法计算，即n*(n+1)/2，同样的，最好能得到平方和的计算公式。其实计算方法也很简单，假设为三次多项式，用前四个值（含0）来解出系数。也可以参考百度百科平方和的排列组合法。" />
+<meta property="og:site_name" content="Render a New World" />
 <meta property="og:article:author" content="heLomaN" />
 <meta property="og:article:published_time" content="2013-08-27T00:00:00+08:00" />
 <meta property="og:article:modified_time" content="2013-08-28T16:34:10+08:00" />
 <meta name="twitter:title" content="Project Euler 001-006 解法总结 ">
-<meta name="twitter:description" content="Problem 1 Find the sum of all the multiples of 3 or 5 below 1000. 题目要求找出所有1000以下的3或者5的倍数之和。 最简便的方法是，计算出1000以下总共有多少个3、5、15的倍数，然后用等差数列求三种数分别之和，最后3、5的倍数和减去15的倍数和就得到了结果。 NOte：这是因为15的倍数多算了一遍，所以要减去。 Problem 2 Find the sum of all the even-valued terms in the Fibonacci sequence which do not exceed four million. 题目要求找出斐波那契数列中偶数之和。 我的方法是，斐波那契数列每三个连续的数中有一个为偶数，计算斐波那契数时用一个长度为3的数据完成缓存 …">
+<meta name="twitter:description" content="Problem 1 Find the sum of all the multiples of 3 or 5 below 1000. 题目要求找出所有1000以下的3或者5的倍数之和。 最简便的方法是，计算出1000以下总共有多少个3、5、15的倍数，然后用等差数列求三种数分别之和，最后3、5的倍数和减去15的倍数和就得到了结果。 NOte：这是因为15的倍数多算了一遍，所以要减去。 Problem 2 Find the sum of all the even-valued terms in the Fibonacci sequence which do not exceed four million. 题目要求找出斐波那契数列中偶数之和。 我的方法是，斐波那契数列每三个连续的数中有一个为偶数，计算斐波那契数时用一个长度为3的数据完成缓存，每次循环完成三个数的更新，即计算三次斐波那契数，取偶数位相加即可。 最简便的方法是，既然没三个连续数就有一个为偶数，那个可以推出连续的三个偶数斐波那契数之间的关系，这样就可以用长度为2的数据完成计算，而且计算量减少很多。 Problem 3 Find the largest prime factor of a composite number 题目要求找出一个数的最大质因子。 我的方法是，首先除以所有为2的质因子，然后从3到sqrt(n)依次找出质因子。排序得到最大的，应该用遍历法得到。过程中参考了CSDN的一篇剪枝的方法（回退法除以所有同一个质因子）。 Problem 4 Find the largest palindrome made from the product of two 3-digit numbers. 题目要求找出能分解为两个三位数相乘的最大回文数。 我的方法是，判断是否为回文数把每一位都提取出来，看前后是否相等。然后按照因此从999到100遍历啊和b的乘积判断是否为回文数，避免重复。找到第一个回文数后，计算出还有可能的a、b是多少，然后再次遍历。最后对遍历的结果取最大值。 最简便的方法是，在上述方法的基础上，经过分析知道这个回文数一定是11的倍数，因为11是质数，则a或b必须为质数。在遍历时，可以判断出a不是11的倍数时b的可能值范围变成原来的1/11，运算量大大减少。 Problem 5 What is the smallest number divisible by each of the numbers 1 to 20? 题目要求找出1~20的最小公倍数。 我的方法是首先用费马方法实现最大公因子gcd的计算。然后从大到小依次计算前者最小公倍数与下一个数的最小公因子，然后得到所有数的最小公倍数。 最简单的方法是，对这个公倍数进行分析，必然是小于k的一系列质数的乘积。如果知道质数表，那么对于每一个小于k的质数为底计算floor(log)，然后把所有这些质数的幂相乘就得到了最小公倍数。可以优化的一点是，对于大于sqrt(k)的质数，已经不可能为1次以上的幂了，直接设幂指数为1即可。 Problem 6 What is the di erence between the sum of the squares and the square of the sums? 题目要求算出和的平方与平方和的差。 我的方法就是直接算，因为没有想到一种方法可以减少运算量。 最简便的方式，是把求和用高斯的方法计算，即n*(n+1)/2，同样的，最好能得到平方和的计算公式。其实计算方法也很简单，假设为三次多项式，用前四个值（含0）来解出系数。也可以参考百度百科平方和的排列组合法。">
 
-        <title>Project Euler 001-006 解法总结  · Focus
+        <title>Project Euler 001-006 解法总结  · Render a New World
 </title>
-        <link href="http://heloman.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Focus - Full Atom Feed" />
-        <link href="http://heloman.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Focus - RSS Feed" />
+        <link href="http://heloman.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Render a New World - Full Atom Feed" />
+        <link href="http://heloman.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Render a New World - RSS Feed" />
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -52,7 +52,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </a>
-                        <a class="brand" href="../../../"><span class=site-name>Focus</span></a>
+                        <a class="brand" href="../../../"><span class=site-name>Render a New World</span></a>
                         <div class="nav-collapse collapse">
                             <ul class="nav pull-right top-menu">
                                 <li >

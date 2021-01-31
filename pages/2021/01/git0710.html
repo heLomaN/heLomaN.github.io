@@ -19,18 +19,18 @@
 
 <meta property="og:title" content="git0710 "/>
 <meta property="og:url" content="../../../pages/2021/01/git0710.html" />
-<meta property="og:description" content="使用Git完成版本控制 我经常同时保存一个程序或一个文档的不同版本，采取的方式就是文件名上面加上日期。 版本控制在团队开发大型项目中是必须的。版本控制系统，可以给程序员自由的修改，很方便的开发多个分支实验新特性，共享代码也很方便。 Git是Linux Torvalds为Linux Kernel编写的版本控制系统，速度快且高效。 有很多版本控制系统，但是相比他们git有以下优点： - 本地存储，不需要联网，速度快 - 易于学习使用 - 提供staging(缓冲区)，使 - 有github等适合分享的网站 git的常用命令 git config --global user.name &#34;&#34; 或者改为 user.email &#34;&#34;,之后用git config --globa --list查看 git init 在当前目录下的.git文件夹内建立一个空仓库 git status 查看当前分支状态，默认的branch是master git add . 添加所有文件到仓库 git add …" />
-<meta property="og:site_name" content="Focus" />
+<meta property="og:description" content="使用Git完成版本控制 我经常同时保存一个程序或一个文档的不同版本，采取的方式就是文件名上面加上日期。 版本控制在团队开发大型项目中是必须的。版本控制系统，可以给程序员自由的修改，很方便的开发多个分支实验新特性，共享代码也很方便。 Git是Linux Torvalds为Linux Kernel编写的版本控制系统，速度快且高效。 有很多版本控制系统，但是相比他们git有以下优点： - 本地存储，不需要联网，速度快 - 易于学习使用 - 提供staging(缓冲区)，使 - 有github等适合分享的网站 git的常用命令 git config --global user.name &#34;&#34; 或者改为 user.email &#34;&#34;,之后用git config --globa --list查看 git init 在当前目录下的.git文件夹内建立一个空仓库 git status 查看当前分支状态，默认的branch是master git add . 添加所有文件到仓库 git add file1 dir/ 添加文件或目录 git commit 打开提交备注的编辑页面，hash(#)字符开头的行会被忽略 git commit -a -m &#34;message&#34; 添加所有更改，跳过git add 忽略某些文件，在.gitignore文件中添加相应的目录或文件名即可。这个文件也应该添加到仓库。hash开头可以写注释。这个功能很有用，JD就曾经有程序员把后台系统的管理员密码提交到了github上。 git跟踪的是文件的内容，而不是文件。修改文件后，需要把修改后的文件再次加入仓库，否则下次commit时不会记录此次更新。 git分支 git branch newbranch 从当前状态创建新的branch git checkout newbranch 切换到新的branch git merge newbranch 把newbranch的改动提交到当前branch git stash 这个命令会缓存当前的更改 git stash apply会应用缓存的更改 apply之后再git checkout file可以取消部分文件来自缓存的更改 git amend git commit --amend可以更改最后一个的提交 查看分支历史 git log 可以看到当前branch的commit历史 git shortlog 可以看到当前branch的commit历史简略索引 git log --all查看所有分支的commit历史 gitk 图形化显示当前分支历史 gitk --all 图形化显示所有分支历史 git log --all --graph --oneline 使用文本图形化显示所有分支历史 git tag git tag -a v0.5 -m &#39;this is our half-way release&#39; 创建一个tag git describe 查看当前版本 与远程服务器交互（github） 常用流程 git init git add * git commit -m &#34;message&#34; git remote add origin git@*.git/httsp:...*.git //origin为标签，可任意更改 git push origin master //b把master推送到origin git add -i可以交互性的更新文件/撤销，查看更改 http://www.open-open.com/lib/view/open1328069733264.html" />
+<meta property="og:site_name" content="Render a New World" />
 <meta property="og:article:author" content="heLomaN" />
 <meta property="og:article:published_time" content="2021-01-30T20:08:46.255000+08:00" />
 <meta property="og:article:modified_time" content="2021-01-30T20:08:46.255000+08:00" />
 <meta name="twitter:title" content="git0710 ">
-<meta name="twitter:description" content="使用Git完成版本控制 我经常同时保存一个程序或一个文档的不同版本，采取的方式就是文件名上面加上日期。 版本控制在团队开发大型项目中是必须的。版本控制系统，可以给程序员自由的修改，很方便的开发多个分支实验新特性，共享代码也很方便。 Git是Linux Torvalds为Linux Kernel编写的版本控制系统，速度快且高效。 有很多版本控制系统，但是相比他们git有以下优点： - 本地存储，不需要联网，速度快 - 易于学习使用 - 提供staging(缓冲区)，使 - 有github等适合分享的网站 git的常用命令 git config --global user.name &#34;&#34; 或者改为 user.email &#34;&#34;,之后用git config --globa --list查看 git init 在当前目录下的.git文件夹内建立一个空仓库 git status 查看当前分支状态，默认的branch是master git add . 添加所有文件到仓库 git add …">
+<meta name="twitter:description" content="使用Git完成版本控制 我经常同时保存一个程序或一个文档的不同版本，采取的方式就是文件名上面加上日期。 版本控制在团队开发大型项目中是必须的。版本控制系统，可以给程序员自由的修改，很方便的开发多个分支实验新特性，共享代码也很方便。 Git是Linux Torvalds为Linux Kernel编写的版本控制系统，速度快且高效。 有很多版本控制系统，但是相比他们git有以下优点： - 本地存储，不需要联网，速度快 - 易于学习使用 - 提供staging(缓冲区)，使 - 有github等适合分享的网站 git的常用命令 git config --global user.name &#34;&#34; 或者改为 user.email &#34;&#34;,之后用git config --globa --list查看 git init 在当前目录下的.git文件夹内建立一个空仓库 git status 查看当前分支状态，默认的branch是master git add . 添加所有文件到仓库 git add file1 dir/ 添加文件或目录 git commit 打开提交备注的编辑页面，hash(#)字符开头的行会被忽略 git commit -a -m &#34;message&#34; 添加所有更改，跳过git add 忽略某些文件，在.gitignore文件中添加相应的目录或文件名即可。这个文件也应该添加到仓库。hash开头可以写注释。这个功能很有用，JD就曾经有程序员把后台系统的管理员密码提交到了github上。 git跟踪的是文件的内容，而不是文件。修改文件后，需要把修改后的文件再次加入仓库，否则下次commit时不会记录此次更新。 git分支 git branch newbranch 从当前状态创建新的branch git checkout newbranch 切换到新的branch git merge newbranch 把newbranch的改动提交到当前branch git stash 这个命令会缓存当前的更改 git stash apply会应用缓存的更改 apply之后再git checkout file可以取消部分文件来自缓存的更改 git amend git commit --amend可以更改最后一个的提交 查看分支历史 git log 可以看到当前branch的commit历史 git shortlog 可以看到当前branch的commit历史简略索引 git log --all查看所有分支的commit历史 gitk 图形化显示当前分支历史 gitk --all 图形化显示所有分支历史 git log --all --graph --oneline 使用文本图形化显示所有分支历史 git tag git tag -a v0.5 -m &#39;this is our half-way release&#39; 创建一个tag git describe 查看当前版本 与远程服务器交互（github） 常用流程 git init git add * git commit -m &#34;message&#34; git remote add origin git@*.git/httsp:...*.git //origin为标签，可任意更改 git push origin master //b把master推送到origin git add -i可以交互性的更新文件/撤销，查看更改 http://www.open-open.com/lib/view/open1328069733264.html">
 
-        <title>git0710  · Focus
+        <title>git0710  · Render a New World
 </title>
-        <link href="http://heloman.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Focus - Full Atom Feed" />
-        <link href="http://heloman.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Focus - RSS Feed" />
+        <link href="http://heloman.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Render a New World - Full Atom Feed" />
+        <link href="http://heloman.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Render a New World - RSS Feed" />
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -52,7 +52,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </a>
-                        <a class="brand" href="../../../"><span class=site-name>Focus</span></a>
+                        <a class="brand" href="../../../"><span class=site-name>Render a New World</span></a>
                         <div class="nav-collapse collapse">
                             <ul class="nav pull-right top-menu">
                                 <li >

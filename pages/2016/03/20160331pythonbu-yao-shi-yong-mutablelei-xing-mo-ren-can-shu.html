@@ -19,18 +19,18 @@
 
 <meta property="og:title" content="20160331python不要使用mutable类型默认参数 "/>
 <meta property="og:url" content="../../../pages/2016/03/20160331pythonbu-yao-shi-yong-mutablelei-xing-mo-ren-can-shu.html" />
-<meta property="og:description" content="python勿使用mutable值作为默认参数 首先看以下一段代码 def append(num, container=[]): container.append(num) return container print append.func_defaults print append(1) print append(2) ([],) [1] [1, 2] 为什么返回结果发生了改变？python函数执行时，默认参数只会在def函数时初始化一次，并不会每次运行时都发生改变，以后每次调用都使用同一个默认参数变量。 默认参数 函数的默认参数存放在func_defaults，调用函数时若没有传入默认参数，则取出func_defaults中的值赋给此形参 如果默认值为mutable类型，则为传引用，多次调用时必然出现类似上述的错误 默认参数不要使用mutable类型，使用immutable类型，如None，更合适 上述函数正确的实现方式为def append(num, container=None): if(container …" />
-<meta property="og:site_name" content="Focus" />
+<meta property="og:description" content="python勿使用mutable值作为默认参数 首先看以下一段代码 def append(num, container=[]): container.append(num) return container print append.func_defaults print append(1) print append(2) ([],) [1] [1, 2] 为什么返回结果发生了改变？python函数执行时，默认参数只会在def函数时初始化一次，并不会每次运行时都发生改变，以后每次调用都使用同一个默认参数变量。 默认参数 函数的默认参数存放在func_defaults，调用函数时若没有传入默认参数，则取出func_defaults中的值赋给此形参 如果默认值为mutable类型，则为传引用，多次调用时必然出现类似上述的错误 默认参数不要使用mutable类型，使用immutable类型，如None，更合适 上述函数正确的实现方式为def append(num, container=None): if(container is None): container = [] container.append(num) return container" />
+<meta property="og:site_name" content="Render a New World" />
 <meta property="og:article:author" content="heLomaN" />
 <meta property="og:article:published_time" content="2016-03-31T21:34:18+08:00" />
 <meta property="og:article:modified_time" content="2016-03-31T21:34:18+08:00" />
 <meta name="twitter:title" content="20160331python不要使用mutable类型默认参数 ">
-<meta name="twitter:description" content="python勿使用mutable值作为默认参数 首先看以下一段代码 def append(num, container=[]): container.append(num) return container print append.func_defaults print append(1) print append(2) ([],) [1] [1, 2] 为什么返回结果发生了改变？python函数执行时，默认参数只会在def函数时初始化一次，并不会每次运行时都发生改变，以后每次调用都使用同一个默认参数变量。 默认参数 函数的默认参数存放在func_defaults，调用函数时若没有传入默认参数，则取出func_defaults中的值赋给此形参 如果默认值为mutable类型，则为传引用，多次调用时必然出现类似上述的错误 默认参数不要使用mutable类型，使用immutable类型，如None，更合适 上述函数正确的实现方式为def append(num, container=None): if(container …">
+<meta name="twitter:description" content="python勿使用mutable值作为默认参数 首先看以下一段代码 def append(num, container=[]): container.append(num) return container print append.func_defaults print append(1) print append(2) ([],) [1] [1, 2] 为什么返回结果发生了改变？python函数执行时，默认参数只会在def函数时初始化一次，并不会每次运行时都发生改变，以后每次调用都使用同一个默认参数变量。 默认参数 函数的默认参数存放在func_defaults，调用函数时若没有传入默认参数，则取出func_defaults中的值赋给此形参 如果默认值为mutable类型，则为传引用，多次调用时必然出现类似上述的错误 默认参数不要使用mutable类型，使用immutable类型，如None，更合适 上述函数正确的实现方式为def append(num, container=None): if(container is None): container = [] container.append(num) return container">
 
-        <title>20160331python不要使用mutable类型默认参数  · Focus
+        <title>20160331python不要使用mutable类型默认参数  · Render a New World
 </title>
-        <link href="http://heloman.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Focus - Full Atom Feed" />
-        <link href="http://heloman.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Focus - RSS Feed" />
+        <link href="http://heloman.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Render a New World - Full Atom Feed" />
+        <link href="http://heloman.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Render a New World - RSS Feed" />
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -52,7 +52,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </a>
-                        <a class="brand" href="../../../"><span class=site-name>Focus</span></a>
+                        <a class="brand" href="../../../"><span class=site-name>Render a New World</span></a>
                         <div class="nav-collapse collapse">
                             <ul class="nav pull-right top-menu">
                                 <li >

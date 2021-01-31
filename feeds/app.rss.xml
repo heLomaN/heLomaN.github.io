@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>Focus - App</title><link>http://heloman.github.io/</link><description></description><lastBuildDate>Sat, 09 Nov 2013 22:33:41 +0800</lastBuildDate><item><title>django开发视频网站项目记录</title><link>http://heloman.github.io/pages/2013/11/djangokai-fa-shi-pin-wang-zhan-xiang-mu-ji-lu.html</link><description>&lt;h3&gt;20131108启动&lt;/h3&gt;
+<rss version="2.0"><channel><title>Render a New World - App</title><link>http://heloman.github.io/</link><description></description><lastBuildDate>Sat, 09 Nov 2013 22:33:41 +0800</lastBuildDate><item><title>django开发视频网站项目记录</title><link>http://heloman.github.io/pages/2013/11/djangokai-fa-shi-pin-wang-zhan-xiang-mu-ji-lu.html</link><description>&lt;h3&gt;20131108启动&lt;/h3&gt;
 &lt;p&gt;下载了Owntube，尝试运行。官方文档给出的运行方式是virtualenv，一个虚拟的python环境。我索性直接在系统环境内安装了相关的软件。django版本真的比较低。  &lt;/p&gt;
 &lt;p&gt;在settings.py中很多变量需要配置，根据官方给出的&lt;a href="https://docs.djangoproject.com/en/1.3/howto/static-files/"&gt;文档&lt;/a&gt;：  &lt;/p&gt;
 &lt;p&gt;使用django.contrib.staticfiles应用，默认配置包含的 AppDirectoriesFinder 会搜索所有已经安装的应用的 &lt;code&gt;static/&lt;/code&gt; 子目录。   &lt;/p&gt;
@@ -10,7 +10,53 @@
 &lt;p&gt;当前配置为：&lt;br&gt;
     STATIC_ROOT = '/home/czk/djangoproject/OwnTube/colect_staitic/'
     STATIC_URL = '/static/'
-    import …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">heLomaN</dc:creator><pubDate>Fri, 08 Nov 2013 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:heloman.github.io,2013-11-08:/pages/2013/11/djangokai-fa-shi-pin-wang-zhan-xiang-mu-ji-lu.html</guid><category>App</category><category>django</category></item><item><title>Ubuntu系统安装Matlab2012a</title><link>http://heloman.github.io/pages/2013/09/ubuntuxi-tong-an-zhuang-matlab2012a.html</link><description>&lt;h3&gt;下载安装&lt;/h3&gt;
+    import os
+    PROJECT_PATH = os.path.abspath(os.path.dirname(&lt;strong&gt;file&lt;/strong&gt;))
+    STATICFILES_DIRS = (
+        PROJECT_PATH + '/static',
+    )&lt;/p&gt;
+&lt;h4&gt;下一步开发计划：&lt;/h4&gt;
+&lt;p&gt;完成一个最简单的视频播放模板，从html文件开始，然后再做模板。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3&gt;20131109 初步搞定&lt;/h3&gt;
+&lt;p&gt;之前的&lt;a href="http://www.projekktor.com/"&gt;projekktor&lt;/a&gt;并没有用上。&lt;br&gt;
+现在的方案是： &lt;br&gt;
+    文件上传根目录
+    MEDIA_ROOT = '/home/czk/djangoproject/uvideo/media/'
+    static目录下为css等文件，并包括上传的视频，这样就能够用目录+file_path的方式获得视频链接
+    STATICFILES_DIRS = (
+        '/home/czk/djangoproject/uvideo/static/',
+        '/home/czk/djangoproject/uvideo/media/',
+    )&lt;/p&gt;
+&lt;p&gt;完成了在管理界面整套试卷的视频上传，以及播放。&lt;/p&gt;
+&lt;h4&gt;下一步计划&lt;/h4&gt;
+&lt;p&gt;部署到学校服务器上面，加入flash播放器。  &lt;/p&gt;
+&lt;h4&gt;部署到Apache+wsgi服务器上面要做的改变&lt;/h4&gt;
+&lt;p&gt;安装好apache2和libapache2-mod-wsgi之后&lt;br&gt;
+首先settings.py里面，DATABASES的NAME要改成绝对路径&lt;br&gt;
+修改/etc/apache2/httpd.conf&lt;br&gt;
+    LoadModule wsgi_module modules/mod_wsgi.so
+    WSGIScriptAlias / "/home/czk/djangoproject/uvideo/django.wsgi"
+    Alias /static /home/czk/djangoproject/uvideo/colect_static/
+    &lt;Directory "/home/czk/djangoproject/uvideo/"&gt;
+        Order Deny,Allow
+        Allow from all
+    &lt;/Directory&gt;&lt;/p&gt;
+&lt;p&gt;目录下建立django.wsgi，写入内容：
+    #!/usr/bin/env python
+    import os
+    import sys
+    sys.path.append('/home/czk/djangoproject/uvideo')
+    os.environ['DJANGO_SETTINGS_MODULE'] = 'uvideo.settings'
+    import django.core.handlers.wsgi
+    application = django.core.handlers.wsgi.WSGIHandler()&lt;/p&gt;
+&lt;p&gt;deploy过程中碰到python-lib目录权限的问题，更改了所有相应文件的权限才解决。&lt;br&gt;
+碰到admin应用无法读取数据库文件的问题，把整个项目文件权限更改为777得到解决。&lt;br&gt;
+这次是把所有的文件搜集到了colect_static下面，应该把STATIC_ROOT设置为和MEDIA_ROOT相同。&lt;br&gt;
+本来在local开发模式下面，视频是无法快进的，但没想到deploy之后就可以了。&lt;br&gt;
+目前视频的播放还是存在问题的，opera无法播放，可能还是需要加入一个flash播放器。  &lt;/p&gt;
+&lt;p&gt;在admin界面下上传文件会显示ascii编码错误，这个需要更改 /etc/apache2/envvars 中的 LANG 设置。具体情况见&lt;a href="http://www.hiaward.com:10004/wiki/dev/ApacheConfigure/"&gt;博客1&lt;/a&gt;和&lt;a href="http://hi.baidu.com/justin_jia/item/cda58f5f866ef2464eff20a3"&gt;博客2&lt;/a&gt;.&lt;br&gt;
+不过，这个问题另一个解决办法可能是更改上传的文件名为英文，见&lt;a href="http://blog.csdn.net/jianhong1990/article/details/7382873"&gt;博文&lt;/a&gt;。  &lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">heLomaN</dc:creator><pubDate>Fri, 08 Nov 2013 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:heloman.github.io,2013-11-08:/pages/2013/11/djangokai-fa-shi-pin-wang-zhan-xiang-mu-ji-lu.html</guid><category>App</category><category>django</category></item><item><title>Ubuntu系统安装Matlab2012a</title><link>http://heloman.github.io/pages/2013/09/ubuntuxi-tong-an-zhuang-matlab2012a.html</link><description>&lt;h3&gt;下载安装&lt;/h3&gt;
 &lt;ol&gt;
 &lt;li&gt;下载matlab的安装镜像，注意一定是unix版本到。 &lt;/li&gt;
 &lt;li&gt;挂载iso文件： &lt;code&gt;sudo mount -o loop Mathworks.Matlab.R2012a.UNIX.iso /mnt/tmp&lt;/code&gt;&lt;/li&gt;
@@ -19,4 +65,15 @@
 &lt;h3&gt;启动程序&lt;/h3&gt;
 &lt;ol&gt;
 &lt;li&gt;运行matlab的方式为：&lt;code&gt;sudo /usr/local/MATLAB/R2012a/bin/matlab&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;运行的时候的警告信息，&lt;code&gt;/usr/local/MATLAB/R2012a/bin/util/oscheck.sh: /lib/libc.so.6: not found&lt;/code&gt;。需要创建一个链接解决:&lt;code&gt;sudo ln -s /lib/i386-linux-gnu/libc …&lt;/code&gt;&lt;/li&gt;&lt;/ol&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">heLomaN</dc:creator><pubDate>Wed, 04 Sep 2013 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:heloman.github.io,2013-09-04:/pages/2013/09/ubuntuxi-tong-an-zhuang-matlab2012a.html</guid><category>App</category><category>ubuntu</category><category>matlab</category></item></channel></rss>
+&lt;li&gt;运行的时候的警告信息，&lt;code&gt;/usr/local/MATLAB/R2012a/bin/util/oscheck.sh: /lib/libc.so.6: not found&lt;/code&gt;。需要创建一个链接解决:&lt;code&gt;sudo ln -s /lib/i386-linux-gnu/libc.so.6 /lib/libc.so.6&lt;/code&gt;64位系统需要改动。&lt;/li&gt;
+&lt;li&gt;在软件中心安装matlab-support，添加matlab的安装目录为/usr/local/MATLAB/R2012a，这样可以在面板里面直接运行程序。
+11.如果要创建快捷方式，可以在&lt;code&gt;启动运行程序&lt;/code&gt;中添加 &lt;code&gt;gksudo '/usr/local/MATLAB/R2012a/bin/matlab -desktop'&lt;/code&gt;，然后拖动到文件夹。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;设置启动目录&lt;/h3&gt;
+&lt;p&gt;可以使用命令：&lt;code&gt;sudo gedit /usr/local/MATLAB/R2012a/toolbox/local/matlabrc.m&lt;/code&gt;，最后加上:&lt;code&gt;cd ‘default path’ %default path&lt;/code&gt;换成你默认目录即可。&lt;/p&gt;
+&lt;h3&gt;解决中文乱码问题&lt;/h3&gt;
+&lt;p&gt;参考&lt;a href="http://wmyming01.blog.163.com/blog/static/12964879120121120102253573/"&gt;http://wmyming01.blog.163.com/blog/static/12964879120121120102253573/&lt;/a&gt;
+关于中文乱码的问题：如果系统已经安装中文字体，则打开Matlab后去File-&amp;gt;Preferences&amp;gt;Fonts里设置Desktop code font 和Desktop text font为支持中文的字体，如WenQuanYi Micro Hei Mono，立即生效。如果系统没中文字体就安装。此时Matlab界面仍是英文，添加自定义工具箱目录时遇到中文乱码问题，可以使用ln -s  源目录  目标目录  命令创建软链接，暂时解决。
+此时m文件中的中文注释可能乱码，暂时没找到解决方案，因为中文注释是在windows下用写的，编码有差别。以后注释尽量用英文，在中文编码上时间消耗太多了。&lt;/p&gt;
+&lt;h3&gt;解决运行时java错误&lt;/h3&gt;
+&lt;p&gt;改变.matlab目录所有者即可：&lt;code&gt;chown -R user:user ./.matlab&lt;/code&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">heLomaN</dc:creator><pubDate>Wed, 04 Sep 2013 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:heloman.github.io,2013-09-04:/pages/2013/09/ubuntuxi-tong-an-zhuang-matlab2012a.html</guid><category>App</category><category>ubuntu</category><category>matlab</category></item></channel></rss>

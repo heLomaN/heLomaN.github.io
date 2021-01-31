@@ -19,18 +19,18 @@
 
 <meta property="og:title" content="20140803软硬件接口第0周作业 "/>
 <meta property="og:url" content="../../../pages/2014/08/20140803ruan-ying-jian-jie-kou-di-0zhou-zuo-ye.html" />
-<meta property="og:description" content="软硬件接口第0周作业 内存寻址 无论是4字节机器字还是8字节机器字，地址都按照实际地址来取，即每个机器字的数个字节每个均有单独的地址 指针使用一个机器字存储 X86架构使用小头字节序，低字节在前，internet使用大头字节序。对于char数组，在两种字节序下兼容 整数的表示 有符号整数用补码形式表示，可以把减法转换为加法：a - b = a + (-b) 补码表示的负数的最高位表示-2^(N-1)，其他位与整数相同，表示2^(N-2), ... 2^1, 2^0 如下图： 例如：1111表示-8 + 4 + 2 + 1 = -1 要得到负数-x的补码表示，有如下关系：~x + 1 = -x，即绝对值的反码加1 最大值参考/usr/include/limits.h，与平台有关 C语言中的常数默认为int …" />
-<meta property="og:site_name" content="Focus" />
+<meta property="og:description" content="软硬件接口第0周作业 内存寻址 无论是4字节机器字还是8字节机器字，地址都按照实际地址来取，即每个机器字的数个字节每个均有单独的地址 指针使用一个机器字存储 X86架构使用小头字节序，低字节在前，internet使用大头字节序。对于char数组，在两种字节序下兼容 整数的表示 有符号整数用补码形式表示，可以把减法转换为加法：a - b = a + (-b) 补码表示的负数的最高位表示-2^(N-1)，其他位与整数相同，表示2^(N-2), ... 2^1, 2^0 如下图： 例如：1111表示-8 + 4 + 2 + 1 = -1 要得到负数-x的补码表示，有如下关系：~x + 1 = -x，即绝对值的反码加1 最大值参考/usr/include/limits.h，与平台有关 C语言中的常数默认为int，使用0U前缀可以强制为unsigned int类型 int与unsigned之间的类型转换为按位解释。隐式转换可以在gcc中使用-­‐Wsign-­‐conversion，但-Wall选项没用 int类型移位 逻辑右移：左方填0 算术右移：左方填充符号位，保持符号不变。如果移动位数不在[0, 32)之间，行为未定义 C语言中默认为算术右移 C语言的右移向下取整，和除法不同，比如-3 / 2 = -1, -3 % 2 = -1, -3 &gt;&gt; 1 = -2。而python中-3 / 2 = -2, -3 % 2 = 1，除法和右移一致。 gcc命令行参数 -Wall显示所有类型的警告 -g生成带有调试符号表的可执行文件 -std=gnu99使用C99标准，允许在for循环内声明变量 -o filename指定编译得到的程序的文件名 valgrind valgrind程序可以非常方便的完成内存泄露分析 valgrind ./arrays可以检查arrays程序是否存在内存泄露 valgrind --leak-check=full ./arrays可以显示详细的内存泄露位置信息" />
+<meta property="og:site_name" content="Render a New World" />
 <meta property="og:article:author" content="heLomaN" />
 <meta property="og:article:published_time" content="2014-08-03T12:51:37.238407+08:00" />
 <meta property="og:article:modified_time" content="2014-08-03T12:51:37.238407+08:00" />
 <meta name="twitter:title" content="20140803软硬件接口第0周作业 ">
-<meta name="twitter:description" content="软硬件接口第0周作业 内存寻址 无论是4字节机器字还是8字节机器字，地址都按照实际地址来取，即每个机器字的数个字节每个均有单独的地址 指针使用一个机器字存储 X86架构使用小头字节序，低字节在前，internet使用大头字节序。对于char数组，在两种字节序下兼容 整数的表示 有符号整数用补码形式表示，可以把减法转换为加法：a - b = a + (-b) 补码表示的负数的最高位表示-2^(N-1)，其他位与整数相同，表示2^(N-2), ... 2^1, 2^0 如下图： 例如：1111表示-8 + 4 + 2 + 1 = -1 要得到负数-x的补码表示，有如下关系：~x + 1 = -x，即绝对值的反码加1 最大值参考/usr/include/limits.h，与平台有关 C语言中的常数默认为int …">
+<meta name="twitter:description" content="软硬件接口第0周作业 内存寻址 无论是4字节机器字还是8字节机器字，地址都按照实际地址来取，即每个机器字的数个字节每个均有单独的地址 指针使用一个机器字存储 X86架构使用小头字节序，低字节在前，internet使用大头字节序。对于char数组，在两种字节序下兼容 整数的表示 有符号整数用补码形式表示，可以把减法转换为加法：a - b = a + (-b) 补码表示的负数的最高位表示-2^(N-1)，其他位与整数相同，表示2^(N-2), ... 2^1, 2^0 如下图： 例如：1111表示-8 + 4 + 2 + 1 = -1 要得到负数-x的补码表示，有如下关系：~x + 1 = -x，即绝对值的反码加1 最大值参考/usr/include/limits.h，与平台有关 C语言中的常数默认为int，使用0U前缀可以强制为unsigned int类型 int与unsigned之间的类型转换为按位解释。隐式转换可以在gcc中使用-­‐Wsign-­‐conversion，但-Wall选项没用 int类型移位 逻辑右移：左方填0 算术右移：左方填充符号位，保持符号不变。如果移动位数不在[0, 32)之间，行为未定义 C语言中默认为算术右移 C语言的右移向下取整，和除法不同，比如-3 / 2 = -1, -3 % 2 = -1, -3 &gt;&gt; 1 = -2。而python中-3 / 2 = -2, -3 % 2 = 1，除法和右移一致。 gcc命令行参数 -Wall显示所有类型的警告 -g生成带有调试符号表的可执行文件 -std=gnu99使用C99标准，允许在for循环内声明变量 -o filename指定编译得到的程序的文件名 valgrind valgrind程序可以非常方便的完成内存泄露分析 valgrind ./arrays可以检查arrays程序是否存在内存泄露 valgrind --leak-check=full ./arrays可以显示详细的内存泄露位置信息">
 
-        <title>20140803软硬件接口第0周作业  · Focus
+        <title>20140803软硬件接口第0周作业  · Render a New World
 </title>
-        <link href="http://heloman.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Focus - Full Atom Feed" />
-        <link href="http://heloman.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Focus - RSS Feed" />
+        <link href="http://heloman.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Render a New World - Full Atom Feed" />
+        <link href="http://heloman.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Render a New World - RSS Feed" />
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -52,7 +52,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </a>
-                        <a class="brand" href="../../../"><span class=site-name>Focus</span></a>
+                        <a class="brand" href="../../../"><span class=site-name>Render a New World</span></a>
                         <div class="nav-collapse collapse">
                             <ul class="nav pull-right top-menu">
                                 <li >

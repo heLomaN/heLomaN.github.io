@@ -19,18 +19,18 @@
 
 <meta property="og:title" content="20140807《程序员面试宝典》精华 底层部分 "/>
 <meta property="og:url" content="../../../pages/2014/08/20140807cheng-xu-yuan-mian-shi-bao-dian-jing-hua-di-ceng-bu-fen.html" />
-<meta property="og:description" content="《程序员面试宝典》精华 底层部分 正所谓取其精华，去其糟粕。本文谨记录下《程序员面试宝典》一些关键的知识点、易错点，对于一些虽然重要但书中没有解释清楚的地方不做记录。书里是没有糟粕的，只是指不那么重要，或者比较简单的地方略过而已，并不是说书写的不好。希望以后回顾时无需再看此书，只看保留在文中的精华即可。 本文专注位运算、操作系统、数据库、网络部分，包括第十二章以后的内容 第十二章 位运算与嵌入式编程 12.1 printf的%f说明符可以输出float和double型，float型会被提升为double型。printf(&#34;%f&#34;,5);printf(&#34;%d&#34;,5.01)，前者会从存放5的位置取double型的8个字节，内存越界，并按bit解释，后者会按照整数来解释5.01的比特，输出为0，一个大整数。真的是越界？ 12.1 struct a{int z:33 …" />
-<meta property="og:site_name" content="Focus" />
+<meta property="og:description" content="《程序员面试宝典》精华 底层部分 正所谓取其精华，去其糟粕。本文谨记录下《程序员面试宝典》一些关键的知识点、易错点，对于一些虽然重要但书中没有解释清楚的地方不做记录。书里是没有糟粕的，只是指不那么重要，或者比较简单的地方略过而已，并不是说书写的不好。希望以后回顾时无需再看此书，只看保留在文中的精华即可。 本文专注位运算、操作系统、数据库、网络部分，包括第十二章以后的内容 第十二章 位运算与嵌入式编程 12.1 printf的%f说明符可以输出float和double型，float型会被提升为double型。printf(&#34;%f&#34;,5);printf(&#34;%d&#34;,5.01)，前者会从存放5的位置取double型的8个字节，内存越界，并按bit解释，后者会按照整数来解释5.01的比特，输出为0，一个大整数。真的是越界？ 12.1 struct a{int z:33;};报错，因为z为int型，不可能有33位 12.1 dynamic_cast,static_cast,reinterpret_cast的区别，没有讲清楚 12.2 ISR终端服务程序不应该有参数和返回值，且不能使用不可重入的函数 12.2 volatile的意思是易变的，指的是它可能在程序控制的范围之外意外发生变化，防止编译器的优化。volatile变量可以声明为const，表示是只读的 12.2 const的意思是只读的 12.2 malloc(0)能得到一个合法的指针，而不是空指针，对其调用strlen和sizeof结果为0和4 12.2 对于结构体struct bit{int b1:5;int :2;int b2:2;};赋值后，取b1,b2的值，该如何解析？ 12.3 static的作用包括哪些？ 函数内的static变量中下次调用时保持值不变 源代码文件（模块）内的static全局变量和函数的作用范围限制在模块内 类的static成员变量对所有对象共享，static成员函数只能访问static成员变量 第十六章 操作系统 16.1 进程间如何通信：信号，信号量，消息队列，共享内存 16.1 死锁的必要条件：互斥，请求与保持，不可剥夺，循环等待。后三种条件可以破坏 16.2 进程与线程的区别： 进程是程序的一次执行，线程为进程中执行的一段程序 进程直接是独立的，而同一进程的线程共享内存空间 第十七章 数据库 17.1 事务：作为单个逻辑工作单元执行的一系列操作，不可分割。具有原子性、一致性、独立性、持久性 17.1 聚集索引与非聚集索引的区别： 聚集索引的顺序就是数据的物理存储顺序，而非聚集索引顺序与物理存储顺序无关 每个表只能有一个聚集索引，聚集索引对于范围查询的列非常有效 17.2 表ppp里面num最小的数 不使用min：select top 1 num from ppp order by num 使用min：select * from ppp where num = (select Min(num) from ppp) 17.2 从表中取出第5行到第七行的数据的语句 第十八章 计算机网络 18.1 OSI七层模型及其作用： 物理层 传输原始比特流 数据链路层 网络层 路由选择 传输层 会话层 表示层 应用层 18.2 TCP与UDP的区别 TCP是传输控制协议，提供面向连接、可靠的字节流服务。提供超时重发、数据检验、流量控制等功能 UDP是用户数据报协议，是面向数据报的传输层协议 …" />
+<meta property="og:site_name" content="Render a New World" />
 <meta property="og:article:author" content="heLomaN" />
 <meta property="og:article:published_time" content="2014-08-07T07:33:54.996266+08:00" />
 <meta property="og:article:modified_time" content="2014-08-07T07:33:54.996266+08:00" />
 <meta name="twitter:title" content="20140807《程序员面试宝典》精华 底层部分 ">
-<meta name="twitter:description" content="《程序员面试宝典》精华 底层部分 正所谓取其精华，去其糟粕。本文谨记录下《程序员面试宝典》一些关键的知识点、易错点，对于一些虽然重要但书中没有解释清楚的地方不做记录。书里是没有糟粕的，只是指不那么重要，或者比较简单的地方略过而已，并不是说书写的不好。希望以后回顾时无需再看此书，只看保留在文中的精华即可。 本文专注位运算、操作系统、数据库、网络部分，包括第十二章以后的内容 第十二章 位运算与嵌入式编程 12.1 printf的%f说明符可以输出float和double型，float型会被提升为double型。printf(&#34;%f&#34;,5);printf(&#34;%d&#34;,5.01)，前者会从存放5的位置取double型的8个字节，内存越界，并按bit解释，后者会按照整数来解释5.01的比特，输出为0，一个大整数。真的是越界？ 12.1 struct a{int z:33 …">
+<meta name="twitter:description" content="《程序员面试宝典》精华 底层部分 正所谓取其精华，去其糟粕。本文谨记录下《程序员面试宝典》一些关键的知识点、易错点，对于一些虽然重要但书中没有解释清楚的地方不做记录。书里是没有糟粕的，只是指不那么重要，或者比较简单的地方略过而已，并不是说书写的不好。希望以后回顾时无需再看此书，只看保留在文中的精华即可。 本文专注位运算、操作系统、数据库、网络部分，包括第十二章以后的内容 第十二章 位运算与嵌入式编程 12.1 printf的%f说明符可以输出float和double型，float型会被提升为double型。printf(&#34;%f&#34;,5);printf(&#34;%d&#34;,5.01)，前者会从存放5的位置取double型的8个字节，内存越界，并按bit解释，后者会按照整数来解释5.01的比特，输出为0，一个大整数。真的是越界？ 12.1 struct a{int z:33;};报错，因为z为int型，不可能有33位 12.1 dynamic_cast,static_cast,reinterpret_cast的区别，没有讲清楚 12.2 ISR终端服务程序不应该有参数和返回值，且不能使用不可重入的函数 12.2 volatile的意思是易变的，指的是它可能在程序控制的范围之外意外发生变化，防止编译器的优化。volatile变量可以声明为const，表示是只读的 12.2 const的意思是只读的 12.2 malloc(0)能得到一个合法的指针，而不是空指针，对其调用strlen和sizeof结果为0和4 12.2 对于结构体struct bit{int b1:5;int :2;int b2:2;};赋值后，取b1,b2的值，该如何解析？ 12.3 static的作用包括哪些？ 函数内的static变量中下次调用时保持值不变 源代码文件（模块）内的static全局变量和函数的作用范围限制在模块内 类的static成员变量对所有对象共享，static成员函数只能访问static成员变量 第十六章 操作系统 16.1 进程间如何通信：信号，信号量，消息队列，共享内存 16.1 死锁的必要条件：互斥，请求与保持，不可剥夺，循环等待。后三种条件可以破坏 16.2 进程与线程的区别： 进程是程序的一次执行，线程为进程中执行的一段程序 进程直接是独立的，而同一进程的线程共享内存空间 第十七章 数据库 17.1 事务：作为单个逻辑工作单元执行的一系列操作，不可分割。具有原子性、一致性、独立性、持久性 17.1 聚集索引与非聚集索引的区别： 聚集索引的顺序就是数据的物理存储顺序，而非聚集索引顺序与物理存储顺序无关 每个表只能有一个聚集索引，聚集索引对于范围查询的列非常有效 17.2 表ppp里面num最小的数 不使用min：select top 1 num from ppp order by num 使用min：select * from ppp where num = (select Min(num) from ppp) 17.2 从表中取出第5行到第七行的数据的语句 第十八章 计算机网络 18.1 OSI七层模型及其作用： 物理层 传输原始比特流 数据链路层 网络层 路由选择 传输层 会话层 表示层 应用层 18.2 TCP与UDP的区别 TCP是传输控制协议，提供面向连接、可靠的字节流服务。提供超时重发、数据检验、流量控制等功能 UDP是用户数据报协议，是面向数据报的传输层协议 …">
 
-        <title>20140807《程序员面试宝典》精华 底层部分  · Focus
+        <title>20140807《程序员面试宝典》精华 底层部分  · Render a New World
 </title>
-        <link href="http://heloman.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Focus - Full Atom Feed" />
-        <link href="http://heloman.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Focus - RSS Feed" />
+        <link href="http://heloman.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Render a New World - Full Atom Feed" />
+        <link href="http://heloman.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Render a New World - RSS Feed" />
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -52,7 +52,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </a>
-                        <a class="brand" href="../../../"><span class=site-name>Focus</span></a>
+                        <a class="brand" href="../../../"><span class=site-name>Render a New World</span></a>
                         <div class="nav-collapse collapse">
                             <ul class="nav pull-right top-menu">
                                 <li >

@@ -19,18 +19,18 @@
 
 <meta property="og:title" content="20140727如何写出一个较好的快速排序程序 "/>
 <meta property="og:url" content="../../../pages/2014/08/20140727ru-he-xie-chu-yi-ge-jiao-hao-de-kuai-su-pai-xu-cheng-xu.html" />
-<meta property="og:description" content="写出一个较好的快速排序程序 快速排序是常用的排序算法之一，但要想写出一个又快又准的使用程序，就不是那么简单了 需要注意的事项 首先要写正确。通常使用递归实现。其递归相当于二叉树展开，因此如果要用迭代实现的话需要使用一个队列来保存后续遍历信息。 快速排序需要找到一个pivot值，如果顺序选择pivot则易造成N^2的复杂度，如果使用随机数则效果最好，但开销又太大，采取三数中值法比较合适。三数中值法指的是选取第一个值，最后一个值，数组中间的值的中值。有文献表明可以提升5%的运行时间。 当数组长度较小时，如10个元素以下，最好使用插入排序或者选择排序完成，以防止复杂度常数因子过大或多次函数调用带来的开销。而递归到底层数组长度总是会变小的，因此这么做非常有必要。 在合并前后两部分数组时，采用两边夹方法，在前后两部分各找到一个大于和小于的值再交换。相比通常情况下找到比pivot小的值就进行交换，能提高运行效率。 实现代码 代码如下。包括插入排序insert_sort，递归函数，三分中值函数三个辅助函数。 三分中值函数其实采用的是插入排序。通过三次比较，确定中值。 插值算法使用临时变量tmp避免了大量swap函数调用。 #include&lt;iostream&gt; #include&lt;iomanip&gt; #include&lt;vector&gt; #include&lt;cstdlib&gt; #include&lt;ctime …" />
-<meta property="og:site_name" content="Focus" />
+<meta property="og:description" content="写出一个较好的快速排序程序 快速排序是常用的排序算法之一，但要想写出一个又快又准的使用程序，就不是那么简单了 需要注意的事项 首先要写正确。通常使用递归实现。其递归相当于二叉树展开，因此如果要用迭代实现的话需要使用一个队列来保存后续遍历信息。 快速排序需要找到一个pivot值，如果顺序选择pivot则易造成N^2的复杂度，如果使用随机数则效果最好，但开销又太大，采取三数中值法比较合适。三数中值法指的是选取第一个值，最后一个值，数组中间的值的中值。有文献表明可以提升5%的运行时间。 当数组长度较小时，如10个元素以下，最好使用插入排序或者选择排序完成，以防止复杂度常数因子过大或多次函数调用带来的开销。而递归到底层数组长度总是会变小的，因此这么做非常有必要。 在合并前后两部分数组时，采用两边夹方法，在前后两部分各找到一个大于和小于的值再交换。相比通常情况下找到比pivot小的值就进行交换，能提高运行效率。 实现代码 代码如下。包括插入排序insert_sort，递归函数，三分中值函数三个辅助函数。 三分中值函数其实采用的是插入排序。通过三次比较，确定中值。 插值算法使用临时变量tmp避免了大量swap函数调用。 #include&lt;iostream&gt; #include&lt;iomanip&gt; #include&lt;vector&gt; #include&lt;cstdlib&gt; #include&lt;ctime&gt; #include&lt;algorithm&gt; using namespace std; inline void swap(vector&lt;int&gt;&amp; num, int p, int q){ int t = num[p]; num[p] = num[q]; num[q] = t; } void insert_sort(vector&lt;int&gt;&amp; num){ int tmp, j; for (int i = 1; i &lt; num.size(); i++){ tmp = num[i]; for (j = i - 1; j &gt;= 0 &amp;&amp; num[j] &gt; tmp; j--) num[j + 1] = num[j]; num[j + 1] =tmp; } } int quick_sort_sub(vector&lt;int&gt;&amp; num, int p, int q){ if (p &gt;= q) return 0; // if 4 elements or less, use insert sort if (p + 10 &gt; q){ vector&lt;int&gt; tnum(num.begin() + p, num.begin() + q + 1); insert_sort(tnum); for (int i = 0; i &lt; tnum.size(); i++) num[p + i] = tnum[i]; } int idx = quick_three_partition(num, p, q); swap(num, idx, q); int pivot = num[q]; int left = p, right = q - 1; while (1){ while (num[left] &lt; pivot) ++left; while (num[right] &gt;= pivot) --right; if (left &lt; right …" />
+<meta property="og:site_name" content="Render a New World" />
 <meta property="og:article:author" content="heLomaN" />
 <meta property="og:article:published_time" content="2014-08-20T22:31:13.946453+08:00" />
 <meta property="og:article:modified_time" content="2014-08-20T22:31:13.946453+08:00" />
 <meta name="twitter:title" content="20140727如何写出一个较好的快速排序程序 ">
-<meta name="twitter:description" content="写出一个较好的快速排序程序 快速排序是常用的排序算法之一，但要想写出一个又快又准的使用程序，就不是那么简单了 需要注意的事项 首先要写正确。通常使用递归实现。其递归相当于二叉树展开，因此如果要用迭代实现的话需要使用一个队列来保存后续遍历信息。 快速排序需要找到一个pivot值，如果顺序选择pivot则易造成N^2的复杂度，如果使用随机数则效果最好，但开销又太大，采取三数中值法比较合适。三数中值法指的是选取第一个值，最后一个值，数组中间的值的中值。有文献表明可以提升5%的运行时间。 当数组长度较小时，如10个元素以下，最好使用插入排序或者选择排序完成，以防止复杂度常数因子过大或多次函数调用带来的开销。而递归到底层数组长度总是会变小的，因此这么做非常有必要。 在合并前后两部分数组时，采用两边夹方法，在前后两部分各找到一个大于和小于的值再交换。相比通常情况下找到比pivot小的值就进行交换，能提高运行效率。 实现代码 代码如下。包括插入排序insert_sort，递归函数，三分中值函数三个辅助函数。 三分中值函数其实采用的是插入排序。通过三次比较，确定中值。 插值算法使用临时变量tmp避免了大量swap函数调用。 #include&lt;iostream&gt; #include&lt;iomanip&gt; #include&lt;vector&gt; #include&lt;cstdlib&gt; #include&lt;ctime …">
+<meta name="twitter:description" content="写出一个较好的快速排序程序 快速排序是常用的排序算法之一，但要想写出一个又快又准的使用程序，就不是那么简单了 需要注意的事项 首先要写正确。通常使用递归实现。其递归相当于二叉树展开，因此如果要用迭代实现的话需要使用一个队列来保存后续遍历信息。 快速排序需要找到一个pivot值，如果顺序选择pivot则易造成N^2的复杂度，如果使用随机数则效果最好，但开销又太大，采取三数中值法比较合适。三数中值法指的是选取第一个值，最后一个值，数组中间的值的中值。有文献表明可以提升5%的运行时间。 当数组长度较小时，如10个元素以下，最好使用插入排序或者选择排序完成，以防止复杂度常数因子过大或多次函数调用带来的开销。而递归到底层数组长度总是会变小的，因此这么做非常有必要。 在合并前后两部分数组时，采用两边夹方法，在前后两部分各找到一个大于和小于的值再交换。相比通常情况下找到比pivot小的值就进行交换，能提高运行效率。 实现代码 代码如下。包括插入排序insert_sort，递归函数，三分中值函数三个辅助函数。 三分中值函数其实采用的是插入排序。通过三次比较，确定中值。 插值算法使用临时变量tmp避免了大量swap函数调用。 #include&lt;iostream&gt; #include&lt;iomanip&gt; #include&lt;vector&gt; #include&lt;cstdlib&gt; #include&lt;ctime&gt; #include&lt;algorithm&gt; using namespace std; inline void swap(vector&lt;int&gt;&amp; num, int p, int q){ int t = num[p]; num[p] = num[q]; num[q] = t; } void insert_sort(vector&lt;int&gt;&amp; num){ int tmp, j; for (int i = 1; i &lt; num.size(); i++){ tmp = num[i]; for (j = i - 1; j &gt;= 0 &amp;&amp; num[j] &gt; tmp; j--) num[j + 1] = num[j]; num[j + 1] =tmp; } } int quick_sort_sub(vector&lt;int&gt;&amp; num, int p, int q){ if (p &gt;= q) return 0; // if 4 elements or less, use insert sort if (p + 10 &gt; q){ vector&lt;int&gt; tnum(num.begin() + p, num.begin() + q + 1); insert_sort(tnum); for (int i = 0; i &lt; tnum.size(); i++) num[p + i] = tnum[i]; } int idx = quick_three_partition(num, p, q); swap(num, idx, q); int pivot = num[q]; int left = p, right = q - 1; while (1){ while (num[left] &lt; pivot) ++left; while (num[right] &gt;= pivot) --right; if (left &lt; right …">
 
-        <title>20140727如何写出一个较好的快速排序程序  · Focus
+        <title>20140727如何写出一个较好的快速排序程序  · Render a New World
 </title>
-        <link href="http://heloman.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Focus - Full Atom Feed" />
-        <link href="http://heloman.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Focus - RSS Feed" />
+        <link href="http://heloman.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Render a New World - Full Atom Feed" />
+        <link href="http://heloman.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Render a New World - RSS Feed" />
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -52,7 +52,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </a>
-                        <a class="brand" href="../../../"><span class=site-name>Focus</span></a>
+                        <a class="brand" href="../../../"><span class=site-name>Render a New World</span></a>
                         <div class="nav-collapse collapse">
                             <ul class="nav pull-right top-menu">
                                 <li >

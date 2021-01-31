@@ -19,18 +19,18 @@
 
 <meta property="og:title" content="Ubuntu系统安装Matlab2012a "/>
 <meta property="og:url" content="../../../pages/2013/09/ubuntuxi-tong-an-zhuang-matlab2012a.html" />
-<meta property="og:description" content="下载安装 下载matlab的安装镜像，注意一定是unix版本到。 挂载iso文件： sudo mount -o loop Mathworks.Matlab.R2012a.UNIX.iso /mnt/tmp 到tmp目录下面执行 sudo ./install，安装并激活 启动程序 运行matlab的方式为：sudo /usr/local/MATLAB/R2012a/bin/matlab 运行的时候的警告信息，/usr/local/MATLAB/R2012a/bin/util/oscheck.sh: /lib/libc.so.6: not found。需要创建一个链接解决:sudo ln -s /lib/i386-linux-gnu/libc …" />
-<meta property="og:site_name" content="Focus" />
+<meta property="og:description" content="下载安装 下载matlab的安装镜像，注意一定是unix版本到。 挂载iso文件： sudo mount -o loop Mathworks.Matlab.R2012a.UNIX.iso /mnt/tmp 到tmp目录下面执行 sudo ./install，安装并激活 启动程序 运行matlab的方式为：sudo /usr/local/MATLAB/R2012a/bin/matlab 运行的时候的警告信息，/usr/local/MATLAB/R2012a/bin/util/oscheck.sh: /lib/libc.so.6: not found。需要创建一个链接解决:sudo ln -s /lib/i386-linux-gnu/libc.so.6 /lib/libc.so.664位系统需要改动。 在软件中心安装matlab-support，添加matlab的安装目录为/usr/local/MATLAB/R2012a，这样可以在面板里面直接运行程序。 11.如果要创建快捷方式，可以在启动运行程序中添加 gksudo &#39;/usr/local/MATLAB/R2012a/bin/matlab -desktop&#39;，然后拖动到文件夹。 设置启动目录 可以使用命令：sudo gedit /usr/local/MATLAB/R2012a/toolbox/local/matlabrc.m，最后加上:cd ‘default path’ %default path换成你默认目录即可。 解决中文乱码问题 参考http://wmyming01.blog.163.com/blog/static/12964879120121120102253573/ 关于中文乱码的问题：如果系统已经安装中文字体，则打开Matlab后去File-&gt;Preferences&gt;Fonts里设置Desktop code font 和Desktop text font为支持中文的字体，如WenQuanYi Micro Hei Mono，立即生效。如果系统没中文字体就安装。此时Matlab界面仍是英文，添加自定义工具箱目录时遇到中文乱码问题，可以使用ln -s 源目录 目标目录 命令创建软链接，暂时解决。 此时m文件中的中文注释可能乱码，暂时没找到解决方案，因为中文注释是在windows下用写的，编码有差别。以后注释尽量用英文，在中文编码上时间消耗太多了。 解决运行时java错误 改变.matlab目录所有者即可：chown -R user:user ./.matlab" />
+<meta property="og:site_name" content="Render a New World" />
 <meta property="og:article:author" content="heLomaN" />
 <meta property="og:article:published_time" content="2013-09-04T00:00:00+08:00" />
 <meta property="og:article:modified_time" content="2013-09-04T09:57:43+08:00" />
 <meta name="twitter:title" content="Ubuntu系统安装Matlab2012a ">
-<meta name="twitter:description" content="下载安装 下载matlab的安装镜像，注意一定是unix版本到。 挂载iso文件： sudo mount -o loop Mathworks.Matlab.R2012a.UNIX.iso /mnt/tmp 到tmp目录下面执行 sudo ./install，安装并激活 启动程序 运行matlab的方式为：sudo /usr/local/MATLAB/R2012a/bin/matlab 运行的时候的警告信息，/usr/local/MATLAB/R2012a/bin/util/oscheck.sh: /lib/libc.so.6: not found。需要创建一个链接解决:sudo ln -s /lib/i386-linux-gnu/libc …">
+<meta name="twitter:description" content="下载安装 下载matlab的安装镜像，注意一定是unix版本到。 挂载iso文件： sudo mount -o loop Mathworks.Matlab.R2012a.UNIX.iso /mnt/tmp 到tmp目录下面执行 sudo ./install，安装并激活 启动程序 运行matlab的方式为：sudo /usr/local/MATLAB/R2012a/bin/matlab 运行的时候的警告信息，/usr/local/MATLAB/R2012a/bin/util/oscheck.sh: /lib/libc.so.6: not found。需要创建一个链接解决:sudo ln -s /lib/i386-linux-gnu/libc.so.6 /lib/libc.so.664位系统需要改动。 在软件中心安装matlab-support，添加matlab的安装目录为/usr/local/MATLAB/R2012a，这样可以在面板里面直接运行程序。 11.如果要创建快捷方式，可以在启动运行程序中添加 gksudo &#39;/usr/local/MATLAB/R2012a/bin/matlab -desktop&#39;，然后拖动到文件夹。 设置启动目录 可以使用命令：sudo gedit /usr/local/MATLAB/R2012a/toolbox/local/matlabrc.m，最后加上:cd ‘default path’ %default path换成你默认目录即可。 解决中文乱码问题 参考http://wmyming01.blog.163.com/blog/static/12964879120121120102253573/ 关于中文乱码的问题：如果系统已经安装中文字体，则打开Matlab后去File-&gt;Preferences&gt;Fonts里设置Desktop code font 和Desktop text font为支持中文的字体，如WenQuanYi Micro Hei Mono，立即生效。如果系统没中文字体就安装。此时Matlab界面仍是英文，添加自定义工具箱目录时遇到中文乱码问题，可以使用ln -s 源目录 目标目录 命令创建软链接，暂时解决。 此时m文件中的中文注释可能乱码，暂时没找到解决方案，因为中文注释是在windows下用写的，编码有差别。以后注释尽量用英文，在中文编码上时间消耗太多了。 解决运行时java错误 改变.matlab目录所有者即可：chown -R user:user ./.matlab">
 
-        <title>Ubuntu系统安装Matlab2012a  · Focus
+        <title>Ubuntu系统安装Matlab2012a  · Render a New World
 </title>
-        <link href="http://heloman.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Focus - Full Atom Feed" />
-        <link href="http://heloman.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Focus - RSS Feed" />
+        <link href="http://heloman.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Render a New World - Full Atom Feed" />
+        <link href="http://heloman.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Render a New World - RSS Feed" />
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -52,7 +52,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </a>
-                        <a class="brand" href="../../../"><span class=site-name>Focus</span></a>
+                        <a class="brand" href="../../../"><span class=site-name>Render a New World</span></a>
                         <div class="nav-collapse collapse">
                             <ul class="nav pull-right top-menu">
                                 <li >

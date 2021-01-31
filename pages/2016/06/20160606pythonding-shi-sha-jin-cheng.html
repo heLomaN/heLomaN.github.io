@@ -19,18 +19,18 @@
 
 <meta property="og:title" content="20160606python定时杀进程 "/>
 <meta property="og:url" content="../../../pages/2016/06/20160606pythonding-shi-sha-jin-cheng.html" />
-<meta property="og:description" content="python定时杀进程 之前写了个python脚本用selenium+phantomjs爬新帖子，在循环拉取页面的过程中，phantomjs总是block住，使用WebDriverWait设置最长等待时间无效。用firefox替换phantomjs无改善 因为这个脚本不会长期使用，因此采取临时办法，新开一个子线程固定周期杀死phantomjs进程，这样selenium就会在block最多不超过此周期后返回。当然在爬虫脚本中做一些微调防止部分url被跳过 定时执行任务采用sched模块，很多人将其与crontab相提并论 杀死特定进程的命令 kill -9 pid命令可以无条件终止对应pid进程 获取名为phantomjs的进程pid ps命令列出进程信息 grep过滤得指定名字的进程信息 awk &#39;{print $2}&#39;提取第二列pid信息 最终命令为：kill -9 `ps -aux|grep phantomjs|awk &#39;{print $2}&#39;` python可以用os.system()执行shell命令 使用sched模块周期执行任务 sched模块使用heapq保存event队列，其event为namedtuple类型 sched需要提供两个函数，一个用来获取时间变化，一个用于等待一段时间，可自定义 基本API sched.scheduler(time_func …" />
-<meta property="og:site_name" content="Focus" />
+<meta property="og:description" content="python定时杀进程 之前写了个python脚本用selenium+phantomjs爬新帖子，在循环拉取页面的过程中，phantomjs总是block住，使用WebDriverWait设置最长等待时间无效。用firefox替换phantomjs无改善 因为这个脚本不会长期使用，因此采取临时办法，新开一个子线程固定周期杀死phantomjs进程，这样selenium就会在block最多不超过此周期后返回。当然在爬虫脚本中做一些微调防止部分url被跳过 定时执行任务采用sched模块，很多人将其与crontab相提并论 杀死特定进程的命令 kill -9 pid命令可以无条件终止对应pid进程 获取名为phantomjs的进程pid ps命令列出进程信息 grep过滤得指定名字的进程信息 awk &#39;{print $2}&#39;提取第二列pid信息 最终命令为：kill -9 `ps -aux|grep phantomjs|awk &#39;{print $2}&#39;` python可以用os.system()执行shell命令 使用sched模块周期执行任务 sched模块使用heapq保存event队列，其event为namedtuple类型 sched需要提供两个函数，一个用来获取时间变化，一个用于等待一段时间，可自定义 基本API sched.scheduler(time_func, sleep_func) 函数返回一个scheduler对象，time_func是一个返回数字的计时函数，而sleep_func可接受此数字参数，并延时相应时间 scheduler.enter(delay, priority, action, argument)在delay时间段后，用参数argument调用action， argument必须是一个tuple。若要在固定时刻运行，则应调用scheduler.enterabs scheduler.cancel(event)取消定时任务。event为enter函数返回值 scheduler.run()开始执行 任务时间重叠 在执行任务时有可能要block一段时间，任务返回后可能已经超过下一个任务的定时时刻，这种情况下会立刻执行下一个任务，而不会跳过 周期执行 类似于递归调用，写一个wrapper function，在任务里面再次定时下一次任务即可def wrapper(func, delay): scheduler.enter(delay, 0, wrapper, (func, delay)) func() 最终代码 import os, time, sched schedule = sched.scheduler(time.time, time.sleep) cmd = &#39;&#39;&#39;kill -9 `ps -aux|grep phantomjs|awk &#39;{print $2}&#39;` &#39;&#39;&#39; def recycle_eval(c, inc): schedule.enter(inc, 0, recycle_eval, (c, inc)) os.system(c) print time.ctime(),&#39;phantomjs killed&#39; if __name__ == &#39;__main__&#39;: inc = 180 schedule.enter(inc, 0, recycle_eval, (cmd, inc)) schedule.run() 作者Focustc，来自于CSDN" />
+<meta property="og:site_name" content="Render a New World" />
 <meta property="og:article:author" content="heLomaN" />
 <meta property="og:article:published_time" content="2016-06-06T15:43:32+08:00" />
 <meta property="og:article:modified_time" content="2016-06-06T15:43:32+08:00" />
 <meta name="twitter:title" content="20160606python定时杀进程 ">
-<meta name="twitter:description" content="python定时杀进程 之前写了个python脚本用selenium+phantomjs爬新帖子，在循环拉取页面的过程中，phantomjs总是block住，使用WebDriverWait设置最长等待时间无效。用firefox替换phantomjs无改善 因为这个脚本不会长期使用，因此采取临时办法，新开一个子线程固定周期杀死phantomjs进程，这样selenium就会在block最多不超过此周期后返回。当然在爬虫脚本中做一些微调防止部分url被跳过 定时执行任务采用sched模块，很多人将其与crontab相提并论 杀死特定进程的命令 kill -9 pid命令可以无条件终止对应pid进程 获取名为phantomjs的进程pid ps命令列出进程信息 grep过滤得指定名字的进程信息 awk &#39;{print $2}&#39;提取第二列pid信息 最终命令为：kill -9 `ps -aux|grep phantomjs|awk &#39;{print $2}&#39;` python可以用os.system()执行shell命令 使用sched模块周期执行任务 sched模块使用heapq保存event队列，其event为namedtuple类型 sched需要提供两个函数，一个用来获取时间变化，一个用于等待一段时间，可自定义 基本API sched.scheduler(time_func …">
+<meta name="twitter:description" content="python定时杀进程 之前写了个python脚本用selenium+phantomjs爬新帖子，在循环拉取页面的过程中，phantomjs总是block住，使用WebDriverWait设置最长等待时间无效。用firefox替换phantomjs无改善 因为这个脚本不会长期使用，因此采取临时办法，新开一个子线程固定周期杀死phantomjs进程，这样selenium就会在block最多不超过此周期后返回。当然在爬虫脚本中做一些微调防止部分url被跳过 定时执行任务采用sched模块，很多人将其与crontab相提并论 杀死特定进程的命令 kill -9 pid命令可以无条件终止对应pid进程 获取名为phantomjs的进程pid ps命令列出进程信息 grep过滤得指定名字的进程信息 awk &#39;{print $2}&#39;提取第二列pid信息 最终命令为：kill -9 `ps -aux|grep phantomjs|awk &#39;{print $2}&#39;` python可以用os.system()执行shell命令 使用sched模块周期执行任务 sched模块使用heapq保存event队列，其event为namedtuple类型 sched需要提供两个函数，一个用来获取时间变化，一个用于等待一段时间，可自定义 基本API sched.scheduler(time_func, sleep_func) 函数返回一个scheduler对象，time_func是一个返回数字的计时函数，而sleep_func可接受此数字参数，并延时相应时间 scheduler.enter(delay, priority, action, argument)在delay时间段后，用参数argument调用action， argument必须是一个tuple。若要在固定时刻运行，则应调用scheduler.enterabs scheduler.cancel(event)取消定时任务。event为enter函数返回值 scheduler.run()开始执行 任务时间重叠 在执行任务时有可能要block一段时间，任务返回后可能已经超过下一个任务的定时时刻，这种情况下会立刻执行下一个任务，而不会跳过 周期执行 类似于递归调用，写一个wrapper function，在任务里面再次定时下一次任务即可def wrapper(func, delay): scheduler.enter(delay, 0, wrapper, (func, delay)) func() 最终代码 import os, time, sched schedule = sched.scheduler(time.time, time.sleep) cmd = &#39;&#39;&#39;kill -9 `ps -aux|grep phantomjs|awk &#39;{print $2}&#39;` &#39;&#39;&#39; def recycle_eval(c, inc): schedule.enter(inc, 0, recycle_eval, (c, inc)) os.system(c) print time.ctime(),&#39;phantomjs killed&#39; if __name__ == &#39;__main__&#39;: inc = 180 schedule.enter(inc, 0, recycle_eval, (cmd, inc)) schedule.run() 作者Focustc，来自于CSDN">
 
-        <title>20160606python定时杀进程  · Focus
+        <title>20160606python定时杀进程  · Render a New World
 </title>
-        <link href="http://heloman.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Focus - Full Atom Feed" />
-        <link href="http://heloman.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Focus - RSS Feed" />
+        <link href="http://heloman.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Render a New World - Full Atom Feed" />
+        <link href="http://heloman.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Render a New World - RSS Feed" />
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -52,7 +52,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </a>
-                        <a class="brand" href="../../../"><span class=site-name>Focus</span></a>
+                        <a class="brand" href="../../../"><span class=site-name>Render a New World</span></a>
                         <div class="nav-collapse collapse">
                             <ul class="nav pull-right top-menu">
                                 <li >

@@ -19,18 +19,18 @@
 
 <meta property="og:title" content="20160324查看unity的scene流程 "/>
 <meta property="og:url" content="../../../pages/2016/03/20160324cha-kan-unityde-sceneliu-cheng.html" />
-<meta property="og:description" content="Unity新项目如何快速理清顶层代码结构 半路上手新项目时弄懂scene切换流程是有必要的，scene切换可以说是unity最上层的代码资源结构 要再进一步弄清脚本调用顺序的话，就要选择一个参照标准，时刻停下来，看调用入口 思路 首先我们在入口scene（第一个scene）中添加新的GameObject，绑定脚本，每帧打印当前scene的名字，并防止在scene切换时销毁 根据打印输出的scene名字，在代码中搜索LoadLevel 如果LoadLevel有一个专门的脚本管理器封装，那么查看被调用位置即得知scene切换入口；如果LoadLevel分布在脚本中，则被调用位置即为切换入口 找到切换入口之后，从入口scene开始，分别打开每个scene，并运行。查看运行前后Hierarchy中的GameObject变化，即可知道每个scene初始化时做了什么，再查看scene中脚本的awake和start函数 这样一来，代码的顶层结构即可得到，可根据需要再继续细查每一个功能模块入口。 查看功能模块逻辑时，可以搜索相应的单词，比如武器系统搜索weapon。找到相应的脚本，在init部分加入Debug.Break()，暂停运行，观察scene中的资源。进而在init部分打印一些log，运行时可以直观的看到调用堆栈 代码示例 以下是打印当前scene的名字的脚本public …" />
-<meta property="og:site_name" content="Focus" />
+<meta property="og:description" content="Unity新项目如何快速理清顶层代码结构 半路上手新项目时弄懂scene切换流程是有必要的，scene切换可以说是unity最上层的代码资源结构 要再进一步弄清脚本调用顺序的话，就要选择一个参照标准，时刻停下来，看调用入口 思路 首先我们在入口scene（第一个scene）中添加新的GameObject，绑定脚本，每帧打印当前scene的名字，并防止在scene切换时销毁 根据打印输出的scene名字，在代码中搜索LoadLevel 如果LoadLevel有一个专门的脚本管理器封装，那么查看被调用位置即得知scene切换入口；如果LoadLevel分布在脚本中，则被调用位置即为切换入口 找到切换入口之后，从入口scene开始，分别打开每个scene，并运行。查看运行前后Hierarchy中的GameObject变化，即可知道每个scene初始化时做了什么，再查看scene中脚本的awake和start函数 这样一来，代码的顶层结构即可得到，可根据需要再继续细查每一个功能模块入口。 查看功能模块逻辑时，可以搜索相应的单词，比如武器系统搜索weapon。找到相应的脚本，在init部分加入Debug.Break()，暂停运行，观察scene中的资源。进而在init部分打印一些log，运行时可以直观的看到调用堆栈 代码示例 以下是打印当前scene的名字的脚本public class test : MonoBehaviour { private AsyncOperation async; void Start () { DontDestroyOnLoad(this); } void Update () { Debug.Log(Application.loadedLevelName); } }" />
+<meta property="og:site_name" content="Render a New World" />
 <meta property="og:article:author" content="heLomaN" />
 <meta property="og:article:published_time" content="2016-03-25T11:31:00+08:00" />
 <meta property="og:article:modified_time" content="2016-03-25T11:31:00+08:00" />
 <meta name="twitter:title" content="20160324查看unity的scene流程 ">
-<meta name="twitter:description" content="Unity新项目如何快速理清顶层代码结构 半路上手新项目时弄懂scene切换流程是有必要的，scene切换可以说是unity最上层的代码资源结构 要再进一步弄清脚本调用顺序的话，就要选择一个参照标准，时刻停下来，看调用入口 思路 首先我们在入口scene（第一个scene）中添加新的GameObject，绑定脚本，每帧打印当前scene的名字，并防止在scene切换时销毁 根据打印输出的scene名字，在代码中搜索LoadLevel 如果LoadLevel有一个专门的脚本管理器封装，那么查看被调用位置即得知scene切换入口；如果LoadLevel分布在脚本中，则被调用位置即为切换入口 找到切换入口之后，从入口scene开始，分别打开每个scene，并运行。查看运行前后Hierarchy中的GameObject变化，即可知道每个scene初始化时做了什么，再查看scene中脚本的awake和start函数 这样一来，代码的顶层结构即可得到，可根据需要再继续细查每一个功能模块入口。 查看功能模块逻辑时，可以搜索相应的单词，比如武器系统搜索weapon。找到相应的脚本，在init部分加入Debug.Break()，暂停运行，观察scene中的资源。进而在init部分打印一些log，运行时可以直观的看到调用堆栈 代码示例 以下是打印当前scene的名字的脚本public …">
+<meta name="twitter:description" content="Unity新项目如何快速理清顶层代码结构 半路上手新项目时弄懂scene切换流程是有必要的，scene切换可以说是unity最上层的代码资源结构 要再进一步弄清脚本调用顺序的话，就要选择一个参照标准，时刻停下来，看调用入口 思路 首先我们在入口scene（第一个scene）中添加新的GameObject，绑定脚本，每帧打印当前scene的名字，并防止在scene切换时销毁 根据打印输出的scene名字，在代码中搜索LoadLevel 如果LoadLevel有一个专门的脚本管理器封装，那么查看被调用位置即得知scene切换入口；如果LoadLevel分布在脚本中，则被调用位置即为切换入口 找到切换入口之后，从入口scene开始，分别打开每个scene，并运行。查看运行前后Hierarchy中的GameObject变化，即可知道每个scene初始化时做了什么，再查看scene中脚本的awake和start函数 这样一来，代码的顶层结构即可得到，可根据需要再继续细查每一个功能模块入口。 查看功能模块逻辑时，可以搜索相应的单词，比如武器系统搜索weapon。找到相应的脚本，在init部分加入Debug.Break()，暂停运行，观察scene中的资源。进而在init部分打印一些log，运行时可以直观的看到调用堆栈 代码示例 以下是打印当前scene的名字的脚本public class test : MonoBehaviour { private AsyncOperation async; void Start () { DontDestroyOnLoad(this); } void Update () { Debug.Log(Application.loadedLevelName); } }">
 
-        <title>20160324查看unity的scene流程  · Focus
+        <title>20160324查看unity的scene流程  · Render a New World
 </title>
-        <link href="http://heloman.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Focus - Full Atom Feed" />
-        <link href="http://heloman.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Focus - RSS Feed" />
+        <link href="http://heloman.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Render a New World - Full Atom Feed" />
+        <link href="http://heloman.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Render a New World - RSS Feed" />
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -52,7 +52,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </a>
-                        <a class="brand" href="../../../"><span class=site-name>Focus</span></a>
+                        <a class="brand" href="../../../"><span class=site-name>Render a New World</span></a>
                         <div class="nav-collapse collapse">
                             <ul class="nav pull-right top-menu">
                                 <li >

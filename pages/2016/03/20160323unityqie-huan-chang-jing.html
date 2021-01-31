@@ -19,18 +19,18 @@
 
 <meta property="og:title" content="20160323unity切换场景 "/>
 <meta property="og:url" content="../../../pages/2016/03/20160323unityqie-huan-chang-jing.html" />
-<meta property="og:description" content="Unity中的场景切换 与电影类似，一个游戏往往需要多个场景。而如果场景中资源较少，那么可以很快的完成切换，如果较多的话，可能需要十几秒时间。在这段时间内播放加载动画等等，可以减少玩家的不耐烦。 同步切换场景 Application.LoadLevel() Application.LoadLevelAdditive()加载完成后保留旧场景中资源 异步切换场景 Application.LoadLevelAsync()异步加载场景，加载过程中当前场景不会卡死。返回值包含加载进度 代码示例： public class test : MonoBehaviour { private AsyncOperation async; void Start () { Debug.Log(Time.time); StartCoroutine(&#34;Switch&#34;); } void Update () { Debug.Log(async.progress); } IEnumerator Switch() { async = Application.LoadLevelAsync(&#34;LoadingScene&#34;); yield …" />
-<meta property="og:site_name" content="Focus" />
+<meta property="og:description" content="Unity中的场景切换 与电影类似，一个游戏往往需要多个场景。而如果场景中资源较少，那么可以很快的完成切换，如果较多的话，可能需要十几秒时间。在这段时间内播放加载动画等等，可以减少玩家的不耐烦。 同步切换场景 Application.LoadLevel() Application.LoadLevelAdditive()加载完成后保留旧场景中资源 异步切换场景 Application.LoadLevelAsync()异步加载场景，加载过程中当前场景不会卡死。返回值包含加载进度 代码示例： public class test : MonoBehaviour { private AsyncOperation async; void Start () { Debug.Log(Time.time); StartCoroutine(&#34;Switch&#34;); } void Update () { Debug.Log(async.progress); } IEnumerator Switch() { async = Application.LoadLevelAsync(&#34;LoadingScene&#34;); yield return async; } } Application.LoadLevelAdditiveAsync加载新场景完成后不释放旧资源 通常做场景切换时，首先切换到一个较小的loading动画场景，之后异步加载新场景 无缝场景切换 场景管理对象需要一直存在：Object.DontDestroyOnLoad()可以防止切换场景时销毁 异步加载新资源，并逐步销毁旧资源" />
+<meta property="og:site_name" content="Render a New World" />
 <meta property="og:article:author" content="heLomaN" />
 <meta property="og:article:published_time" content="2016-03-24T09:58:00+08:00" />
 <meta property="og:article:modified_time" content="2016-03-24T09:58:00+08:00" />
 <meta name="twitter:title" content="20160323unity切换场景 ">
-<meta name="twitter:description" content="Unity中的场景切换 与电影类似，一个游戏往往需要多个场景。而如果场景中资源较少，那么可以很快的完成切换，如果较多的话，可能需要十几秒时间。在这段时间内播放加载动画等等，可以减少玩家的不耐烦。 同步切换场景 Application.LoadLevel() Application.LoadLevelAdditive()加载完成后保留旧场景中资源 异步切换场景 Application.LoadLevelAsync()异步加载场景，加载过程中当前场景不会卡死。返回值包含加载进度 代码示例： public class test : MonoBehaviour { private AsyncOperation async; void Start () { Debug.Log(Time.time); StartCoroutine(&#34;Switch&#34;); } void Update () { Debug.Log(async.progress); } IEnumerator Switch() { async = Application.LoadLevelAsync(&#34;LoadingScene&#34;); yield …">
+<meta name="twitter:description" content="Unity中的场景切换 与电影类似，一个游戏往往需要多个场景。而如果场景中资源较少，那么可以很快的完成切换，如果较多的话，可能需要十几秒时间。在这段时间内播放加载动画等等，可以减少玩家的不耐烦。 同步切换场景 Application.LoadLevel() Application.LoadLevelAdditive()加载完成后保留旧场景中资源 异步切换场景 Application.LoadLevelAsync()异步加载场景，加载过程中当前场景不会卡死。返回值包含加载进度 代码示例： public class test : MonoBehaviour { private AsyncOperation async; void Start () { Debug.Log(Time.time); StartCoroutine(&#34;Switch&#34;); } void Update () { Debug.Log(async.progress); } IEnumerator Switch() { async = Application.LoadLevelAsync(&#34;LoadingScene&#34;); yield return async; } } Application.LoadLevelAdditiveAsync加载新场景完成后不释放旧资源 通常做场景切换时，首先切换到一个较小的loading动画场景，之后异步加载新场景 无缝场景切换 场景管理对象需要一直存在：Object.DontDestroyOnLoad()可以防止切换场景时销毁 异步加载新资源，并逐步销毁旧资源">
 
-        <title>20160323unity切换场景  · Focus
+        <title>20160323unity切换场景  · Render a New World
 </title>
-        <link href="http://heloman.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Focus - Full Atom Feed" />
-        <link href="http://heloman.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Focus - RSS Feed" />
+        <link href="http://heloman.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Render a New World - Full Atom Feed" />
+        <link href="http://heloman.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Render a New World - RSS Feed" />
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -52,7 +52,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </a>
-                        <a class="brand" href="../../../"><span class=site-name>Focus</span></a>
+                        <a class="brand" href="../../../"><span class=site-name>Render a New World</span></a>
                         <div class="nav-collapse collapse">
                             <ul class="nav pull-right top-menu">
                                 <li >

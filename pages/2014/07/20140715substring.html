@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="../../../theme/css/elegant.prod.9e9d5ce754.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="../../../theme/css/custom.css" media="screen">
+
+        <link rel="dns-prefetch" href="//fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+
+        <meta name="author" content="heLomaN" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content=", misc, " />
+
+<meta property="og:title" content="20140715substring "/>
+<meta property="og:url" content="../../../pages/2014/07/20140715substring.html" />
+<meta property="og:description" content="字符串查找算法 字符串查找常用于电子监控，网络数据提取，文本编辑器。 字符串查找要求在一段长度为N的文本text中找到长度为N的pattern字符串的起始位置。常用算法如下。 暴力搜索 遍历text，以text中每个字符开始与pattern做比较。 算法复杂度为MN，比如在AAAAAAAAB中查找AAB 算法需要回退，如果发现一次不匹配，需要回退text的指针。可以通过缓冲M个字符解决 算法实现 public static int search(String pat, String txt) { int i, N = txt.length(); int j, M = pat.length(); for(i = 0, j = 0; i &lt; N &amp;&amp; j &lt; M; i++) { if (txt.charAt(i) == pat.charAt(j)) j++; else {i -= j; j = 0; } } if (j == M) return i - M; else return N; } 暴力算法不够好，复杂度不够低，需要回退 KMP算法 相比暴力搜索算法，根据当前一次不匹配的已知信息跳过以后的数次匹配 DFA算法 本质是DFA（deterministic finite state automaton 有限状态机）。已经匹配的字符数作为状态，下一个输入字符为输入条件。 算法实现 public int search(String txt) { int i, j, N = txt.length(); for (i = 0, j = 0; i &lt; N &amp;&amp; j &lt; M; i++) j = dfa[txt.charAt(i)[[j]; if (j == M) return i - M; else return N; } 与暴力算法的异同 需要根据pattern计算dfa矩阵 指针永不回退，可以使用输入字符流 dfa矩阵的计算 对于符合pattern的状态跳转，拥有从0到M的一条顺序路径 不符合pattern的，将要跳转到的状态等于pattern去除第一个字符情况下要跳转到的状态。可以使用X来跟踪去除第一个字符后腰跳转到的状态。如上图，X应是BABAC的状态跳转 算法实现：对于每个状态j，对于匹配的情况，设dfa[pat.charAt[(j)][j] = j+1,对于不匹配的情况，设dfa[][X] = dfa[][j]。复杂度为RM public KMP(String pat) { this.pat = pat; M = pat.length; dfa = new int[R][M]; dfa[pat.charAt(0)][0] = 1; for (int X = 0, j = 1; j &lt; M; j++) { for (int c = 0; c &lt; R; c++) dfa[c][j] = dfa[c][X];//mismatch cases dfa[pat.charAt[(j)][j] = j+1 …" />
+<meta property="og:site_name" content="Render a New World" />
+<meta property="og:article:author" content="heLomaN" />
+<meta property="og:article:published_time" content="2014-07-15T12:05:30.658090+08:00" />
+<meta property="og:article:modified_time" content="2014-07-15T12:05:30.658090+08:00" />
+<meta name="twitter:title" content="20140715substring ">
+<meta name="twitter:description" content="字符串查找算法 字符串查找常用于电子监控，网络数据提取，文本编辑器。 字符串查找要求在一段长度为N的文本text中找到长度为N的pattern字符串的起始位置。常用算法如下。 暴力搜索 遍历text，以text中每个字符开始与pattern做比较。 算法复杂度为MN，比如在AAAAAAAAB中查找AAB 算法需要回退，如果发现一次不匹配，需要回退text的指针。可以通过缓冲M个字符解决 算法实现 public static int search(String pat, String txt) { int i, N = txt.length(); int j, M = pat.length(); for(i = 0, j = 0; i &lt; N &amp;&amp; j &lt; M; i++) { if (txt.charAt(i) == pat.charAt(j)) j++; else {i -= j; j = 0; } } if (j == M) return i - M; else return N; } 暴力算法不够好，复杂度不够低，需要回退 KMP算法 相比暴力搜索算法，根据当前一次不匹配的已知信息跳过以后的数次匹配 DFA算法 本质是DFA（deterministic finite state automaton 有限状态机）。已经匹配的字符数作为状态，下一个输入字符为输入条件。 算法实现 public int search(String txt) { int i, j, N = txt.length(); for (i = 0, j = 0; i &lt; N &amp;&amp; j &lt; M; i++) j = dfa[txt.charAt(i)[[j]; if (j == M) return i - M; else return N; } 与暴力算法的异同 需要根据pattern计算dfa矩阵 指针永不回退，可以使用输入字符流 dfa矩阵的计算 对于符合pattern的状态跳转，拥有从0到M的一条顺序路径 不符合pattern的，将要跳转到的状态等于pattern去除第一个字符情况下要跳转到的状态。可以使用X来跟踪去除第一个字符后腰跳转到的状态。如上图，X应是BABAC的状态跳转 算法实现：对于每个状态j，对于匹配的情况，设dfa[pat.charAt[(j)][j] = j+1,对于不匹配的情况，设dfa[][X] = dfa[][j]。复杂度为RM public KMP(String pat) { this.pat = pat; M = pat.length; dfa = new int[R][M]; dfa[pat.charAt(0)][0] = 1; for (int X = 0, j = 1; j &lt; M; j++) { for (int c = 0; c &lt; R; c++) dfa[c][j] = dfa[c][X];//mismatch cases dfa[pat.charAt[(j)][j] = j+1 …">
+
+        <title>20140715substring  · Render a New World
+</title>
+        <link href="http://heloman.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Render a New World - Full Atom Feed" />
+        <link href="http://heloman.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Render a New World - RSS Feed" />
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-43314222-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+    </head>
+    <body>
+        <div id="content">
+            <div class="navbar navbar-static-top">
+                <div class="navbar-inner">
+                    <div class="container-fluid">
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+                        <a class="brand" href="../../../"><span class=site-name>Render a New World</span></a>
+                        <div class="nav-collapse collapse">
+                            <ul class="nav pull-right top-menu">
+                                <li >
+                                    <a href=
+                                       ../../..
+                                    >Home</a>
+                                </li>
+                                <li ><a href="../../../pages/about-me.html">About Me</a></li>
+                                <li ><a href="../../../pages/resume.html">Resume</a></li>
+                                <li ><a href="../../../categories.html">Categories</a></li>
+                                <li ><a href="../../../tags.html">Tags</a></li>
+                                <li ><a href="../../../archives.html">Archives</a></li>
+                                <li><form class="navbar-search" action="../../../search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span1"></div>
+                    <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+        <h1>
+            <a href="../../../pages/2014/07/20140715substring.html">
+                20140715substring
+            </a>
+        </h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+            
+            <h1>字符串查找算法</h1>
+<p>字符串查找常用于电子监控，网络数据提取，文本编辑器。
+字符串查找要求在一段长度为N的文本text中找到长度为N的pattern字符串的起始位置。常用算法如下。</p>
+<h2>暴力搜索</h2>
+<ul>
+<li>遍历text，以text中每个字符开始与pattern做比较。</li>
+<li>算法复杂度为MN，比如在AAAAAAAAB中查找AAB</li>
+<li>算法需要回退，如果发现一次不匹配，需要回退text的指针。可以通过缓冲M个字符解决</li>
+<li>算法实现</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err">public static int search(String pat, String txt)</span>
+<span class="err">{</span>
+<span class="err">    int i, N = txt.length();</span>
+<span class="err">    int j, M = pat.length();</span>
+<span class="err">    for(i = 0, j = 0; i &lt; N &amp;&amp; j &lt; M; i++)</span>
+<span class="err">    {</span>
+<span class="err">        if (txt.charAt(i) == pat.charAt(j)) j++;</span>
+<span class="err">        else {i -= j; j = 0; }</span>
+<span class="err">    }</span>
+<span class="err">    if (j == M) return i - M;</span>
+<span class="err">    else        return N;</span>
+<span class="err">}</span>
+</code></pre></div>
+
+
+<ul>
+<li>暴力算法不够好，复杂度不够低，需要回退</li>
+</ul>
+<h2>KMP算法</h2>
+<ul>
+<li>相比暴力搜索算法，根据当前一次不匹配的已知信息跳过以后的数次匹配</li>
+</ul>
+<h3>DFA算法</h3>
+<ul>
+<li>本质是DFA（deterministic finite state automaton 有限状态机）。已经匹配的字符数作为状态，下一个输入字符为输入条件。</li>
+</ul>
+<p><img alt="DFA" src="substring1.jpg"></p>
+<ul>
+<li>算法实现</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="nc">int</span><span class="w"> </span><span class="k">search</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">txt</span><span class="p">)</span><span class="w"></span>
+<span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="nc">int</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">txt</span><span class="p">.</span><span class="n">length</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">M</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dfa</span><span class="o">[</span><span class="n">txt.charAt(i)[[j</span><span class="o">]</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">M</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">M</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">else</span><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+</code></pre></div>
+
+
+<ul>
+<li>与暴力算法的异同<ul>
+<li>需要根据pattern计算dfa矩阵</li>
+<li>指针永不回退，可以使用输入字符流</li>
+</ul>
+</li>
+<li>dfa矩阵的计算<ul>
+<li>对于符合pattern的状态跳转，拥有从0到M的一条顺序路径</li>
+<li>不符合pattern的，将要跳转到的状态等于pattern去除第一个字符情况下要跳转到的状态。可以使用X来跟踪去除第一个字符后腰跳转到的状态。如上图，X应是BABAC的状态跳转</li>
+<li>算法实现：对于每个状态j，对于匹配的情况，设<code>dfa[pat.charAt[(j)][j] = j+1</code>,对于不匹配的情况，设<code>dfa[][X] = dfa[][j]</code>。复杂度为RM</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="n">KMP</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">pat</span><span class="p">)</span><span class="w"></span>
+<span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">this</span><span class="p">.</span><span class="n">pat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pat</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">M</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pat</span><span class="p">.</span><span class="n">length</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">dfa</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="nc">int</span><span class="o">[</span><span class="n">R</span><span class="o">][</span><span class="n">M</span><span class="o">]</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">dfa</span><span class="o">[</span><span class="n">pat.charAt(0)</span><span class="o">][</span><span class="n">0</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="nc">int</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">M</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="nc">int</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">R</span><span class="p">;</span><span class="w"> </span><span class="n">c</span><span class="o">++</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="n">dfa</span><span class="o">[</span><span class="n">c</span><span class="o">][</span><span class="n">j</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dfa</span><span class="o">[</span><span class="n">c</span><span class="o">][</span><span class="n">X</span><span class="o">]</span><span class="p">;</span><span class="o">//</span><span class="n">mismatch</span><span class="w"> </span><span class="n">cases</span><span class="w"></span>
+<span class="w">        </span><span class="n">dfa</span><span class="o">[</span><span class="n">pat.charAt[(j)</span><span class="o">][</span><span class="n">j</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span><span class="o">//</span><span class="k">match</span><span class="w"> </span><span class="k">case</span><span class="w"></span>
+<span class="w">        </span><span class="n">X</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dfa</span><span class="o">[</span><span class="n">pat.charAt(j)</span><span class="o">][</span><span class="n">X</span><span class="o">]</span><span class="p">;</span><span class="o">//</span><span class="k">update</span><span class="w"> </span><span class="n">X</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
+</code></pre></div>
+
+
+<ul>
+<li>对字符的读取最多不超过N+M次，而dfa矩阵的构建的时间空间复杂度为RM</li>
+<li>如果字符为unicode等R比较大的字符集，应该采用改进的KMP版本。</li>
+</ul>
+<h3>KMP算法</h3>
+<ul>
+<li>对于一次匹配，如果匹配到pattern的当前字符位置j+1不再匹配，之前的pattern[1，j]都匹配，那么下一个可能匹配的位置设为pattern[k]，必然有<code>pattern[1,j-k+1] == pattern[k,j]</code>。如果有多个k，那么应该取最小的一个，防止遗漏。也即：<strong>在pattern不匹配的字符位置之前的那个字串<code>pattern[1，j]</code>中，找到最大的一个字串p，使得它同时是pattern[1，j]的真前缀和真后缀，这个字串p的长度为k</strong>。</li>
+<li>对于每一个pattern中的j+1，如果能找到k，那么就能直接得到下一个可能匹配的位置，尽量多的跳过数次匹配。这就是算法的原理。</li>
+<li>如何计算k？暴力计算当然是可以的，复杂度M^2。有一种简化的方法<ul>
+<li>分析j+1与j+2之间的关系，如果<code>pattern[1,j-k+1]</code>的后一个字符<code>pattern[j-k+2] == pattern[j+1]</code>，则pattern[1，j+1]前后缀相等关系依然保持，<code>k'= k+1</code>。</li>
+<li>如果两者不等</li>
+</ul>
+</li>
+</ul>
+
+
+             
+ 
+            
+            
+            
+
+
+
+
+
+
+
+<section>
+    <h6 style="display:none;">Comments</h6>
+    <p id="comment-message"> </p>
+
+    <div class="accordion" id="accordion2">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <a class="accordion-toggle disqus-comment-count comment-count collapsed"
+                   data-toggle="collapse"
+                   data-parent="#accordion2"
+                   data-disqus-identifier="../../../pages/2014/07/20140715substring.html"
+                   href="../../../pages/2014/07/20140715substring.html#comment_thread"
+                   id="comment-accordion-toggle">
+                    Comments
+                </a>
+            </div>
+            <div id="comment_thread" class="accordion-body collapse">
+                <div class="accordion-inner">
+                    <div class="comments">
+                        <div id="disqus_thread"></div>
+                        <script>
+    var disqus_shortname = 'focustc';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+
+    var disqus_identifier = '../../../pages/2014/07/20140715substring.html';
+    var disqus_url = '../../../pages/2014/07/20140715substring.html';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+            <hr/>
+        </div>
+        <section id="article-sidebar" class="span2">
+            <h4>Published</h4>
+            <time itemprop="dateCreated" datetime="2014-07-15T12:05:30.658090+08:00">2014-07-15</time>
+
+            <h4>Category</h4>
+            <a class="category-link" href="../../../categories.html#misc-ref">misc</a>
+<h4>Contact</h4>
+<div id="sidebar-social-link">
+    <a href="https://github.com/heloman" title="" target="_blank" rel="nofollow noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-label="GitHub" role="img" viewBox="0 0 512 512"><rect width="512" height="512" rx="15%" fill="#1B1817"/><path fill="#fff" d="M335 499c14 0 12 17 12 17H165s-2-17 12-17c13 0 16-6 16-12l-1-50c-71 16-86-28-86-28-12-30-28-37-28-37-24-16 1-16 1-16 26 2 40 26 40 26 22 39 59 28 74 22 2-17 9-28 16-35-57-6-116-28-116-126 0-28 10-51 26-69-3-6-11-32 3-67 0 0 21-7 70 26 42-12 86-12 128 0 49-33 70-26 70-26 14 35 6 61 3 67 16 18 26 41 26 69 0 98-60 120-117 126 10 8 18 24 18 48l-1 70c0 6 3 12 16 12z"/></svg>
+    </a>
+    <a href="http://heloman.github.io/feeds/all.rss.xml" title="" target="_blank" rel="nofollow noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-label="RSS" role="img" viewBox="0 0 512 512"><rect width="512" height="512" rx="15%" fill="#f80"/><circle cx="145" cy="367" r="35" fill="#fff"/><path fill="none" stroke="#fff" stroke-width="60" d="M109 241c89 0 162 73 162 162M109 127c152 0 276 124 276 276"/></svg>
+    </a>
+</div>
+            
+
+
+
+
+
+            
+
+
+
+
+
+        </section>
+</div>
+</article>
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe.
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides.
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>                    </div>
+                    <div class="span1"></div>
+                </div>
+            </div>
+        </div>
+<footer>
+
+
+
+
+    <div id="fpowered">
+        Powered by: <a href="http://getpelican.com/" title="Pelican Home Page" target="_blank" rel="nofollow noopener noreferrer">Pelican</a>
+        Theme: <a href="https://elegant.oncrashreboot.com/" title="Theme Elegant Home Page" target="_blank" rel="nofollow noopener noreferrer">Elegant</a>
+    </div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script src="../../../theme/js/elegant.prod.9e9d5ce754.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    <script>
+    (function () {
+        if (window.location.hash.match(/^#comment-\d+$/)) {
+            $('#comment_thread').collapse('show');
+        }
+    })();
+    window.onhashchange=function(){
+        if (window.location.hash.match(/^#comment-\d+$/))
+            window.location.reload(true);
+    }
+    $('#comment_thread').on('shown', function () {
+        var link = document.getElementById('comment-accordion-toggle');
+        var old_innerHTML = link.innerHTML;
+        $(link).fadeOut(200, function() {
+            $(this).text('Click here to hide comments').fadeIn(200);
+        });
+        $('#comment_thread').on('hidden', function () {
+            $(link).fadeOut(200, function() {
+                $(this).text(old_innerHTML).fadeIn(200);
+            });
+        })
+    })
+</script>
+
+    </body>
+    <!-- Theme: Elegant built for Pelican
+        License : MIT -->
+</html>

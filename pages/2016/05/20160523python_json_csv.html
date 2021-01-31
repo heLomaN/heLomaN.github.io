@@ -19,18 +19,18 @@
 
 <meta property="og:title" content="20160523python_json_csv "/>
 <meta property="og:url" content="../../../pages/2016/05/20160523python_json_csv.html" />
-<meta property="og:description" content="使用python开发json、csv数据格式转换工具 json和xml是业界常用的数据格式，而游戏行业经常使用csv配表，包括本地化文本和数值。本文介绍csv和json序列化、逆序列化相关的python库，以及开发工具常用的命令行解析库--getopt csv模块 csv文件格式并不统一，存在多种分隔符，而csv模块可以很方便的读写csv文件 csv.reader 返回一个reader迭代器，迭代器每次给出一个字符串列表，对应于csv文件中的一行 csv.writer 相应的，返回一个writer，调用writerrow([stra,strb,...strc])可以将数据写入文件 csv.DictReader 创建一个DictReader类，对比reader迭代器，每次迭代给出一个字典对应一行，参数Reader.fieldnames给出了字典的key csv.DictWriter 类似writer，但输出的是字典 json模块 dump(obj, fp)将对象序列化后写入文件fp，indent选项可格式化json文件 dumps(obj)返回obj序列化之后的字符串 load(fp)从文件对象fp中反序列化 …" />
-<meta property="og:site_name" content="Focus" />
+<meta property="og:description" content="使用python开发json、csv数据格式转换工具 json和xml是业界常用的数据格式，而游戏行业经常使用csv配表，包括本地化文本和数值。本文介绍csv和json序列化、逆序列化相关的python库，以及开发工具常用的命令行解析库--getopt csv模块 csv文件格式并不统一，存在多种分隔符，而csv模块可以很方便的读写csv文件 csv.reader 返回一个reader迭代器，迭代器每次给出一个字符串列表，对应于csv文件中的一行 csv.writer 相应的，返回一个writer，调用writerrow([stra,strb,...strc])可以将数据写入文件 csv.DictReader 创建一个DictReader类，对比reader迭代器，每次迭代给出一个字典对应一行，参数Reader.fieldnames给出了字典的key csv.DictWriter 类似writer，但输出的是字典 json模块 dump(obj, fp)将对象序列化后写入文件fp，indent选项可格式化json文件 dumps(obj)返回obj序列化之后的字符串 load(fp)从文件对象fp中反序列化，支持str或unicode loads(s)从字符串中反序列化 getopt解析命令行 getopt模块在c语言中也有，python实现了同样功能的模块 与sys模块配合，获取命令行参数 sys.argv为命令行列表 sys.argv[1:]可传递给getopt使用，去除了第一个参数（脚本名） getopt.getopt(sys,argv[1:], options[, long_options]) options为短选项，例如hi:，表示可以-h或者-i xxx的方式使用，:表示该选项必须附加参数 long_options为长选项，例如[&#39;help&#39;, &#39;input=&#39;]，可以--help或者--input xxx的格式使用，=表示该选项必须附加参数 第一个返回值为(option, value)的pair列表，第二个返回值为解析后剩余的参数 例如命令行参数为-h -i xxx yyy，则返回值为[(&#39;-h&#39;, &#39;&#39;), (&#39;-i&#39;, xxx)], [&#39;yyy&#39;] 获得pair列表后，根据其中的数据进行不同的操作 csv转换为json文件工具举例 下面为csv文件转换为json的样例代码，以csv第一列作为json dict的keyimport sys, getopt import csv import json from ast import literal_eval def main(argv): pretty = False try: opts, args = getopt.getopt(argv,&#34;hp&#34;) except getopt.GetoptError: print &#39;test.py [-p]&#39; sys.exit(2) for opt, arg in opts: if opt == &#39;-h&#39;: print &#39;test.py [-p]&#39; sys.exit() elif opt == &#39;-p&#39;: pretty = True data = read_csv(&#34;test.csv&#34;) #print(json.dumps(data, sort_keys=False, indent=4, separators=(&#39;,&#39;, &#39;: &#39;),encoding=&#34;utf-8&#34;,ensure_ascii=False)) write_json(data, &#34;test.json&#34;, pretty) def read_csv(file): csv_rows = {} def format(source): try: source = literal_eval …" />
+<meta property="og:site_name" content="Render a New World" />
 <meta property="og:article:author" content="heLomaN" />
 <meta property="og:article:published_time" content="2016-05-26T11:55:34+08:00" />
 <meta property="og:article:modified_time" content="2016-05-26T11:55:34+08:00" />
 <meta name="twitter:title" content="20160523python_json_csv ">
-<meta name="twitter:description" content="使用python开发json、csv数据格式转换工具 json和xml是业界常用的数据格式，而游戏行业经常使用csv配表，包括本地化文本和数值。本文介绍csv和json序列化、逆序列化相关的python库，以及开发工具常用的命令行解析库--getopt csv模块 csv文件格式并不统一，存在多种分隔符，而csv模块可以很方便的读写csv文件 csv.reader 返回一个reader迭代器，迭代器每次给出一个字符串列表，对应于csv文件中的一行 csv.writer 相应的，返回一个writer，调用writerrow([stra,strb,...strc])可以将数据写入文件 csv.DictReader 创建一个DictReader类，对比reader迭代器，每次迭代给出一个字典对应一行，参数Reader.fieldnames给出了字典的key csv.DictWriter 类似writer，但输出的是字典 json模块 dump(obj, fp)将对象序列化后写入文件fp，indent选项可格式化json文件 dumps(obj)返回obj序列化之后的字符串 load(fp)从文件对象fp中反序列化 …">
+<meta name="twitter:description" content="使用python开发json、csv数据格式转换工具 json和xml是业界常用的数据格式，而游戏行业经常使用csv配表，包括本地化文本和数值。本文介绍csv和json序列化、逆序列化相关的python库，以及开发工具常用的命令行解析库--getopt csv模块 csv文件格式并不统一，存在多种分隔符，而csv模块可以很方便的读写csv文件 csv.reader 返回一个reader迭代器，迭代器每次给出一个字符串列表，对应于csv文件中的一行 csv.writer 相应的，返回一个writer，调用writerrow([stra,strb,...strc])可以将数据写入文件 csv.DictReader 创建一个DictReader类，对比reader迭代器，每次迭代给出一个字典对应一行，参数Reader.fieldnames给出了字典的key csv.DictWriter 类似writer，但输出的是字典 json模块 dump(obj, fp)将对象序列化后写入文件fp，indent选项可格式化json文件 dumps(obj)返回obj序列化之后的字符串 load(fp)从文件对象fp中反序列化，支持str或unicode loads(s)从字符串中反序列化 getopt解析命令行 getopt模块在c语言中也有，python实现了同样功能的模块 与sys模块配合，获取命令行参数 sys.argv为命令行列表 sys.argv[1:]可传递给getopt使用，去除了第一个参数（脚本名） getopt.getopt(sys,argv[1:], options[, long_options]) options为短选项，例如hi:，表示可以-h或者-i xxx的方式使用，:表示该选项必须附加参数 long_options为长选项，例如[&#39;help&#39;, &#39;input=&#39;]，可以--help或者--input xxx的格式使用，=表示该选项必须附加参数 第一个返回值为(option, value)的pair列表，第二个返回值为解析后剩余的参数 例如命令行参数为-h -i xxx yyy，则返回值为[(&#39;-h&#39;, &#39;&#39;), (&#39;-i&#39;, xxx)], [&#39;yyy&#39;] 获得pair列表后，根据其中的数据进行不同的操作 csv转换为json文件工具举例 下面为csv文件转换为json的样例代码，以csv第一列作为json dict的keyimport sys, getopt import csv import json from ast import literal_eval def main(argv): pretty = False try: opts, args = getopt.getopt(argv,&#34;hp&#34;) except getopt.GetoptError: print &#39;test.py [-p]&#39; sys.exit(2) for opt, arg in opts: if opt == &#39;-h&#39;: print &#39;test.py [-p]&#39; sys.exit() elif opt == &#39;-p&#39;: pretty = True data = read_csv(&#34;test.csv&#34;) #print(json.dumps(data, sort_keys=False, indent=4, separators=(&#39;,&#39;, &#39;: &#39;),encoding=&#34;utf-8&#34;,ensure_ascii=False)) write_json(data, &#34;test.json&#34;, pretty) def read_csv(file): csv_rows = {} def format(source): try: source = literal_eval …">
 
-        <title>20160523python_json_csv  · Focus
+        <title>20160523python_json_csv  · Render a New World
 </title>
-        <link href="http://heloman.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Focus - Full Atom Feed" />
-        <link href="http://heloman.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Focus - RSS Feed" />
+        <link href="http://heloman.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Render a New World - Full Atom Feed" />
+        <link href="http://heloman.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Render a New World - RSS Feed" />
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -52,7 +52,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </a>
-                        <a class="brand" href="../../../"><span class=site-name>Focus</span></a>
+                        <a class="brand" href="../../../"><span class=site-name>Render a New World</span></a>
                         <div class="nav-collapse collapse">
                             <ul class="nav pull-right top-menu">
                                 <li >

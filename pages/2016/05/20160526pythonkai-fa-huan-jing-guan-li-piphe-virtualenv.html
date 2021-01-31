@@ -19,18 +19,18 @@
 
 <meta property="og:title" content="20160526python开发环境管理pip和virtualenv "/>
 <meta property="og:url" content="../../../pages/2016/05/20160526pythonkai-fa-huan-jing-guan-li-piphe-virtualenv.html" />
-<meta property="og:description" content="python开发环境管理：pip和virtualenv 不同的python软件需要不同的开发环境，互相之间甚至可能有冲突，怎么处理？使用pip、virtualenv和virtualenvwrapper可以迅速的搭建、转移开发环境，并隔离冲突。 软件包管理 pip是easy_install的替代品，distribute是setuptools的替代品 pip使用 使用参考文档为：pip pip install test安装test包 pip list列出已经安装的包 pip install --upgrade test升级test包 pip uninstall test卸载 pip install test==4.4指定版本 pip install test&gt;=4.4指定最小版本号 pip freeze &gt; requirements.txt到处当前python环境的依赖库要求 pip install …" />
-<meta property="og:site_name" content="Focus" />
+<meta property="og:description" content="python开发环境管理：pip和virtualenv 不同的python软件需要不同的开发环境，互相之间甚至可能有冲突，怎么处理？使用pip、virtualenv和virtualenvwrapper可以迅速的搭建、转移开发环境，并隔离冲突。 软件包管理 pip是easy_install的替代品，distribute是setuptools的替代品 pip使用 使用参考文档为：pip pip install test安装test包 pip list列出已经安装的包 pip install --upgrade test升级test包 pip uninstall test卸载 pip install test==4.4指定版本 pip install test&gt;=4.4指定最小版本号 pip freeze &gt; requirements.txt到处当前python环境的依赖库要求 pip install -r requirements.txt根据依赖文件安装库 virtualenv virtualenv是用来创建独立python运行环境的工具 可以创建单独的安装目录，解决了依赖项、版本和权限的问题。比如pip不需要sudo了 创建虚拟环境 virtualenv test 命令将在当前目前下建立一个名为test的文件夹 此文件夹下python环境会自动安装pip，方便安装其他程序 默认将能使用系统中已经安装的包，可以使用--no-site-packages禁止 启动虚拟环境 source test/bin/activate 启动之后，可以看到命令行头部出现(test)字样，表明启动成功 退出 deactivate用于退出虚拟环境 rm -r test用于删除虚拟环境 virtualenvwrapper virtualenvwrapper是virtualenv的一个扩展，使虚拟环境的管理更加容易 参考文档virtualenvwrapper 安装 使用sudo pip install之后使用以下命令设置开发环境，可以将最后一行加入.bash_profile，以后就无需重复初始化了 $ mkdir -p $WORKON_HOME $ export WORKON_HOME=~/Envs $ source /usr/local/bin/virtualenvwrapper.sh 方便起见，直接将以下代码加入.bashrc，因为有些环境下.bash_profile不会被执行 # 设置virtualenv 工作的目录. 我们放在用户跟目录下 export WORKON_HOME=$HOME/.virtualenvs # ensure all new environments are isolated from the site-packages directory export VIRTUALENVWRAPPER_VIRTUALENV_ARGS=&#39;--no-site-packages&#39; # use the same directory for virtualenvs as virtualenvwrapper export PIP_VIRTUALENV_BASE=$WORKON_HOME # makes pip detect an active virtualenv and install to it export PIP_RESPECT_VIRTUALENV=true if [[ -r /usr/local/bin/virtualenvwrapper.sh ]]; then source /usr/local/bin/virtualenvwrapper.sh else echo &#34;WARNING: Can&#39;t find virtualenvwrapper.sh&#34; fi 常用命令 mkvirtualenv test创建名为test的虚拟环境 workon或者lsvirtualenv列出所有虚拟环境 workon test启动或者切换虚拟环境 rmvirtualenv …" />
+<meta property="og:site_name" content="Render a New World" />
 <meta property="og:article:author" content="heLomaN" />
 <meta property="og:article:published_time" content="2016-05-26T12:12:24+08:00" />
 <meta property="og:article:modified_time" content="2016-05-26T12:12:24+08:00" />
 <meta name="twitter:title" content="20160526python开发环境管理pip和virtualenv ">
-<meta name="twitter:description" content="python开发环境管理：pip和virtualenv 不同的python软件需要不同的开发环境，互相之间甚至可能有冲突，怎么处理？使用pip、virtualenv和virtualenvwrapper可以迅速的搭建、转移开发环境，并隔离冲突。 软件包管理 pip是easy_install的替代品，distribute是setuptools的替代品 pip使用 使用参考文档为：pip pip install test安装test包 pip list列出已经安装的包 pip install --upgrade test升级test包 pip uninstall test卸载 pip install test==4.4指定版本 pip install test&gt;=4.4指定最小版本号 pip freeze &gt; requirements.txt到处当前python环境的依赖库要求 pip install …">
+<meta name="twitter:description" content="python开发环境管理：pip和virtualenv 不同的python软件需要不同的开发环境，互相之间甚至可能有冲突，怎么处理？使用pip、virtualenv和virtualenvwrapper可以迅速的搭建、转移开发环境，并隔离冲突。 软件包管理 pip是easy_install的替代品，distribute是setuptools的替代品 pip使用 使用参考文档为：pip pip install test安装test包 pip list列出已经安装的包 pip install --upgrade test升级test包 pip uninstall test卸载 pip install test==4.4指定版本 pip install test&gt;=4.4指定最小版本号 pip freeze &gt; requirements.txt到处当前python环境的依赖库要求 pip install -r requirements.txt根据依赖文件安装库 virtualenv virtualenv是用来创建独立python运行环境的工具 可以创建单独的安装目录，解决了依赖项、版本和权限的问题。比如pip不需要sudo了 创建虚拟环境 virtualenv test 命令将在当前目前下建立一个名为test的文件夹 此文件夹下python环境会自动安装pip，方便安装其他程序 默认将能使用系统中已经安装的包，可以使用--no-site-packages禁止 启动虚拟环境 source test/bin/activate 启动之后，可以看到命令行头部出现(test)字样，表明启动成功 退出 deactivate用于退出虚拟环境 rm -r test用于删除虚拟环境 virtualenvwrapper virtualenvwrapper是virtualenv的一个扩展，使虚拟环境的管理更加容易 参考文档virtualenvwrapper 安装 使用sudo pip install之后使用以下命令设置开发环境，可以将最后一行加入.bash_profile，以后就无需重复初始化了 $ mkdir -p $WORKON_HOME $ export WORKON_HOME=~/Envs $ source /usr/local/bin/virtualenvwrapper.sh 方便起见，直接将以下代码加入.bashrc，因为有些环境下.bash_profile不会被执行 # 设置virtualenv 工作的目录. 我们放在用户跟目录下 export WORKON_HOME=$HOME/.virtualenvs # ensure all new environments are isolated from the site-packages directory export VIRTUALENVWRAPPER_VIRTUALENV_ARGS=&#39;--no-site-packages&#39; # use the same directory for virtualenvs as virtualenvwrapper export PIP_VIRTUALENV_BASE=$WORKON_HOME # makes pip detect an active virtualenv and install to it export PIP_RESPECT_VIRTUALENV=true if [[ -r /usr/local/bin/virtualenvwrapper.sh ]]; then source /usr/local/bin/virtualenvwrapper.sh else echo &#34;WARNING: Can&#39;t find virtualenvwrapper.sh&#34; fi 常用命令 mkvirtualenv test创建名为test的虚拟环境 workon或者lsvirtualenv列出所有虚拟环境 workon test启动或者切换虚拟环境 rmvirtualenv …">
 
-        <title>20160526python开发环境管理pip和virtualenv  · Focus
+        <title>20160526python开发环境管理pip和virtualenv  · Render a New World
 </title>
-        <link href="http://heloman.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Focus - Full Atom Feed" />
-        <link href="http://heloman.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Focus - RSS Feed" />
+        <link href="http://heloman.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Render a New World - Full Atom Feed" />
+        <link href="http://heloman.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Render a New World - RSS Feed" />
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -52,7 +52,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </a>
-                        <a class="brand" href="../../../"><span class=site-name>Focus</span></a>
+                        <a class="brand" href="../../../"><span class=site-name>Render a New World</span></a>
                         <div class="nav-collapse collapse">
                             <ul class="nav pull-right top-menu">
                                 <li >

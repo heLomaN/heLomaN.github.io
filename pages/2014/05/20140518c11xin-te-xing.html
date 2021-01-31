@@ -19,18 +19,18 @@
 
 <meta property="og:title" content="20140518C++11新特性 "/>
 <meta property="og:url" content="../../../pages/2014/05/20140518c11xin-te-xing.html" />
-<meta property="og:description" content="C++11新特性 C++11已经推出三年了（2011），编译器GCC4.7、Clang3.1在2012年已经逐渐完善，VS2013也已经支持相关特性，GCC4.8.1支持全部特性。不过新特性似乎在工业界并未得到太多应用，可能出于兼容性和稳定性的考虑吧。 推出的新特性还是相当的丰富，看下面这张图就知道了。我仅仅在这里提一下相对比较容易应用的部分，包括语法上的一些扩展以及改进，lambda表达式以及正则式等比较复杂，暂且不提。 统一初始化 以往的C++可以使用很多种方法完成初始化，而且传统的构造函数类似于函数声明，不是非常直观。而新标准把数组的初始化方法推广为统一的初始化方法: int i{0}; float f{2.0}; ClassA a{a,&#39;c&#39;,&#34;foo&#34;}; int i{2.0};//error 这种方法不会造成narrowing，编程风格更为统一。 类型推导 引入auto和decltype关键字。auto可以根据表达式或函数返回值在编译阶段得到正确的类型。而decltype可以在编译时确定一个表达式的类型 …" />
-<meta property="og:site_name" content="Focus" />
+<meta property="og:description" content="C++11新特性 C++11已经推出三年了（2011），编译器GCC4.7、Clang3.1在2012年已经逐渐完善，VS2013也已经支持相关特性，GCC4.8.1支持全部特性。不过新特性似乎在工业界并未得到太多应用，可能出于兼容性和稳定性的考虑吧。 推出的新特性还是相当的丰富，看下面这张图就知道了。我仅仅在这里提一下相对比较容易应用的部分，包括语法上的一些扩展以及改进，lambda表达式以及正则式等比较复杂，暂且不提。 统一初始化 以往的C++可以使用很多种方法完成初始化，而且传统的构造函数类似于函数声明，不是非常直观。而新标准把数组的初始化方法推广为统一的初始化方法: int i{0}; float f{2.0}; ClassA a{a,&#39;c&#39;,&#34;foo&#34;}; int i{2.0};//error 这种方法不会造成narrowing，编程风格更为统一。 类型推导 引入auto和decltype关键字。auto可以根据表达式或函数返回值在编译阶段得到正确的类型。而decltype可以在编译时确定一个表达式的类型。 vector&lt;int&gt; v; //vector&lt;int&gt;::const_iterator i = v.begin(); auto i = v.begin() decltype(i) t = i; 可以看到可以减少代码工作量。 另外，用于模版编程可以很好的用于模版编程： template&lt;class T1, class T2&gt; auto f(T1 a, T2 b){ return a + b; } 基于范围的for循环 结合auto使用，可以很方便的对数组或各种容器完成遍历： for(auto &amp; i:array) { i*=2; } 成员变量默认初始化 在定义类的时候完成成员变量的默认初始化，如： class A{ int c = 10; } 智能指针shared_ptr 可以自动完成指针的托管，离开作用域时自动delete。使用方法如下： #include&lt;memory&gt; int *p1; shared_ptr&lt;int&gt; ptr(p1); 注意：对同一个指针只能用来初始化至多一个shared_ptr，否则在离开作用域时会造成delete指针多次报错。 nullptr nullptr表示空指针，其“==”是经过重载的，主要是为了消除“NULL”的歧义性。两个不同类型的指针不能判断是否相等，即使他们都是nullptr。 int * p = NULL; float * np = nullptr; np == NULL;//true; np == p;//false 右值引用 右值引用可以有效的减少深拷贝的次数。右值一般指无法取地址的表达式，实质为在表达式结束后就不存在的临时对象，使用右值引用时要注意这一点，因为这个右值可能被更改。 比如：a++是右值，而++a为左值。 某需要深拷贝的类型右值赋值给一个变量或作为函数返回值时通常会调用复制构造函数，RVO（返回值优化）在避免复制构造上面并不够好。 但我们可以给此类型定义move构造函数和move赋值函数，这样显示的使用move函数把一个变量转变为右值后，就可以调用move构造/赋值函数减少开销。 int &amp;&amp;i = 1;//定义了一个右值引用 class A{ public: A(A &amp;&amp; a);//move构造函数 A &amp; operator= (A &amp;&amp; a);//move赋值函数 }； A a,b; a = move(b);//调用move赋值函数 A c(move(b));//调用move构造函数 //但是b已经作为右值被使用了，可能已经被改变，错误的用法！ 转载请注明作者：Focustc，博客地址为http://blog.csdn.net/caozhk，原文链接为点击打开" />
+<meta property="og:site_name" content="Render a New World" />
 <meta property="og:article:author" content="heLomaN" />
 <meta property="og:article:published_time" content="2014-05-18T10:09:00.137768+08:00" />
 <meta property="og:article:modified_time" content="2014-05-18T10:09:00.137768+08:00" />
 <meta name="twitter:title" content="20140518C++11新特性 ">
-<meta name="twitter:description" content="C++11新特性 C++11已经推出三年了（2011），编译器GCC4.7、Clang3.1在2012年已经逐渐完善，VS2013也已经支持相关特性，GCC4.8.1支持全部特性。不过新特性似乎在工业界并未得到太多应用，可能出于兼容性和稳定性的考虑吧。 推出的新特性还是相当的丰富，看下面这张图就知道了。我仅仅在这里提一下相对比较容易应用的部分，包括语法上的一些扩展以及改进，lambda表达式以及正则式等比较复杂，暂且不提。 统一初始化 以往的C++可以使用很多种方法完成初始化，而且传统的构造函数类似于函数声明，不是非常直观。而新标准把数组的初始化方法推广为统一的初始化方法: int i{0}; float f{2.0}; ClassA a{a,&#39;c&#39;,&#34;foo&#34;}; int i{2.0};//error 这种方法不会造成narrowing，编程风格更为统一。 类型推导 引入auto和decltype关键字。auto可以根据表达式或函数返回值在编译阶段得到正确的类型。而decltype可以在编译时确定一个表达式的类型 …">
+<meta name="twitter:description" content="C++11新特性 C++11已经推出三年了（2011），编译器GCC4.7、Clang3.1在2012年已经逐渐完善，VS2013也已经支持相关特性，GCC4.8.1支持全部特性。不过新特性似乎在工业界并未得到太多应用，可能出于兼容性和稳定性的考虑吧。 推出的新特性还是相当的丰富，看下面这张图就知道了。我仅仅在这里提一下相对比较容易应用的部分，包括语法上的一些扩展以及改进，lambda表达式以及正则式等比较复杂，暂且不提。 统一初始化 以往的C++可以使用很多种方法完成初始化，而且传统的构造函数类似于函数声明，不是非常直观。而新标准把数组的初始化方法推广为统一的初始化方法: int i{0}; float f{2.0}; ClassA a{a,&#39;c&#39;,&#34;foo&#34;}; int i{2.0};//error 这种方法不会造成narrowing，编程风格更为统一。 类型推导 引入auto和decltype关键字。auto可以根据表达式或函数返回值在编译阶段得到正确的类型。而decltype可以在编译时确定一个表达式的类型。 vector&lt;int&gt; v; //vector&lt;int&gt;::const_iterator i = v.begin(); auto i = v.begin() decltype(i) t = i; 可以看到可以减少代码工作量。 另外，用于模版编程可以很好的用于模版编程： template&lt;class T1, class T2&gt; auto f(T1 a, T2 b){ return a + b; } 基于范围的for循环 结合auto使用，可以很方便的对数组或各种容器完成遍历： for(auto &amp; i:array) { i*=2; } 成员变量默认初始化 在定义类的时候完成成员变量的默认初始化，如： class A{ int c = 10; } 智能指针shared_ptr 可以自动完成指针的托管，离开作用域时自动delete。使用方法如下： #include&lt;memory&gt; int *p1; shared_ptr&lt;int&gt; ptr(p1); 注意：对同一个指针只能用来初始化至多一个shared_ptr，否则在离开作用域时会造成delete指针多次报错。 nullptr nullptr表示空指针，其“==”是经过重载的，主要是为了消除“NULL”的歧义性。两个不同类型的指针不能判断是否相等，即使他们都是nullptr。 int * p = NULL; float * np = nullptr; np == NULL;//true; np == p;//false 右值引用 右值引用可以有效的减少深拷贝的次数。右值一般指无法取地址的表达式，实质为在表达式结束后就不存在的临时对象，使用右值引用时要注意这一点，因为这个右值可能被更改。 比如：a++是右值，而++a为左值。 某需要深拷贝的类型右值赋值给一个变量或作为函数返回值时通常会调用复制构造函数，RVO（返回值优化）在避免复制构造上面并不够好。 但我们可以给此类型定义move构造函数和move赋值函数，这样显示的使用move函数把一个变量转变为右值后，就可以调用move构造/赋值函数减少开销。 int &amp;&amp;i = 1;//定义了一个右值引用 class A{ public: A(A &amp;&amp; a);//move构造函数 A &amp; operator= (A &amp;&amp; a);//move赋值函数 }； A a,b; a = move(b);//调用move赋值函数 A c(move(b));//调用move构造函数 //但是b已经作为右值被使用了，可能已经被改变，错误的用法！ 转载请注明作者：Focustc，博客地址为http://blog.csdn.net/caozhk，原文链接为点击打开">
 
-        <title>20140518C++11新特性  · Focus
+        <title>20140518C++11新特性  · Render a New World
 </title>
-        <link href="http://heloman.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Focus - Full Atom Feed" />
-        <link href="http://heloman.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Focus - RSS Feed" />
+        <link href="http://heloman.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Render a New World - Full Atom Feed" />
+        <link href="http://heloman.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Render a New World - RSS Feed" />
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -52,7 +52,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </a>
-                        <a class="brand" href="../../../"><span class=site-name>Focus</span></a>
+                        <a class="brand" href="../../../"><span class=site-name>Render a New World</span></a>
                         <div class="nav-collapse collapse">
                             <ul class="nav pull-right top-menu">
                                 <li >

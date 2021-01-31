@@ -19,18 +19,18 @@
 
 <meta property="og:title" content="20160612安卓按键键码修改 "/>
 <meta property="og:url" content="../../../pages/2016/06/20160612an-zhuo-an-jian-jian-ma-xiu-gai.html" />
-<meta property="og:description" content="安卓系统按键映射修改 谨记录下靠着自己摸索，安卓平板使用时一个bug的解决方案，及修改按钮功能的方法。这个bug目前搜不到解决方案，能独立解决还是很有成就感的 解决反复打开谷歌语音搜索的bug 手里一部驰为hi8，是国产双系统平板，在安卓系统下如果插上耳机会自动暂停和播放音乐，并反复打开谷歌搜索 这个bug目前网上没有找到答案。自己猜测，应该是耳机接口不匹配，相当于一直按着线控耳机上的播放/暂停按钮出现的情况 安卓系统基于linux，应该有办法修改按键键码的，谷歌知道，/system/usr/keylayout/qwerty.kl中保存了按键配置信息。但打开后看到注释写明此文件已不再使用，新系统采用的是Generic.kl文件中的配置 打开Generic.kl可以看到其中数据全都是如下格式 key 163 MEDIA_NEXT key 164 MEDIA_PLAY_PAUSE ... key 172 HOME 很明显，数字就是键码，而后面的大写字母则是对应的功能。遍历整个文件，只有上述提到的164关联了play和pause两个功能，大胆猜测这就是线控耳机的那个按钮。遂注释掉这一行重启平板，果然反复启动谷歌语音搜索的bug不见了，音乐播放器也不会反复自动打开了，当然，如果有需要使用线控耳机也不能用了~ 屏蔽Win按钮 …" />
-<meta property="og:site_name" content="Focus" />
+<meta property="og:description" content="安卓系统按键映射修改 谨记录下靠着自己摸索，安卓平板使用时一个bug的解决方案，及修改按钮功能的方法。这个bug目前搜不到解决方案，能独立解决还是很有成就感的 解决反复打开谷歌语音搜索的bug 手里一部驰为hi8，是国产双系统平板，在安卓系统下如果插上耳机会自动暂停和播放音乐，并反复打开谷歌搜索 这个bug目前网上没有找到答案。自己猜测，应该是耳机接口不匹配，相当于一直按着线控耳机上的播放/暂停按钮出现的情况 安卓系统基于linux，应该有办法修改按键键码的，谷歌知道，/system/usr/keylayout/qwerty.kl中保存了按键配置信息。但打开后看到注释写明此文件已不再使用，新系统采用的是Generic.kl文件中的配置 打开Generic.kl可以看到其中数据全都是如下格式 key 163 MEDIA_NEXT key 164 MEDIA_PLAY_PAUSE ... key 172 HOME 很明显，数字就是键码，而后面的大写字母则是对应的功能。遍历整个文件，只有上述提到的164关联了play和pause两个功能，大胆猜测这就是线控耳机的那个按钮。遂注释掉这一行重启平板，果然反复启动谷歌语音搜索的bug不见了，音乐播放器也不会反复自动打开了，当然，如果有需要使用线控耳机也不能用了~ 屏蔽Win按钮 经常使用这个平板玩儿虚荣，最为烦恼的是玩儿着玩儿着不小心碰到类Win按钮，直接回到了桌面，再次切换回游戏的话，都已经输了一波了。因此解决上述问题后有了屏蔽Win按钮的想法 这个按钮对应的键码想必就是HOME了，这个kl文件中总共有两行key都是HOME，两次试验确定key 102 HOME才对应Win键，同样注释掉，搞定~ 嗯，这个kl文件同样采用的是#作为行注释标记 作者Focustc，来自于CSDN" />
+<meta property="og:site_name" content="Render a New World" />
 <meta property="og:article:author" content="heLomaN" />
 <meta property="og:article:published_time" content="2016-06-12T22:44:02+08:00" />
 <meta property="og:article:modified_time" content="2016-06-12T22:44:02+08:00" />
 <meta name="twitter:title" content="20160612安卓按键键码修改 ">
-<meta name="twitter:description" content="安卓系统按键映射修改 谨记录下靠着自己摸索，安卓平板使用时一个bug的解决方案，及修改按钮功能的方法。这个bug目前搜不到解决方案，能独立解决还是很有成就感的 解决反复打开谷歌语音搜索的bug 手里一部驰为hi8，是国产双系统平板，在安卓系统下如果插上耳机会自动暂停和播放音乐，并反复打开谷歌搜索 这个bug目前网上没有找到答案。自己猜测，应该是耳机接口不匹配，相当于一直按着线控耳机上的播放/暂停按钮出现的情况 安卓系统基于linux，应该有办法修改按键键码的，谷歌知道，/system/usr/keylayout/qwerty.kl中保存了按键配置信息。但打开后看到注释写明此文件已不再使用，新系统采用的是Generic.kl文件中的配置 打开Generic.kl可以看到其中数据全都是如下格式 key 163 MEDIA_NEXT key 164 MEDIA_PLAY_PAUSE ... key 172 HOME 很明显，数字就是键码，而后面的大写字母则是对应的功能。遍历整个文件，只有上述提到的164关联了play和pause两个功能，大胆猜测这就是线控耳机的那个按钮。遂注释掉这一行重启平板，果然反复启动谷歌语音搜索的bug不见了，音乐播放器也不会反复自动打开了，当然，如果有需要使用线控耳机也不能用了~ 屏蔽Win按钮 …">
+<meta name="twitter:description" content="安卓系统按键映射修改 谨记录下靠着自己摸索，安卓平板使用时一个bug的解决方案，及修改按钮功能的方法。这个bug目前搜不到解决方案，能独立解决还是很有成就感的 解决反复打开谷歌语音搜索的bug 手里一部驰为hi8，是国产双系统平板，在安卓系统下如果插上耳机会自动暂停和播放音乐，并反复打开谷歌搜索 这个bug目前网上没有找到答案。自己猜测，应该是耳机接口不匹配，相当于一直按着线控耳机上的播放/暂停按钮出现的情况 安卓系统基于linux，应该有办法修改按键键码的，谷歌知道，/system/usr/keylayout/qwerty.kl中保存了按键配置信息。但打开后看到注释写明此文件已不再使用，新系统采用的是Generic.kl文件中的配置 打开Generic.kl可以看到其中数据全都是如下格式 key 163 MEDIA_NEXT key 164 MEDIA_PLAY_PAUSE ... key 172 HOME 很明显，数字就是键码，而后面的大写字母则是对应的功能。遍历整个文件，只有上述提到的164关联了play和pause两个功能，大胆猜测这就是线控耳机的那个按钮。遂注释掉这一行重启平板，果然反复启动谷歌语音搜索的bug不见了，音乐播放器也不会反复自动打开了，当然，如果有需要使用线控耳机也不能用了~ 屏蔽Win按钮 经常使用这个平板玩儿虚荣，最为烦恼的是玩儿着玩儿着不小心碰到类Win按钮，直接回到了桌面，再次切换回游戏的话，都已经输了一波了。因此解决上述问题后有了屏蔽Win按钮的想法 这个按钮对应的键码想必就是HOME了，这个kl文件中总共有两行key都是HOME，两次试验确定key 102 HOME才对应Win键，同样注释掉，搞定~ 嗯，这个kl文件同样采用的是#作为行注释标记 作者Focustc，来自于CSDN">
 
-        <title>20160612安卓按键键码修改  · Focus
+        <title>20160612安卓按键键码修改  · Render a New World
 </title>
-        <link href="http://heloman.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Focus - Full Atom Feed" />
-        <link href="http://heloman.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Focus - RSS Feed" />
+        <link href="http://heloman.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Render a New World - Full Atom Feed" />
+        <link href="http://heloman.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Render a New World - RSS Feed" />
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -52,7 +52,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </a>
-                        <a class="brand" href="../../../"><span class=site-name>Focus</span></a>
+                        <a class="brand" href="../../../"><span class=site-name>Render a New World</span></a>
                         <div class="nav-collapse collapse">
                             <ul class="nav pull-right top-menu">
                                 <li >

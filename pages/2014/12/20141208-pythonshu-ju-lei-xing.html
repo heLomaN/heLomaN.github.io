@@ -19,18 +19,18 @@
 
 <meta property="og:title" content="20141208 python数据类型 "/>
 <meta property="og:url" content="../../../pages/2014/12/20141208-pythonshu-ju-lei-xing.html" />
-<meta property="og:description" content="Python中的数据类型 字符串和数组是immutable的 使用type(var)可以很方便的确认变量类型 使用id(var)可以查看每个变量对象的id，id相同表示两个对象在内存中位置相同，节省了开销 tuple、list、dict分别用() [] {}表示 数据类型间转换： int() float() complex() str() list() tuple() 布尔类型 True和False 布尔运算：and or not 整数Int 超出一个范围后，会自动转换为Long数据类型，也可以使用345L的方式强制使用long类型 浮点数Float 字符串 字符串用单引号&#39; &#39;、双引号&#34; &#34;、三引号&#39;&#39;&#39; &#39;&#39;&#39;，其中三引号内的字符串可以分成多行书写 \表示转义，而字符串前加入r可以防止转义 split join是最常用的方法，用于分词，在list和string之间转换 …" />
-<meta property="og:site_name" content="Focus" />
+<meta property="og:description" content="Python中的数据类型 字符串和数组是immutable的 使用type(var)可以很方便的确认变量类型 使用id(var)可以查看每个变量对象的id，id相同表示两个对象在内存中位置相同，节省了开销 tuple、list、dict分别用() [] {}表示 数据类型间转换： int() float() complex() str() list() tuple() 布尔类型 True和False 布尔运算：and or not 整数Int 超出一个范围后，会自动转换为Long数据类型，也可以使用345L的方式强制使用long类型 浮点数Float 字符串 字符串用单引号&#39; &#39;、双引号&#34; &#34;、三引号&#39;&#39;&#39; &#39;&#39;&#39;，其中三引号内的字符串可以分成多行书写 \表示转义，而字符串前加入r可以防止转义 split join是最常用的方法，用于分词，在list和string之间转换 列表List 用[]表示，包含的元素可以是不同类型的任何类型 方法包括：append extend insert remove reverse pop index count sort len del + *可以对两个、多个list进行连接 sort：对list排序 list slice:类似于matlab，使用形式为a[start:end:step]，可以使用负数表示从后向前数，下标区间前开后闭 in:可以使用in判断是否在list中&#39;a&#39; in [&#39;a&#39;,&#39;b&#39;] 元组Tuple 与List的不同之处在于初始化后不能更改 若要创建单元素的tuple则需要在变量后添加一个逗号，如type((&#39;a&#39;,)) 与list相同，支持slice 集合Set 元素不可重复，包含集合运算 字典Dict key必须为不可变类型 keys() values()方法获取key和valuelist 判断key是否存在：dct.has_key(&#39;key&#39;) clear:清空字典内容 python控制语句 if if...elif...else for 按照顺序迭代序列 for i in range(10) break continue 循环语句的else子句：在for或者while执行结束后，如果不是由break中断，则执行else字句中的代码 pass 表示什么也不做，用于占位 list comprehension [expr for var in iterable if cond_expr] 方便的使用已有列表生成新列表 [2**i for i in list(range(10)) if i%2 == 0] map reduce filter都可以使用这种方式实现 generator expression (expr for var in iterable if cond_expr) 更节省内存，返回一个generator 操作符优先级 从最优先开始：slice/属性/调用 幂 正负/按位取反 乘除取余 加减 移位 按位与/异或/或 比较 布尔运算 if_else lambda表达式 =不能放在表达式中，与C不同 函数 docstring 第一行是用途的简短描述，第二行空白 函数参数 每个函数调用都会创建一个被调函数的局部符号表，参数传递使用call by value（对象的引用） 没有return语句的函数返回值为None，没有参数的return语句也返回None 可以使用=指定默认参数值，调用时可以不给出默认参数值 …" />
+<meta property="og:site_name" content="Render a New World" />
 <meta property="og:article:author" content="heLomaN" />
 <meta property="og:article:published_time" content="2014-12-08T23:11:00.981456+08:00" />
 <meta property="og:article:modified_time" content="2014-12-08T23:11:00.981456+08:00" />
 <meta name="twitter:title" content="20141208 python数据类型 ">
-<meta name="twitter:description" content="Python中的数据类型 字符串和数组是immutable的 使用type(var)可以很方便的确认变量类型 使用id(var)可以查看每个变量对象的id，id相同表示两个对象在内存中位置相同，节省了开销 tuple、list、dict分别用() [] {}表示 数据类型间转换： int() float() complex() str() list() tuple() 布尔类型 True和False 布尔运算：and or not 整数Int 超出一个范围后，会自动转换为Long数据类型，也可以使用345L的方式强制使用long类型 浮点数Float 字符串 字符串用单引号&#39; &#39;、双引号&#34; &#34;、三引号&#39;&#39;&#39; &#39;&#39;&#39;，其中三引号内的字符串可以分成多行书写 \表示转义，而字符串前加入r可以防止转义 split join是最常用的方法，用于分词，在list和string之间转换 …">
+<meta name="twitter:description" content="Python中的数据类型 字符串和数组是immutable的 使用type(var)可以很方便的确认变量类型 使用id(var)可以查看每个变量对象的id，id相同表示两个对象在内存中位置相同，节省了开销 tuple、list、dict分别用() [] {}表示 数据类型间转换： int() float() complex() str() list() tuple() 布尔类型 True和False 布尔运算：and or not 整数Int 超出一个范围后，会自动转换为Long数据类型，也可以使用345L的方式强制使用long类型 浮点数Float 字符串 字符串用单引号&#39; &#39;、双引号&#34; &#34;、三引号&#39;&#39;&#39; &#39;&#39;&#39;，其中三引号内的字符串可以分成多行书写 \表示转义，而字符串前加入r可以防止转义 split join是最常用的方法，用于分词，在list和string之间转换 列表List 用[]表示，包含的元素可以是不同类型的任何类型 方法包括：append extend insert remove reverse pop index count sort len del + *可以对两个、多个list进行连接 sort：对list排序 list slice:类似于matlab，使用形式为a[start:end:step]，可以使用负数表示从后向前数，下标区间前开后闭 in:可以使用in判断是否在list中&#39;a&#39; in [&#39;a&#39;,&#39;b&#39;] 元组Tuple 与List的不同之处在于初始化后不能更改 若要创建单元素的tuple则需要在变量后添加一个逗号，如type((&#39;a&#39;,)) 与list相同，支持slice 集合Set 元素不可重复，包含集合运算 字典Dict key必须为不可变类型 keys() values()方法获取key和valuelist 判断key是否存在：dct.has_key(&#39;key&#39;) clear:清空字典内容 python控制语句 if if...elif...else for 按照顺序迭代序列 for i in range(10) break continue 循环语句的else子句：在for或者while执行结束后，如果不是由break中断，则执行else字句中的代码 pass 表示什么也不做，用于占位 list comprehension [expr for var in iterable if cond_expr] 方便的使用已有列表生成新列表 [2**i for i in list(range(10)) if i%2 == 0] map reduce filter都可以使用这种方式实现 generator expression (expr for var in iterable if cond_expr) 更节省内存，返回一个generator 操作符优先级 从最优先开始：slice/属性/调用 幂 正负/按位取反 乘除取余 加减 移位 按位与/异或/或 比较 布尔运算 if_else lambda表达式 =不能放在表达式中，与C不同 函数 docstring 第一行是用途的简短描述，第二行空白 函数参数 每个函数调用都会创建一个被调函数的局部符号表，参数传递使用call by value（对象的引用） 没有return语句的函数返回值为None，没有参数的return语句也返回None 可以使用=指定默认参数值，调用时可以不给出默认参数值 …">
 
-        <title>20141208 python数据类型  · Focus
+        <title>20141208 python数据类型  · Render a New World
 </title>
-        <link href="http://heloman.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Focus - Full Atom Feed" />
-        <link href="http://heloman.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Focus - RSS Feed" />
+        <link href="http://heloman.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Render a New World - Full Atom Feed" />
+        <link href="http://heloman.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Render a New World - RSS Feed" />
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -52,7 +52,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </a>
-                        <a class="brand" href="../../../"><span class=site-name>Focus</span></a>
+                        <a class="brand" href="../../../"><span class=site-name>Render a New World</span></a>
                         <div class="nav-collapse collapse">
                             <ul class="nav pull-right top-menu">
                                 <li >
